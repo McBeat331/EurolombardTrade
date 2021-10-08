@@ -24,7 +24,7 @@ class AddressRequest extends FormRequest
     public function rules()
     {
         return [
-            'country_id' => 'request',
+            'country_id' => 'required',
             'name' => 'required|string|min:3'
         ];
     }

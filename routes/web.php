@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\AddressController;
+use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\ReviewController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +21,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::name('admin.')->middleware('isAdmin')->group(function(){
+Route::name('admin.')->prefix('admin')/*->middleware('isAdmin')*/->group(function(){
+    Route::resource('address', AddressController::class);
+    Route::resource('country', CountryController::class);
+    Route::resource('order', OrderController::class);
+    Route::resource('post', PostController::class);
+    Route::resource('review', ReviewController::class);
+    Route::resource('service', ServiceController::class);
+    Route::resource('setting', SettingController::class);
     Route::resource('user', UserController::class);
-    Route::resource('user', PostController::class);
 });

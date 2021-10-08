@@ -23,12 +23,18 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        $update = request('id') ? ',' . request('id') : '';
+        $update = $password = '';
+        if(request('id')) {
+            $update = ',' . request('id');
+            $password = 'required';
+        }
+
         return [
-            'name' => 'request|string|min:3',
+            'name' => 'required|string|min:3',
             'lastname' => 'nullable|string',
             'phone' => 'nullable|integer',
-            'email' => 'request|email|unique:users,email'.$update,
+            'email' => 'required|email|unique:users,email'.$update,
+            'password' => $password
         ];
     }
 }

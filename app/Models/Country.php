@@ -19,6 +19,6 @@ class Country extends Model
 
     public function addresses()
     {
-        return $this->morphMany(Address::class, 'countrytable');
+        return $this->hasMany(Address::class, 'country_id');
     }
 }

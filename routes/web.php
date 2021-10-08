@@ -1,13 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\AddressController;
-use App\Http\Controllers\Admin\CountryController;
-use App\Http\Controllers\Admin\OrderController;
-use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\Admin\ReviewController;
-use App\Http\Controllers\Admin\ServiceController;
-use App\Http\Controllers\Admin\SettingController;
-use App\Http\Controllers\Admin\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,14 +13,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
-Route::name('admin.')->prefix('admin')/*->middleware('isAdmin')*/->group(function(){
-    Route::resource('address', AddressController::class);
-    Route::resource('country', CountryController::class);
-    Route::resource('order', OrderController::class);
-    Route::resource('post', PostController::class);
-    Route::resource('review', ReviewController::class);
-    Route::resource('service', ServiceController::class);
-    Route::resource('setting', SettingController::class);
-    Route::resource('user', UserController::class);
+Route::get('/', [App\Http\Controllers\HomeController::class, 'main']);
+
+Route::middleware('auth')->group(function(){
+    Route::post('order', [App\Http\Controllers\OrderController::class,'add']);
+    Route::post('order/{id}', [App\Http\Controllers\OrderController::class,'delete']);
+});
+
+Route::name('admin.')->prefix('admin')->middleware('isAdmin')->group(function(){
+    Route::resource('address', App\Http\Controllers\Admin\AddressController::class);
+    Route::resource('country', App\Http\Controllers\Admin\CountryController::class);
+    Route::resource('order', App\Http\Controllers\Admin\OrderController::class);
+    Route::resource('post', App\Http\Controllers\Admin\PostController::class);
+    Route::resource('review', App\Http\Controllers\Admin\ReviewController::class);
+    Route::resource('service', App\Http\Controllers\Admin\ServiceController::class);
+    Route::resource('setting', App\Http\Controllers\Admin\SettingController::class);
+    Route::resource('user', App\Http\Controllers\Admin\UserController::class);
 });

@@ -28,8 +28,8 @@ class Address extends Model
         ];
     }
 
-    public function countrytable()
+    public function country()
     {
-        return $this->morphTo();
+        return $this->hasOne(Country::class);
     }
 }

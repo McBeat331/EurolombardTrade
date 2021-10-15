@@ -31,7 +31,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $entries = $this->postService->getPaginate();
+        $entries = $this->postService->getAll();
         return view('admin.post.index', compact('entries'));
     }
 

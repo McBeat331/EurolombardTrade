@@ -10,7 +10,7 @@
                 <div class="welcome-text">
                     <h4>Здесь хранятся записи Услуг</h4>
                     <div class="row page-titles mx-0">
-                        <a href="{{ route('admin.post.create') }}">
+                        <a href="{{ route('admin.service.create') }}">
                             <button type="button" class="btn btn-primary">
                                 <span class="btn-icon-left text-primary">
                                     <i class="fa fa-plus color-primary"></i>
@@ -50,12 +50,12 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($entries as $post)
+                                @foreach($entries as $service)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td><a href="{{ route('admin.post.edit',$post->id) }}">{{ $post->title }}</a></td>
+                                        <td><a href="{{ route('admin.service.edit',$service->id) }}">{{ $service->title }}</a></td>
                                         <td><img class="mr-3 img-fluid tableImg" src="/images/1.jpg" alt="Quixkit"></td>
-                                        <td>{{ $post->slug }}</td>
+                                        <td>{{ $service->slug }}</td>
                                     </tr>
                                 @endforeach
                                 </tbody>

@@ -9,7 +9,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    public const PAGINATE = 15;
+    public const PAGINATE = 1;
 
     protected $table = 'orders';
 

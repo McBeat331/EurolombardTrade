@@ -31,7 +31,7 @@ class AddressController extends Controller
      */
     public function index()
     {
-        $entries = $this->addressService->getPaginate();
+        $entries = $this->addressService->getAll();
         return view('admin.address.index', compact('entries'));
     }
 
@@ -40,7 +40,7 @@ class AddressController extends Controller
      */
     public function create()
     {
-        return view('admin.address.create');
+        return view('admin.address.update');
     }
 
     /**

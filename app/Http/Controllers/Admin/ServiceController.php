@@ -31,7 +31,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $entries = $this->serviceService->getPaginate();
+        $entries = $this->serviceService->getAll();
         return view('admin.service.index', compact('entries'));
     }
 
@@ -40,7 +40,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        return view('admin.service.create');
+        return view('admin.service.update');
     }
 
     /**

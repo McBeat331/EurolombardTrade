@@ -23,7 +23,8 @@ Route::middleware('auth')->group(function(){
 });
 
 Route::name('admin.')->prefix('admin')->middleware('isAdmin')->group(function(){
-    Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class,'index']);
+    Route::get('/', [App\Http\Controllers\Admin\DashboardController::class,'index']);
+    Route::resource('advantage', App\Http\Controllers\Admin\AdvantageController::class);
     Route::resource('address', App\Http\Controllers\Admin\AddressController::class);
     Route::resource('country', App\Http\Controllers\Admin\CountryController::class);
     Route::resource('order', App\Http\Controllers\Admin\OrderController::class);

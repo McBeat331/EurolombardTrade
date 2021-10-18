@@ -1,10 +1,10 @@
 <?php
 
-use App\Services\Country\CountryService;
+use App\Services\City\CityService;
 
 
-if(!function_exists('countries')){
+if(!function_exists('cities')){
     function countries(){
-        return (new CountryService)->getAll(['addresses']);
+        return (new CityService)->getAll(['addresses']);
     }
 }

@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Services\Country;
+namespace App\Services\City;
 
-use App\Models\Country;
+use App\Models\City;
 
-class CountryService
+class CityService
 {
     /**
-     * @var Country
+     * @var City
      */
-    private $countryModel;
+    private $cityModel;
 
     /**
-     * CountryService constructor.
-     * @param Country $countryModel
+     * CityService constructor.
+     * @param City $cityModel
      */
-    public function __construct(Country $countryModel)
+    public function __construct(City $cityModel)
     {
-        $this->countryModel = $countryModel;
+        $this->cityModel = $cityModel;
     }
 
     /**
@@ -27,7 +27,7 @@ class CountryService
      */
     public function getFind($id, $relations = [])
     {
-        return $this->countryModel->where('id', $id)->with($relations)->firstOrFail();
+        return $this->cityModel->where('id', $id)->with($relations)->firstOrFail();
     }
 
     /**
@@ -36,7 +36,7 @@ class CountryService
      */
     public function getAll($relations = [])
     {
-        return $this->countryModel->with($relations)->get();
+        return $this->cityModel->with($relations)->get();
     }
 
     /**
@@ -45,7 +45,7 @@ class CountryService
      */
     public function getPaginate($relations = [])
     {
-        return $this->countryModel->with($relations)->paginate(Country::PAGINATE);
+        return $this->cityModel->with($relations)->paginate(City::PAGINATE);
     }
 
     /**
@@ -54,7 +54,7 @@ class CountryService
      */
     public function add($data)
     {
-        return $this->countryModel->create($data);
+        return $this->cityModel->create($data);
     }
 
     /**
@@ -64,7 +64,7 @@ class CountryService
      */
     public function edit($id,$data)
     {
-        $query = $this->countryModel->where('id', $id)->first();
+        $query = $this->cityModel->where('id', $id)->first();
         return $query->update($data);
     }
 
@@ -74,7 +74,7 @@ class CountryService
      */
     public function delete($id)
     {
-        return $this->countryModel->where('id', $id)->delete();
+        return $this->cityModel->where('id', $id)->delete();
     }
 
 }

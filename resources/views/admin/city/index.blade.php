@@ -10,7 +10,7 @@
                 <div class="welcome-text">
                     <h4>Здесь хранятся Города</h4>
                     <div class="row page-titles mx-0">
-                        <a href="{{ route('admin.country.create') }}">
+                        <a href="{{ route('admin.city.create') }}">
                             <button type="button" class="btn btn-primary">
                                 <span class="btn-icon-left text-primary">
                                     <i class="fa fa-plus color-primary"></i>
@@ -51,10 +51,10 @@
                                     <tr>
                                         <td>1</td>
                                         <td>Днепр</td>
-                                        <td><span><a href="{{ route('admin.country.edit',1) }}" class="mr-4" data-toggle="tooltip"
+                                        <td><span><a href="{{ route('admin.city.edit',1) }}" class="mr-4" data-toggle="tooltip"
                                                      data-placement="top" title="Edit"><i
                                                             class="fa fa-pencil color-muted"></i> </a><a
-                                                        href="{{ route('admin.country.destroy',1) }}" data-toggle="tooltip"
+                                                        href="{{ route('admin.city.destroy',1) }}" data-toggle="tooltip"
                                                         data-placement="top" title="Delete"><i
                                                             class="fa fa-close color-danger"></i></a></span>
                                         </td>
@@ -62,10 +62,10 @@
                                     <tr>
                                         <td>2</td>
                                         <td>Запорожье</td>
-                                        <td><span><a href="{{ route('admin.country.edit',1) }}" class="mr-4" data-toggle="tooltip"
+                                        <td><span><a href="{{ route('admin.city.edit',1) }}" class="mr-4" data-toggle="tooltip"
                                                      data-placement="top" title="Edit"><i
                                                             class="fa fa-pencil color-muted"></i> </a><a
-                                                        href="{{ route('admin.country.destroy',1) }}" data-toggle="tooltip"
+                                                        href="{{ route('admin.city.destroy',1) }}" data-toggle="tooltip"
                                                         data-placement="top" title="Delete"><i
                                                             class="fa fa-close color-danger"></i></a></span>
                                         </td>
@@ -73,10 +73,10 @@
                                     <tr>
                                         <td>3</td>
                                         <td>Киев</td>
-                                        <td><span><a href="{{ route('admin.country.edit',1) }}" class="mr-4" data-toggle="tooltip"
+                                        <td><span><a href="{{ route('admin.city.edit',1) }}" class="mr-4" data-toggle="tooltip"
                                                      data-placement="top" title="Edit"><i
                                                             class="fa fa-pencil color-muted"></i> </a><a
-                                                        href="{{ route('admin.country.destroy',1) }}" data-toggle="tooltip"
+                                                        href="{{ route('admin.city.destroy',1) }}" data-toggle="tooltip"
                                                         data-placement="top" title="Delete"><i
                                                             class="fa fa-close color-danger"></i></a></span>
                                         </td>

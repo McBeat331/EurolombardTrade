@@ -45,7 +45,7 @@ class AddressService
      */
     public function getPaginate($relations = [])
     {
-        return $this->addressModel->with($relations)->paginate(Country::PAGINATE);
+        return $this->addressModel->with($relations)->paginate(Address::PAGINATE);
     }
 
     /**

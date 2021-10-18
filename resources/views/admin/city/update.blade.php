@@ -15,9 +15,9 @@
                     <div class="card-body">
                         <form method="POST"
                               @if(isset($entry))
-                              action="{{ route('admin.country.update', ['post' => $entry->id]) }}"
+                              action="{{ route('admin.city.update', ['post' => $entry->id]) }}"
                               @else
-                              action="{{ route('admin.country.store') }}"
+                              action="{{ route('admin.city.store') }}"
                               @endif
                               class="form-group form-valide"  enctype="multipart/form-data">
 

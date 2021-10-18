@@ -11,10 +11,12 @@ class Address extends Model
     use Sluggable;
     use HasFactory;
 
+    public const PAGINATE = 15;
+
     protected $table = 'addresses';
 
     protected $fillable = [
-        'country_id',
+        'city_id',
         'name'
     ];
 
@@ -23,13 +25,13 @@ class Address extends Model
     {
         return [
             'slug' => [
-                'source' => ['country.name','name']
+                'source' => ['city.name','name']
             ]
         ];
     }
 
-    public function country()
+    public function city()
     {
-        return $this->hasOne(Country::class);
+        return $this->hasOne(City::class);
     }
 }

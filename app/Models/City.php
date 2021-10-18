@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Country extends Model
+class City extends Model
 {
     use HasFactory;
 
     public const PAGINATE = 15;
 
-    protected $table = 'countries';
+    protected $table = 'cities';
 
     protected $fillable = [
         'name'
@@ -19,6 +19,6 @@ class Country extends Model
 
     public function addresses()
     {
-        return $this->hasMany(Address::class, 'country_id');
+        return $this->hasMany(Address::class, 'city_id');
     }
 }

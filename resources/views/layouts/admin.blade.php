@@ -116,7 +116,7 @@
                         <li><a href="{{ route('admin.advantage.index') }}">Преимущества</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ route('admin.country.index') }}"><i class="icon icon-world-2"></i>Города</a></li>
+                <li><a href="{{ route('admin.city.index') }}"><i class="icon icon-world-2"></i>Города</a></li>
                 <li><a href="{{ route('admin.address.index') }}"><i class="icon icon-flag-diagonal-33"></i>Отделения</a></li>
                 <li><a href="{{ route('admin.order.index') }}"><i class="icon icon-payment"></i>Заявки</a></li>
                 <li><a href="{{ route('admin.review.index') }}"><i class="icon icon-folder-15"></i>Комментарии</a></li>

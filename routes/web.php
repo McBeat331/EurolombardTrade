@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -13,17 +14,19 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
+Auth::routes(['register' => false]);
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'main']);
+Route::get('/', [App\Http\Controllers\HomeController::class, 'main'])->name('main');
 
 Route::middleware('auth')->group(function(){
     Route::post('order', [App\Http\Controllers\OrderController::class,'add']);
     Route::post('order/{id}', [App\Http\Controllers\OrderController::class,'delete']);
+
+    Route::get('logout', [LoginController::class,'logout'])->name('logout');
 });
 
 Route::name('admin.')->prefix('admin')->middleware('isAdmin')->group(function(){
-    Route::get('/', [App\Http\Controllers\Admin\DashboardController::class,'index']);
+    Route::get('/', [App\Http\Controllers\Admin\DashboardController::class,'index'])->name('main');
     Route::resource('advantage', App\Http\Controllers\Admin\AdvantageController::class);
     Route::resource('address', App\Http\Controllers\Admin\AddressController::class);
     Route::resource('city', App\Http\Controllers\Admin\CityController::class);

@@ -19,17 +19,22 @@ class ImageJob
             $fileName = $file->hashName();
             $image = Image::make($file->getRealPath());
 
-            $image->resize(1900, null, function ($constraint) {
-                $constraint->aspectRatio();
-            });
+
+            if(!in_array($file->getClientOriginalExtension(),['svg'])) {
+                $image->resize(1900, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+            }
 
             Storage::put("/public/{$path}/{$fileName}", (string)$image->encode(null, 65), 'public');
 
             if($small){
 
-                $image->resize(500, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
+                if(!in_array($file->getClientOriginalExtension(),['svg'])) {
+                    $image->resize(500, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                }
 
                 Storage::put("/public/{$path}/small_{$fileName}", (string)$image->encode(null, 65), 'public');
             }

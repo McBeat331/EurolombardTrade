@@ -50,7 +50,7 @@ class CityController extends Controller
     public function store(CityRequest $request)
     {
         $this->cityService->add($request->all());
-        $request->session()->flash('alert-success', '');
+        $request->session()->flash('alert-success', 'Запись успешно добавлена!');
         return redirect()->route('admin.city.index');
     }
 
@@ -77,7 +77,7 @@ class CityController extends Controller
     public function update(CityRequest $request, $id)
     {
         $this->cityService->edit($id,$request->all());
-        $request->session()->flash('alert-success', '');
+        $request->session()->flash('alert-success', 'Запись успешно изменена!');
         return redirect()->route('admin.city.index');
     }
 
@@ -88,7 +88,7 @@ class CityController extends Controller
     public function destroy($id)
     {
         $this->cityService->delete($id);
-        $request->session()->flash('alert-success', '');
+        request()->session()->flash('alert-success', 'Запись успешно удалена!');
         return redirect()->route('admin.city.index');
     }
 }

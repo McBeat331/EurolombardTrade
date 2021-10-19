@@ -51,7 +51,7 @@ class ReviewController extends Controller
     public function store(ReviewRequest $request)
     {
         $this->reviewService->add($request->all());
-        $request->session()->flash('alert-success', '');
+        $request->session()->flash('alert-success', 'Запись успешно добавлена!');
         return redirect()->route('admin.review.index');
     }
 
@@ -78,7 +78,7 @@ class ReviewController extends Controller
     public function update(ReviewRequest $request, $id)
     {
         $this->reviewService->edit($id,$request->all());
-        $request->session()->flash('alert-success', '');
+        $request->session()->flash('alert-success', 'Запись успешно изменена!');
         return redirect()->route('admin.review.index');
     }
 
@@ -89,7 +89,7 @@ class ReviewController extends Controller
     public function destroy($id)
     {
         $this->reviewService->delete($id);
-        $request->session()->flash('alert-success', '');
+        request()->session()->flash('alert-success', 'Запись успешно удалена!');
         return redirect()->route('admin.review.index');
     }
 }

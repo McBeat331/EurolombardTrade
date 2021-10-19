@@ -50,6 +50,7 @@ class SettingController extends Controller
     public function store(SettingService $request)
     {
         $this->settingService->attach($request->all());
+        $request->session()->flash('alert-success', '');
         return redirect()->route('admin.setting.index');
     }
 
@@ -80,6 +81,7 @@ class SettingController extends Controller
     public function update(SettingRequest $request)
     {
         $this->settingService->attach($request->all());
+        $request->session()->flash('alert-success', '');
         return redirect()->route('admin.setting.index');
     }
 
@@ -90,6 +92,7 @@ class SettingController extends Controller
     public function destroy($field)
     {
         $this->settingService->delete($field);
+        $request->session()->flash('alert-success', '');
         return redirect()->route('admin.setting.index');
     }
 }

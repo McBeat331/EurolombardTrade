@@ -10,13 +10,11 @@ class Review extends Model
     use HasFactory;
 
     public const PAGINATE = 15;
+    public const STATUS_NOT_VERIFIED = 0;
+    public const STATUS_TO_VERIFIED = 1;
+    public const STATUS_REJECTED = 2;
 
     protected $table = 'reviews';
 
-    protected $fillable = [
-        'user_id',
-        'name',
-        'description',
-        'rating',
-    ];
+    protected $fillable = ['user_id','name','description','rating','status'];
 }

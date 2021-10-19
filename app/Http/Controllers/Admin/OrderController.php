@@ -50,6 +50,7 @@ class OrderController extends Controller
     public function store(OrderRequest $request)
     {
         $this->orderService->add($request->all());
+        $request->session()->flash('alert-success', '');
         return redirect()->route('admin.order.index');
     }
 
@@ -76,6 +77,7 @@ class OrderController extends Controller
     public function update(OrderRequest $request, $id)
     {
         $this->orderService->edit($id,$request->all());
+        $request->session()->flash('alert-success', '');
         return redirect()->route('admin.order.index');
     }
 
@@ -86,6 +88,7 @@ class OrderController extends Controller
     public function destroy($id)
     {
         $this->orderService->delete($id);
+        $request->session()->flash('alert-success', '');
         return redirect()->route('admin.order.index');
     }
 }

@@ -54,6 +54,7 @@ class ServiceController extends Controller
     {
         $data = $this->bruteForceRequest($request);
         $this->serviceService->add($data);
+        $request->session()->flash('alert-success', '');
         return redirect()->route('admin.service.index');
     }
 
@@ -81,6 +82,7 @@ class ServiceController extends Controller
     {
         $data = $this->bruteForceRequest($request);
         $this->serviceService->edit($id,$data);
+        $request->session()->flash('alert-success', '');
         return redirect()->route('admin.service.index');
     }
 
@@ -91,6 +93,7 @@ class ServiceController extends Controller
     public function destroy($id)
     {
         $this->serviceService->delete($id);
+        $request->session()->flash('alert-success', '');
         return redirect()->route('admin.service.index');
     }
 

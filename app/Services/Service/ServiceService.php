@@ -3,6 +3,7 @@
 namespace App\Services\Service;
 
 use App\Models\Service;
+use Illuminate\Support\Facades\App;
 
 class ServiceService
 {
@@ -10,6 +11,7 @@ class ServiceService
      * @var Service
      */
     public $serviceModel;
+    public $locale;
 
     /**
      * ServiceService constructor.
@@ -18,8 +20,18 @@ class ServiceService
     public function __construct(Service $serviceModel)
     {
         $this->serviceModel = $serviceModel;
+        $this->locale = App::currentLocale();
     }
 
+    /**
+     * @param $slug
+     * @param array $relations
+     * @return mixed
+     */
+    public function getBySlug($slug, $relations = [])
+    {
+        return $this->serviceModel->where("slug->{$this->locale}", $slug)->with($relations)->firstOrFail();
+    }
     /**
      * @param $id
      * @param array $relations
@@ -46,6 +58,11 @@ class ServiceService
     public function getPaginate($relations = [])
     {
         return $this->serviceModel->with($relations)->paginate(Service::PAGINATE);
+    }
+
+    public function getHome($relations = [])
+    {
+        return $this->serviceModel->with($relations)->orderBy('created_at','DESC')->limit(3)->get();
     }
 
     /**

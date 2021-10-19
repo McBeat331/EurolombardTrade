@@ -3,14 +3,27 @@
 namespace App\Services\Advantage;
 
 use App\Models\Advantage;
+use Illuminate\Support\Facades\App;
 
 class AdvantageService{
 
     public $advantageModel;
+    public $locale;
 
     public function __construct(Advantage $advantageModel)
     {
         $this->advantageModel = $advantageModel;
+        $this->locale = App::currentLocale();
+    }
+
+    /**
+     * @param $slug
+     * @param array $relations
+     * @return mixed
+     */
+    public function getBySlug($slug, $relations = [])
+    {
+        return $this->advantageModel->where("slug->{$this->locale}", $slug)->with($relations)->firstOrFail();
     }
 
     /**
@@ -32,6 +45,14 @@ class AdvantageService{
         return $this->advantageModel->with($relations)->get();
     }
 
+    /**
+     * @param array $relations
+     * @return mixed
+     */
+    public function getHome($relations = [])
+    {
+        return $this->advantageModel->with($relations)->orderBy('created_at','DESC')->limit(4)->get();
+    }
     /**
      * @param array $relations
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator

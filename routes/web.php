@@ -16,17 +16,22 @@ use Illuminate\Support\Facades\Route;
 */
 Auth::routes(['register' => false]);
 
-
 Route::get('/', [App\Http\Controllers\HomeController::class, 'main'])->name('main');
+Route::get('advantage',[App\Http\Controllers\AdvantageController::class,'index'])->name('advantage.index');
+Route::get('advantage/{slug}',[App\Http\Controllers\AdvantageController::class,'show'])->name('advantage.show');
+Route::get('service',[App\Http\Controllers\ServiceController::class,'index'])->name('service.index');
+Route::get('service/{slug}',[App\Http\Controllers\ServiceController::class,'show'])->name('service.show');
+Route::get('contact',[App\Http\Controllers\ContactController::class,'show'])->name('contact.show');
+Route::get('review',[App\Http\Controllers\ReviewController::class,'index'])->name('review.index');
+Route::post('review',[App\Http\Controllers\ReviewController::class,'store'])->name('review.store');
 
 Route::middleware('auth')->group(function(){
     Route::post('order', [App\Http\Controllers\OrderController::class,'add']);
     Route::post('order/{id}', [App\Http\Controllers\OrderController::class,'delete']);
-
     Route::get('logout', [LoginController::class,'logout'])->name('logout');
 });
 
-Route::name('admin.')->prefix('admin')/*->middleware('isAdmin')*/->group(function(){
+Route::name('admin.')->prefix('admin')->middleware('isAdmin')->group(function(){
     Route::get('/', [App\Http\Controllers\Admin\DashboardController::class,'index'])->name('main');
     Route::resource('advantage', App\Http\Controllers\Admin\AdvantageController::class);
     Route::resource('address', App\Http\Controllers\Admin\AddressController::class);

@@ -51,7 +51,7 @@ class AdvantageService{
      */
     public function getHome($relations = [])
     {
-        return $this->advantageModel->with($relations)->orderBy('created_at','DESC')->limit(4)->get();
+        return $this->advantageModel->with($relations)->orderBy('sort','ASC')->limit(4)->get();
     }
     /**
      * @param array $relations

@@ -25,7 +25,7 @@ class AddressRequest extends FormRequest
     {
         return [
             'city_id' => 'required',
-            'name' => 'required|string|min:3'
+            'name.*' => 'required|string|min:3'
         ];
     }
 }

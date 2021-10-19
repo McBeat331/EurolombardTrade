@@ -17,6 +17,10 @@ class CreateAdvantagesTable extends Migration
             $table->id();
             $table->json('title');
             $table->json('description');
+
+            $table->json('meta_title')->nullable();
+            $table->json('meta_description')->nullable();
+
             $table->json('slug');
             $table->string('image')->nullable();
             $table->timestamps();

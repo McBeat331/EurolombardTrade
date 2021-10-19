@@ -17,9 +17,9 @@ class Service extends Model
 
     protected $table = 'services';
 
-    protected $fillable = ['title', 'description','slug','image'];
+    protected $fillable = ['title', 'description','meta_title', 'meta_description','slug','image'];
 
-    public $translatable = ['title', 'description','slug'];
+    public $translatable = ['title', 'description','meta_title', 'meta_description','slug'];
 
     public function getSlugOptions() : SlugOptions
     {

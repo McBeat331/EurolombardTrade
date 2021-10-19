@@ -16,9 +16,9 @@ class Advantage extends Model
 
     protected $table = 'advantages';
 
-    protected $fillable = ['title', 'description','slug','image'];
+    protected $fillable = ['title', 'description','meta_title', 'meta_description','slug','image'];
 
-    public $translatable = ['title', 'description','slug'];
+    public $translatable = ['title', 'description','meta_title', 'meta_description','slug'];
 
     public function getSlugOptions() : SlugOptions
     {

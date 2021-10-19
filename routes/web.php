@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function(){
     Route::get('logout', [LoginController::class,'logout'])->name('logout');
 });
 
-Route::name('admin.')->prefix('admin')->middleware('isAdmin')->group(function(){
+Route::name('admin.')->prefix('admin')/*->middleware('isAdmin')*/->group(function(){
     Route::get('/', [App\Http\Controllers\Admin\DashboardController::class,'index'])->name('main');
     Route::resource('advantage', App\Http\Controllers\Admin\AdvantageController::class);
     Route::resource('address', App\Http\Controllers\Admin\AddressController::class);

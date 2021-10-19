@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Job\ImageJob;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasTranslatableSlug;
@@ -25,5 +26,10 @@ class Advantage extends Model
         return SlugOptions::create()
             ->generateSlugsFrom('title')
             ->saveSlugsTo('slug');
+    }
+
+    public function getImageLinkAttribute()
+    {
+        return ImageJob::getImage($this->image,$this->table);
     }
 }

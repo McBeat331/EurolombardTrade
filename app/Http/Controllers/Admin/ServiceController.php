@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ServiceRequest;
+use App\Job\ImageJob;
 use App\Services\Service\ServiceService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -16,14 +17,16 @@ class ServiceController extends Controller
      * @var ServiceService
      */
     private $serviceService;
+    private $imageJob;
 
     /**
      * ServiceController constructor.
      * @param ServiceService $serviceService
      */
-    public function __construct(ServiceService $serviceService)
+    public function __construct(ServiceService $serviceService, ImageJob $imageJob)
     {
         $this->serviceService = $serviceService;
+        $this->imageJob = $imageJob;
     }
 
     /**
@@ -49,7 +52,8 @@ class ServiceController extends Controller
      */
     public function store(ServiceRequest $request)
     {
-        $this->serviceService->add($request->all());
+        $data = $this->bruteForceRequest($request);
+        $this->serviceService->add($data);
         return redirect()->route('admin.service.index');
     }
 
@@ -75,7 +79,8 @@ class ServiceController extends Controller
      */
     public function update(ServiceRequest $request, $id)
     {
-        $this->serviceService->edit($id,$request->all());
+        $data = $this->bruteForceRequest($request);
+        $this->serviceService->edit($id,$data);
         return redirect()->route('admin.service.index');
     }
 
@@ -87,5 +92,15 @@ class ServiceController extends Controller
     {
         $this->serviceService->delete($id);
         return redirect()->route('admin.service.index');
+    }
+
+
+    private function bruteForceRequest($request)
+    {
+        $data = $request->all();
+        if($request->hasFile('image')) {
+            $data['image'] = $this->imageJob->upload($request->file('image'), $this->serviceService->serviceModel->getTable(), true);
+        }
+        return $data;
     }
 }

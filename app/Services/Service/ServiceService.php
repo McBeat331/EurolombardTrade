@@ -9,7 +9,7 @@ class ServiceService
     /**
      * @var Service
      */
-    private $serviceModel;
+    public $serviceModel;
 
     /**
      * ServiceService constructor.

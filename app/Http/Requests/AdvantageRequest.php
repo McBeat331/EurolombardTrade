@@ -28,7 +28,7 @@ class AdvantageRequest extends FormRequest
             'description.*' => 'required',
             'meta_title.*' => 'nullable',
             'meta_description.*' => 'nullable',
-            'image' => 'nullable',
+            'image' => 'nullable|mimes:jpeg,png|max:1024',
         ];
     }
 }

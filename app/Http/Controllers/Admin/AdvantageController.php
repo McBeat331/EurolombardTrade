@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdvantageRequest;
+use App\Job\ImageJob;
 use App\Services\Advantage\AdvantageService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -15,10 +16,16 @@ class AdvantageController extends Controller
 {
 
     private $advantageService;
+    private $imageJob;
 
-    public function __construct(AdvantageService $advantageService)
+    /**
+     * @param AdvantageService $advantageService
+     * @param ImageJob $imageJob
+     */
+    public function __constructs(AdvantageService $advantageService,ImageJob $imageJob)
     {
         $this->advantageService = $advantageService;
+        $this->imageJob = $imageJob;
     }
 
     /**
@@ -44,7 +51,8 @@ class AdvantageController extends Controller
      */
     public function store(AdvantageRequest $request)
     {
-        $this->advantageService->add($request->all());
+        $data = $this->bruteForceRequest($request);
+        $this->advantageService->add($data);
         return redirect()->route('admin.advantage.index');
     }
 
@@ -70,7 +78,8 @@ class AdvantageController extends Controller
      */
     public function update(AdvantageRequest $request, $id)
     {
-        $this->advantageService->edit($id,$request->all());
+        $data = $this->bruteForceRequest($request);
+        $this->advantageService->edit($id,$data);
         return redirect()->route('admin.advantage.index');
     }
 
@@ -82,5 +91,15 @@ class AdvantageController extends Controller
     {
         $this->advantageService->delete($id);
         return redirect()->route('admin.advantage.index');
+    }
+
+
+    private function bruteForceRequest($request)
+    {
+        $data = $request->all();
+        if($request->hasFile('image')) {
+            $data['image'] = $this->imageJob->upload($request->file('image'), $this->advantageService->advantageModel->getTable());
+        }
+        return $data;
     }
 }

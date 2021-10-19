@@ -43,6 +43,20 @@ class ReviewService
      * @param array $relations
      * @return mixed
      */
+    public function getHome($relations = [])
+    {
+        return $this->reviewModel
+            ->with($relations)
+            ->where('status',Review::STATUS_TO_VERIFIED)
+            ->orderBy('created_at','DESC')
+            ->limit(4)
+            ->get();
+    }
+
+    /**
+     * @param array $relations
+     * @return mixed
+     */
     public function getPaginate($relations = [])
     {
         return $this->reviewModel->with($relations)->paginate(Review::PAGINATE);

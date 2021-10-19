@@ -8,14 +8,13 @@ use Spatie\Sluggable\HasTranslatableSlug;
 use Spatie\Sluggable\SlugOptions;
 use Spatie\Translatable\HasTranslations;
 
-class Service extends Model
+class Advantage extends Model
 {
-
     use HasFactory,HasTranslations,HasTranslatableSlug;
 
     public const PAGINATE = 15;
 
-    protected $table = 'services';
+    protected $table = 'advantages';
 
     protected $fillable = ['title', 'description','slug','image'];
 

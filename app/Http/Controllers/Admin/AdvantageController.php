@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdvantageRequest;
+use App\Services\Advantage\AdvantageService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -12,12 +14,20 @@ use Illuminate\Http\Request;
 class AdvantageController extends Controller
 {
 
+    private $advantageService;
+
+    public function __construct(AdvantageService $advantageService)
+    {
+        $this->advantageService = $advantageService;
+    }
+
     /**
      * @return Application|Factory|View
      */
     public function index()
     {
-        return view('admin.advantage.index');
+        $entries = $this->advantageService->getAll();
+        return view('admin.advantage.index', compact('entries'));
     }
 
     /**
@@ -29,11 +39,12 @@ class AdvantageController extends Controller
     }
 
     /**
-     * @param AddressRequest $request
+     * @param AdvantageRequest $request
      * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(AdvantageRequest $request)
     {
+        $this->advantageService->add($request->all());
         return redirect()->route('admin.advantage.index');
     }
 
@@ -52,16 +63,18 @@ class AdvantageController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.advantage.update');
+        $entry = $this->advantageService->getFind($id);
+        return view('admin.advantage.update', compact('entry'));
     }
 
     /**
-     * @param AddressRequest $request
+     * @param AdvantageRequest $request
      * @param $id
      * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(AdvantageRequest $request, $id)
     {
+        $this->advantageService->edit($id,$request->all());
         return redirect()->route('admin.advantage.index');
     }
 
@@ -71,6 +84,7 @@ class AdvantageController extends Controller
      */
     public function destroy($id)
     {
+        $this->advantageService->delete($id);
         return redirect()->route('admin.advantage.index');
     }
 }

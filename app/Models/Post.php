@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Post extends Model
 {
-    use Sluggable;
+    use HasSlug;
     use HasFactory;
 
     public const PAGINATE = 15;
@@ -21,12 +22,15 @@ class Post extends Model
         'image',
     ];
 
-    public function sluggable(): array
+    public function getSlugOptions() : SlugOptions
     {
-        return [
-            'slug' => [
-                'source' => 'title'
-            ]
-        ];
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

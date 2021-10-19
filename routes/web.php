@@ -32,7 +32,7 @@ Route::name('admin.')->prefix('admin')->middleware('isAdmin')->group(function(){
     Route::resource('address', App\Http\Controllers\Admin\AddressController::class);
     Route::resource('city', App\Http\Controllers\Admin\CityController::class);
     Route::resource('order', App\Http\Controllers\Admin\OrderController::class);
-    Route::resource('post', App\Http\Controllers\Admin\PostController::class);
+    Route::resource('post', App\Http\Controllers\Admin\PageController::class);
     Route::resource('review', App\Http\Controllers\Admin\ReviewController::class);
     Route::resource('service', App\Http\Controllers\Admin\ServiceController::class);
     Route::resource('setting', App\Http\Controllers\Admin\SettingController::class);

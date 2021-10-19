@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Services\Post;
+namespace App\Services\Page;
 
-use App\Models\Post;
+use App\Models\Page;
 
-class PostService
+class PageService
 {
     /**
-     * @var Post
+     * @var Page
      */
-    private $postModel;
+    private $pageModel;
 
     /**
      * PageService constructor.
-     * @param Post $postModel
+     * @param Page $postModel
      */
-    public function __construct(Post $postModel)
+    public function __construct(Page $pageModel)
     {
-        $this->postModel = $postModel;
+        $this->pageModel = $pageModel;
     }
 
     /**
@@ -27,7 +27,7 @@ class PostService
      */
     public function getFind($id, $relations = [])
     {
-        return $this->postModel->where('id', $id)->with($relations)->firstOrFail();
+        return $this->pageModel->where('id', $id)->with($relations)->firstOrFail();
     }
 
     /**
@@ -36,7 +36,7 @@ class PostService
      */
     public function getAll($relations = [])
     {
-        return $this->postModel->with($relations)->get();
+        return $this->pageModel->with($relations)->get();
     }
 
     /**
@@ -45,7 +45,7 @@ class PostService
      */
     public function getPaginate($relations = [])
     {
-        return $this->postModel->with($relations)->paginate(Post::PAGINATE);
+        return $this->pageModel->with($relations)->paginate(Page::PAGINATE);
     }
 
     /**
@@ -54,7 +54,7 @@ class PostService
      */
     public function add($data)
     {
-        return $this->postModel->create($data);
+        return $this->pageModel->create($data);
     }
 
     /**
@@ -64,7 +64,7 @@ class PostService
      */
     public function edit($id,$data)
     {
-        $query = $this->postModel->where('id', $id)->first();
+        $query = $this->pageModel->where('id', $id)->first();
         return $query->update($data);
     }
 
@@ -74,7 +74,7 @@ class PostService
      */
     public function delete($id)
     {
-        return $this->postModel->where('id', $id)->delete();
+        return $this->pageModel->where('id', $id)->delete();
     }
 
 }

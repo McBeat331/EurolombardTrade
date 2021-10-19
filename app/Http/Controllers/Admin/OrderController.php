@@ -55,13 +55,8 @@ class OrderController extends Controller
 
     /**
      * @param $id
-     * @return Application|Factory|View
      */
-    public function show($id)
-    {
-        $entry = $this->orderService->getFind($id);
-        return view('admin.order.show', compact('entry'));
-    }
+    public function show($id){}
 
     /**
      * @param $id

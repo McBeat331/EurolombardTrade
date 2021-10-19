@@ -55,13 +55,8 @@ class ReviewController extends Controller
 
     /**
      * @param $id
-     * @return Application|Factory|View
      */
-    public function show($id)
-    {
-        $entry = $this->reviewService->getFind($id);
-        return view('admin.review.show', compact('entry'));
-    }
+    public function show($id){}
 
     /**
      * @param $id

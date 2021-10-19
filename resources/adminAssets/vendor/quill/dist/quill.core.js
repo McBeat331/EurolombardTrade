@@ -178,7 +178,7 @@ function create(input, value) {
         throw new ParchmentError("Unable to create " + input + " blot");
     }
     var BlotClass = match;
-    var node = 
+    var node =
     // @ts-ignore
     input instanceof Node || input['nodeType'] === Node.TEXT_NODE ? input : BlotClass.create(value);
     return new BlotClass(node, value);
@@ -6452,7 +6452,7 @@ var ScrollBlot = /** @class */ (function (_super) {
                 mark(blot.parent);
         };
         var optimize = function (blot) {
-            // Post-order traversal
+            // Page-order traversal
             if (
             // @ts-ignore
             blot.domNode[Registry.DATA_KEY] == null ||
@@ -8286,7 +8286,7 @@ function isLine(node) {
 }
 
 function traverse(node, elementMatchers, textMatchers) {
-  // Post-order
+  // Page-order
   if (node.nodeType === node.TEXT_NODE) {
     return textMatchers.reduce(function (delta, matcher) {
       return matcher(node, delta);

@@ -55,13 +55,8 @@ class ServiceController extends Controller
 
     /**
      * @param $id
-     * @return Application|Factory|View
      */
-    public function show($id)
-    {
-        $entry = $this->serviceService->getFind($id);
-        return view('admin.service.show', compact('entry'));
-    }
+    public function show($id){}
 
     /**
      * @param $id

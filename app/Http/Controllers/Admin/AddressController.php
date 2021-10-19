@@ -55,13 +55,8 @@ class AddressController extends Controller
 
     /**
      * @param $id
-     * @return Application|Factory|View
      */
-    public function show($id)
-    {
-        $entry = $this->addressService->getFind($id);
-        return view('admin.address.show', compact('entry'));
-    }
+    public function show($id){}
 
     /**
      * @param $id

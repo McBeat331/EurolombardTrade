@@ -55,13 +55,8 @@ class CityController extends Controller
 
     /**
      * @param $id
-     * @return Application|Factory|View
-     */
-    public function show($id)
-    {
-        $entry = $this->cityService->getFind($id);
-        return view('admin.city.show', compact('entry'));
-    }
+     *
+    public function show($id){}
 
     /**
      * @param $id

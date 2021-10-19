@@ -50,12 +50,8 @@ class AdvantageController extends Controller
 
     /**
      * @param $id
-     * @return Application|Factory|View
      */
-    public function show()
-    {
-
-    }
+    public function show($id){}
 
     /**
      * @param $id

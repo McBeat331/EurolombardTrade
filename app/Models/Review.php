@@ -12,7 +12,7 @@ class Review extends Model
     public const PAGINATE = 15;
     public const STATUS_NOT_VERIFIED = 0;
     public const STATUS_TO_VERIFIED = 1;
-    public const STATUS_REJECTED = 3;
+    public const STATUS_REJECTED = 2;
 
     protected $table = 'reviews';
 

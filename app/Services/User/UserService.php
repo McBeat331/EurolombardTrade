@@ -3,6 +3,7 @@
 namespace App\Services\User;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserService
 {
@@ -54,6 +55,7 @@ class UserService
      */
     public function add($data)
     {
+        $data = $this->passwordHash($data);
         return $this->userModel->create($data);
     }
 
@@ -95,5 +97,12 @@ class UserService
     {
         $query = $this->userModel->where('id', $id)->first();
         return $query->update(['is_admin', User::IS_NOT_ADMIN]);
+    }
+
+    private function passwordHash($data){
+        if(isset($data['password']) && $data['password']){
+            $data['password'] = Hash::make($data['password']);
+        }
+        return $data;
     }
 }

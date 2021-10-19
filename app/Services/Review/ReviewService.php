@@ -91,4 +91,15 @@ class ReviewService
         return $this->reviewModel->where('id', $id)->delete();
     }
 
+    public function confirmStatus($id)
+    {
+        $query = $this->reviewModel->where('id', $id)->first();
+        return $query->update(['status' => Review::STATUS_TO_VERIFIED]);
+    }
+
+    public function rejectStatus($id)
+    {
+        $query = $this->reviewModel->where('id', $id)->first();
+        return $query->update(['status' => Review::STATUS_REJECTED]);
+    }
 }

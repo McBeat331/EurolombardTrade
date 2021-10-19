@@ -50,6 +50,7 @@ class AddressController extends Controller
     public function store(AddressRequest $request)
     {
         $this->addressService->add($request->all());
+        $request->session()->flash('alert-success', '');
         return redirect()->route('admin.address.index');
     }
 
@@ -76,6 +77,7 @@ class AddressController extends Controller
     public function update(AddressRequest $request, $id)
     {
         $this->addressService->edit($id,$request->all());
+        $request->session()->flash('alert-success', '');
         return redirect()->route('admin.address.index');
     }
 
@@ -86,6 +88,7 @@ class AddressController extends Controller
     public function destroy($id)
     {
         $this->addressService->delete($id);
+        $request->session()->flash('alert-success', '');
         return redirect()->route('admin.address.index');
     }
 }

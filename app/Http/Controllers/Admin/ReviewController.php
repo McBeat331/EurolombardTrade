@@ -9,6 +9,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Request;
 
 class ReviewController extends Controller
 {
@@ -50,6 +51,7 @@ class ReviewController extends Controller
     public function store(ReviewRequest $request)
     {
         $this->reviewService->add($request->all());
+        $request->session()->flash('alert-success', '');
         return redirect()->route('admin.review.index');
     }
 
@@ -76,6 +78,7 @@ class ReviewController extends Controller
     public function update(ReviewRequest $request, $id)
     {
         $this->reviewService->edit($id,$request->all());
+        $request->session()->flash('alert-success', '');
         return redirect()->route('admin.review.index');
     }
 
@@ -86,6 +89,7 @@ class ReviewController extends Controller
     public function destroy($id)
     {
         $this->reviewService->delete($id);
+        $request->session()->flash('alert-success', '');
         return redirect()->route('admin.review.index');
     }
 }

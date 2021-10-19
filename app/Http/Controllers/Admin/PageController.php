@@ -49,6 +49,7 @@ class PageController extends Controller
     public function store(PageRequest $request)
     {
         $this->pageService->add($request->all());
+        $request->session()->flash('alert-success', '');
         return redirect()->route('admin.post.index');
     }
 
@@ -75,6 +76,7 @@ class PageController extends Controller
     public function update(PageRequest $request, $id)
     {
         $this->pageService->edit($id,$request->all());
+        $request->session()->flash('alert-success', '');
         return redirect()->route('admin.post.index');
     }
 
@@ -85,6 +87,7 @@ class PageController extends Controller
     public function destroy($id)
     {
         $this->pageService->delete($id);
+        $request->session()->flash('alert-success', '');
         return redirect()->route('admin.post.index');
     }
 }

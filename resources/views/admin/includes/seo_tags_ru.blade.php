@@ -1,8 +1,8 @@
 @php
     if(isset($page)){
-        $desc = old('meta_description_ru') ? old('meta_description_ru') : $page->meta_description_ru;
+        $desc = old('meta_description["ru"]') ? old('meta_description["ru"]') : (isset($page->translations['meta_title']['ru']) ? $page->translations['meta_title']['ru'] : "");
     }else {
-        $desc =  old('meta_description_ru');
+        $desc =  old('meta_description["ru"]');
     }
 
 @endphp
@@ -12,11 +12,11 @@
     <div class="col-sm-12">
         <div class="form-group">
             <label>Meta_title</label>
-            <input type="text" name="meta_title_ru" class="form-control"
+            <input type="text" name="meta_title[ru]" class="form-control"
                    @isset($page)
-                   value="{{ old('meta_title_ru') ? old('meta_title_ru') : $page->meta_title_ru }}"
+                   value="{{ old('meta_title["ru"]') ? old('meta_title["ru"]') : (isset($page->translations['meta_title']['ru']) ? $page->translations['meta_title']['ru'] : "")}}"
                    @else
-                   value="{{ old('meta_title_ru') }}"
+                   value="{{ old('meta_title["ru"]') }}"
                     @endisset
             >
         </div>
@@ -24,7 +24,7 @@
     <div class="col-sm-12">
         <div class="form-group">
             <label>Meta_description</label>
-            <textarea name="meta_description_ru" class="form-control" rows="4">{{ $desc or '' }}</textarea>
+            <textarea name="meta_description[ru]" class="form-control" rows="4">{{ $desc }}</textarea>
         </div>
     </div>
 </div>

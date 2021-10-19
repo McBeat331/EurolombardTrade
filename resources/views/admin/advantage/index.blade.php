@@ -50,18 +50,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td><a href="/admin/advantage/1/edit">Вигідний курс</a></td>
-                                        <td><img class="mr-3 img-fluid tableImg" src="/images/money.svg" alt="Quixkit"></td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td><a href="/admin/advantage/1/edit">Працюємо цілодобово</a></td>
-                                        <td><img class="mr-3 img-fluid tableImg" src="/images/24-7.svg" alt="Quixkit"></td>
-                                        <td>2</td>
-                                    </tr>
+                                    @foreach($entries as $advantage)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td><a href="{{ route('admin.advantage.edit', $advantage->id) }}">{{ $advantage->title }}</a></td>
+                                            <td><img class="mr-3 img-fluid tableImg" src="{{ asset('storage/advantages/'.$advantage->image) }}" alt="Quixkit"></td>
+                                            <td>{{ $advantage->slug }}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                                 <tfoot>
                                 <tr>

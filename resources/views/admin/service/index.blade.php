@@ -50,11 +50,12 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+
                                 @foreach($entries as $service)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td><a href="{{ route('admin.service.edit',$service->id) }}">{{ $service->title }}</a></td>
-                                        <td><img class="mr-3 img-fluid tableImg" src="/images/1.jpg" alt="Quixkit"></td>
+                                        <td><img class="mr-3 img-fluid tableImg" src="{{ asset('storage/services/'.$service->image) }}" alt="Quixkit"></td>
                                         <td>{{ $service->slug }}</td>
                                     </tr>
                                 @endforeach

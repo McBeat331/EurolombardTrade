@@ -46,6 +46,9 @@ let dataSet = [
     var table = $('#example').DataTable({
         createdRow: function ( row, data, index ) {
            $(row).addClass('selected')
+        },
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.11.3/i18n/ru.json'
         }
     });
 

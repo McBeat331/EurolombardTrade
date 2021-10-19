@@ -23,7 +23,7 @@ class ImageJob
                 $constraint->aspectRatio();
             });
 
-            Storage::put("{$path}/{$fileName}", (string)$image->encode(null, 65), 'public');
+            Storage::put("/public/{$path}/{$fileName}", (string)$image->encode(null, 65), 'public');
 
             if($small){
 
@@ -31,7 +31,7 @@ class ImageJob
                     $constraint->aspectRatio();
                 });
 
-                Storage::put("{$path}/small_{$fileName}", (string)$image->encode(null, 65), 'public');
+                Storage::put("/public/{$path}/small_{$fileName}", (string)$image->encode(null, 65), 'public');
             }
 
             return $fileName;
@@ -41,7 +41,7 @@ class ImageJob
     public static function getImage($fileName,$path,$small = false)
     {
         $noImage = url('/images/default.png');
-        if(!Storage::hasFile("{$path}/{$fileName}")){
+        if(!Storage::hasFile("/public/{$path}/{$fileName}")){
             if($small){
                 return collect([
                     'image' => $noImage,
@@ -54,11 +54,11 @@ class ImageJob
 
         if($small){
             return collect([
-                'image' => Storage::url("{$path}/{$fileName}"),
-                'small' => Storage::url("{$path}/small_{$fileName}"),
+                'image' => Storage::url("/public/{$path}/{$fileName}"),
+                'small' => Storage::url("/public/{$path}/small_{$fileName}"),
             ]);
         }
 
-        return Storage::url("{$path}/{$fileName}");
+        return Storage::url("/public/{$path}/{$fileName}");
     }
 }

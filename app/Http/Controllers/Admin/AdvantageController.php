@@ -14,7 +14,9 @@ use Illuminate\Http\Request;
 
 class AdvantageController extends Controller
 {
-
+    /**
+     * @var Advantage
+     */
     private $advantageService;
     private $imageJob;
 
@@ -22,7 +24,7 @@ class AdvantageController extends Controller
      * @param AdvantageService $advantageService
      * @param ImageJob $imageJob
      */
-    public function __constructs(AdvantageService $advantageService,ImageJob $imageJob)
+    public function __construct(AdvantageService $advantageService,ImageJob $imageJob)
     {
         $this->advantageService = $advantageService;
         $this->imageJob = $imageJob;

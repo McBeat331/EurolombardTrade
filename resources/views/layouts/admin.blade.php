@@ -112,7 +112,7 @@
                         <i class="icon icon-single-content-03"></i><span class="nav-text">Записи</span>
                     </a>
                     <ul aria-expanded="false">
-                        <li><a href="{{ route('admin.pages.index') }}">Услуги</a></li>
+                        <li><a href="{{ route('admin.service.index') }}">Услуги</a></li>
                         <li><a href="{{ route('admin.advantage.index') }}">Преимущества</a></li>
                     </ul>
                 </li>

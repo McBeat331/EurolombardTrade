@@ -55,7 +55,7 @@ class AdvantageController extends Controller
     {
         $data = $this->bruteForceRequest($request);
         $this->advantageService->add($data);
-        $request->session()->flash('alert-success', '');
+        $request->session()->flash('alert-success', 'Запись успешно добавлена!');
         return redirect()->route('admin.advantage.index');
     }
 
@@ -83,7 +83,7 @@ class AdvantageController extends Controller
     {
         $data = $this->bruteForceRequest($request);
         $this->advantageService->edit($id,$data);
-        $request->session()->flash('alert-success', '');
+        $request->session()->flash('alert-success', 'Запись успешно изменена!');
         return redirect()->route('admin.advantage.index');
     }
 
@@ -94,7 +94,7 @@ class AdvantageController extends Controller
     public function destroy($id)
     {
         $this->advantageService->delete($id);
-        $request->session()->flash('alert-success', '');
+        request()->session()->flash('alert-success', 'Запись успешно удалена!');
         return redirect()->route('admin.advantage.index');
     }
 

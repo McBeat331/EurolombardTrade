@@ -50,7 +50,7 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $this->userService->add($request->all());
-        $request->session()->flash('alert-success', '');
+        $request->session()->flash('alert-success', 'Запись успешно добавлена!');
         return redirect()->route('admin.user.index');
     }
 
@@ -82,7 +82,7 @@ class UserController extends Controller
     public function update(UserRequest $request, $id)
     {
         $this->userService->edit($id,$request->all());
-        $request->session()->flash('alert-success', '');
+        $request->session()->flash('alert-success', 'Запись успешно изменена!');
         return redirect()->route('admin.user.index');
     }
 
@@ -93,7 +93,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         $this->userService->delete($id);
-        $request->session()->flash('alert-success', '');
+        request()->session()->flash('alert-success', 'Запись успешно удалена!');
         return redirect()->route('admin.user.index');
     }
 }

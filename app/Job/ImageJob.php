@@ -17,14 +17,17 @@ class ImageJob
     {
         if ($file->isValid()) {
             $fileName = $file->hashName();
+            if(in_array($file->getClientOriginalExtension(),['svg'])) {
+                $tmp = $file->store(
+                    $path, config('filesystems.default')
+                );
+                return $fileName;
+            }
             $image = Image::make($file->getRealPath());
 
-
-            if(!in_array($file->getClientOriginalExtension(),['svg'])) {
-                $image->resize(1900, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-            }
+            $image->resize(1900, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
 
             Storage::put("/public/{$path}/{$fileName}", (string)$image->encode(null, 65), 'public');
 

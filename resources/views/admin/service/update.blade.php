@@ -151,7 +151,7 @@
                                 <div class="form-group">
                                     <h5>Титульное изображение *</h5>
                                     <span><small>будет отображаться на странице новости (1200 px по ширине)</small></span>
-                                    <input type="file" name="image" id="input-images" data-img="{!! asset('storage/services/'.$entry->image) !!}" class="form-control" @if(!isset($entry)) required @endif>
+                                    <input type="file" name="image" id="input-images" @isset($entry) data-img="{!! asset('storage/services/'.$entry->image) !!}" @endisset class="form-control" @if(!isset($entry)) required @endif>
                                     @if($errors->has('image'))
                                         <div class="error text-danger small">{{ $errors->first('image') }}</div>
                                     @endif

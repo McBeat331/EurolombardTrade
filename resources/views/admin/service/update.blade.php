@@ -49,10 +49,10 @@
 
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="uk-tab" data-toggle="tab" href="#uk" role="tab" aria-controls="uk" aria-selected="false">украинский <img src="/images/ua.svg" alt="" style="width: 1.5em;"></a>
+                                <a class="nav-link @if($errors->has('title.uk') or $errors->has('description.uk')) text-danger @endif active" id="uk-tab" data-toggle="tab" href="#uk" role="tab" aria-controls="uk" aria-selected="false">украинский <img src="/images/ua.svg" alt="" style="width: 1.5em;"></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="ru-tab" data-toggle="tab" href="#ru" role="tab" aria-controls="ru" aria-selected="false">русский <img src="/images/ru.svg" alt="" style="width: 1.5em;"></a>
+                                <a class="nav-link @if($errors->has('title.ru') or $errors->has('description.ru')) text-danger @endif" id="ru-tab" data-toggle="tab" href="#ru" role="tab" aria-controls="ru" aria-selected="false">русский <img src="/images/ru.svg" alt="" style="width: 1.5em;"></a>
                             </li>
                         </ul>
                         <div class="row">
@@ -64,22 +64,24 @@
                                             <label>Заголовок услуги <small>(украинский вариант)</small></label>
                                             <input type="text" name="title[uk]" class="form-control"
                                                    @isset($entry)
-                                                    value="{{ old('title["uk"]') ? old('title["uk"]') : $entry->translations['title']['uk'] }}"
+                                                   value="{{ old('title_uk') ? old('title_uk') : $entry->translations['title']['uk'] }}"
                                                    @else
-                                                    value="{{ old('title["uk"]') }}"
+                                                   value="{{ old('title_uk') }}"
                                                     @endisset
                                             >
+                                            @if($errors->has('title.uk'))
+                                                <div class="error text-danger small">{{ $errors->first('title.uk') }}</div>
+                                            @endif
                                         </div>
 
                                         <div class="form-group">
                                             <label>Описание услуги</label>
                                             <textarea name="description[uk]" class="form-control summernote" id="description_uk" rows="5">
-                                                @isset($entry)
-                                                    {{ old('description["uk"]') ? old('description["uk"]') : $entry->translations['description']['uk'] }}
-                                                @else
-                                                    {{ old('description["uk"]') }}
-                                                @endisset
+                                                @isset($entry) {{ old('description_uk') ? old('description_uk') : $entry->translations['description']['uk'] }} @else {{ old('description_uk') }} @endisset
                                             </textarea>
+                                            @if($errors->has('description.uk'))
+                                                <div class="error text-danger small">{{ $errors->first('description.uk') }}</div>
+                                            @endif
 
                                         </div>
 
@@ -96,22 +98,21 @@
                                             <label>Заголовок услуги <small>(русский вариант)</small></label>
                                             <input type="text" name="title[ru]" class="form-control"
                                                    @isset($entry)
-                                                   value="{{ old('title["ru"]') ? old('title["ru"]') : $entry->translations['title']['ru'] }}"
-                                                   @else
-                                                   value="{{ old('title["ru"]') }}"
-                                                    @endisset
+                                                   value="{{ old('title_ru') ? old('title_ru') : $entry->translations['title']['ru'] }}" @else value="{{ old('title_ru') }}" @endisset
                                             >
+                                            @if($errors->has('title.ru'))
+                                                <div class="error text-danger small">{{ $errors->first('title.ru') }}</div>
+                                            @endif
                                         </div>
 
                                         <div class="form-group">
                                             <label>Описание услуги</label>
                                             <textarea name="description[ru]" class="form-control summernote" id="description" rows="5">
-                                                @isset($entry)
-                                                    {{ old('description["ru"]') ? old('description["ru"]') : $entry->translations['description']['ru'] }}
-                                                    @else
-                                                        {{ old('description["ru"]') }}
-                                                        @endisset
+                                                @isset($entry) {{ old('description_ru') ? old('description_ru') : $entry->translations['description']['ru'] }} @else {{ old('description_ru') }}@endisset
                                             </textarea>
+                                            @if($errors->has('description.ru'))
+                                                <div class="error text-danger small">{{ $errors->first('description.ru') }}</div>
+                                            @endif
 
                                         </div>
 
@@ -151,6 +152,9 @@
                                     <h5>Титульное изображение *</h5>
                                     <span><small>будет отображаться на странице новости (1200 px по ширине)</small></span>
                                     <input type="file" name="image" id="input-images" data-img="{!! asset('storage/services/'.$entry->image) !!}" class="form-control" @if(!isset($entry)) required @endif>
+                                    @if($errors->has('image'))
+                                        <div class="error text-danger small">{{ $errors->first('image') }}</div>
+                                    @endif
                                 </div>
 
 

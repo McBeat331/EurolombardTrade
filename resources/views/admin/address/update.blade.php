@@ -86,7 +86,7 @@
 
                                 </div>
                             </div>
-                            <div id="map"></div>
+                            <div id="map" style="height:400px; width:100%"></div>
                             <input id="pac-input" class="controls input" type="text" placeholder="Поиск адреса">
                             <hr>
 
@@ -185,7 +185,7 @@
     <script src="{{ asset('adminAssets/js/plugins-init/material-date-picker-init.js') }}"></script>
 
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAor2gAXYMTj3AqHp0fBM0EjTKXrlEDavw&libraries=places&language=ru-RU&region=UA"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCg8cnSkO9AXRrLpbSFb-79xrZ4sPVqw0g&libraries=places&language=ru-RU&region=UA"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
     <script src="{{ asset('adminAssets/js/offices.js') }}"></script>
 @endsection

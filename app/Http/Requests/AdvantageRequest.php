@@ -32,4 +32,28 @@ class AdvantageRequest extends FormRequest
             'sort' => 'required|integer|min:1'
         ];
     }
+    public function messages()
+    {
+        return [
+            'title.*.required' => ':attribute обязательное поле',
+            'description.*.required' => ':attribute обязательное поле',
+            'sort.required' => ':attribute обязательное поле',
+            'sort.integer' => 'Поле :attribute должно содержать только цифры',
+            'sort.min' => 'Поле :attribute должно быть > или = 1',
+            'image.nullable' => ':attribute обязательное поле',
+            'image.mimes' => ':attribute должна быть в jpeg,png,svg формате',
+            'image.max' => ':attribute должна быть меньше 1 мБ ',
+        ];
+    }
+    public function attributes()
+    {
+        return [
+            'title.uk' => 'Заголовок на украинском',
+            'title.ru' => 'Заголовок на русском',
+            'description.uk' => 'Описание на украинском',
+            'description.ru' => 'Описание на русском',
+            'sort' => 'Сортировка',
+            'image' => 'Картинка',
+        ];
+    }
 }

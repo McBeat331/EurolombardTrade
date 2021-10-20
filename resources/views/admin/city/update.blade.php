@@ -9,13 +9,13 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Город @if(isset($entry)) ( {{$entry->city_ru}} ) @else | Создание @endif</h3>
+                        <h3>Город @if(isset($entry)) ( {{$entry->name}} ) @else | Создание @endif</h3>
                         <p>* - поля обязательные для заполнения</p>
                     </div>
                     <div class="card-body">
                         <form method="POST"
                               @if(isset($entry))
-                              action="{{ route('admin.city.update', ['post' => $entry->id]) }}"
+                              action="{{ route('admin.city.update', ['city' => $entry->id]) }}"
                               @else
                               action="{{ route('admin.city.store') }}"
                               @endif
@@ -35,13 +35,16 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><img src="/images/ua.svg" alt="" style="width: 1.5em;"></span>
                                             </div>
-                                            <input type="text" name="city_uk" class="form-control"
+                                            <input type="text" name="name[uk]" class="form-control"
                                                    @isset($entry)
-                                                   value="{{ old('city_uk') ? old('city_uk') : $entry->city_uk }}"
+                                                   value="{{ old('city_uk') ? old('city_uk') : $entry->translations['name']['uk'] }}"
                                                    @else
                                                    value="{{ old('city_uk') }}"
                                                     @endisset
                                             >
+                                            @if($errors->has('name.uk'))
+                                                <div class="error text-danger small">{{ $errors->first('name.uk') }}</div>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -50,13 +53,16 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><img src="/images/ru.svg" alt="" style="width: 1.5em;"></span>
                                             </div>
-                                            <input type="text" name="city_ru" class="form-control"
+                                            <input type="text" name="name[ru]" class="form-control"
                                                    @isset($entry)
-                                                   value="{{ old('city_ru') ? old('city_ru') : $entry->city_ru }}"
+                                                   value="{{ old('city_ru') ? old('city_ru') : $entry->translations['name']['ru'] }}"
                                                    @else
                                                    value="{{ old('city_ru') }}"
                                                     @endisset
                                             >
+                                            @if($errors->has('name.ru'))
+                                                <div class="error text-danger small">{{ $errors->first('name.ru') }}</div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

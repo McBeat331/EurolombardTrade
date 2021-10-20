@@ -48,39 +48,26 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($entries as $city)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Днепр</td>
-                                        <td><span><a href="{{ route('admin.city.edit',1) }}" class="mr-4" data-toggle="tooltip"
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $city->name }}</td>
+                                        <td>
+                                            <span><a href="{{ route('admin.city.edit',$city->id) }}" class="mr-4 btn btn-info" data-toggle="tooltip"
                                                      data-placement="top" title="Edit"><i
-                                                            class="fa fa-pencil color-muted"></i> </a><a
-                                                        href="{{ route('admin.city.destroy',1) }}" data-toggle="tooltip"
-                                                        data-placement="top" title="Delete"><i
-                                                            class="fa fa-close color-danger"></i></a></span>
+                                                            class="fa fa-pencil color-muted"></i> </a>
+                                                <form action="{{ route('admin.city.destroy',$city->id) }}" method="POST">
+
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button type="submit" data-toggle="tooltip" data-placement="top" title="Delete" class="btn btn-danger"><i class="fa fa-close color-danger"></i></button>
+                                                </form>
+                                            </span>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Запорожье</td>
-                                        <td><span><a href="{{ route('admin.city.edit',1) }}" class="mr-4" data-toggle="tooltip"
-                                                     data-placement="top" title="Edit"><i
-                                                            class="fa fa-pencil color-muted"></i> </a><a
-                                                        href="{{ route('admin.city.destroy',1) }}" data-toggle="tooltip"
-                                                        data-placement="top" title="Delete"><i
-                                                            class="fa fa-close color-danger"></i></a></span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Киев</td>
-                                        <td><span><a href="{{ route('admin.city.edit',1) }}" class="mr-4" data-toggle="tooltip"
-                                                     data-placement="top" title="Edit"><i
-                                                            class="fa fa-pencil color-muted"></i> </a><a
-                                                        href="{{ route('admin.city.destroy',1) }}" data-toggle="tooltip"
-                                                        data-placement="top" title="Delete"><i
-                                                            class="fa fa-close color-danger"></i></a></span>
-                                        </td>
-                                    </tr>
+
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

@@ -14,7 +14,9 @@ use Illuminate\Http\Request;
 
 class AdvantageController extends Controller
 {
-
+    /**
+     * @var Advantage
+     */
     private $advantageService;
     private $imageJob;
 

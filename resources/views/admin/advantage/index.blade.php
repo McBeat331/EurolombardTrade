@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('style')
     <link href="{{ asset('adminAssets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('adminAssets/vendor/toastr/css/toastr.min.css') }}">
 @endsection
 @section('content')
     <!-- row -->
@@ -47,21 +48,27 @@
                                     <th>Название</th>
                                     <th>Превью</th>
                                     <th>Порядок сортировки</th>
+                                    <th>Действие</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td><a href="/admin/advantage/1/edit">Вигідний курс</a></td>
-                                        <td><img class="mr-3 img-fluid tableImg" src="/images/money.svg" alt="Quixkit"></td>
-                                        <td>1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td><a href="/admin/advantage/1/edit">Працюємо цілодобово</a></td>
-                                        <td><img class="mr-3 img-fluid tableImg" src="/images/24-7.svg" alt="Quixkit"></td>
-                                        <td>2</td>
-                                    </tr>
+                                    @foreach($entries as $advantage)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td><a href="{{ route('admin.advantage.edit', $advantage->id) }}">{{ $advantage->title }}</a></td>
+                                            <td><img class="mr-3 img-fluid tableImg" src="{{ asset('storage/advantages/'.$advantage->image) }}" alt="Quixkit"></td>
+                                            <td>{{ $advantage->sort }}</td>
+                                            <td>
+                                                <form action="{{ route('admin.advantage.destroy',$advantage->id) }}" method="POST">
+
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    <button type="submit" class="btn btn-danger">Удалить</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                                 <tfoot>
                                 <tr>
@@ -78,8 +85,36 @@
             </div>
         </div>
     </div>
+
 @endsection
 @section('script')
+
+    <script src="{{ asset('adminAssets/vendor/toastr/js/toastr.min.js') }}"></script>
+    @if(session()->has('alert-success'))
+        <script>
+            toastr.success("{{ session('alert-success') }}", {
+                    timeOut: 5000,
+                    closeButton: !0,
+                    debug: !1,
+                    newestOnTop: !0,
+                    progressBar: !0,
+                    positionClass: "toast-top-right",
+                    preventDuplicates: !0,
+                    onclick: null,
+                    showDuration: "300",
+                    hideDuration: "1000",
+                    extendedTimeOut: "1000",
+                    showEasing: "swing",
+                    hideEasing: "linear",
+                    showMethod: "fadeIn",
+                    hideMethod: "fadeOut",
+                    tapToDismiss: !1
+                })
+
+        </script>
+    @endif
+
+
     <script src="{{ asset('adminAssets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('adminAssets/js/plugins-init/datatables.init.js') }}"></script>
 @endsection

@@ -28,7 +28,7 @@ class ServiceRequest extends FormRequest
             'description.*' => 'required',
             'meta_title.*' => 'nullable',
             'meta_description.*' => 'nullable',
-            'image' => 'nullable|mimes:jpeg,png,svg|max:1024',
+            'image' => 'required|mimes:jpeg,png,svg|max:1024',
         ];
     }
     public function messages()
@@ -36,7 +36,7 @@ class ServiceRequest extends FormRequest
         return [
             'title.*.required' => ':attribute обязательное поле',
             'description.*.required' => ':attribute обязательное поле',
-            'image.nullable' => ':attribute обязательное поле',
+            'image.required' => ':attribute обязательное поле',
             'image.mimes' => ':attribute должна быть в jpeg,png,svg формате',
             'image.max' => ':attribute должна быть меньше 1 мБ ',
         ];

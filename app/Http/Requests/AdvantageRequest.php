@@ -28,7 +28,7 @@ class AdvantageRequest extends FormRequest
             'description.*' => 'required',
             'meta_title.*' => 'nullable',
             'meta_description.*' => 'nullable',
-            'image' => 'nullable|mimes:jpeg,png,svg|max:1024',
+            'image' => 'required|mimes:jpeg,png,svg|max:1024',
             'sort' => 'required|integer|min:1'
         ];
     }
@@ -40,7 +40,7 @@ class AdvantageRequest extends FormRequest
             'sort.required' => ':attribute обязательное поле',
             'sort.integer' => 'Поле :attribute должно содержать только цифры',
             'sort.min' => 'Поле :attribute должно быть > или = 1',
-            'image.nullable' => ':attribute обязательное поле',
+            'image.required' => ':attribute обязательное поле',
             'image.mimes' => ':attribute должна быть в jpeg,png,svg формате',
             'image.max' => ':attribute должна быть меньше 1 мБ ',
         ];

@@ -14,18 +14,24 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes(['register' => false]);
+//Route::get('/language', [App\Http\Controllers\HomeController::class, 'main'])->name('main');
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'main'])->name('main');
-Route::get('advantage',[App\Http\Controllers\AdvantageController::class,'index'])->name('advantage.index');
-Route::get('advantage/{slug}',[App\Http\Controllers\AdvantageController::class,'show'])->name('advantage.show');
-Route::get('service',[App\Http\Controllers\ServiceController::class,'index'])->name('service.index');
-Route::get('service/{slug}',[App\Http\Controllers\ServiceController::class,'show'])->name('service.show');
-Route::get('contact',[App\Http\Controllers\ContactController::class,'show'])->name('contact.show');
-Route::get('review',[App\Http\Controllers\ReviewController::class,'index'])->name('review.index');
-Route::post('review',[App\Http\Controllers\ReviewController::class,'store'])->name('review.store');
+Route::group(['prefix' => parseLocale(),'where' => ['locale' => '[a-z]{2}'],'middleware' => 'localization'], function() {
+
+    Auth::routes(['register' => false]);
+
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'main'])->name('main');
+    Route::get('advantage', [App\Http\Controllers\AdvantageController::class, 'index'])->name('advantage.index');
+    Route::get('advantage/{slug}', [App\Http\Controllers\AdvantageController::class, 'show'])->name('advantage.show');
+    Route::get('service', [App\Http\Controllers\ServiceController::class, 'index'])->name('service.index');
+    Route::get('service/{slug}', [App\Http\Controllers\ServiceController::class, 'show'])->name('service.show');
+    Route::get('contact', [App\Http\Controllers\ContactController::class, 'show'])->name('contact.show');
+    Route::get('review', [App\Http\Controllers\ReviewController::class, 'index'])->name('review.index');
+    Route::post('review', [App\Http\Controllers\ReviewController::class, 'store'])->name('review.store');
+});
 
 Route::middleware('auth')->group(function(){
+    Route::get('profile',[App\Http\Controllers\UserController::class,'profile'])->name('profile.show');
     Route::post('order', [App\Http\Controllers\OrderController::class,'add']);
     Route::post('order/{id}', [App\Http\Controllers\OrderController::class,'delete']);
     Route::get('logout', [LoginController::class,'logout'])->name('logout');

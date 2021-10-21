@@ -34,7 +34,7 @@ class LoginController extends Controller
         if (Auth::user()->is_admin == 1) {
             return route('admin.main');
         }
-        return route('main');
+        return route('profile.show');
     }
     /**
      * Create a new controller instance.

@@ -3,6 +3,7 @@
 namespace App\Services\User;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserService
@@ -11,6 +12,7 @@ class UserService
      * @var User
      */
     private $userModel;
+    private $userId;
 
     /**
      * UserService constructor.
@@ -19,6 +21,7 @@ class UserService
     public function __construct(User $userModel)
     {
         $this->userModel = $userModel;
+//        $this->userId = Auth::user()->id;
     }
 
     /**
@@ -99,10 +102,23 @@ class UserService
         return $query->update(['is_admin', User::IS_NOT_ADMIN]);
     }
 
+    public function getOrdersAuth()
+    {
+
+    }
+
+
+
+    public function getAllCount()
+    {
+        return $this->userModel->select('id')->count();
+    }
+
     private function passwordHash($data){
         if(isset($data['password']) && $data['password']){
             $data['password'] = Hash::make($data['password']);
         }
         return $data;
     }
+
 }

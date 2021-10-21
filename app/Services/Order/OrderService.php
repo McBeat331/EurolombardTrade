@@ -3,6 +3,7 @@
 namespace App\Services\Order;
 
 use App\Models\Order;
+use Illuminate\Support\Carbon;
 
 class OrderService
 {
@@ -33,6 +34,7 @@ class OrderService
     {
         return $this->orderModel
             ->with($relations)
+            ->orderBy('created_at','DESC')
             ->get();
     }
 
@@ -40,6 +42,7 @@ class OrderService
     {
         return $this->orderModel
             ->with($relations)
+            ->orderBy('created_at','DESC')
             ->paginate(Order::PAGINATE);
     }
 
@@ -57,5 +60,29 @@ class OrderService
     public function delete($id)
     {
         return $this->orderModel->where('id', $id)->delete();
+    }
+
+    public function getAllCount()
+    {
+        return $this->orderModel->select('id')->count();
+    }
+
+    public function getLastTenDaysCount()
+    {
+        $days = 10;
+        $query = $this->orderModel->select(['id','created_at'])->where('created_at','>=',Carbon::now()->subDays($days))->get();
+        $collection = collect();
+        while($days > 0){
+            $collection = collect([
+                    Carbon::now()->subDays($days)->format('d.m.y')
+                =>
+                    $query->filter(function($item) use ($days){
+                        return $item->created_at->format('d.m.Y') === Carbon::now()->subDays($days)->format('d.m.Y');
+                    })->count()
+            ])->merge($collection);
+            $days--;
+        }
+
+        return $collection;
     }
 }

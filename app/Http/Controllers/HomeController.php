@@ -29,7 +29,6 @@ class HomeController extends Controller
 
     public function main()
     {
-//        dd($this->serviceService->getFind(8)->title);
         $services = $this->serviceService->getHome();
         $advantages = $this->advantageService->getHome();
         $reviews = $this->reviewService->getHome();

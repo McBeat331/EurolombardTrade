@@ -102,4 +102,10 @@ class ReviewService
         $query = $this->reviewModel->where('id', $id)->first();
         return $query->update(['status' => Review::STATUS_REJECTED]);
     }
+
+
+    public function getAllCount()
+    {
+        return $this->reviewModel->select('id')->count();
+    }
 }

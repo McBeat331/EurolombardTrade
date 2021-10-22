@@ -25,7 +25,7 @@ class CityService
      * @param array $relations
      * @return mixed
      */
-    public function getFind($id, $relations = [])
+    public function getFind($id, $relations = ['addresses','rates'])
     {
         return $this->cityModel->where('id', $id)->with($relations)->firstOrFail();
     }
@@ -34,16 +34,26 @@ class CityService
      * @param array $relations
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function getAll($relations = [])
+    public function getAll($relations = ['addresses','rates'])
     {
         return $this->cityModel->with($relations)->get();
+    }
+
+    public function getClient($relations = ['addresses','rates'])
+    {
+        return $this->cityModel->with($relations)->whereNotNull('api_id')->get();
+    }
+
+    public function getClientFirst($relations = ['addresses','rates'])
+    {
+        return $this->cityModel->with($relations)->whereNotNull('api_id')->first();
     }
 
     /**
      * @param array $relations
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getPaginate($relations = [])
+    public function getPaginate($relations = ['addresses','rates'])
     {
         return $this->cityModel->with($relations)->paginate(City::PAGINATE);
     }
@@ -66,6 +76,23 @@ class CityService
     {
         $query = $this->cityModel->where('id', $id)->first();
         return $query->update($data);
+    }
+
+
+
+    public function updateOrCreate($data)
+    {
+        $dataCreate = [
+            'api_id' => $data['id'],
+            'name'=>[
+                'ru' => $data['name']
+            ]
+        ];
+        $query = $this->cityModel->updateOrCreate(
+            ['api_id'=> $data['id']],
+            $dataCreate
+        );
+        return $query;
     }
 
     /**

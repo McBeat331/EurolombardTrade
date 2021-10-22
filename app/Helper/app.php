@@ -1,11 +1,12 @@
 <?php
 
 use App\Services\City\CityService;
+use Illuminate\Support\Facades\Session;
 
 
 if(!function_exists('cities')){
     function cities(){
-        return (new CityService)->getAll(['addresses']);
+        return (new CityService())->getAll(['addresses']);
     }
 }
 if(!function_exists('parseLocale')) {
@@ -26,3 +27,15 @@ if(!function_exists('switcher_locale')) {
         return view('_partials.switcher');
     }
 }
+if(!function_exists('citySelected')) {
+    function citySelected()
+    {
+        if(Session::has('citySelected')){
+            return Session::get('citySelected');
+        }
+        return false;
+    }
+}
+
+
+

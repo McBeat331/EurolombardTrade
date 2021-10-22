@@ -25,7 +25,7 @@ class AddressService
      * @param array $relations
      * @return mixed
      */
-    public function getFind($id, $relations = [])
+    public function getFind($id, $relations = ['city'])
     {
         return $this->addressModel->where('id', $id)->with($relations)->firstOrFail();
     }
@@ -34,7 +34,7 @@ class AddressService
      * @param array $relations
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function getAll($relations = [])
+    public function getAll($relations = ['city'])
     {
         return $this->addressModel->with($relations)->get();
     }
@@ -43,7 +43,7 @@ class AddressService
      * @param array $relations
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getPaginate($relations = [])
+    public function getPaginate($relations = ['city'])
     {
         return $this->addressModel->with($relations)->paginate(Address::PAGINATE);
     }

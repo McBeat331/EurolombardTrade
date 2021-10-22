@@ -25,7 +25,7 @@ class ReviewService
      * @param array $relations
      * @return mixed
      */
-    public function getFind($id, $relations = [])
+    public function getFind($id, $relations = ['user'])
     {
         return $this->reviewModel->where('id', $id)->with($relations)->firstOrFail();
     }
@@ -34,7 +34,7 @@ class ReviewService
      * @param array $relations
      * @return mixed
      */
-    public function getAll($relations = [])
+    public function getAll($relations = ['user'])
     {
         return $this->reviewModel->with($relations)->get();
     }
@@ -43,7 +43,7 @@ class ReviewService
      * @param array $relations
      * @return mixed
      */
-    public function getHome($relations = [])
+    public function getHome($relations = ['user'])
     {
         return $this->reviewModel
             ->with($relations)
@@ -57,7 +57,7 @@ class ReviewService
      * @param array $relations
      * @return mixed
      */
-    public function getPaginate($relations = [])
+    public function getPaginate($relations = ['user'])
     {
         return $this->reviewModel->with($relations)->paginate(Review::PAGINATE);
     }

@@ -14,7 +14,7 @@ class City extends Model
 
     protected $table = 'cities';
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name','api_id'];
 
     public $translatable = ['name'];
 
@@ -22,6 +22,10 @@ class City extends Model
 
     public function addresses()
     {
-        return $this->hasMany(Address::class, 'city_id');
+        return $this->hasMany(Address::class, 'city_id','id');
+    }
+    public function rates()
+    {
+        return $this->hasMany(Rate::class, 'city_id','id');
     }
 }

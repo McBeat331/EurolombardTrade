@@ -29,7 +29,7 @@ class UserService
      * @param array $relations
      * @return mixed
      */
-    public function getFind($id, $relations = [])
+    public function getFind($id, $relations = ['reviews','orders'])
     {
         return $this->userModel->where('id', $id)->with($relations)->firstOrFail();
     }
@@ -38,7 +38,7 @@ class UserService
      * @param array $relations
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
-    public function getAll($relations = [])
+    public function getAll($relations = ['reviews','orders'])
     {
         return $this->userModel->with($relations)->get();
     }
@@ -47,7 +47,7 @@ class UserService
      * @param array $relations
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getPaginate($relations = [])
+    public function getPaginate($relations = ['reviews','orders'])
     {
         return $this->userModel->with($relations)->paginate(User::PAGINATE);
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AddressRequest;
 use App\Services\Address\AddressService;
+use App\Services\City\CityService;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -18,12 +19,21 @@ class AddressController extends Controller
     private $addressService;
 
     /**
-     * AddressController constructor.
-     * @param AddressService $addressService
+     * @var CityService
      */
-    public function __construct(AddressService $addressService)
+    private $cityService;
+
+    /**
+     * @param AddressService $addressService
+     * @param CityService $cityService
+     */
+    public function __construct(
+        AddressService $addressService,
+        CityService $cityService
+    )
     {
         $this->addressService = $addressService;
+        $this->cityService = $cityService;
     }
 
     /**
@@ -40,7 +50,8 @@ class AddressController extends Controller
      */
     public function create()
     {
-        return view('admin.address.update');
+        $cities = $this->cityService->getAll([]);
+        return view('admin.address.update', compact('cities'));
     }
 
     /**
@@ -66,7 +77,8 @@ class AddressController extends Controller
     public function edit($id)
     {
         $entry = $this->addressService->getFind($id);
-        return view('admin.address.update', compact('entry'));
+        $cities = $this->cityService->getAll([]);
+        return view('admin.address.update', compact('entry','cities'));
     }
 
     /**

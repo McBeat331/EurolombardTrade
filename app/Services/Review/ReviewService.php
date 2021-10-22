@@ -3,6 +3,7 @@
 namespace App\Services\Review;
 
 use App\Models\Review;
+use Illuminate\Database\Eloquent\Model;
 
 class ReviewService
 {
@@ -89,6 +90,25 @@ class ReviewService
     public function delete($id)
     {
         return $this->reviewModel->where('id', $id)->delete();
+    }
+
+    /**
+     * @param $id
+     * @return false|Model
+     */
+    public function changeStatus($id)
+    {
+        $query = $this->reviewModel->where('id', $id)->firstOrFail();
+
+        if($query->status == Review::STATUS_TO_VERIFIED)
+        {
+            return $query->update(['status' => Review::STATUS_REJECTED]);
+        }
+        if($query->status == Review::STATUS_REJECTED)
+        {
+            return $query->update(['status' => Review::STATUS_TO_VERIFIED]);
+        }
+        return false;
     }
 
     public function confirmStatus($id)

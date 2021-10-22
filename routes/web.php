@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function(){
 
 Route::name('admin.')->prefix('admin')->middleware('isAdmin')->group(function(){
     Route::get('/', [App\Http\Controllers\Admin\DashboardController::class,'index'])->name('main');
+
     Route::resource('advantage', App\Http\Controllers\Admin\AdvantageController::class);
     Route::resource('address', App\Http\Controllers\Admin\AddressController::class);
     Route::resource('city', App\Http\Controllers\Admin\CityController::class);
@@ -48,4 +49,7 @@ Route::name('admin.')->prefix('admin')->middleware('isAdmin')->group(function(){
     Route::resource('service', App\Http\Controllers\Admin\ServiceController::class);
     Route::resource('setting', App\Http\Controllers\Admin\SettingController::class);
     Route::resource('user', App\Http\Controllers\Admin\UserController::class);
+
+    Route::post('changeStatusOrder', [App\Http\Controllers\Admin\OrderController::class,'changeStatus'])->name('changeStatusOrder');
+    Route::post('changeStatusReview', [App\Http\Controllers\Admin\ReviewController::class,'changeStatus'])->name('changeStatusReview');
 });

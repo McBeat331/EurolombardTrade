@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ChangeStatusRequest;
 use App\Http\Requests\OrderRequest;
 use App\Services\Order\OrderService;
 use Illuminate\Contracts\Foundation\Application;
@@ -90,5 +91,11 @@ class OrderController extends Controller
         $this->orderService->delete($id);
         request()->session()->flash('alert-success', 'Запись успешно удалена!');
         return redirect()->route('admin.order.index');
+    }
+
+
+    public function changeStatus(ChangeStatusRequest $request)
+    {
+        return $this->orderService->changeStatus($request->get('id'));
     }
 }

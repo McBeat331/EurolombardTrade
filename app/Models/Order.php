@@ -11,6 +11,10 @@ class Order extends Model
 
     public const PAGINATE = 20;
 
+    public const STATUS_NOT_VERIFIED = 0;
+    public const STATUS_TO_VERIFIED = 1;
+    public const STATUS_REJECTED = 2;
+
     protected $table = 'orders';
 
     protected $fillable = [

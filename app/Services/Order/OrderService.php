@@ -92,4 +92,23 @@ class OrderService
         }
         return $collection->reverse();
     }
+
+    /**
+     * @param $id
+     * @return false|Model
+     */
+    public function changeStatus($id)
+    {
+        $query = $this->orderModel->where('id', $id)->firstOrFail();
+
+        if($query->status == Order::STATUS_TO_VERIFIED)
+        {
+            return $query->update(['status' => Order::STATUS_REJECTED]);
+        }
+        if($query->status == Order::STATUS_REJECTED)
+        {
+            return $query->update(['status' => Order::STATUS_TO_VERIFIED]);
+        }
+        return false;
+    }
 }

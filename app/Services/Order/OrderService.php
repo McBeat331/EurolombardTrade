@@ -21,7 +21,7 @@ class OrderService
         $this->orderModel = $orderModel;
     }
 
-    public function getFind($id, $relations = [])
+    public function getFind($id, $relations = ['address'])
     {
         return $this->orderModel
             ->where('id', $id)
@@ -30,7 +30,7 @@ class OrderService
     }
 
 
-    public function getAll($relations = [])
+    public function getAll($relations = ['address'])
     {
         return $this->orderModel
             ->with($relations)
@@ -38,12 +38,20 @@ class OrderService
             ->get();
     }
 
-    public function getPaginate($relations = [])
+    public function getPaginate($relations = ['address'])
     {
         return $this->orderModel
             ->with($relations)
             ->orderBy('created_at','DESC')
             ->paginate(Order::PAGINATE);
+    }
+    public function getLimit($limit = 20,$relations = ['address'])
+    {
+        return $this->orderModel
+            ->with($relations)
+            ->orderBy('created_at','DESC')
+            ->limit($limit)
+            ->get();
     }
 
     public function add($data)
@@ -69,10 +77,10 @@ class OrderService
 
     public function getLastTenDaysCount()
     {
-        $days = 10;
+        $days = 9;
         $query = $this->orderModel->select(['id','created_at'])->where('created_at','>=',Carbon::now()->subDays($days))->get();
         $collection = collect();
-        while($days > 0){
+        while($days >= 0){
             $collection = collect([
                     Carbon::now()->subDays($days)->format('d.m.y')
                 =>
@@ -82,7 +90,6 @@ class OrderService
             ])->merge($collection);
             $days--;
         }
-
-        return $collection;
+        return $collection->reverse();
     }
 }

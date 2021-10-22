@@ -27,7 +27,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $orders = $this->orderService->getAllCount();
+        $orders = $this->orderService->getLimit(20);
         $ordersCountLastTenDays = $this->orderService->getLastTenDaysCount();
         $ordersCount = $this->orderService->getAllCount();
         $usersCount = $this->userService->getAllCount();

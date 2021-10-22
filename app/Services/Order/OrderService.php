@@ -99,7 +99,7 @@ class OrderService
      */
     public function changeStatus($id)
     {
-        $query = $this->orderModel->where('id', $id)->firstOrFail();
+        $query = $this->getFind($id,[]);
 
         if($query->status == Order::STATUS_TO_VERIFIED)
         {

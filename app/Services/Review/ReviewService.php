@@ -98,15 +98,17 @@ class ReviewService
      */
     public function changeStatus($id)
     {
-        $query = $this->reviewModel->where('id', $id)->firstOrFail();
+        $query = $this->getFind($id,[]);
 
         if($query->status == Review::STATUS_TO_VERIFIED)
         {
-            return $query->update(['status' => Review::STATUS_REJECTED]);
+            $query->update(['status' => Review::STATUS_REJECTED]);
+            return true;
         }
         if($query->status == Review::STATUS_REJECTED)
         {
-            return $query->update(['status' => Review::STATUS_TO_VERIFIED]);
+            $query->update(['status' => Review::STATUS_TO_VERIFIED]);
+            return true;
         }
         return false;
     }

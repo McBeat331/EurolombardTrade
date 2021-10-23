@@ -26,7 +26,7 @@
                         </div>
                         <div class="stat-content d-inline-block">
                             <div class="stat-text">Всего заявок</div>
-                            <div class="stat-digit">1,012</div>
+                            <div class="stat-digit">{{ $ordersCount }}</div>
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="stat-content d-inline-block">
                             <div class="stat-text">Пользователей</div>
-                            <div class="stat-digit">961</div>
+                            <div class="stat-digit">{{ $usersCount }}</div>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="stat-content d-inline-block">
                             <div class="stat-text">Комментариев</div>
-                            <div class="stat-digit">100</div>
+                            <div class="stat-digit">{{ $reviewsCount }}</div>
                         </div>
                     </div>
                 </div>
@@ -92,236 +92,36 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>
-                                        Какой то пользователь
-                                    </td>
-                                    <td>
-                                        14.10.2021
-                                    </td>
-                                    <td>
-                                        2000
-                                    </td>
-                                    <td>
-                                        USD
-                                    </td>
-                                    <td>
-                                        60000
-                                    </td>
-                                    <td>
-                                        UAH
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-warning">Не обработано</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Какой то пользователь
-                                    </td>
-                                    <td>
-                                        14.10.2021
-                                    </td>
-                                    <td>
-                                        2000
-                                    </td>
-                                    <td>
-                                        USD
-                                    </td>
-                                    <td>
-                                        60000
-                                    </td>
-                                    <td>
-                                        UAH
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-primary">Обработано</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Какой то пользователь
-                                    </td>
-                                    <td>
-                                        14.10.2021
-                                    </td>
-                                    <td>
-                                        2000
-                                    </td>
-                                    <td>
-                                        USD
-                                    </td>
-                                    <td>
-                                        60000
-                                    </td>
-                                    <td>
-                                        UAH
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-warning">Не обработано</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Какой то пользователь
-                                    </td>
-                                    <td>
-                                        14.10.2021
-                                    </td>
-                                    <td>
-                                        2000
-                                    </td>
-                                    <td>
-                                        USD
-                                    </td>
-                                    <td>
-                                        60000
-                                    </td>
-                                    <td>
-                                        UAH
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-warning">Не обработано</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Какой то пользователь
-                                    </td>
-                                    <td>
-                                        14.10.2021
-                                    </td>
-                                    <td>
-                                        2000
-                                    </td>
-                                    <td>
-                                        USD
-                                    </td>
-                                    <td>
-                                        60000
-                                    </td>
-                                    <td>
-                                        UAH
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-warning">Не обработано</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Какой то пользователь
-                                    </td>
-                                    <td>
-                                        14.10.2021
-                                    </td>
-                                    <td>
-                                        2000
-                                    </td>
-                                    <td>
-                                        USD
-                                    </td>
-                                    <td>
-                                        60000
-                                    </td>
-                                    <td>
-                                        UAH
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-warning">Не обработано</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Какой то пользователь
-                                    </td>
-                                    <td>
-                                        14.10.2021
-                                    </td>
-                                    <td>
-                                        2000
-                                    </td>
-                                    <td>
-                                        USD
-                                    </td>
-                                    <td>
-                                        60000
-                                    </td>
-                                    <td>
-                                        UAH
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-warning">Не обработано</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Какой то пользователь
-                                    </td>
-                                    <td>
-                                        14.10.2021
-                                    </td>
-                                    <td>
-                                        2000
-                                    </td>
-                                    <td>
-                                        USD
-                                    </td>
-                                    <td>
-                                        60000
-                                    </td>
-                                    <td>
-                                        UAH
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-warning">Не обработано</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Какой то пользователь
-                                    </td>
-                                    <td>
-                                        14.10.2021
-                                    </td>
-                                    <td>
-                                        2000
-                                    </td>
-                                    <td>
-                                        USD
-                                    </td>
-                                    <td>
-                                        60000
-                                    </td>
-                                    <td>
-                                        UAH
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-warning">Не обработано</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Какой то пользователь
-                                    </td>
-                                    <td>
-                                        14.10.2021
-                                    </td>
-                                    <td>
-                                        2000
-                                    </td>
-                                    <td>
-                                        USD
-                                    </td>
-                                    <td>
-                                        60000
-                                    </td>
-                                    <td>
-                                        UAH
-                                    </td>
-                                    <td>
-                                        <span class="badge badge-warning">Не обработано</span>
-                                    </td>
-                                </tr>
+                                @foreach ($orders as $order)
+                                    <tr>
+                                        <td>
+                                            <a href="{{ route('admin.order.edit',$order->id) }}" class="mr-4" data-toggle="tooltip"
+                                               data-placement="top" title="Edit">{{ $order->user->name }}</a>
+                                        </td>
+                                        <td>
+                                            {{ $order->created_at }}
+                                        </td>
+                                        <td>
+                                            {{ $order->price_from }}
+                                        </td>
+                                        <td>
+                                            {{ $order->currency_from }}
+                                        </td>
+                                        <td>
+                                            {{ $order->price_to }}
+                                        </td>
+                                        <td>
+                                            {{ $order->currency_to }}
+                                        </td>
+                                        <td>
+                                            @if($order->status && $order->status==0)
+                                                <span class="badge badge-warning">Не обработано</span>
+                                            @else
+                                                <span class="badge badge-success">Обработано</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -340,58 +140,22 @@
 
 
     <script src="{{ asset('adminAssets/vendor/circle-progress/circle-progress.min.js') }}"></script>
-    <script src="{{ asset('adminAssets/vendor/chart.js/Chart.bundle.min.js') }}"></script>
 
-    <script src="{{ asset('adminAssets/vendor/gaugeJS/dist/gauge.min.js') }}"></script>
 
-    <!--  flot-chart js -->
-    <script src="{{ asset('adminAssets/vendor/flot/jquery.flot.js') }}"></script>
-    <script src="{{ asset('adminAssets/vendor/flot/jquery.flot.resize.js') }}"></script>
 
-    <!-- Owl Carousel -->
-    <script src="{{ asset('adminAssets/vendor/owl-carousel/js/owl.carousel.min.js') }}."></script>
-
-    <!-- Counter Up -->
-    <script src="{{ asset('adminAssets/vendor/jqvmap/js/jquery.vmap.min.js') }}"></script>
-    <script src="{{ asset('adminAssets/vendor/jqvmap/js/jquery.vmap.usa.js') }}"></script>
-    <script src="{{ asset('adminAssets/vendor/jquery.counterup/jquery.counterup.min.js') }}"></script>
 
 
     <script src="{{ asset('adminAssets/js/dashboard/dashboard-1.js') }}"></script>
     <script>
+        var arrayFromPHP = {!! json_encode($ordersCountLastTenDays) !!};
+        var lastArray = [];
+        var jsonObj = new Object();
+        $.each(arrayFromPHP, function (index, value) {
+            lastArray.push({y:index,a:value});
+        });
         Morris.Bar({
             element: 'morris-bar-chart',
-            data: [{
-                y: '10.10.2021',
-                a: 220
-            }, {
-                y: '11.10.2021',
-                a: 75
-            }, {
-                y: '12.10.2021',
-                a: 50
-            }, {
-                y: '13.10.2021',
-                a: 75
-            }, {
-                y: '14.10.2021',
-                a: 50
-            }, {
-                y: '15.10.2021',
-                a: 75
-            },{
-                y: '10.10.2021',
-                a: 220
-            },{
-                y: '10.10.2021',
-                a: 220
-            },{
-                y: '10.10.2021',
-                a: 220
-            }, {
-                y: '16.10.2021',
-                a: 100
-            }],
+            data: lastArray,
             xkey: 'y',
             ykeys: ['a'],
             labels: ['Заявок'],

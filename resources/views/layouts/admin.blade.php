@@ -47,10 +47,9 @@
         Nav header start
     ***********************************-->
     <div class="nav-header">
-        <a href="index.html" class="brand-logo">
-            <img class="logo-abbr" src="./images/logo.png" alt="">
-            <img class="logo-compact" src="./images/logo-text.png" alt="">
-            <img class="brand-title" src="./images/logo-text.png" alt="">
+        <a href="{{ route('admin.main') }}" class="brand-logo">
+            <img class="logo-compact" src="{{ asset('adminAssets/images/Logo_new.svg') }}" alt="">
+            <img class="brand-title" src="{{ asset('adminAssets/images/Logo_new.svg') }}" alt="">
         </a>
 
         <div class="nav-control">

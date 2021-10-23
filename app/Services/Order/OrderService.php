@@ -101,13 +101,15 @@ class OrderService
     {
         $query = $this->getFind($id,[]);
 
+        if($query->status == Order::STATUS_NOT_VERIFIED)
+        {
+            $query->update(['status' => Order::STATUS_TO_VERIFIED]);
+            return $query;
+        }
         if($query->status == Order::STATUS_TO_VERIFIED)
         {
-            return $query->update(['status' => Order::STATUS_REJECTED]);
-        }
-        if($query->status == Order::STATUS_REJECTED)
-        {
-            return $query->update(['status' => Order::STATUS_TO_VERIFIED]);
+            $query->update(['status' => Order::STATUS_NOT_VERIFIED]);
+            return $query;
         }
         return false;
     }

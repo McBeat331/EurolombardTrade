@@ -40,16 +40,16 @@ class SettingController extends Controller
      */
     public function create()
     {
-        return view('admin.setting.create');
+        return view('admin.setting.update');
     }
 
     /**
      * @param SettingService $request
      * @return RedirectResponse
      */
-    public function store(SettingService $request)
+    public function store(SettingRequest $request)
     {
-        $this->settingService->attach($request->all());
+        $this->settingService->attach($request->get('field'),$request->get('value'));
         $request->session()->flash('alert-success', 'Запись успешно добавлена!');
         return redirect()->route('admin.setting.index');
     }
@@ -80,7 +80,7 @@ class SettingController extends Controller
      */
     public function update(SettingRequest $request)
     {
-        $this->settingService->attach($request->all());
+        $this->settingService->attach($request->get('field'),$request->get('value'));
         $request->session()->flash('alert-success', 'Запись успешно изменена!');
         return redirect()->route('admin.setting.index');
     }

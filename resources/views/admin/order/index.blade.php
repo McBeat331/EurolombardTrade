@@ -35,140 +35,57 @@
                                             <thead>
                                             <tr>
                                                 <th class="col-2">Пользователь</th>
+                                                <th class="col-2">Номер телефона</th>
                                                 <th class="col-2">Дата</th>
                                                 <th class="col-1">Сдаёт</th>
                                                 <th class="col-1">Валюта</th>
                                                 <th class="col-1">Получает</th>
                                                 <th class="col-1">Валюта</th>
-                                                <th class="col-2">Статус</th>
-                                                <th scope="col col-2">Действия</th>
+                                                <th class="col-1">Статус</th>
+                                                <th scope="col col-1">Действия</th>
                                             </tr>
                                             </thead>
                                             <tbody>
+                                            @foreach ($entries as $order)
                                             <tr>
                                                 <td>
-                                                    <a href="{{ route('admin.order.edit',1) }}" class="mr-4" data-toggle="tooltip"
-                                                       data-placement="top" title="Edit">Какой то пользователь</a>
+                                                    {{ $order->user->name }}
                                                 </td>
                                                 <td>
-                                                    14.10.2021
+                                                    {{ $order->user->phone }}
                                                 </td>
                                                 <td>
-                                                    2000
+                                                    {{ $order->created_at }}
                                                 </td>
                                                 <td>
-                                                    USD
+                                                    {{ $order->price_from }}
                                                 </td>
                                                 <td>
-                                                    60000
+                                                    {{ $order->currency_from }}
                                                 </td>
                                                 <td>
-                                                    UAH
+                                                    {{ $order->price_to }}
                                                 </td>
                                                 <td>
-                                                    <span class="badge badge-warning">Не обработано</span>
+                                                    {{ $order->currency_to }}
                                                 </td>
-                                                <td><span><a href="{{ route('admin.order.edit',1) }}" class="mr-4" data-toggle="tooltip"
-                                                             data-placement="top" title="Edit"><i
-                                                                    class="fa fa-pencil color-muted"></i> </a><a
-                                                                href="{{ route('admin.order.destroy',1) }}" data-toggle="tooltip"
-                                                                data-placement="top" title="Delete"><i
-                                                                    class="fa fa-close color-danger"></i></a></span>
+                                                <td>
+                                                    @if($order->status && $order->status==0)
+                                                        <span class="badge badge-warning" data-id="{{$order->id}}" data-url="{{ route('admin.changeStatusOrder') }}" style="cursor:pointer">Не обработано</span>
+                                                    @else
+                                                        <span class="badge badge-success" data-id="{{$order->id}}" data-url="{{ route('admin.changeStatusOrder') }}" style="cursor:pointer">Обработано</span>
+                                                    @endif
+                                                </td>
+                                                <td><span><form action="{{ route('admin.order.destroy',$order->id) }}" method="POST" style="display:inline-block">
+
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button type="submit" data-toggle="tooltip" data-placement="top" title="Delete" class="btn btn-danger"><i class="fa fa-close color-danger"></i></button>
+                                                </form></span>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <a href="{{ route('admin.order.edit',1) }}" class="mr-4" data-toggle="tooltip"
-                                                       data-placement="top" title="Edit">Какой то пользователь</a>
-                                                </td>
-                                                <td>
-                                                    14.10.2021
-                                                </td>
-                                                <td>
-                                                    2000
-                                                </td>
-                                                <td>
-                                                    USD
-                                                </td>
-                                                <td>
-                                                    60000
-                                                </td>
-                                                <td>
-                                                    UAH
-                                                </td>
-                                                <td>
-                                                    <span class="badge badge-primary">Обработано</span>
-                                                </td>
-                                                <td><span><a href="{{ route('admin.order.edit',1) }}" class="mr-4" data-toggle="tooltip"
-                                                             data-placement="top" title="Edit"><i
-                                                                    class="fa fa-pencil color-muted"></i> </a><a
-                                                                href="{{ route('admin.order.destroy',1) }}" data-toggle="tooltip"
-                                                                data-placement="top" title="Delete"><i
-                                                                    class="fa fa-close color-danger"></i></a></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <a href="{{ route('admin.order.edit',1) }}" class="mr-4" data-toggle="tooltip"
-                                                       data-placement="top" title="Edit">Какой то пользователь</a>
-                                                </td>
-                                                <td>
-                                                    14.10.2021
-                                                </td>
-                                                <td>
-                                                    2000
-                                                </td>
-                                                <td>
-                                                    USD
-                                                </td>
-                                                <td>
-                                                    60000
-                                                </td>
-                                                <td>
-                                                    UAH
-                                                </td>
-                                                <td>
-                                                    <span class="badge badge-warning">Не обработано</span>
-                                                </td>
-                                                <td><span><a href="{{ route('admin.order.edit',1) }}" class="mr-4" data-toggle="tooltip"
-                                                             data-placement="top" title="Edit"><i
-                                                                    class="fa fa-pencil color-muted"></i> </a><a
-                                                                href="{{ route('admin.order.destroy',1) }}" data-toggle="tooltip"
-                                                                data-placement="top" title="Delete"><i
-                                                                    class="fa fa-close color-danger"></i></a></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <a href="{{ route('admin.order.edit',1) }}" class="mr-4" data-toggle="tooltip"
-                                                       data-placement="top" title="Edit">Какой то пользователь</a>
-                                                </td>
-                                                <td>
-                                                    14.10.2021
-                                                </td>
-                                                <td>
-                                                    2000
-                                                </td>
-                                                <td>
-                                                    USD
-                                                </td>
-                                                <td>
-                                                    60000
-                                                </td>
-                                                <td>
-                                                    UAH
-                                                </td>
-                                                <td>
-                                                    <span class="badge badge-warning">Не обработано</span>
-                                                </td>
-                                                <td><span><a href="{{ route('admin.address.edit',1) }}" class="mr-4" data-toggle="tooltip"
-                                                             data-placement="top" title="Edit"><i
-                                                                    class="fa fa-pencil color-muted"></i> </a><a
-                                                                href="{{ route('admin.address.destroy',1) }}" data-toggle="tooltip"
-                                                                data-placement="top" title="Delete"><i
-                                                                    class="fa fa-close color-danger"></i></a></span>
-                                                </td>
-                                            </tr>
+                                            @endforeach
 
                                             </tbody>
                                         </table>
@@ -183,6 +100,32 @@
     </div>
 @endsection
 @section('script')
+    <script>
+        $('.badge').on('click', function () {
+            var elem  = $(this);
+            var id  = $(this).data("id");
+            var _url = $(this).data("url");
+            console.log(_url);
+            $.ajax({
+                url: _url,
+                data: {'id':id},
+                type: "POST",
+                success: function(response) {
+                    if(response) {
+                        console.log(response['status']);
+                        if(response['status'] == 0)
+                        {
+                            $(elem).removeClass('badge-success').addClass('badge-warning').text('Не обработано');
+                        }
+                        else
+                        {
+                            $(elem).removeClass('badge-warning').addClass('badge-success').text('Обработано');
+                        }
+                    }
+                }
+            });
+        });
+    </script>
     <script src="{{ asset('adminAssets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('adminAssets/js/plugins-init/datatables.init.js') }}"></script>
 @endsection

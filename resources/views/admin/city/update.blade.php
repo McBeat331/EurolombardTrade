@@ -37,9 +37,9 @@
                                             </div>
                                             <input type="text" name="name[uk]" class="form-control"
                                                    @isset($entry)
-                                                   value="{{ old('city_uk') ? old('city_uk') : $entry->translations['name']['uk'] }}"
+                                                   value="{{ old('name[uk]') ? old('name[uk]') : $entry->translations['name']['uk'] }}"
                                                    @else
-                                                   value="{{ old('city_uk') }}"
+                                                   value="{{ old('name[uk]') }}"
                                                     @endisset
                                             >
                                             @if($errors->has('name.uk'))
@@ -55,9 +55,9 @@
                                             </div>
                                             <input type="text" name="name[ru]" class="form-control"
                                                    @isset($entry)
-                                                   value="{{ old('city_ru') ? old('city_ru') : $entry->translations['name']['ru'] }}"
+                                                   value="{{ old('name[ru]') ? old('name[ru]') : $entry->translations['name']['ru'] }}"
                                                    @else
-                                                   value="{{ old('city_ru') }}"
+                                                   value="{{ old('name[ru]') }}"
                                                     @endisset
                                             >
                                             @if($errors->has('name.ru'))

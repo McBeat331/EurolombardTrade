@@ -59,6 +59,9 @@
                                             <td><img class="mr-3 img-fluid tableImg" src="{{ asset('storage/advantages/'.$advantage->image) }}" alt="Quixkit"></td>
                                             <td>{{ $advantage->sort }}</td>
                                             <td>
+                                                <a href="{{ route('admin.advantage.edit',$advantage->id) }}" class="mr-4 btn btn-info" data-toggle="tooltip"
+                                                   data-placement="top" title="Edit"><i
+                                                            class="fa fa-pencil color-muted"></i> </a>
                                                 <form action="{{ route('admin.advantage.destroy',$advantage->id) }}" method="POST">
 
                                                     @csrf

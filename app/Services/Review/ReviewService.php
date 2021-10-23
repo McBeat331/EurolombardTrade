@@ -102,13 +102,13 @@ class ReviewService
 
         if($query->status == Review::STATUS_TO_VERIFIED)
         {
-            $query->update(['status' => Review::STATUS_REJECTED]);
-            return true;
+            $query->update(['status' => Review::STATUS_NOT_VERIFIED]);
+            return $query;
         }
-        if($query->status == Review::STATUS_REJECTED)
+        if($query->status == Review::STATUS_NOT_VERIFIED)
         {
             $query->update(['status' => Review::STATUS_TO_VERIFIED]);
-            return true;
+            return $query;
         }
         return false;
     }

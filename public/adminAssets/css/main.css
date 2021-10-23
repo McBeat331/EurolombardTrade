@@ -24241,8 +24241,7 @@ a:hover, a:focus, a.active {
   }
 }
 .nav-header .brand-title {
-  margin-left: 15px;
-  max-width: 75px;
+  max-width: 100%;
 }
 [data-theme-version=dark] .nav-header .brand-title {
   background-position: 0 120%;

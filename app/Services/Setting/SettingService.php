@@ -44,8 +44,18 @@ class SettingService
      */
     public function attach($field,$value)
     {
-        $entry = $this->settingModel->firstOrCreate(['field'=>$field]);
-        return $entry->update(['value'=>$value]);
+        if($this->getField($field))
+        {
+            $entry = $this->getField($field);
+            $entry->update(['value'=>$value]);
+        }
+        else
+        {
+            $entry = $this->settingModel;
+            $entry->field = $field;
+            $entry->value = $value;
+            $entry->save();
+        }
     }
 
     public function delete($field)

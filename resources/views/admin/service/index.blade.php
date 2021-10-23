@@ -60,6 +60,9 @@
                                         <td><img class="mr-3 img-fluid tableImg" src="{{ asset('storage/services/'.$service->image) }}" alt="Quixkit"></td>
                                         <td>{{ $service->slug }}</td>
                                         <td>
+                                            <a href="{{ route('admin.service.edit',$service->id) }}" class="mr-4 btn btn-info" data-toggle="tooltip"
+                                               data-placement="top" title="Edit"><i
+                                                        class="fa fa-pencil color-muted"></i> </a>
                                             <form action="{{ route('admin.service.destroy',$service->id) }}" method="POST">
 
                                                 @csrf

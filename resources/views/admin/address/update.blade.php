@@ -17,21 +17,21 @@
         <div class="row">
                 <div class="card col-12">
                     <div class="card-header">
-                        <h3>Услуга @isset($entry) ( {{$entry->title_uk}} ) @endisset</h3>
+                        <h3>Отделение @isset($entry) ( {{$entry->name}} ) @endisset</h3>
                         <p>* - поля обязательные для заполнения</p>
                     </div>
 
                     <div class="card-body">
                         <form method="POST"
-                              @if(isset($address))
-                              action="{{ route('admin.address.update', ['address' => $address->id]) }}"
+                              @if(isset($entry))
+                              action="{{ route('admin.address.update', ['address' => $entry->id]) }}"
                               @else
                               action="{{ route('admin.address.store') }}"
                               @endif
                               class="form-group form-valide"  enctype="multipart/form-data">
 
                             {{ csrf_field() }}
-                            @if(isset($address))
+                            @if(isset($entry))
                                 {{ method_field('put') }}
                                 <input type="hidden" name="url" value="{{ url()->previous() }}">
                             @endif
@@ -41,13 +41,12 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="">Город *</label>
-                                    <select name="city_id" id="city" class="form-control"
-                                            @isset($address)
-                                            data-selected="{{ old('city_id') ? old('city_id') : $address->city_id }}"
-                                            @else
-                                            data-selected="{{ old('city_id') }}"
-                                            @endisset
-                                            @endissetdata-placeholder="Выберите город">
+                                    <select name="city_id" id="city" class="form-control" data-placeholder="Выберите город">
+                                        <option value="0">Выберите город</option>
+                                        @foreach($cities as $city)
+                                            <option value="{{$city->id}}" @if($entry && $city->id == $entry->city_id) selected  @endif>{{$city->name}}</option>
+
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -59,11 +58,11 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><img src="/images/ru.svg" alt="" style="width: 1.5em;"></span>
                                         </div>
-                                        <input type="text" name="address_ru" class="form-control"
-                                               @isset($address)
-                                               value="{{ old('address_ru') ? old('address_ru') : $address->address_ru }}"
+                                        <input type="text" name="name[ru]" class="form-control"
+                                               @isset($entry)
+                                               value="{{ old('name[ru]') ? old('name[ru]') : $entry->translations['name']['ru'] }}"
                                                @else
-                                               value="{{ old('address_ru') }}"
+                                               value="{{ old('name[ru]') }}"
                                                 @endisset
                                         >
                                     </div>
@@ -75,11 +74,11 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><img src="/images/ua.svg" alt="" style="width: 1.5em;"></span>
                                         </div>
-                                        <input type="text" name="address_uk" class="form-control"
-                                               @isset($address)
-                                               value="{{ old('address_uk') ? old('address_uk') : $address->address_uk }}"
+                                        <input type="text" name="name[uk]" class="form-control"
+                                               @isset($entry)
+                                               value="{{ old('name[uk]') ? old('name[uk]') : $entry->translations['name']['uk'] }}"
                                                @else
-                                               value="{{ old('address_uk') }}"
+                                               value="{{ old('name[uk]') }}"
                                                 @endisset
                                         >
                                     </div>
@@ -95,10 +94,10 @@
                         <div class="form-group">
                             <label for="">Состояние</label>
                             <select name="published" id="" class="form-control">
-                                <option value="1" @if(isset($address->published) && $address->published == 1 ) {{ 'selected' }} @endif >
+                                <option value="1" @if(isset($entry->published) && $entry->published == 1 ) {{ 'selected' }} @endif >
                                     Активен
                                 </option>
-                                <option value="0" @if(isset($address->published) && $address->published == 0) {{ 'selected' }} @endif >
+                                <option value="0" @if(isset($entry->published) && $entry->published == 0) {{ 'selected' }} @endif >
                                     Не активен
                                 </option>
                             </select>
@@ -106,12 +105,12 @@
 
                         <div class="form-group">
                             <label>Телефон *</label>
-                            <input type="tel" name="phone" class="form-control"
+                            <input type="tel" name="phones" class="form-control"
                                    {{--value="{{ isset($office) ? $office->phone : old('phone') }}">--}}
-                                   @isset($address)
-                                   value="{{ old('phone') ? old('phone') : $address->phone }}"
+                                   @isset($entry)
+                                   value="{{ old('phones') ? old('phones') : $entry->phones }}"
                                    @else
-                                   value="{{ old('phone') }}"
+                                   value="{{ old('phones') }}"
                                    @endisset
                             >
                         </div>
@@ -124,7 +123,7 @@
                                 <input id="twenty-four" type="checkbox" name="full_day" value="1"
                                        @if(old('full_day'))
                                        checked
-                                       @elseif(isset($address) and $address->full_day)
+                                       @elseif(isset($entry) and $entry->full_day)
                                        checked
                                         @endif
                                 >
@@ -132,28 +131,21 @@
                             <div id="worktime" class="d-flex align-items-center"
                                  @if(old('full_day'))
                                  style="visibility: hidden;"
-                                 @elseif(isset($address) and $address->full_day)
+                                 @elseif(isset($entry) and $entry->full_day)
                                  style="visibility: hidden;"
                                     @endif
                             >
-                                <input type="text" name="time_start" class="form-control time_start"
-                                       @isset($address)
-                                       value="{{ old('time_start') ? old('time_start') : $address->time_start }}"
+                                <input type="text" name="time_work" class="form-control"
+                                       @isset($entry)
+                                       value="{{ old('time_work') ? old('time_work') : $entry->time_work }}"
                                        @else
-                                       value="{{ old('time_start') }}"
-                                        @endisset
-                                ><span style="padding: 0 8px">До</span>
-                                <input type="text" name="time_end" class="form-control time_end"
-                                       @isset($address)
-                                       value="{{ old('time_end') ? old('time_end') : $address->time_end }}"
-                                       @else
-                                       value="{{ old('time_end') }}"
+                                       value="{{ old('time_work') }}"
                                         @endisset
                                 >
                             </div>
                         </div>
-                            <input type="hidden" id="lng" name="lng" value="{{ isset($address) ? $address->lng : old('lng') }}"/>
-                            <input type="hidden" id="lat" name="lat" value="{{ isset($address) ? $address->lat : old('lat') }}"/>
+                            <input type="hidden" id="lng" name="lng" value="{{ isset($entry) ? $entry->lng : old('lng') }}"/>
+                            <input type="hidden" id="lat" name="lat" value="{{ isset($entry) ? $entry->lat : old('lat') }}"/>
 
                             <br>
 

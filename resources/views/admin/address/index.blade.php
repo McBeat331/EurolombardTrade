@@ -41,58 +41,38 @@
                         <div class="table-responsive">
                             <table class="table table-bordered verticle-middle table-responsive-sm">
                                 <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Город</th>
-                                    <th scope="col">Адрес</th>
-                                    <th scope="col">Телефон</th>
-                                    <th scope="col">Время работы</th>
-                                    <th scope="col">Действия</th>
-                                </tr>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Город</th>
+                                        <th scope="col">Адрес</th>
+                                        <th scope="col">Телефон</th>
+                                        <th scope="col">Время работы</th>
+                                        <th scope="col">Действия</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Днепр</td>
-                                    <td>пр-т Соборний, 179</td>
-                                    <td>(067) 929 73 06</td>
-                                    <td>Цілодобово</td>
-                                    <td><span><a href="{{ route('admin.address.edit',1) }}" class="mr-4" data-toggle="tooltip"
-                                                 data-placement="top" title="Edit"><i
-                                                        class="fa fa-pencil color-muted"></i> </a><a
-                                                    href="{{ route('admin.address.destroy',1) }}" data-toggle="tooltip"
-                                                    data-placement="top" title="Delete"><i
-                                                        class="fa fa-close color-danger"></i></a></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Днепр</td>
-                                    <td>пр-т Соборний, 179</td>
-                                    <td>(067) 929 73 06</td>
-                                    <td>с 10:00 до 18:00</td>
-                                    <td><span><a href="{{ route('admin.address.edit',1) }}" class="mr-4" data-toggle="tooltip"
-                                                 data-placement="top" title="Edit"><i
-                                                        class="fa fa-pencil color-muted"></i> </a><a
-                                                    href="{{ route('admin.address.destroy',1) }}" data-toggle="tooltip"
-                                                    data-placement="top" title="Delete"><i
-                                                        class="fa fa-close color-danger"></i></a></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Днепр</td>
-                                    <td>пр-т Соборний, 179</td>
-                                    <td>(067) 929 73 06</td>
-                                    <td>Цілодобово</td>
-                                    <td><span><a href="{{ route('admin.address.edit',1) }}" class="mr-4" data-toggle="tooltip"
-                                                 data-placement="top" title="Edit"><i
-                                                        class="fa fa-pencil color-muted"></i> </a><a
-                                                    href="{{ route('admin.address.destroy',1) }}" data-toggle="tooltip"
-                                                    data-placement="top" title="Delete"><i
-                                                        class="fa fa-close color-danger"></i></a></span>
-                                    </td>
-                                </tr>
+                                @foreach($entries as $address)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $address->city->name }}</td>
+                                        <td>{{ $address->name }}</td>
+                                        <td>{{ $address->phones }}</td>
+                                        <td>{{ $address->time_work }}</td>
+                                        <td><span><a href="{{ route('admin.address.edit',$address->id) }}" class="mr-4 btn btn-info" data-toggle="tooltip"
+                                                     data-placement="top" title="Edit"><i
+                                                            class="fa fa-pencil color-muted"></i> </a>
+                                                <form action="{{ route('admin.address.destroy',$address->id) }}" method="POST" style="display:inline-block">
+
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button type="submit" data-toggle="tooltip" data-placement="top" title="Delete" class="btn btn-danger"><i class="fa fa-close color-danger"></i></button>
+                                                </form>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
                                 </tbody>
                             </table>
                         </div>

@@ -56,7 +56,7 @@
                                             <span><a href="{{ route('admin.city.edit',$city->id) }}" class="mr-4 btn btn-info" data-toggle="tooltip"
                                                      data-placement="top" title="Edit"><i
                                                             class="fa fa-pencil color-muted"></i> </a>
-                                                <form action="{{ route('admin.city.destroy',$city->id) }}" method="POST">
+                                                <form action="{{ route('admin.city.destroy',$city->id) }}" method="POST" style="display:inline-block">
 
                                                 @csrf
                                                 @method('DELETE')

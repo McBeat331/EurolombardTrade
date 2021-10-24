@@ -31,7 +31,7 @@ class PageController extends Controller
     public function index()
     {
         $entries = $this->pageService->getAll();
-        return view('admin.post.index', compact('entries'));
+        return view('admin.page.index', compact('entries'));
     }
 
     /**
@@ -39,7 +39,7 @@ class PageController extends Controller
      */
     public function create()
     {
-        return view('admin.post.update');
+        return view('admin.page.update');
     }
 
     /**
@@ -50,7 +50,7 @@ class PageController extends Controller
     {
         $this->pageService->add($request->all());
         $request->session()->flash('alert-success', 'Запись успешно добавлена!');
-        return redirect()->route('admin.post.index');
+        return redirect()->route('admin.pages.index');
     }
 
     /**
@@ -65,7 +65,7 @@ class PageController extends Controller
     public function edit($id)
     {
         $entry = $this->pageService->getFind($id);
-        return view('admin.post.update', compact('entry'));
+        return view('admin.page.update', compact('entry'));
     }
 
     /**
@@ -77,7 +77,7 @@ class PageController extends Controller
     {
         $this->pageService->edit($id,$request->all());
         $request->session()->flash('alert-success', 'Запись успешно изменена!');
-        return redirect()->route('admin.post.index');
+        return redirect()->route('admin.pages.index');
     }
 
     /**
@@ -88,6 +88,6 @@ class PageController extends Controller
     {
         $this->pageService->delete($id);
         request()->session()->flash('alert-success', 'Запись успешно удалена!');
-        return redirect()->route('admin.post.index');
+        return redirect()->route('admin.pages.index');
     }
 }

@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 @section('style')
     <link href="{{ asset('adminAssets/vendor/datatables/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('adminAssets/vendor/toastr/css/toastr.min.css') }}">
 @endsection
 @section('content')
     <!-- row -->
@@ -94,6 +95,7 @@
     </div>
 @endsection
 @section('script')
+    <script src="{{ asset('adminAssets/vendor/toastr/js/toastr.min.js') }}"></script>
     <script>
         $('.badge').on('click', function () {
             var elem  = $(this);
@@ -110,16 +112,75 @@
                         if(response['status'] == 0)
                         {
                             $(elem).removeClass('badge-success').addClass('badge-warning').text('Не обработано');
+                            toastr.success("Статус изменен!", {
+                                timeOut: 5000,
+                                closeButton: !0,
+                                debug: !1,
+                                newestOnTop: !0,
+                                progressBar: !0,
+                                positionClass: "toast-top-right",
+                                preventDuplicates: !0,
+                                onclick: null,
+                                showDuration: "300",
+                                hideDuration: "1000",
+                                extendedTimeOut: "1000",
+                                showEasing: "swing",
+                                hideEasing: "linear",
+                                showMethod: "fadeIn",
+                                hideMethod: "fadeOut",
+                                tapToDismiss: !1
+                            })
                         }
                         else
                         {
                             $(elem).removeClass('badge-warning').addClass('badge-success').text('Обработано');
+                            toastr.success("Статус изменен!", {
+                                timeOut: 5000,
+                                closeButton: !0,
+                                debug: !1,
+                                newestOnTop: !0,
+                                progressBar: !0,
+                                positionClass: "toast-top-right",
+                                preventDuplicates: !0,
+                                onclick: null,
+                                showDuration: "300",
+                                hideDuration: "1000",
+                                extendedTimeOut: "1000",
+                                showEasing: "swing",
+                                hideEasing: "linear",
+                                showMethod: "fadeIn",
+                                hideMethod: "fadeOut",
+                                tapToDismiss: !1
+                            })
                         }
                     }
                 }
             });
         });
     </script>
+    @if(session()->has('alert-success'))
+        <script>
+            toastr.success("{{ session('alert-success') }}", {
+                timeOut: 5000,
+                closeButton: !0,
+                debug: !1,
+                newestOnTop: !0,
+                progressBar: !0,
+                positionClass: "toast-top-right",
+                preventDuplicates: !0,
+                onclick: null,
+                showDuration: "300",
+                hideDuration: "1000",
+                extendedTimeOut: "1000",
+                showEasing: "swing",
+                hideEasing: "linear",
+                showMethod: "fadeIn",
+                hideMethod: "fadeOut",
+                tapToDismiss: !1
+            })
+
+        </script>
+    @endif
     <script src="{{ asset('adminAssets/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('adminAssets/js/plugins-init/datatables.init.js') }}"></script>
 @endsection

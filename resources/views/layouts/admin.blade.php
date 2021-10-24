@@ -105,6 +105,7 @@
         <div class="quixnav-scroll">
             <ul class="metismenu" id="menu">
                 <li class="first"><a href="{{ route('admin.setting.index') }}"><i class="icon icon-settings"></i>Настройки</a></li>
+                <li class="first"><a href="{{ route('admin.pages.index') }}"><i class="icon icon-analytics"></i>SEO статических страниц</a></li>
                 <li class="nav-label">Меню</li>
                 <li>
                     <a class="has-arrow" href="javascript:void()" aria-expanded="false">

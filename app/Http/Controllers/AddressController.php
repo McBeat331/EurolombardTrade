@@ -24,7 +24,7 @@ class AddressController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => $rates
+            'data' => $rates->toArray()
         ], 200);
     }
 }

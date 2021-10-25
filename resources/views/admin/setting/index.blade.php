@@ -72,7 +72,6 @@
                                 </tbody>
                             </table>
                         </div>
-                        {{ $entries->links() }}
                     </div>
                 </div>
             </div>

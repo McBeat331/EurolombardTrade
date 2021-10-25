@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 //Route::get('/language', [App\Http\Controllers\HomeController::class, 'main'])->name('main');
 
+
+
 Route::group(['prefix' => parseLocale(),'where' => ['locale' => '[a-z]{2}'],'middleware' => 'localization'], function() {
 
     Auth::routes(['register' => false]);
@@ -52,4 +54,9 @@ Route::name('admin.')->prefix('admin')->middleware('isAdmin')->group(function(){
 
     Route::post('changeStatusOrder', [App\Http\Controllers\Admin\OrderController::class,'changeStatus'])->name('changeStatusOrder');
     Route::post('changeStatusReview', [App\Http\Controllers\Admin\ReviewController::class,'changeStatus'])->name('changeStatusReview');
+});
+
+
+Route::name('ajax.')->prefix('ajax')->group(function() {
+    Route::post('getRatesByCity', [\App\Http\Controllers\AddressController::class, 'getRatesByCity'])->name('getRatesByCity');
 });

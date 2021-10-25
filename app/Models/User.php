@@ -17,7 +17,7 @@ class User extends Authenticatable
 
     public const STATUS_NOT_ACTIVE = 0;
     public const STATUS_SUCCESS = 1;
-    public const STATUS_BANNED = 2;
+    public const STATUS_NOT_REGISTER = 2;
 
     public const PAGINATE = 15;
 

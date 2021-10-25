@@ -2,35 +2,78 @@
 
 namespace App\Job;
 
+use App\Services\Address\AddressService;
 use App\Services\City\CityService;
+use App\Services\Rate\RateService;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 
 class RateJob
 {
-    private $cityService;
+    private $rateService;
+    private $addressService;
 
-    public function __construct(CityService $cityService)
+    public function __construct(
+        RateService $rateService,
+        AddressService $addressService
+    )
     {
-        $this->cityService = $cityService;
+        $this->rateService = $rateService;
+        $this->addressService = $addressService;
     }
 
 
-    public function selectedCity($city_id = false)
+    public function selectedAddress($address_id = false)
     {
-        if($city_id && $city = $this->cityService->getFind($city_id)){
-            Session::put('citySelected',$city->id);
-            return $city->id;
+        if($address_id && $address = $this->addressService->getFind($address_id)){
+            Session::put('addressSelected',$address);
+            return $address;
         }
 
-        if(Session::has('citySelected')){
-            return Session::get('citySelected');
+        if(Session::has('addressSelected')){
+            return Session::get('addressSelected');
         }
 
-        if($city = $this->cityService->getClientFirst()){
-            Session::put('citySelected',$city->id);
-            return $city->id;
+        if($address = $this->addressService->getClientFirst()){
+            Session::put('addressSelected',$address);
+            return $address;
         }
 
-        return false;
+        abort(500, 'Database `Addresses` is not filled');
+    }
+
+
+    public function saveRateAfterOrder()
+    {
+        $address = $this->selectedAddress();
+        $cityId = $address->city_id;
+        $rates = $this->rateService->getRatesByCity($cityId);
+
+        $userToken = Auth::check() ? Auth::user()->id : csrf_token();
+        $nameCache = "rate_sale_{$cityId}_{$userToken}";
+
+        if(Cache::has($nameCache) === null){
+            Cache::put($nameCache,(object)[
+                'city_id' => $cityId,
+                'rates' => $rates
+            ],3600);
+        }
+    }
+
+    public function getRatesByCity()
+    {
+        $address = $this->selectedAddress();
+        $cityId = $address->city_id;
+
+        $userToken = Auth::check() ? Auth::user()->id : csrf_token();
+        $nameCache = "rate_sale_{$cityId}_{$userToken}";
+
+        if(Cache::has($nameCache) === null) {
+            return $this->rateService->getRatesByCity($address->city_id);
+        }else{
+            return Cache::get($nameCache);
+        }
+
     }
 }

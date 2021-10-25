@@ -75,19 +75,10 @@
 
                     <ul class="navbar-nav header-right">
                         <li class="nav-item dropdown header-profile">
-                            <a class="nav-link" href="#" role="button" data-toggle="dropdown">
-                                <i class="mdi mdi-account"></i>
+                            <a href="{{ route('logout') }}" class="dropdown-item">
+                                <i class="icon-key"></i>
+                                <span class="ml-2">Выйти </span>
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a href="./app-profile.html" class="dropdown-item">
-                                    <i class="icon-user"></i>
-                                    <span class="ml-2">Profile </span>
-                                </a>
-                                <a href="{{ route('logout') }}" class="dropdown-item">
-                                    <i class="icon-key"></i>
-                                    <span class="ml-2">Logout </span>
-                                </a>
-                            </div>
                         </li>
                     </ul>
                 </div>
@@ -104,8 +95,7 @@
     <div class="quixnav">
         <div class="quixnav-scroll">
             <ul class="metismenu" id="menu">
-                <li class="first"><a href="{{ route('admin.setting.index') }}"><i class="icon icon-settings"></i>Настройки</a></li>
-                <li class="first"><a href="{{ route('admin.pages.index') }}"><i class="icon icon-analytics"></i>SEO статических страниц</a></li>
+
                 <li class="nav-label">Меню</li>
                 <li>
                     <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -116,12 +106,14 @@
                         <li><a href="{{ route('admin.advantage.index') }}">Преимущества</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ route('admin.city.index') }}"><i class="icon icon-world-2"></i>Города</a></li>
-                <li><a href="{{ route('admin.address.index') }}"><i class="icon icon-flag-diagonal-33"></i>Отделения</a></li>
-                <li><a href="{{ route('admin.order.index') }}"><i class="icon icon-payment"></i>Заявки</a></li>
-                <li><a href="{{ route('admin.review.index') }}"><i class="icon icon-folder-15"></i>Комментарии</a></li>
-                <li><a href="{{ route('admin.user.index') }}"><i class="icon icon-users-mm"></i>Пользователи</a></li>
-
+                <li><a href="{{ route('admin.city.index') }}"><i class="icon icon-world-2"></i><span class="nav-text">Города</span></a></li>
+                <li><a href="{{ route('admin.address.index') }}"><i class="icon icon-flag-diagonal-33"></i><span class="nav-text">Отделения</span></a></li>
+                <li><a href="{{ route('admin.order.index') }}"><i class="icon icon-payment"></i><span class="nav-text">Заявки</span></a></li>
+                <li><a href="{{ route('admin.review.index') }}"><i class="icon icon-folder-15"></i><span class="nav-text">Отзывы</span></a></li>
+                <li><a href="{{ route('admin.user.index') }}"><i class="icon icon-users-mm"></i><span class="nav-text">Пользователи</span></a></li>
+                <li class="nav-label">Настройки</li>
+                <li class="first"><a href="{{ route('admin.setting.index') }}"><i class="icon icon-settings"></i><span class="nav-text">Настройки</span></a></li>
+                <li class="first"><a href="{{ route('admin.pages.index') }}"><i class="icon icon-analytics"></i><span class="nav-text">SEO статических страниц</span></a></li>
             </ul>
         </div>
 

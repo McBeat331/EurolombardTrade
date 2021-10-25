@@ -120,18 +120,18 @@
                             <label>График работы</label>
                             <div>
                                 <label for="twenty-four">Круглосуточно</label>
-                                <input id="twenty-four" type="checkbox" name="full_day" value="1"
-                                       @if(old('full_day'))
+                                <input id="twenty-four" type="checkbox" name="round_the_clock" value="1"
+                                       @if(old('round_the_clock'))
                                        checked
-                                       @elseif(isset($entry) and $entry->full_day)
+                                       @elseif(isset($entry) and $entry->round_the_clock)
                                        checked
                                         @endif
                                 >
                             </div>
                             <div id="worktime" class="d-flex align-items-center"
-                                 @if(old('full_day'))
+                                 @if(old('round_the_clock'))
                                  style="visibility: hidden;"
-                                 @elseif(isset($entry) and $entry->full_day)
+                                 @elseif(isset($entry) and $entry->round_the_clock == 1)
                                  style="visibility: hidden;"
                                     @endif
                             >

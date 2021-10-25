@@ -32955,6 +32955,9 @@ button:focus {
   color: #454545;
 }
 
+.table {
+  color: #484848;
+}
 .table th, .table td {
   border-color: #eaeaea;
 }

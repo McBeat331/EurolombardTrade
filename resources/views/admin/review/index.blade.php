@@ -32,7 +32,7 @@
 
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table  id="example" style="min-width: 845px" class="table table-bordered verticle-middle table-responsive-sm">
+                                    <table  id="example" style="min-width: 845px" class="table verticle-middle table-responsive-sm">
                                         <thead>
                                         <tr>
                                             <th class="col-2">Дата</th>

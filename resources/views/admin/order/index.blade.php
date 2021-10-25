@@ -32,7 +32,7 @@
 
                                 <div class="card-body">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered verticle-middle table-responsive-sm">
+                                        <table class="table verticle-middle table-responsive-sm">
                                             <thead>
                                             <tr>
                                                 <th class="col-2">Пользователь</th>

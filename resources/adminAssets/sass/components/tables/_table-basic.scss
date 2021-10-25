@@ -1,6 +1,6 @@
 //style for all basic tables
 .table {
-
+    color: #484848;
     th, td {
         border-color: $border;
         @at-root [data-theme-version="dark"] & {

@@ -44,10 +44,6 @@ class CityService
         return $this->cityModel->with($relations)->whereNotNull('api_id')->get();
     }
 
-    public function getClientFirst($relations = ['addresses','rates'])
-    {
-        return $this->cityModel->with($relations)->whereNotNull('api_id')->first();
-    }
 
     /**
      * @param array $relations

@@ -39,6 +39,12 @@ class AddressService
         return $this->addressModel->with($relations)->get();
     }
 
+
+    public function getClientFirst($relations = ['city'])
+    {
+        return $this->addressModel->with($relations)->where('published', 1)->first();
+    }
+
     /**
      * @param array $relations
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator

@@ -1,12 +1,13 @@
 <?php
 
-use App\Services\City\CityService;
+use App\Services\Address\AddressService;
 use Illuminate\Support\Facades\Session;
 
 
-if(!function_exists('cities')){
-    function cities(){
-        return (new CityService())->getAll(['addresses']);
+if(!function_exists('addresses')){
+    function addresses(){
+        $cityService = app()->make( AddressService::class);
+        return $cityService->getAll(['city']);
     }
 }
 if(!function_exists('parseLocale')) {

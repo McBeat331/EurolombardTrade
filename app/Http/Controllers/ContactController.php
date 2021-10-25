@@ -18,8 +18,13 @@ class ContactController extends Controller
     public function show()
     {
         $settings = $this->settingService->getAll();
+
+
 //        $phone = $this->settingService->getField('phone'); // or null
-        dd($settings);
+        dd(
+            addresses(),
+            $settings
+        );
 //        return view('');
     }
 }

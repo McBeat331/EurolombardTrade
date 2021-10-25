@@ -37,6 +37,7 @@ class HomeController extends Controller
         $rates = $this->rateJob->getRatesByCity();
 
         dd(
+            addresses(),
             $rates,
             $services,
             $advantages,

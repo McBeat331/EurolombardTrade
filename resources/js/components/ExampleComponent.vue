@@ -1,23 +1,63 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
+    <div>
+        <form action="#" class="calc-form" @submit.prevent="handleCalc">
+            <div class="wrap-select-option">
+                <div class="check-box">
+                    <input id="check" type="checkbox" @change="checkedCheckbox"  v-model="isScrap">
+                    <label for="check" class="checkbox-label"></label>
+                    <span>{{ messages[lang].scrap_check}}{{ isScrap }}</span>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </template>
 
+
 <script>
+
+    import { lang } from '../mixins';
+    import { messages } from '../helpers/messages';
     export default {
+        mixins: [ lang ],
+
+
+
+        data() {
+            return {
+                isScrap: false,
+                advantage: ''
+            };
+        },
+
+        methods: {
+            checkedCheckbox() {
+                this.updateRequired()
+                this.$emit('reset-resulp-block')
+            },
+            /*loadData: function loadData() {
+                axios.get('/advantage')
+                    .then(response =>
+                    {
+                        advantage = response.data.data;
+                    })
+                    .catch(error => console.log(error));
+
+
+            },*/
+        },
+
+        beforeMount(){
+
+        },
+
+        computed: {
+
+            messages: () => messages,
+        },
+
         mounted() {
-            console.log('Component mounted.')
-        }
+            this.setLang();
+            /*this.loadData();*/
+        },
     }
 </script>

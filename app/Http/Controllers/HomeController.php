@@ -45,13 +45,13 @@ class HomeController extends Controller
         //ajax setSelectedCity
         $citySelected = $this->rateJob->selectedCity();
         $rates = $this->rateService->getRatesByCity($citySelected);
+        return view('home', compact('rates','services','advantages','reviews'));
 
-
-        dd(
+        /*dd(
             $rates,
             $services,
             $advantages,
             $reviews
-        );
+        );*/
     }
 }

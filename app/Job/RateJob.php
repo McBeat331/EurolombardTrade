@@ -14,9 +14,7 @@ class RateJob
     private $cityService;
     private $domain;
 
-    public function __construct(
-        CityService $cityService
-    )
+    public function __construct(CityService $cityService)
     {
         $this->cityService = $cityService;
         $this->domain = request()->getHost();

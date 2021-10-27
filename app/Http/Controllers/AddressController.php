@@ -16,9 +16,8 @@ class AddressController extends Controller
 
     public function getRatesByCity(Request $request)
     {
-        $addressId = $request->get('address_id', false);
 
-        $this->rateJob->selectedAddress($addressId);
+        $this->rateJob->selectedCity();
 
         $rates = $this->rateJob->getRatesByCity();
 

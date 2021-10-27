@@ -13,13 +13,6 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js').vue()
     .sass('resources/sass/app.scss', 'public/css')
-    .sourceMaps()
-    .webpackConfig({
-    resolve: {
-        alias: {
-            '@': path.resolve(__dirname, 'resources/js/')
-        }
-    }
-});;
+    .sourceMaps();
 mix.js('resources/adminAssets/js/app.js', 'public/adminAssets/js').sass('resources/adminAssets/sass/main.scss', 'public/adminAssets/css')
     .sourceMaps(true, 'source-map');

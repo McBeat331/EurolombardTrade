@@ -5,7 +5,10 @@
  */
 
 require('./bootstrap');
-
+require('./mixins/index.js');
+require('./libs/cleave.min.js');
+require('./libs/viewportchecker.min.js');
+require('./libs/slick.min.js');
 window.Vue = require('vue').default;
 
 /**

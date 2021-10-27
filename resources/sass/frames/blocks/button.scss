@@ -1,0 +1,51 @@
+button {
+  position: relative;
+  &.button {
+    height: 50px;
+    width: 100%;
+    max-width: none;
+    border: none;
+    color: $primaryColor;
+    background-color: $secondaryColor;
+    border-radius: 3px;
+    font-size: 20px;
+    outline: none;
+    flex-shrink: 0;
+    &.disabled {
+     opacity: 0.5;
+    }
+    &.to_back {
+      background-color: transparent;
+      border: 2px solid $secondaryColor;
+    }
+    &.resetButton{
+      background-color: transparent;
+      border: 2px solid $secondaryColor;
+      margin-top: 15px;
+    }
+  }
+  @media (min-width: $containerWidthLaptop) {
+    &.button {
+      max-width: 285px;
+      &:hover {
+        background-color: #FFB928;
+      }
+      &.disabled {
+        cursor: default;
+        &:hover {
+          background-color: $secondaryColor !important;
+        }
+      }
+      &.resetButton{
+        margin-top: 12px;
+      }
+    }
+    &.to_back {
+      background-color: transparent;
+      border: 2px solid $secondaryColor;
+      &:hover {
+        background-color: $secondaryColor !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,112 @@
+.bank-property {
+  margin-bottom: 20px;
+  .prop-item-wrapper {
+    margin-top: 20px;
+    p {
+      font-family: $secondaryFont;
+      font-size: 16px;
+      line-height: 26px;
+      font-weight: 400;
+      margin: 0;
+      padding: 0;
+    }
+    .icon-bg-line {
+      &::before {
+        color: $secondaryColor;
+      }
+    }
+  }
+
+  @media (min-width: $containerWidthLaptop) {
+    margin-bottom: 48px;
+  }
+}
+
+.document-form {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  .title {
+    padding-top: 10px;
+  }
+  .form-document-list {
+    padding: 15px;
+    margin-top: 0;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    .icon-bg-line {
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      &::before {
+        color: $bgColor;
+        font-size: 515px;
+      }
+    }
+  }
+  .document-item {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    p {
+      font-family: $secondaryFont;
+      font-size: 16px;
+      line-height: 26px;
+      font-weight: 500;
+      text-decoration-line: underline;
+      color:$mainColorFam;
+      margin: 0;
+      &:hover {
+        color: $fourthColor;
+      }
+    }
+    .icon-file {
+      margin-right: 10px;
+      &::before {
+        font-size: 22px;
+      }
+    }
+  }
+  @media (min-width: $containerWidthLaptop) {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    .form-document-list {
+      padding: 15px 100px 20px;
+      .icon-bg-line {
+        left: 50%;
+        top: 0;
+        &::before {
+          font-size: 600px;
+        }
+      }
+    }
+    .document-item {
+      margin-top: 22px;
+      margin-bottom: 22px;
+    }
+  }
+}
+
+.requisite-callback-form {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  @media (min-width: $containerWidthLaptop) {
+    margin-bottom: 48px;
+  }
+}
+
+.requisite-callback-form, .career-callback-form {
+  .callback-wrap-content {
+    .icon-bg-line {
+      display: none;
+    }
+  }
+  @media (min-width: $containerWidthLaptop) {
+    .callback-wrap-content {
+      .icon-bg-line {
+        display: block;
+      }
+    }
+  }
+}

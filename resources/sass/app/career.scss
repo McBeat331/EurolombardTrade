@@ -1,0 +1,100 @@
+.description-list-career, .vacancies-form {
+  margin-top: 30px;
+  p {
+    margin: 0;
+    font-family: $secondaryFont;
+    font-size: 16px;
+    line-height: 28px;
+  }
+  
+  .icon-bg-line {
+    &::before {
+      color: $secondaryColor;
+    }
+  }
+}
+
+
+.vacancies-form {
+
+  .vacancies-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .name-vacancies, .region-vacancies, .rate-vacancies {
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  .rate-vacancies, .name-vacancies {
+    color: $primaryColor;
+    font-weight: 700;
+    font-size: 20px;
+  }
+  .region-vacancies {
+    font-size: 16px;
+    font-weight: 400;
+    color: #000;
+  }
+  .get-summary {
+    background-color: $secondaryColor;
+    width: 285px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    input {
+      visibility: hidden;
+      width: 0;
+      height: 0;
+    }
+    label {
+      cursor: pointer;
+      padding: 0 45px;
+      span {
+        color: $primaryColor;
+        line-height: 50px;
+        font-size: 20px;
+      }
+    }
+  }
+  .important-info {
+    margin-top: 30px;
+    margin-bottom: 5px;
+  }
+  .sub-description {
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+  @media (min-width: $containerWidthLaptop) {
+   
+    .vacancies-header {
+      flex-direction: row;
+    }
+    .name-vacancies {
+      width: 50%;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .rate-vacancies, .region-vacancies {
+      width: 25%;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .region-vacancies {
+      // width: 20%;
+    }
+  }
+}
+
+.career-callback-form {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  @media (min-width: $containerWidthLaptop) {
+    margin-bottom: 48px;
+  }
+}

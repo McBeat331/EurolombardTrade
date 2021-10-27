@@ -36,7 +36,7 @@
                                                 <span class="input-group-text"><img src="/images/ua.svg" alt="" style="width: 1.5em;"></span>
                                             </div>
                                             <input type="text" name="name[uk]" class="form-control"
-                                                   @isset($entry)
+                                                   @isset($entry->translations['name']['uk'])
                                                    value="{{ old('name[uk]') ? old('name[uk]') : $entry->translations['name']['uk'] }}"
                                                    @else
                                                    value="{{ old('name[uk]') }}"
@@ -54,7 +54,7 @@
                                                 <span class="input-group-text"><img src="/images/ru.svg" alt="" style="width: 1.5em;"></span>
                                             </div>
                                             <input type="text" name="name[ru]" class="form-control"
-                                                   @isset($entry)
+                                                   @isset($entry->translations['name']['ru'])
                                                    value="{{ old('name[ru]') ? old('name[ru]') : $entry->translations['name']['ru'] }}"
                                                    @else
                                                    value="{{ old('name[ru]') }}"
@@ -62,6 +62,21 @@
                                             >
                                             @if($errors->has('name.ru'))
                                                 <div class="error text-danger small">{{ $errors->first('name.ru') }}</div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label>URL домена *</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" name="domain" class="form-control"
+                                                   @isset($entry->domain)
+                                                   value="{{ old('domain') ? old('domain') : $entry->domain }}"
+                                                   @else
+                                                   value="{{ old('domain') }}"
+                                                    @endisset
+                                            >
+                                            @if($errors->has('domain'))
+                                                <div class="error text-danger small">{{ $errors->first('domain') }}</div>
                                             @endif
                                         </div>
                                     </div>

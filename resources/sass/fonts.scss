@@ -1,0 +1,197 @@
+// @font-face {
+  // font-family: 'HWTArtz';
+  // src: url('../fonts/2F59BE_0_0.eot');
+  // src: url('../fonts/2F59BE_0_0.eot?#iefix') format('embedded-opentype'),
+  // url('../fonts/hwtArtz/2F59BE_0_0.woff2') format('woff2'), 
+  // url('../fonts/hwtArtz/2F59BE_0_0.woff') format('woff'),
+  // url('../fonts/hwtArtz/2F59BE_0_0.ttf') format('truetype');
+// }
+
+
+// --------Icons--------
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../fonts/icomoon/icomoon.eot?z385cf');
+  src:  url('../fonts/icomoon/icomoon.eot?z385cf#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon/icomoon.ttf?z385cf') format('truetype'),
+    url('../fonts/icomoon/icomoon.woff?z385cf') format('woff'),
+    url('../fonts/icomoon/icomoon.svg?z385cf#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-pass:before {
+  content: "\e923";
+  color: #edeff0;
+}
+.icon-gold-tab .path1:before {
+  content: "\e911";
+  color: rgb(255, 255, 255);
+}
+.icon-gold-tab .path2:before {
+  content: "\e912";
+  margin-left: -1em;
+  color: rgb(255, 194, 68);
+}
+.icon-technics-tab .path1:before {
+  content: "\e913";
+  color: rgb(255, 194, 68);
+}
+.icon-technics-tab .path2:before {
+  content: "\e914";
+  margin-left: -1em;
+  color: rgb(255, 194, 68);
+}
+.icon-technics-tab .path3:before {
+  content: "\e915";
+  margin-left: -1em;
+  color: rgb(47, 36, 131);
+}
+.icon-technics-tab .path4:before {
+  content: "\e916";
+  margin-left: -1em;
+  color: rgb(47, 36, 131);
+}
+.icon-technics-tab .path5:before {
+  content: "\e917";
+  margin-left: -1em;
+  color: rgb(255, 194, 68);
+}
+.icon-technics-tab .path6:before {
+  content: "\e918";
+  margin-left: -1em;
+  color: rgb(47, 36, 131);
+}
+.icon-technics-tab .path7:before {
+  content: "\e919";
+  margin-left: -1em;
+  color: rgb(255, 194, 68);
+}
+.icon-technics-tab .path8:before {
+  content: "\e91a";
+  margin-left: -1em;
+  color: rgb(255, 194, 68);
+}
+.icon-silver-tab .path1:before {
+  content: "\e91b";
+  color: rgb(47, 36, 131);
+}
+.icon-silver-tab .path2:before {
+  content: "\e91c";
+  margin-left: -0.9501953125em;
+  color: rgb(47, 36, 131);
+}
+.icon-silver-tab .path3:before {
+  content: "\e91d";
+  margin-left: -0.9501953125em;
+  color: rgb(47, 36, 131);
+}
+.icon-silver-tab .path4:before {
+  content: "\e91e";
+  margin-left: -0.9501953125em;
+  color: rgb(135, 135, 135);
+}
+.icon-silver-tab .path5:before {
+  content: "\e91f";
+  margin-left: -0.9501953125em;
+  color: rgb(47, 36, 131);
+}
+.icon-silver-tab .path6:before {
+  content: "\e920";
+  margin-left: -0.9501953125em;
+  color: rgb(47, 36, 131);
+}
+.icon-silver-tab .path7:before {
+  content: "\e921";
+  margin-left: -0.9501953125em;
+  color: rgb(47, 36, 131);
+}
+.icon-silver-tab .path8:before {
+  content: "\e922";
+  margin-left: -0.9501953125em;
+  color: rgb(135, 135, 135);
+}
+.icon-get-photo:before {
+  content: "\e910";
+  color: #878787;
+}
+.icon-file:before {
+  content: "\e90f";
+  color: #2f2483;
+}
+.icon-questions-plus:before {
+  content: "\e90e";
+  color: #ffc244;
+}
+.icon-calendar:before {
+  content: "\e90d";
+  color: #c4c4c4;
+}
+.icon-arrow-down-gray:before {
+  content: "\e90c";
+  color: #c4c4c4;
+}
+.icon-arrow-r-pimaryColor:before {
+  content: "\e900";
+  color: #2f2483;
+}
+.icon-arrow-l-primaryColor:before {
+  content: "\e901";
+  color: #2f2483;
+}
+.icon-arrow-l-secondColor:before {
+  content: "\e902";
+  color: #ffc244;
+}
+.icon-social-fb:before {
+  content: "\e903";
+  color: #fff;
+}
+.icon-social-inst:before {
+  content: "\e904";
+  color: #fff;
+}
+.icon-social-telegram:before {
+  content: "\e905";
+  color: #fff;
+}
+.icon-social-yt:before {
+  content: "\e906";
+  color: #fff;
+}
+.icon-bg-line:before {
+  content: "\e907";
+  color: #2f2483;
+}
+.icon-icon-rocket:before {
+  content: "\e908";
+  color: #2f2483;
+}
+.icon-icon-click:before {
+  content: "\e909";
+  color: #2f2483;
+}
+.icon-icon-incognito:before {
+  content: "\e90a";
+  color: #2f2483;
+}
+.icon-icon-win:before {
+  content: "\e90b";
+  color: #2f2483;
+}

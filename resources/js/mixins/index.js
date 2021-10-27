@@ -2,17 +2,17 @@ import lang from './lang';
 
 
 export {
-    lang
+    lang,
 }
 
-/*$(document).ready(function(){
+$(document).ready(function(){
     $('img').each(function(){
         this.src = this.src.replace("http://lombard.loc/","https://elg.co.ua/");
     });
     $('source').each(function(){
         this.srcset = this.srcset.replace("http://lombard.loc/","https://elg.co.ua/");
     });
-});*/
+});
 
 
 let site = null;
@@ -910,7 +910,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
             },
 
             domReady() {
-                departmentsLocationInMap();
                 fn.toggleScrollTopButton();
                 fn.handlerScrollTopPage();
                 fn.visibleViewportContent();

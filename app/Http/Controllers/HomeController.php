@@ -36,12 +36,13 @@ class HomeController extends Controller
         $reviews = $this->reviewService->getHome();
         $rates = $this->rateJob->getRatesByCity();
 
-        dd(
-            cities(),
+        /*dd(
+            addresses(),
             $rates,
             $services,
             $advantages,
             $reviews
-        );
+        );*/
+        return view('home', compact('services', 'advantages', 'reviews','rates'));
     }
 }

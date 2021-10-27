@@ -1,8 +1,43 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
-// Variables
+// ----- Fonts -----
+@import 'fonts';
+// ----- Variables -----
 @import 'variables';
+// ----- app -----
+@import 'app/mainPage';
+@import 'app/calculator';
+@import 'app/requisite';
+@import 'app/career';
+@import 'app/news';
+@import 'app/departments';
+@import 'app/credit';
+@import 'app/error';
+@import 'app/thankYou';
+
+
+// - common -
+@import 'app/common/common';
+@import 'app/common/common-blocks';
+// @import 'app/common/common-content';
+@import 'app/common/typography';
+// - partials -
+@import 'app/partials/header';
+@import 'app/partials/footer';
+
+
+// ----- frames -----
+// - blocks -
+@import 'frames/blocks/slide';
+@import 'frames/blocks/button';
+@import 'frames/blocks/modal';
+// - grids -
+// @import 'frames/grids/form-grid';
+@import 'frames/grids/page-grid';
+// - mobileMenu -
+// @import 'frames/mobileMenu/mobileMenu';
+
+
+// ------ libs ---------
+@import 'libs/nouislider';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// @import '~bootstrap/scss/bootstrap';

@@ -1,0 +1,144 @@
+.modal-el {
+	display: none;
+  .modal-content {
+    position: fixed;
+    z-index: 11;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $tertiaryColor;
+    width: 100%;
+    max-width: 1200px;
+  }
+  .title {
+    font-size: 22px;
+  }
+  .modal-content-forms {
+    padding: 20px;
+    max-width: 835px;
+    margin: auto;
+    .input-wraper {
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      .formRow {
+        width: 100%;
+      }
+    }
+    input, textarea {
+      width: 100%;
+      height: 50px;
+      margin-bottom: 20px;
+      background: rgba(255, 255, 255, 1);
+      border: none;
+      padding-left: 20px;
+      border-radius: 4px;
+      font-family: $secondaryFont;
+      font-size: 16px;
+      font-weight: 500;
+      color: #000;
+      &::placeholder {
+        font-family: $secondaryFont;
+        font-size: 16px;
+        font-weight: 500;
+        color: #000;
+      }
+      &:focus {
+        background: rgba(255, 255, 255, 1);
+      }
+    }
+    textarea {
+      height: 110px;
+      padding-top: 20px;
+      resize: none;
+    }
+  }
+  .btn-close-modal {
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 28px;
+    height: 28px;
+  }
+  .icon-questions-plus {
+    position: absolute;
+    transform: rotate(-45deg);
+    width: 28px;
+    height: 28px;
+    &::before {
+      color: $fourthColor;
+      font-size: 28px;
+    }
+  }
+  .icon-bg-line {
+    display: block;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    top: 0;
+    overflow: hidden;
+    z-index: -1;
+    &::before {
+      color: rgba(255, 255, 255, 0.6);;
+      font-size: 575px;
+    }
+  }
+  .overlay_modal {
+    background-color: rgba(0, 0, 0, .3);
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 10; 
+  }
+  .description-form { 
+    padding-left: 20px;
+    padding-right: 20px;
+    padding: 0 20px 20px 20px;
+    margin-top: 15px;
+    p {
+      font-family: $secondaryFont;
+      font-size: 14px;
+      line-height: 22px;
+      font-weight: 400;
+      color: $fourthColor;
+      margin: 0;
+      margin-bottom: 5px;
+    }
+  }
+  @media (min-width: $containerWidthLaptop) { 
+    .modal-content-forms {
+      padding: 25px 0;
+      .input-wraper {
+        width: 100%;
+        padding-top: 25px;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        margin: 0 -10px;
+        .formRow {
+          max-width: 265px;
+        }
+      }
+      input {
+        margin: 0 10px;
+        height: 65px;
+      }
+      textarea {
+        margin: 20px 0;
+      }
+    }
+    .icon-bg-line {
+      right: 10%;
+      &::before {
+        font-size: 450px;
+      }
+    }
+    .description-form { 
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}

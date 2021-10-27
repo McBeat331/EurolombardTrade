@@ -30,6 +30,11 @@ class CityService
         return $this->cityModel->where('id', $id)->with($relations)->firstOrFail();
     }
 
+    public function getDomainFind($domain, $relations = ['addresses','rates'])
+    {
+        return $this->cityModel->where('domain', $domain)->with($relations)->firstOrFail();
+    }
+
     /**
      * @param array $relations
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
@@ -37,6 +42,17 @@ class CityService
     public function getAll($relations = ['addresses','rates'])
     {
         return $this->cityModel->with($relations)->get();
+    }
+
+    public function getHelperCities($relations = ['addresses','rates'])
+    {
+        return $this->cityModel
+            ->whereNotNull('domain')
+            ->with($relations)
+            ->whereHas('addresses', function($query){
+                return $query->where('published', 1);
+            })
+            ->get();
     }
 
     public function getClient($relations = ['addresses','rates'])

@@ -3,16 +3,22 @@
 namespace App\Http\Controllers;
 
 
+use App\Job\RateJob;
 use App\Services\Setting\SettingService;
 
 class ContactController extends Controller
 {
 
-    public $settingService;
+    private $settingService;
+    private $rateJob;
 
-    public function __construct(SettingService $settingService)
+    public function __construct(
+        SettingService $settingService,
+        RateJob $rateJob
+    )
     {
         $this->settingService = $settingService;
+        $this->rateJob = $rateJob;
     }
 
     public function show()
@@ -22,7 +28,6 @@ class ContactController extends Controller
 
 //        $phone = $this->settingService->getField('phone'); // or null
         dd(
-            addresses(),
             $settings
         );
 //        return view('');

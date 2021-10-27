@@ -17,7 +17,7 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = [
-        'user_id',
+        //'user_id',
         'address_id',
         'currency_from',
         'rate_from',
@@ -26,6 +26,9 @@ class Order extends Model
         'rate_to',
         'price_to',
         'status',
+        'fio',
+        'email',
+        'phone'
     ];
 
     public function address()

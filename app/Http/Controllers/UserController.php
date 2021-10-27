@@ -17,7 +17,7 @@ class UserController extends Controller
     public function __construct(UserService $userService)
     {
         $this->userService = $userService;
-        $this->userId = Auth::user()->id;
+        $this->userId = Auth::id();
     }
 
     public function profile()

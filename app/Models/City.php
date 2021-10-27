@@ -14,7 +14,7 @@ class City extends Model
 
     protected $table = 'cities';
 
-    protected $fillable = ['name','api_id'];
+    protected $fillable = ['name','api_id','domain'];
 
     public $translatable = ['name'];
 

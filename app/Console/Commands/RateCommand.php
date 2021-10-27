@@ -25,6 +25,7 @@ class RateCommand extends Command
 
     private $client;
     private $cityService;
+    private $defaultCurrency = 'UAH';
     /**
      * Create a new command instance.
      *
@@ -70,7 +71,17 @@ class RateCommand extends Command
                 $cityEntry = $this->cityService->add($cityCreate);
 
                 foreach($city['rates'] as $rate){
-                    $cityEntry->rates()->create($rate);
+                    $currency = explode('/', $rate['currency']);
+                    $rateCreate = [
+                        'api_id' => $rate['id'],
+                        'currency_from'=> $currency[0] ?? 0,
+                        'currency_to'=> $currency[1] ?? $this->defaultCurrency,
+                        'buy'=> $rate['buy'],
+                        'sale'=> $rate['sale'],
+                        'buy_opt'=> $rate['buy'] + 1,
+                        'sale_opt'=> $rate['sale'] + 1,
+                    ];
+                    $cityEntry->rates()->create($rateCreate);
                 }
             }else{
                 $cityEntry = $citiesEntry->filter(function($item) use ($city){
@@ -80,9 +91,11 @@ class RateCommand extends Command
                 $ratesApiIDs = $ratesEntry->pluck('api_id')->toArray();
 
                 foreach($city['rates'] as $rate){
+                    $currency = explode('/', $rate['currency']);
                     $rateCreate = [
                         'api_id' => $rate['id'],
-                        'currency'=> $rate['currency'],
+                        'currency_from'=> $currency[0] ?? 0,
+                        'currency_to'=> $currency[1] ?? $this->defaultCurrency,
                         'buy'=> $rate['buy'],
                         'sale'=> $rate['sale'],
                     ];

@@ -35,6 +35,15 @@ class UserService
     }
 
     /**
+     * @param $email
+     * @return mixed
+     */
+    public function getEmail($email)
+    {
+        return $this->userModel->where('email', $email)->first();
+    }
+
+    /**
      * @param array $relations
      * @return \Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
      */
@@ -101,13 +110,6 @@ class UserService
         $query = $this->userModel->where('id', $id)->first();
         return $query->update(['is_admin', User::IS_NOT_ADMIN]);
     }
-
-    public function getOrdersAuth()
-    {
-
-    }
-
-
 
     public function getAllCount()
     {

@@ -17,8 +17,7 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/language', [App\Http\Controllers\HomeController::class, 'main'])->name('main');
 
 
-
-Route::group(['prefix' => parseLocale(),'where' => ['locale' => '[a-z]{2}'],'middleware' => 'localization'], function() {
+Route::group(['prefix' => parseLocale(),'where' => ['locale' => '[a-z]{2}'],'middleware' => ['localization']], function() {
 
     Auth::routes(['register' => false]);
 
@@ -32,12 +31,14 @@ Route::group(['prefix' => parseLocale(),'where' => ['locale' => '[a-z]{2}'],'mid
     Route::post('review', [App\Http\Controllers\ReviewController::class, 'store'])->name('review.store');
 });
 
-Route::middleware('auth')->group(function(){
-    Route::get('profile',[App\Http\Controllers\UserController::class,'profile'])->name('profile.show');
-    Route::post('order', [App\Http\Controllers\OrderController::class,'add']);
-    Route::post('order/{id}', [App\Http\Controllers\OrderController::class,'delete']);
-    Route::get('logout', [LoginController::class,'logout'])->name('logout');
-});
+Route::post('order', [App\Http\Controllers\OrderController::class,'add']);
+Route::get('order', [App\Http\Controllers\OrderController::class,'show']);
+
+//Route::middleware('auth')->group(function(){
+//    Route::get('profile',[App\Http\Controllers\UserController::class,'profile'])->name('profile.show');
+//    Route::post('order/{id}', [App\Http\Controllers\OrderController::class,'delete']);
+//    Route::get('logout', [LoginController::class,'logout'])->name('logout');
+//});
 
 Route::name('admin.')->prefix('admin')->middleware('isAdmin')->group(function(){
     Route::get('/', [App\Http\Controllers\Admin\DashboardController::class,'index'])->name('main');

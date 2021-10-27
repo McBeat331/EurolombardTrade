@@ -1,6 +1,7 @@
 <?php
 
 use App\Services\Address\AddressService;
+use App\Services\City\CityService;
 use Illuminate\Support\Facades\Session;
 
 
@@ -8,6 +9,12 @@ if(!function_exists('addresses')){
     function addresses(){
         $cityService = app()->make( AddressService::class);
         return $cityService->getAll(['city']);
+    }
+}
+if(!function_exists('cities')){
+    function cities(){
+        $cityService = app()->make( CityService::class);
+        return $cityService->getHelperCities();
     }
 }
 if(!function_exists('parseLocale')) {

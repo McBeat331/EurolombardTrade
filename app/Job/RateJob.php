@@ -51,10 +51,10 @@ class RateJob
         $userToken = Auth::check() ? Auth::id() : csrf_token();
         $nameCache = "rate_sale_{$city->id}_{$userToken}";
 
-        if(!Cookie::has($nameCache)) {
-            return $city->rates;
-        }else{
+        if(Cookie::has($nameCache)) {
             return Cookie::get($nameCache);
+        }else{
+            return $city->rates;
         }
 
     }

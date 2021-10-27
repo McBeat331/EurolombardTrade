@@ -7,6 +7,7 @@ use App\Services\City\CityService;
 use App\Services\Rate\RateService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Session;
 
 class RateJob
@@ -35,8 +36,8 @@ class RateJob
         $userToken = Auth::check() ? Auth::id() : csrf_token();
         $nameCache = "rate_sale_{$city->id}_{$userToken}";
 
-        if(Cache::has($nameCache) === null){
-            Cache::put($nameCache,(object)[
+        if(Cookie::has($nameCache) === null){
+            Cookie::put($nameCache,(object)[
                 'city_id' => $city->id,
                 'rates' => $rates
             ],3600);
@@ -50,10 +51,10 @@ class RateJob
         $userToken = Auth::check() ? Auth::id() : csrf_token();
         $nameCache = "rate_sale_{$city->id}_{$userToken}";
 
-        if(!Cache::has($nameCache)) {
+        if(!Cookie::has($nameCache)) {
             return $city->rates;
         }else{
-            return Cache::get($nameCache);
+            return Cookie::get($nameCache);
         }
 
     }

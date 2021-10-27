@@ -26,12 +26,26 @@ class OrderController extends Controller
 
     public function add(OrderRequest $request)
     {
-        $this->orderService->add($request->all());
+        $order = $this->orderService->add($request->all());
         $this->rateJob->saveRateAfterOrder();
 
+        $request->session()->put('order-last-id', $order->id);
         $request->session()->flash('alert-success', '');
 
-        return redirect()->back();
+    }
+
+    public function show()
+    {
+        if(request()->session()->has('order-last-id')){
+            $order_id = request()->session()->get('order-last-id');
+            $order = $this->orderService->getFind($order_id);
+
+            dd($order);
+            // return view();
+
+        }
+        abort(404);
+
     }
 
     public function delete($id)

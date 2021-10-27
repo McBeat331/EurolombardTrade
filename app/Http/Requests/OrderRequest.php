@@ -24,7 +24,7 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|integer',
+            //'user_id' => 'required|integer',
             'address_id' => 'required|integer',
 
             'currency_from' => 'required|string',
@@ -37,6 +37,9 @@ class OrderRequest extends FormRequest
             'price_to' => 'required',
 
             'status' => 'required|integer',
+            'fio' => 'required',
+            'email' => 'required|email',
+            'phone' => 'nullable'
         ];
     }
 }

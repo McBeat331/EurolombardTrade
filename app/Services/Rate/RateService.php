@@ -38,14 +38,6 @@ class RateService{
     }
 
     /**
-     * @return Rate
-     */
-    public function getRatesByCity($city_id)
-    {
-        return $this->rateModel->where('city_id',$city_id)->get();
-    }
-
-    /**
      * @param $data
      * @return mixed
      */

@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Domain;
 use App\Http\Middleware\VerifyIsAdmin;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -66,6 +67,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         'isAdmin' => VerifyIsAdmin::class,
-        'localization' => \App\Http\Middleware\Localization::class,
+        'localization' => \App\Http\Middleware\Localization::class
     ];
 }

@@ -11,51 +11,35 @@ use Illuminate\Support\Facades\Session;
 
 class RateJob
 {
-    private $rateService;
-    private $addressService;
+    private $cityService;
+    private $domain;
 
     public function __construct(
-        RateService $rateService,
-        AddressService $addressService
+        CityService $cityService
     )
     {
-        $this->rateService = $rateService;
-        $this->addressService = $addressService;
+        $this->cityService = $cityService;
+        $this->domain = request()->getHost();
     }
 
 
-    public function selectedAddress($address_id = false)
+    public function selectedCity()
     {
-        if($address_id && $address = $this->addressService->getFind($address_id)){
-            Session::put('addressSelected',$address);
-            return $address;
-        }
-
-        if(Session::has('addressSelected')){
-            return Session::get('addressSelected');
-        }
-
-        if($address = $this->addressService->getClientFirst()){
-            Session::put('addressSelected',$address);
-            return $address;
-        }
-
-        abort(500, 'Database `Addresses` is not filled');
+        return $this->cityService->getDomainFind($this->domain);
     }
 
 
     public function saveRateAfterOrder()
     {
-        $address = $this->selectedAddress();
-        $cityId = $address->city_id;
-        $rates = $this->rateService->getRatesByCity($cityId);
+        $city = $this->selectedCity();
+        $rates = $city->rates;
 
-        $userToken = Auth::check() ? Auth::user()->id : csrf_token();
-        $nameCache = "rate_sale_{$cityId}_{$userToken}";
+        $userToken = Auth::check() ? Auth::id() : csrf_token();
+        $nameCache = "rate_sale_{$city->id}_{$userToken}";
 
         if(Cache::has($nameCache) === null){
             Cache::put($nameCache,(object)[
-                'city_id' => $cityId,
+                'city_id' => $city->id,
                 'rates' => $rates
             ],3600);
         }
@@ -63,14 +47,13 @@ class RateJob
 
     public function getRatesByCity()
     {
-        $address = $this->selectedAddress();
-        $cityId = $address->city_id;
+        $city = $this->selectedCity();
 
-        $userToken = Auth::check() ? Auth::user()->id : csrf_token();
-        $nameCache = "rate_sale_{$cityId}_{$userToken}";
+        $userToken = Auth::check() ? Auth::id() : csrf_token();
+        $nameCache = "rate_sale_{$city->id}_{$userToken}";
 
-        if(Cache::has($nameCache) === null) {
-            return $this->rateService->getRatesByCity($address->city_id);
+        if(!Cache::has($nameCache)) {
+            return $city->rates;
         }else{
             return Cache::get($nameCache);
         }

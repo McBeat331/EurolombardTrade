@@ -11,7 +11,7 @@ class Rate extends Model
 
     protected $table = 'rates';
 
-    protected $fillable = ['city_id','currency','buy','sale','api_id'];
+    protected $fillable = ['city_id','currency_from','currency_to','buy','buy_opt','sale','sale_opt','api_id'];
 
 
     public function city()

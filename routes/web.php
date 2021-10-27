@@ -17,8 +17,7 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/language', [App\Http\Controllers\HomeController::class, 'main'])->name('main');
 
 
-
-Route::group(['prefix' => parseLocale(),'where' => ['locale' => '[a-z]{2}'],'middleware' => 'localization'], function() {
+Route::group(['prefix' => parseLocale(),'where' => ['locale' => '[a-z]{2}'],'middleware' => ['localization']], function() {
 
     Auth::routes(['register' => false]);
 

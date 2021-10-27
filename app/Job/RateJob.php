@@ -37,10 +37,10 @@ class RateJob
         $nameCache = "rate_sale_{$city->id}_{$userToken}";
 
         if(Cookie::has($nameCache) === null){
-            Cookie::put($nameCache,(object)[
+            Cookie::make($nameCache,(object)[
                 'city_id' => $city->id,
                 'rates' => $rates
-            ],3600);
+            ],60);
         }
     }
 

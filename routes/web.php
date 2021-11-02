@@ -42,7 +42,7 @@ Route::get('order', [App\Http\Controllers\OrderController::class,'show']);
 
 Route::name('admin.')->prefix('admin')->middleware('isAdmin')->group(function(){
     Route::get('/', [App\Http\Controllers\Admin\DashboardController::class,'index'])->name('main');
-
+    Route::get('logout', [LoginController::class,'logout'])->name('logout');
     Route::resource('advantage', App\Http\Controllers\Admin\AdvantageController::class);
     Route::resource('address', App\Http\Controllers\Admin\AddressController::class);
     Route::resource('city', App\Http\Controllers\Admin\CityController::class);

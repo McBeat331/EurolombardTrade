@@ -98,6 +98,8 @@ class RateCommand extends Command
                         'currency_to'=> $currency[1] ?? $this->defaultCurrency,
                         'buy'=> $rate['buy'],
                         'sale'=> $rate['sale'],
+                        'buy_opt'=> $rate['buy'] + 1,
+                        'sale_opt'=> $rate['sale'] + 1,
                     ];
                     if(!in_array($rate['id'], $ratesApiIDs)){
                         $cityEntry->rates()->create($rateCreate);

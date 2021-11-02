@@ -5,14 +5,7 @@ export {
     lang,
 }
 
-$(document).ready(function(){
-    $('img').each(function(){
-        this.src = this.src.replace("http://lombard.loc/","https://elg.co.ua/");
-    });
-    $('source').each(function(){
-        this.srcset = this.srcset.replace("http://lombard.loc/","https://elg.co.ua/");
-    });
-});
+
 
 
 let site = null;

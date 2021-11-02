@@ -62,7 +62,7 @@ class ServiceService
 
     public function getHome($relations = [])
     {
-        return $this->serviceModel->with($relations)->orderBy('created_at','DESC')->limit(3)->get();
+        return $this->serviceModel->with($relations)->orderBy('created_at','ASC')->limit(4)->get();
     }
 
     /**

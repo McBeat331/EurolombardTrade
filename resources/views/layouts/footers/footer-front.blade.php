@@ -2,7 +2,7 @@
   <div class="mcontainer">
     <div class="cont-footer">
       <div class="logo visible-viewportchecker visibility--check hidden">
-          <a href="{{ route('main') }}"> <img src="/img/logoEuroLombard.svg" alt=""></a>
+          <a href="{{ route('main') }}"> <img src="/images/logoEuroLombard.svg" alt=""></a>
       </div>
       <div class="contacts visible-viewportchecker visibility--check hidden">
         <div class="title">{{ trans('main.our_contacts') }}</div>

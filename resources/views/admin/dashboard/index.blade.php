@@ -95,7 +95,7 @@
                                     <tr>
                                         <td>
                                             <a href="{{ route('admin.order.edit',$order->id) }}" class="mr-4" data-toggle="tooltip"
-                                               data-placement="top" title="Edit">{{ $order->user->name }}</a>
+                                               data-placement="top" title="Edit">{{ $order->fio}}</a>
                                         </td>
                                         <td>
                                             {{ $order->created_at }}

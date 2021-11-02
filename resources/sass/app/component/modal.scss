@@ -1,0 +1,113 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  background-color: #000000da;
+  z-index:10;
+}
+
+.modal {
+  max-width: 1200px;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0px 0px 30px rgb(0 0 0 / 10%);
+  margin-left: auto;
+  margin-right: auto;
+  border-top: none;
+  border-left: 5px solid #2F2483;
+  position: relative;
+  height: 600px;
+  padding: 25px 205px 105px 105px;
+  margin-top: 10%;
+  .close {
+    position:absolute;
+    top:15px;
+    right:20px;
+    cursor: pointer;
+  }
+
+  .close-img {
+    width: 25px;
+  }
+
+  .check {
+    width: 150px;
+  }
+
+  h6 {
+    font-weight: 500;
+    font-size: 28px;
+    margin: 20px 0;
+  }
+
+  p {
+    font-size: 16px;
+    margin: 20px 0;
+  }
+
+  button {
+    background-color: #ac003e;
+    width: 150px;
+    height: 40px;
+    color: white;
+    font-size: 14px;
+    border-radius: 16px;
+    margin-top: 50px;
+  }
+}
+.modalObmen {
+  .currencyBlock
+  {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #F1F4FF;
+    border-radius: 3px;
+    padding: 31px;
+    margin-bottom: 39px;
+    .currency-box
+    {
+      flex: 3;
+      .section-input
+      {
+        background: #fff;
+      }
+    }
+    .switch-currency
+    {
+      flex:1;
+      margin: 0px -5%;
+      transform: rotate(90deg);
+    }
+  }
+  .submitForm
+  {
+    .inputGroup
+    {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .section-input {
+        border: 1px solid #C4C4C4;
+        border-radius: 3px;
+        height: 65px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        cursor: pointer;
+        position: relative;
+        margin-top: 12px;
+        margin-bottom: 12px;
+
+        width: 30%;
+      }
+    }
+
+  }
+}

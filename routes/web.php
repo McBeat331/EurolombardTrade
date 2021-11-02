@@ -21,7 +21,7 @@ Route::group(['prefix' => parseLocale(),'where' => ['locale' => '[a-z]{2}'],'mid
 
     Auth::routes(['register' => false]);
 
-    Route::get('/', [App\Http\Controllers\HomeController::class, 'main'])->name('main');
+    Route::get('/', [App\Http\Controllers\XXXHomeController::class, 'main'])->name('main');
     Route::get('advantage', [App\Http\Controllers\AdvantageController::class, 'index'])->name('advantage.index');
     Route::get('advantage/{slug}', [App\Http\Controllers\AdvantageController::class, 'show'])->name('advantage.show');
     Route::get('service', [App\Http\Controllers\ServiceController::class, 'index'])->name('service.index');

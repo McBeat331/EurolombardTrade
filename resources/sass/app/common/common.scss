@@ -37,7 +37,7 @@ div.mainWrapper {
 		display: flex;
 		flex-direction: column;
 
-		& > .page {flex-grow: 1;}
+		& > .page {flex-grow: 1;padding-top: 125px;}
 	}
 	& > footer.mainFooter {
 		flex: 0 0 auto;

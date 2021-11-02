@@ -3,12 +3,11 @@
         @foreach(config('app.locales') as $locale=>$name)
             @if($locale == config('app.fallback_locale'))
                     <span {{ app()->getLocale() === $locale ? 'class=active' : '' }}>
-                        <a href="{{ url('/') }}">UA</a>
+                        <a href="{{ url('/') }}" style="text-transform: uppercase">{{$locale}}</a>
                     </span>
-                <a class="dropdown-item" href="{{ url('/') }}">{{$name}}</a>
             @else
                     <span {{ app()->getLocale() === $locale ? 'class=active' : '' }}>
-                        <a class="dropdown-item" href="{{ url($locale) }}">{{$name}}</a>
+                        <a class="dropdown-item" style="text-transform: uppercase" href="{{ url($locale) }}">{{$locale}}</a>
                     </span>
             @endif
         @endforeach

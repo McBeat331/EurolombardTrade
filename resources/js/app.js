@@ -9,6 +9,7 @@ require('./mixins/index.js');
 require('./libs/cleave.min.js');
 require('./libs/viewportchecker.min.js');
 require('./libs/slick.min.js');
+
 window.Vue = require('vue').default;
 
 /**
@@ -29,6 +30,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+export const bus = new Vue();
 
 const app = new Vue({
     el: '#app',

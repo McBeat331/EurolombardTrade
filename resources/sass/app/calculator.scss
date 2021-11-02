@@ -23,6 +23,35 @@
     }
   }
 }
+.showButton button
+{
+  background: #FFC244;
+  border-radius: 3px;
+  border: none;
+  width: 285px;
+  height: 50px;
+  font-family: $mainFont;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 50px;
+  /* identical to box height */
+  text-align: center;
+  color: #2F2483;
+}
+.switch-currency {
+  text-align: center;
+  margin: -30px 0;
+  position: relative;
+  z-index: 2;
+}
+.errorFoundCurrency {
+  width: 100%;
+  text-align: center;
+  display: block;
+  color: red;
+
+}
 .calculatorWrapForm {
   display: flex;
   flex-direction: column;
@@ -54,8 +83,11 @@
     text-align: center;
     padding-top: 15px;
     padding-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     span:last-child {
-      margin-right: 15px;
+      margin-right: 0px;
     }
     &.popap-title {
       text-align: left;
@@ -217,10 +249,22 @@
     margin-bottom: -12px;
     padding: 10px;
  }
- .section-input, .wrapper-btn-check{
+  .wrapper-btn-check{
     border: 1px solid $bordered;
     border-radius: 3px;
-    height: 65px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    position: relative;
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+ .section-input{
+    border: 1px solid $bordered;
+    border-radius: 3px;
+    height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -234,12 +278,65 @@
       cursor: default;
     }
     .chosen-single {
-      display: block;
-      max-width: 250px;
+      max-width: 90%;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+      padding-left: 25px;
     }
+   .countBlock {
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     justify-content: space-around;
+     height: 100%;
+     input {
+       padding:0;
+     }
+     .topSubText, .buttomSubText
+     {
+       font-family: $secondaryFont;
+       font-style: normal;
+       font-weight: normal;
+       font-size: 14px;
+       line-height: 16px;
+       color: #878787;
+     }
+     .inputFrom, .currency_to
+     {
+       font-family: $secondaryFont;
+       font-style: normal;
+       font-weight: bold;
+       font-size: 36px;
+       line-height: 42px;
+
+       color: #282828;
+     }
+   }
+   .currentCurrency
+   {
+     .placeholder
+     {
+       display:flex;
+       align-items: center;
+       .currencyImg
+       {
+         margin-right: 5px;
+       }
+       strong{
+         font-family: $secondaryFont;
+         font-style: normal;
+         font-weight: bold;
+         font-size: 24px;
+         line-height: 28px;
+         color: #282828;
+       }
+     }
+   }
     input {
       border: none;
       padding-left: 20px;
@@ -265,11 +362,11 @@
     }
     .dropdownSelect {
       padding: 0;
-      max-height: 245px;
+      max-height: 300px;
       overflow: auto;
       list-style: none;
       position: absolute;
-      top: 15px;
+      top: 95px;
       z-index: 1010;
       width: 100%;
       border-radius: 3px;
@@ -280,8 +377,19 @@
         font-family: $secondaryFont;
         font-weight: 400;
         font-size: 16px;
-        color: $mainColorFam;
+        color: #878787;
         padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        strong
+        {
+          font-style: normal;
+          font-weight: bold;
+          font-size: 24px;
+          line-height: 28px;
+          color: #282828;
+          margin:0 15px
+        }
         &:hover {
           background-color: $fifthColor;
           font-weight: 500;
@@ -344,7 +452,7 @@
  .btn-check {
    cursor: pointer;
    height: 50px;
-   width: 60px;
+   width: 90px;
    background-color: $fifthColor;
    display: block;
    font-family: $secondaryFont;
@@ -631,7 +739,7 @@ input[type=file] {
 
   @media (min-width: $containerWidthLaptop) {
     flex-direction: row;
-    height: 600px;
+    height: 505px;
     padding-bottom: 0;
     .progress-bar-container {
       margin-bottom: 25px;
@@ -704,12 +812,6 @@ input[type=file] {
         right: 0;
         bottom: 0;
       }
-    }
-    &.main-page {
-      position: absolute;
-      left: 50%;
-      top: -75px;
-      transform: translate(-50%, 0);
     }
     .toggle-blocks {
       padding-top: 0;
@@ -930,10 +1032,12 @@ input[type=file] {
 
     transition: 0.2s ease opacity;
     opacity: 0;
-    .title {text-align: center; }
+    .title {text-align: center; position:relative}
     @media (min-width: $containerWidthLaptop) {
       .title {font-size: 30px; }
+
     }
+
   }
   &.notification {
     .overlay {
@@ -987,9 +1091,6 @@ input[type=file] {
 
         .title {
           font-size: 40px;
-        }
-        &.main-page {
-          top: -100px;
         }
         .flex_wrapper.flex-start {
           justify-content: flex-start;

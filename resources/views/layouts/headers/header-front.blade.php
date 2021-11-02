@@ -2,7 +2,7 @@
 <header class="mainHeader">
        <div class="header-content-wrap">
            <div class="header-logo">
-               <a href="{{ route('main') }}"> <img src="/img/logoEuroLombard.svg" alt=""></a>
+               <a href="{{ route('main') }}"> <img src="/images/logoEuroLombard.svg" alt=""></a>
            </div>
            <nav class="nav">
                 <div class="menu-btn">
@@ -17,35 +17,23 @@
 
                   <li class="nav-item">
                     <a href="#">
-                        <span>{{ trans('main.Rosrahuvati_loan') }}</span> 
-                        <span class="icon-arrow-down-gray"></span>
+                        <span>{{ trans('main.cources') }}</span>
                     </a>
-                    <ul class="nav-item_submenu">
-                        <li><a href="#">{{ trans('main.bail_gold') }}</a></li>
-                        <li><a href="#">{{ trans('main.bail_silver') }}</a></li>
-                        <li><a href="#">{{ trans('main.bail_gadget') }}</a></li>
-                    </ul>
                   </li>
                   <li class="nav-item">
                     <a href="#">
-                        <span>{{ trans('main.company') }}</span>
-                        <span class="icon-arrow-down-gray"></span>
+                        <span>{{ trans('main.ourServices') }}</span>
                     </a>
-                    <ul class="nav-item_submenu">
-                        <li><a href="#">{{ trans('main.about') }}</a></li>
-                        <li><a href="#">{{ trans('main.financial') }}</a></li>
-                        <li><a href="#">{{ trans('main.career') }}</a></li>
-                    </ul>
                   </li>
-                  <li class="nav-item"><a href="#">{{ trans('main.news') }}</a></li>
-                  <li class="nav-item"><a href="#">{{ trans('main.actions') }}</a></li>
-                  <li class="nav-item"><a href="#">{{ trans('main.departments') }}</a></li>
+                  <li class="nav-item"><a href="#">{{ trans('main.ourAdvantages') }}</a></li>
+                  <li class="nav-item"><a href="#">{{ trans('main.contacts') }}</a></li>
                   <li class="callback-section-header">
                        <div class="callback-phone">
                            <div class="callback-item-phone">
-                               <a href="tel:#">#</a>
+                               <a href="tel:0730183284">073 018 32 84</a>
                                <div class="callback-drop-box"> <span class="call-drop-title">{{ trans('main.call_drop_title') }}</span> 
                                     <div class="callback-dropdown-phone">
+                                        @include('includes.callback-questions-form-front')
                                         <div class="social-mobile-form">
                                              <ul class="social-mobile-list">
                                                  <li>

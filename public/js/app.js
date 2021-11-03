@@ -6079,39 +6079,24 @@ var departmentsLocationInMap = function departmentsLocationInMap() {
 
 
   function loadLocations() {
-    var xhr = new XMLHttpRequest();
     var lang = '';
 
     if (globalFunctions.getLanguage() == 'ru') {
       lang = '/' + globalFunctions.getLanguage();
     }
 
-    xhr.open('GET', window.location.origin + lang + '/get-departments/', true);
-    xhr.send();
-
-    xhr.onreadystatechange = function () {
-      if (this.readyState != 4) return;
-
-      if (this.status != 200) {
-        console.log('ошибка: ' + (this.status ? this.statusText : 'запрос не удался'));
-        return;
-      } else {
-        try {
-          var locations = JSON.parse(xhr.responseText);
-
-          if ($('#departmentsMap').length) {
-            var mapDiv = document.getElementById('departmentsMap');
-            mapDiv.dataset.lat = Number(locations[0].lat);
-            mapDiv.dataset.lng = Number(locations[0].len);
-          }
-
-          initMap(locations);
-          setDepartmentsList(locations);
-        } catch (e) {
-          console.log("Некорректный ответ " + e.message);
-        }
+    axios.get(window.location.origin + lang + '/get-departments').then(function (response) {
+      if ($('#departmentsMap').length) {
+        var mapDiv = document.getElementById('departmentsMap');
+        mapDiv.dataset.lat = Number(response.data[0].lat);
+        mapDiv.dataset.lng = Number(response.data[0].lng);
       }
-    };
+
+      initMap(response.data);
+      setDepartmentsList(response.data);
+    })["catch"](function (error) {
+      console.log(error);
+    });
   }
 
   ; // End XMLHttpRequest for map's json template

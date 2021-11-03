@@ -48,10 +48,11 @@ class CityService
     {
         return $this->cityModel
             ->whereNotNull('domain')
+            ->where('domain','!=','')
             ->with($relations)
-            ->whereHas('addresses', function($query){
-                return $query->where('published', 1);
-            })
+//            ->whereHas('addresses', function($query){
+//                return $query->where('published', 1);
+//            })
             ->get();
     }
 

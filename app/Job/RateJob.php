@@ -31,6 +31,14 @@ class RateJob
         return $this->cityService->getDomainFind($this->domain);
     }
 
+    public function allCities()
+    {
+        return $this->cityService->getHelperCities()->map(function($item){
+            $item->current = $item->domain == $this->domain;
+            return $item;
+        });
+    }
+
 
     public function saveRateAfterOrder($rate_id)
     {

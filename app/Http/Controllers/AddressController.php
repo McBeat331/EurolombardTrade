@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Job\RateJob;
+use App\Services\City\CityService;
 use Illuminate\Http\Request;
 
 class AddressController extends Controller
@@ -24,6 +25,16 @@ class AddressController extends Controller
         return response()->json([
             'success' => true,
             'data' => $rates->toArray()
+        ], 200);
+    }
+
+    public function getCities(Request $request)
+    {
+        $cities = $this->rateJob->allCities();
+
+        return response()->json([
+            'success' => true,
+            'data' => $cities->toArray()
         ], 200);
     }
 }

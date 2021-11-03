@@ -60,4 +60,5 @@ Route::name('admin.')->prefix('admin')->middleware('isAdmin')->group(function(){
 
 Route::name('ajax.')->prefix('ajax')->group(function() {
     Route::post('getRatesByCity', [\App\Http\Controllers\AddressController::class, 'getRatesByCity'])->name('getRatesByCity');
+    Route::post('getCities', [\App\Http\Controllers\AddressController::class, 'getCities'])->name('getCities');
 });

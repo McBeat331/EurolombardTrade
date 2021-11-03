@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\OrderRequest;
+use App\Http\Requests\OrderClientRequest;
 use App\Job\AccountJob;
 use App\Job\RateJob;
 use App\Services\Order\OrderService;
@@ -24,10 +24,11 @@ class OrderController extends Controller
         $this->accountJob = $accountJob;
     }
 
-    public function add(OrderRequest $request)
+    public function add(OrderClientRequest $request)
     {
         $order = $this->orderService->add($request->all());
-        $this->rateJob->saveRateAfterOrder();
+
+        $this->rateJob->saveRateAfterOrder($request->get('rate_id'));
 
         $request->session()->put('order-last-id', $order->id);
         $request->session()->flash('alert-success', '');

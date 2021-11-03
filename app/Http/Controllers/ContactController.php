@@ -25,10 +25,13 @@ class ContactController extends Controller
     {
         $settings = $this->settingService->getAll();
 
+        $currentCity = $this->rateJob->selectedCity();
+
 
 //        $phone = $this->settingService->getField('phone'); // or null
         dd(
-            $settings
+            $settings,
+            $currentCity
         );
 //        return view('');
     }

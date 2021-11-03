@@ -2,6 +2,8 @@
 
 namespace App\Job;
 
+use App\Models\Order;
+use App\Models\Rate;
 use App\Services\Address\AddressService;
 use App\Services\City\CityService;
 use App\Services\Rate\RateService;
@@ -14,11 +16,13 @@ class RateJob
 {
     private $cityService;
     private $domain;
+    private $rateService;
 
-    public function __construct(CityService $cityService)
+    public function __construct(CityService $cityService, RateService $rateService)
     {
         $this->cityService = $cityService;
         $this->domain = request()->getHost();
+        $this->rateService = $rateService;
     }
 
 
@@ -27,20 +31,27 @@ class RateJob
         return $this->cityService->getDomainFind($this->domain);
     }
 
+    public function allCities()
+    {
+        return $this->cityService->getHelperCities()->map(function($item){
+            $item->current = $item->domain == $this->domain;
+            return $item;
+        });
+    }
 
-    public function saveRateAfterOrder()
+
+    public function saveRateAfterOrder($rate_id)
     {
         $city = $this->selectedCity();
         $rates = $city->rates;
 
         $userToken = Auth::check() ? Auth::id() : csrf_token();
-        $nameCache = "rate_sale_{$city->id}_{$userToken}";
+        $nameCache = "rate_sale_{$city->id}_{$userToken}_{$rate_id}";
+
+        $rate = $this->rateService->getFind($rate_id);
 
         if(Cookie::has($nameCache) === null){
-            Cookie::make($nameCache,(object)[
-                'city_id' => $city->id,
-                'rates' => $rates
-            ],60);
+            Cookie::make($nameCache,$rate,60);
         }
     }
 
@@ -49,13 +60,16 @@ class RateJob
         $city = $this->selectedCity();
 
         $userToken = Auth::check() ? Auth::id() : csrf_token();
-        $nameCache = "rate_sale_{$city->id}_{$userToken}";
 
-        if(Cookie::has($nameCache)) {
-            return Cookie::get($nameCache);
-        }else{
-            return $city->rates;
-        }
+        return $city->rates->map(function($item) use ($city,$userToken){
+            $nameCache = "rate_sale_{$city->id}_{$userToken}_{$item->id}";
+
+            if(Cookie::has($nameCache)) {
+                return Cookie::get($nameCache);
+            }else{
+                return $item;
+            }
+        });
 
     }
 }

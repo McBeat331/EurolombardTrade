@@ -4293,6 +4293,26 @@ header.mainHeader .header-nav-list .nav-item a {
   color: #000;
   font-weight: 700;
 }
+header.mainHeader .header-nav-list .nav-item.telegramLink a {
+  background: #0088CC;
+  border-radius: 3px;
+  padding: 6px;
+  font-family: "PT Sans Caption", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+}
+header.mainHeader .header-nav-list .nav-item.telegramLink a .telegramImg {
+  margin-right: 5px;
+}
+header.mainHeader .header-nav-list .nav-item.telegramLink a .telegramImg img {
+  max-width: 19px;
+}
 header.mainHeader .header-nav-list .nav-item_submenu {
   list-style: none;
   padding-top: 8px;

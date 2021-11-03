@@ -221,6 +221,7 @@ const departmentsLocationInMap = () => {
       {
           lang = '/'+globalFunctions.getLanguage();
       }
+      console.log(window.location.origin);
     xhr.open('GET', window.location.origin +lang+'/get-departments/', true);
     xhr.send();
     xhr.onreadystatechange = function() {
@@ -321,7 +322,7 @@ const departmentsLocationInMap = () => {
     }
 
   let $cityItems = $('#city_id');
-    let city_id = 2;
+
     let lang = '';
 
     if (city_id!='empty') {

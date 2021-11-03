@@ -35,11 +35,11 @@ Route::group(['prefix' => parseLocale(),'where' => ['locale' => '[a-z]{2}'],'mid
 Route::post('order', [App\Http\Controllers\OrderController::class,'add']);
 Route::get('order', [App\Http\Controllers\OrderController::class,'show']);
 
-//Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function(){
 //    Route::get('profile',[App\Http\Controllers\UserController::class,'profile'])->name('profile.show');
 //    Route::post('order/{id}', [App\Http\Controllers\OrderController::class,'delete']);
-//    Route::get('logout', [LoginController::class,'logout'])->name('logout');
-//});
+    Route::get('logout', [LoginController::class,'logout'])->name('logout');
+});
 
 Route::name('admin.')->prefix('admin')->middleware('isAdmin')->group(function(){
     Route::get('/', [App\Http\Controllers\Admin\DashboardController::class,'index'])->name('main');

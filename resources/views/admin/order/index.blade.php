@@ -50,10 +50,10 @@
                                             @foreach ($entries as $order)
                                             <tr>
                                                 <td>
-                                                    {{ $order->user->name }}
+                                                    {{ $order->fio }}
                                                 </td>
                                                 <td>
-                                                    {{ $order->user->phone }}
+                                                    {{ $order->phone }}
                                                 </td>
                                                 <td>
                                                     {{ $order->created_at }}
@@ -71,7 +71,7 @@
                                                     {{ $order->currency_to }}
                                                 </td>
                                                 <td>
-                                                    @if($order->status && $order->status==0)
+                                                    @if(!$order->status)
                                                         <span class="badge badge-warning" data-id="{{$order->id}}" data-url="{{ route('admin.changeStatusOrder') }}" style="cursor:pointer">Не обработано</span>
                                                     @else
                                                         <span class="badge badge-success" data-id="{{$order->id}}" data-url="{{ route('admin.changeStatusOrder') }}" style="cursor:pointer">Обработано</span>

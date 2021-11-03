@@ -18,8 +18,6 @@ class AddressController extends Controller
     public function getRatesByCity(Request $request)
     {
 
-        $this->rateJob->selectedCity();
-
         $rates = $this->rateJob->getRatesByCity();
 
         return response()->json([

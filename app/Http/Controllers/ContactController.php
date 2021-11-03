@@ -24,6 +24,7 @@ class ContactController extends Controller
     public function show()
     {
         $settings = $this->settingService->getAll();
+
         $currentCity = $this->rateJob->selectedCity();
 
 

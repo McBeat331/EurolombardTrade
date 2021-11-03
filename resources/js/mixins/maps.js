@@ -221,6 +221,7 @@ const departmentsLocationInMap = () => {
       {
           lang = '/'+globalFunctions.getLanguage();
       }
+      console.log(window.location.origin);
     xhr.open('GET', window.location.origin +lang+'/get-departments/', true);
     xhr.send();
     xhr.onreadystatechange = function() {

@@ -26,7 +26,7 @@
                     </a>
                   </li>
                   <li class="nav-item"><a href="#">{{ trans('main.ourAdvantages') }}</a></li>
-                  <li class="nav-item"><a href="#">{{ trans('main.contacts') }}</a></li>
+                  <li class="nav-item"><a href="{{ route('contact.show') }}">{{ trans('main.contacts') }}</a></li>
                   <li class="nav-item telegramLink"><a href="#"><div class="telegramImg"><img src="../images/telegramIcoWhite.svg"/></div><span>{{ trans('main.ourTelegram') }}</span></a></li>
                   <li class="callback-section-header">
                        <div class="callback-phone">

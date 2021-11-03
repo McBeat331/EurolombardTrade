@@ -322,7 +322,7 @@ const departmentsLocationInMap = () => {
     }
 
   let $cityItems = $('#city_id');
-    let city_id = 2;
+
     let lang = '';
 
     if (city_id!='empty') {

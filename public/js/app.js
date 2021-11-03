@@ -6156,7 +6156,6 @@ var departmentsLocationInMap = function departmentsLocationInMap() {
   }
 
   var $cityItems = $('#city_id');
-  var city_id = 2;
   var lang = '';
 
   if (city_id != 'empty') {

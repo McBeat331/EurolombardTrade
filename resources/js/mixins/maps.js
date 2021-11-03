@@ -38,7 +38,7 @@ const departmentsLocationInMap = () => {
     this.map = null;
     this.mapDiv = document.getElementById(mapID);
     this.mapData = this.mapDiv.dataset;
-    this.center = { lat: Number(this.mapData.lat), lng: Number(this.mapData.len) };
+    this.center = { lat: Number(this.mapData.lat), lng: Number(this.mapData.lng) };
 
     this.initMap = function(zoom) {
       zoom = zoom || 8;
@@ -88,7 +88,7 @@ const departmentsLocationInMap = () => {
       // Start markers array
       let markers = locations.map(function(item, i) {
         let marker =  new google.maps.Marker({
-          position: {lat: parseFloat(item.lat), lng: parseFloat(item.len)},
+          position: {lat: parseFloat(item.lat), lng: parseFloat(item.lng)},
           icon: '/img/marker.png'
         });
       // console.log(marker);
@@ -159,16 +159,6 @@ const departmentsLocationInMap = () => {
       });
       // End markers array
 
-      let markerCluster = new MarkerClusterer(this.map, markers, {
-        // imagePath: 'img/cluster-image',
-        styles: [{
-          url: '/img/cluster-image.png',
-          width: 50,
-          height: 50,
-          textColor: '#2F2483',
-          textSize: 12
-        }],
-      });
     }
     // end setCluster
   }
@@ -221,7 +211,6 @@ const departmentsLocationInMap = () => {
       {
           lang = '/'+globalFunctions.getLanguage();
       }
-      console.log(window.location.origin);
     xhr.open('GET', window.location.origin +lang+'/get-departments/', true);
     xhr.send();
     xhr.onreadystatechange = function() {
@@ -323,34 +312,34 @@ const departmentsLocationInMap = () => {
 
   let $cityItems = $('#city_id');
 
-    let lang = '';
-
-    if (city_id!='empty') {
-        if(globalFunctions.getLanguage()== 'ru')
-        {
-            lang = '/'+globalFunctions.getLanguage();
-        }
-        let mapDiv;
-        axios.get(window.location.origin +lang+'/get-departments?city=' + city_id).then(response => {
-            if ($('#departmentsMap').length)
-        {
-            var mapDiv = document.getElementById('departmentsMap');
-            mapDiv.dataset.lat = Number(response.data[0].lat);
-            mapDiv.dataset.len = Number(response.data[0].len);
-        }
-        initMap(response.data);
-        setDepartmentsList(response.data);
-    })
-    .catch(error => {
-            console.log(error);
-    })
-        ;
-    }
-    else {
-        loadLocations();
-    }
   $cityItems.on('change', function(e) {
+      let city_id = this.value;
+      let lang = '';
 
+      if (city_id!='empty') {
+          if(globalFunctions.getLanguage()== 'ru')
+          {
+              lang = '/'+globalFunctions.getLanguage();
+          }
+          let mapDiv;
+          axios.get(window.location.origin +lang+'/departments/get-departments?city=' + city_id).then(response => {
+              if ($('#departmentsMap').length)
+                  {
+                      var mapDiv = document.getElementById('departmentsMap');
+                      mapDiv.dataset.lat = Number(response.data[0].lat);
+                      mapDiv.dataset.lng = Number(response.data[0].lng);
+                  }
+            initMap(response.data);
+            setDepartmentsList(response.data);
+          })
+          .catch(error => {
+              console.log(error);
+          })
+          ;
+      }
+      else {
+          loadLocations();
+      }
   });
 
   loadLocations();

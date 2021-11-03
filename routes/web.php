@@ -29,6 +29,7 @@ Route::group(['prefix' => parseLocale(),'where' => ['locale' => '[a-z]{2}'],'mid
     Route::get('contact', [App\Http\Controllers\ContactController::class, 'show'])->name('contact.show');
     Route::get('review', [App\Http\Controllers\ReviewController::class, 'index'])->name('review.index');
     Route::post('review', [App\Http\Controllers\ReviewController::class, 'store'])->name('review.store');
+    Route::get('get-departments',  [App\Http\Controllers\ContactController::class, 'getDepartments'])->name('departments.getDepartments');
 });
 
 Route::post('order', [App\Http\Controllers\OrderController::class,'add']);

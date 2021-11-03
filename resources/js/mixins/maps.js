@@ -38,7 +38,7 @@ const departmentsLocationInMap = () => {
     this.map = null;
     this.mapDiv = document.getElementById(mapID);
     this.mapData = this.mapDiv.dataset;
-    this.center = { lat: Number(this.mapData.lat), lng: Number(this.mapData.lng) };  
+    this.center = { lat: Number(this.mapData.lat), lng: Number(this.mapData.len) };
 
     this.initMap = function(zoom) {
       zoom = zoom || 8;
@@ -68,7 +68,7 @@ const departmentsLocationInMap = () => {
         //  {"featureType": "water", "elementType": "labels.text.fill", "stylers": [{"color": "#3d3d3d"}]}
         //],
       });
-    
+
     }
   }
 
@@ -85,10 +85,10 @@ const departmentsLocationInMap = () => {
     }
     // start setCluster
     this.setCluster = function() {
-      // Start markers array 
+      // Start markers array
       let markers = locations.map(function(item, i) {
         let marker =  new google.maps.Marker({
-          position: {lat: parseFloat(item.lat), lng: parseFloat(item.lng)},
+          position: {lat: parseFloat(item.lat), lng: parseFloat(item.len)},
           icon: '/img/marker.png'
         });
       // console.log(marker);
@@ -120,7 +120,7 @@ const departmentsLocationInMap = () => {
           content: `<div>${item.number}</div>`
         });
         // End info Windows
-      
+
         // Start Event listeners
         google.maps.event.addListener(marker, 'click', function() {
           // console.log("click");
@@ -135,30 +135,30 @@ const departmentsLocationInMap = () => {
           //   $lombardMapImage.hide();
           // }
           // end style image if noload
-          currentMark = infoWindow;   
+          currentMark = infoWindow;
           // start show close btn
           $('.lombard-map__image-wrapper').closest('.gm-style-iw').next().show();
           // end show close btn
         });
-      
+
 /*         google.maps.event.addListener(marker, 'mouseover', function() {
           if (currentMark) return;
           hoverInfoWindow.open(this.map, marker);
         }); */
-      
+
   /*       google.maps.event.addListener(marker, 'mouseout', function() {
           hoverInfoWindow.close();
         }); */
-      
+
         google.maps.event.addListener(infoWindow, 'closeclick', function() {
           currentMark = null;
         });
         // End Event listeners
-      
+
         return marker;
       });
       // End markers array
-            
+
       let markerCluster = new MarkerClusterer(this.map, markers, {
         // imagePath: 'img/cluster-image',
         styles: [{
@@ -175,7 +175,7 @@ const departmentsLocationInMap = () => {
 
   function CreateMapDepartment(mapID) {
     CreateMap.apply(this, arguments);
-  
+
     this.setMarker = function() {
       let marker =  new google.maps.Marker({
         position: this.center,
@@ -195,7 +195,7 @@ const departmentsLocationInMap = () => {
       if ( ! $('#departmentsMap').length ) return;
       departmentsMap = new CreateMapDepartments('departmentsMap', locations);
       departmentsMap.initMap();
-      departmentsMap.setCluster();    
+      departmentsMap.setCluster();
     }());
     // end departments
 
@@ -212,7 +212,7 @@ const departmentsLocationInMap = () => {
   function locationZoom(location) {
     departmentsMap.panZoom(location);
   }
-  
+
   // XMLHttpRequest for map's json template
   function loadLocations() {
     var xhr = new XMLHttpRequest();
@@ -221,7 +221,7 @@ const departmentsLocationInMap = () => {
       {
           lang = '/'+globalFunctions.getLanguage();
       }
-    xhr.open('GET', window.location.origin +lang+'/departments/get-departments/', true);
+    xhr.open('GET', window.location.origin +lang+'/get-departments/', true);
     xhr.send();
     xhr.onreadystatechange = function() {
 
@@ -231,14 +231,14 @@ const departmentsLocationInMap = () => {
         return;
       } else {
 
-      
+
         try {
           var locations = JSON.parse(xhr.responseText);
             if ($('#departmentsMap').length )
             {
                 var mapDiv = document.getElementById('departmentsMap');
                 mapDiv.dataset.lat = Number(locations[0].lat);
-                mapDiv.dataset.lng = Number(locations[0].lng);
+                mapDiv.dataset.lng = Number(locations[0].len);
             }
 
             initMap(locations);
@@ -321,35 +321,35 @@ const departmentsLocationInMap = () => {
     }
 
   let $cityItems = $('#city_id');
+    let city_id = 2;
+    let lang = '';
 
+    if (city_id!='empty') {
+        if(globalFunctions.getLanguage()== 'ru')
+        {
+            lang = '/'+globalFunctions.getLanguage();
+        }
+        let mapDiv;
+        axios.get(window.location.origin +lang+'/get-departments?city=' + city_id).then(response => {
+            if ($('#departmentsMap').length)
+        {
+            var mapDiv = document.getElementById('departmentsMap');
+            mapDiv.dataset.lat = Number(response.data[0].lat);
+            mapDiv.dataset.len = Number(response.data[0].len);
+        }
+        initMap(response.data);
+        setDepartmentsList(response.data);
+    })
+    .catch(error => {
+            console.log(error);
+    })
+        ;
+    }
+    else {
+        loadLocations();
+    }
   $cityItems.on('change', function(e) {
-      let city_id = this.value;
-      let lang = '';
 
-      if (city_id!='empty') {
-          if(globalFunctions.getLanguage()== 'ru')
-          {
-              lang = '/'+globalFunctions.getLanguage();
-          }
-          let mapDiv;
-          axios.get(window.location.origin +lang+'/departments/get-departments?city=' + city_id).then(response => {
-              if ($('#departmentsMap').length)
-                  {
-                      var mapDiv = document.getElementById('departmentsMap');
-                      mapDiv.dataset.lat = Number(response.data[0].lat);
-                      mapDiv.dataset.lng = Number(response.data[0].lng);
-                  }
-            initMap(response.data);
-            setDepartmentsList(response.data);
-          })
-          .catch(error => {
-              console.log(error);
-          })
-          ;
-      }
-      else {
-          loadLocations();
-      }
   });
 
   loadLocations();

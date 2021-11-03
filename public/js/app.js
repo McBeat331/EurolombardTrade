@@ -4723,9 +4723,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "lang": () => (/* reexport safe */ _lang__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */   "lang": () => (/* reexport safe */ _lang__WEBPACK_IMPORTED_MODULE_0__["default"]),
+/* harmony export */   "departmentsLocationInMap": () => (/* reexport safe */ _maps__WEBPACK_IMPORTED_MODULE_1__["default"])
 /* harmony export */ });
 /* harmony import */ var _lang__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lang */ "./resources/js/mixins/lang.js");
+/* harmony import */ var _maps__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./maps */ "./resources/js/mixins/maps.js");
+
 
 
 var site = null;
@@ -5505,6 +5508,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         // }
       },
       domReady: function domReady() {
+        (0,_maps__WEBPACK_IMPORTED_MODULE_1__["default"])();
         fn.toggleScrollTopButton();
         fn.handlerScrollTopPage();
         fn.visibleViewportContent();
@@ -5875,6 +5879,312 @@ var lang = {
   }
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (lang);
+
+/***/ }),
+
+/***/ "./resources/js/mixins/maps.js":
+/*!*************************************!*\
+  !*** ./resources/js/mixins/maps.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var departmentsLocationInMap = function departmentsLocationInMap() {
+  var globalVariables = {
+    messages: []
+  };
+  var globalFunctions = {};
+
+  globalFunctions.getLanguage = function () {
+    return document.body.dataset.locale;
+  };
+
+  globalVariables.messages = {
+    successResponse: globalFunctions.getLanguage() === 'ru' ? 'Спасибо! ваша заявка принята!' : 'Дякуємо! Ваша заявка прийнята!',
+    successDescr: globalFunctions.getLanguage() === 'ru' ? 'Мы свяжемся с вами в ближайшее время.' : "Ми зв'яжемося з вами найближчим часом.",
+    errorResponse: globalFunctions.getLanguage() === 'ru' ? 'Ошибка!' : 'Помилка!',
+    errorResponseGadgets: globalFunctions.getLanguage() === 'ru' ? 'Для просчета стоимости рекомендуем обратиться по адресу ближайшего отделения.' : 'Для розрахунку вартості радимо звернутись за адресою найближчого відділення.',
+    errorDescr: globalFunctions.getLanguage() === 'ru' ? 'Попробуйте еще раз' : 'спробуйте ще раз',
+    errorDescr400: globalFunctions.getLanguage() === 'ru' ? 'Превышена максимальная сумма' : 'Перевищено максимальну суму',
+    yes: globalFunctions.getLanguage() === 'ru' ? 'Да' : 'Так',
+    no: globalFunctions.getLanguage() === 'ru' ? 'Нет' : 'Нi',
+    gold: globalFunctions.getLanguage() === 'ru' ? 'Золото' : 'Золото',
+    silver: globalFunctions.getLanguage() === 'ru' ? 'Серебро' : 'Срiбло',
+    departament: globalFunctions.getLanguage() === 'ru' ? 'Отделение' : 'Відділення',
+    isPhoto: globalFunctions.getLanguage() === 'ru' ? 'Необходимо добавить фото изделия' : 'Необхідно завантажити фото виробу',
+    transported_to: globalFunctions.getLanguage() === 'ru' ? 'Перенесено в №' : 'Перенесено до №',
+    find_nothing: globalFunctions.getLanguage() === 'ru' ? 'Ничего не найдено!' : 'Нічого не знайдено!',
+    around_the_clock: globalFunctions.getLanguage() === 'ru' ? 'Круглосуточно' : 'Цілодобово',
+    work_time: globalFunctions.getLanguage() === 'ru' ? 'Время работы' : 'Час роботи',
+    phone: globalFunctions.getLanguage() === 'ru' ? 'Телефон' : 'Телефон'
+  };
+
+  function CreateMap(mapID) {
+    this.map = null;
+    this.mapDiv = document.getElementById(mapID);
+    this.mapData = this.mapDiv.dataset;
+    this.center = {
+      lat: Number(this.mapData.lat),
+      lng: Number(this.mapData.len)
+    };
+
+    this.initMap = function (zoom) {
+      zoom = zoom || 8;
+      this.map = new google.maps.Map(this.mapDiv, {
+        center: this.center,
+        zoom: zoom //styles:  [
+        //  {"elementType": "geometry", "stylers": [{ "color": "#2f3a83"}]},/* * */
+        //  {"elementType": "labels.icon", "stylers": [{"visibility": "off"}]},
+        //  {"elementType": "labels.text.fill", "stylers": [{"color": "#80b2ab"}]},/* * */
+        //  {"elementType": "labels.text.stroke", "stylers": [{"color": "#212121"}]}, /* * */
+        //  {"featureType": "administrative", "elementType": "geometry", "stylers": [{"color": "#80b2ab"}]},/* * */
+        //  {"featureType": "administrative.country", "elementType": "labels.text.fill", "stylers": [{"color": "#9e9e9e"}]},
+        //  {"featureType": "administrative.land_parcel", "stylers": [{"visibility": "off"}]},
+        //  {"featureType": "administrative.locality", "elementType": "labels.text.fill", "stylers": [{"color": "#80b2ab"}]}, /*  */
+        //  {"featureType": "poi", "elementType": "labels.text.fill", "stylers": [{"color": "#80b2ab"}]},/* * */
+        //  {"featureType": "poi.park", "elementType": "geometry", "stylers": [{"color": "#2f3e83"}]}, /*  */
+        //  {"featureType": "poi.park", "elementType": "labels.text.fill", "stylers": [{"color": "#80b2ab"}]}, /*  */
+        //  {"featureType": "road", "elementType": "geometry.fill", "stylers": [{"color": "#2f4b83"}]}, /*  */
+        //  {"featureType": "road", "elementType": "labels.text.fill", "stylers": [{"color": "#8a8a8a"}]},
+        //  {"featureType": "road.arterial", "elementType": "geometry", "stylers": [{"color": "#2f5783"}]}, /* * */
+        //  {"featureType": "road.highway", "elementType": "geometry", "stylers": [{"color": "#2f4b83"}]}, /*  */
+        //  {"featureType": "road.highway.controlled_access", "elementType": "geometry", "stylers": [{"color": "#4e4e4e"}]},
+        //  {"featureType": "road.local", "elementType": "labels.text.fill", "stylers": [{"color": "#80b2ab"}]}, /*  */
+        //  {"featureType": "transit", "elementType": "labels.text.fill", "stylers": [{"color": "#80b2ab" }]},/* * */
+        //  {"featureType": "water", "elementType": "geometry", "stylers": [{"color": "#2f2483"}]},
+        //  {"featureType": "water", "elementType": "labels.text.fill", "stylers": [{"color": "#3d3d3d"}]}
+        //],
+
+      });
+    };
+  }
+
+  function CreateMapDepartments(mapID, locations) {
+    CreateMap.apply(this, arguments);
+    var infoWindows = [];
+    var currentMark = null;
+
+    this.panZoom = function () {
+      console.log('qqqq');
+      this.map.panTo({
+        lat: -25.363882,
+        lng: 131.044922
+      });
+    }; // start setCluster
+
+
+    this.setCluster = function () {
+      // Start markers array
+      var markers = locations.map(function (item, i) {
+        var marker = new google.maps.Marker({
+          position: {
+            lat: parseFloat(item.lat),
+            lng: parseFloat(item.len)
+          },
+          icon: '/img/marker.png'
+        }); // console.log(marker);
+        // Start info Windows
+
+        var infoWindow = new google.maps.InfoWindow({
+          content: "\n          <div class=\"lombard-map__city\">".concat(item.city_location, "</div>\n          <div class=\"lombard-map__street\">").concat(item['address_' + globalFunctions.getLanguage()], "</div>\n          <div class=\"lombard-map__image-wrapper\">\n            <img class=\"lombard-map__image\" src=\"").concat(item.image_path, "\">\n          </div>\n          <div class=\"lombard-map__description-time\">").concat(globalVariables.messages.work_time, "</div>\n          <div class=\"lombard-map__work-time\">\n            ").concat(item.hasOwnProperty('time_start') && item.time_start !== null && item.full_day === null ? item.time_start : '', " \n            ").concat(item.hasOwnProperty('time_end') && item.time_end !== null && item.full_day === null ? '- ' + item.time_end : '', " \n            ").concat(item.hasOwnProperty('full_day') && item.full_day !== null ? globalVariables.messages.around_the_clock : '', "\n          </div>\n          <div class=\"lombard-map__description-phone\">").concat(globalVariables.messages.phone, "</div>\n          <div class=\"lombard-map__phone\">\n            <a href=\"tel:").concat(item.phone, "\">").concat(item.phone, "</a>\n          </div>\n\n          \n          "),
+          width: 350
+        });
+        infoWindows.push(infoWindow);
+        var hoverInfoWindow = new google.maps.InfoWindow({
+          content: "<div>".concat(item.number, "</div>")
+        }); // End info Windows
+        // Start Event listeners
+
+        google.maps.event.addListener(marker, 'click', function () {
+          // console.log("click");
+          for (var _i = 0; _i < infoWindows.length; _i++) {
+            infoWindows[_i].close();
+          }
+
+          hoverInfoWindow.close();
+          infoWindow.open(this.map, marker); // start style image if noload
+          // let $lombardMapImage = $('.lombard-map__image');
+          // if( $lombardMapImage.outerWidth() < 50) {
+          //   $lombardMapImage.hide();
+          // }
+          // end style image if noload
+
+          currentMark = infoWindow; // start show close btn
+
+          $('.lombard-map__image-wrapper').closest('.gm-style-iw').next().show(); // end show close btn
+        });
+        /*         google.maps.event.addListener(marker, 'mouseover', function() {
+                  if (currentMark) return;
+                  hoverInfoWindow.open(this.map, marker);
+                }); */
+
+        /*       google.maps.event.addListener(marker, 'mouseout', function() {
+                hoverInfoWindow.close();
+              }); */
+
+        google.maps.event.addListener(infoWindow, 'closeclick', function () {
+          currentMark = null;
+        }); // End Event listeners
+
+        return marker;
+      }); // End markers array
+
+      var markerCluster = new MarkerClusterer(this.map, markers, {
+        // imagePath: 'img/cluster-image',
+        styles: [{
+          url: '/img/cluster-image.png',
+          width: 50,
+          height: 50,
+          textColor: '#2F2483',
+          textSize: 12
+        }]
+      });
+    }; // end setCluster
+
+  }
+
+  function CreateMapDepartment(mapID) {
+    CreateMap.apply(this, arguments);
+
+    this.setMarker = function () {
+      var marker = new google.maps.Marker({
+        position: this.center,
+        map: this.map,
+        icon: '/img/marker.png'
+      });
+    };
+  }
+
+  var departmentsMap;
+
+  function initMap(locations) {
+    // console.log('initMap()');
+    // departments
+    (function () {
+      if (!$('#departmentsMap').length) return;
+      departmentsMap = new CreateMapDepartments('departmentsMap', locations);
+      departmentsMap.initMap();
+      departmentsMap.setCluster();
+    })(); // end departments
+    // department
+
+
+    (function () {
+      if (!$('#departmentMap').length) return;
+      var departmentMap = new CreateMapDepartment('departmentMap');
+      departmentMap.initMap();
+      departmentMap.setMarker();
+    })(); // end department
+
+  }
+
+  ;
+
+  function locationZoom(location) {
+    departmentsMap.panZoom(location);
+  } // XMLHttpRequest for map's json template
+
+
+  function loadLocations() {
+    var xhr = new XMLHttpRequest();
+    var lang = '';
+
+    if (globalFunctions.getLanguage() == 'ru') {
+      lang = '/' + globalFunctions.getLanguage();
+    }
+
+    xhr.open('GET', window.location.origin + lang + '/get-departments/', true);
+    xhr.send();
+
+    xhr.onreadystatechange = function () {
+      if (this.readyState != 4) return;
+
+      if (this.status != 200) {
+        console.log('ошибка: ' + (this.status ? this.statusText : 'запрос не удался'));
+        return;
+      } else {
+        try {
+          var locations = JSON.parse(xhr.responseText);
+
+          if ($('#departmentsMap').length) {
+            var mapDiv = document.getElementById('departmentsMap');
+            mapDiv.dataset.lat = Number(locations[0].lat);
+            mapDiv.dataset.lng = Number(locations[0].len);
+          }
+
+          initMap(locations);
+          setDepartmentsList(locations);
+        } catch (e) {
+          console.log("Некорректный ответ " + e.message);
+        }
+      }
+    };
+  }
+
+  ; // End XMLHttpRequest for map's json template
+
+  function setDepartmentsList(data) {
+    var $departmentsListBlock = $('.departments-list-block');
+    var itemsHTML = '';
+    data.map(function (item) {
+      var _makeDepartmentInfoFi = makeDepartmentInfoFieldsFromItem(item),
+          transportedField = _makeDepartmentInfoFi.transportedField,
+          phoneField = _makeDepartmentInfoFi.phoneField,
+          workTimeField = _makeDepartmentInfoFi.workTimeField;
+
+      itemsHTML += "\n                    <div class=\"departments-item\">\n    \n                        <div class=\"departments-item__img\">\n                          <img src=\"".concat(item.image_path, "\">\n                        </div>\n                        \n                        <div class=\"departments-item__location departments-item__wrap\">\n                          <div class=\"departments-item__title\">").concat(item.hasOwnProperty('city_location') ? item.city_location : '', "</div>\n                          <div class=\"departments-item__descr\"> ").concat(item['address_' + globalFunctions.getLanguage()], "</div>\n                        </div>\n    \n                        <div class=\"departments-item__time departments-item__wrap\">\n                          <div class=\"departments-item__title\">").concat(globalVariables.messages.work_time, "</div>\n                          <div class=\"departments-item__descr\">\n                            ").concat(workTimeField, "\n                        </div>\n                        </div>\n                        \n                        <div class=\"departments-item__phone departments-item__wrap\">\n                          <div class=\"departments-item__title\">").concat(globalVariables.messages.phone, "</div>\n                          <div class=\"departments-item__descr\">\n                            <a href=\"tel:").concat(phoneField, "\">").concat(phoneField, "</a>\n                          </div>\n                        </div>\n    \n                    </div>\n                    ");
+    });
+    $departmentsListBlock.html(itemsHTML);
+  }
+
+  ;
+
+  function makeDepartmentInfoFieldsFromItem(item) {
+    var transportedField = item.transported ? "\n            ".concat(globalVariables.messages.transported_to, "\n            ").concat(item.temporary_office.number, " \n            ").concat(item.temporary_office.hasOwnProperty('address_ru') ? item.temporary_office.address_ru : item.temporary_office.address_uk, "\n            ") : '';
+    var phoneField = item.transported ? item.temporary_office.phone : item.phone;
+    var workTimeField = item.transported ? "\n            ".concat(item.temporary_office.hasOwnProperty('time_start') && item.temporary_office.time_start !== null && item.temporary_office.full_day === null ? item.temporary_office.time_start : '', " \n            ").concat(item.temporary_office.hasOwnProperty('time_end') && item.temporary_office.time_end !== null && item.temporary_office.full_day === null ? '- ' + item.temporary_office.time_end : '', " \n            ").concat(item.temporary_office.hasOwnProperty('full_day') && item.temporary_office.full_day !== null ? globalVariables.messages.around_the_clock : '', "\n            ") : "\n            ".concat(item.hasOwnProperty('time_start') && item.time_start !== null && item.full_day === null ? item.time_start : '', " \n            ").concat(item.hasOwnProperty('time_end') && item.time_end !== null && item.full_day === null ? '- ' + item.time_end : '', " \n            ").concat(item.hasOwnProperty('full_day') && item.full_day !== null ? globalVariables.messages.around_the_clock : '', "\n            ");
+    return {
+      transportedField: transportedField,
+      phoneField: phoneField,
+      workTimeField: workTimeField
+    };
+  }
+
+  var $cityItems = $('#city_id');
+  var city_id = 2;
+  var lang = '';
+
+  if (city_id != 'empty') {
+    if (globalFunctions.getLanguage() == 'ru') {
+      lang = '/' + globalFunctions.getLanguage();
+    }
+
+    var mapDiv;
+    axios.get(window.location.origin + lang + '/get-departments?city=' + city_id).then(function (response) {
+      if ($('#departmentsMap').length) {
+        var mapDiv = document.getElementById('departmentsMap');
+        mapDiv.dataset.lat = Number(response.data[0].lat);
+        mapDiv.dataset.len = Number(response.data[0].len);
+      }
+
+      initMap(response.data);
+      setDepartmentsList(response.data);
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  } else {
+    loadLocations();
+  }
+
+  $cityItems.on('change', function (e) {});
+  loadLocations();
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (departmentsLocationInMap);
 
 /***/ }),
 

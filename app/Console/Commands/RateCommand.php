@@ -66,7 +66,7 @@ class RateCommand extends Command
             if(!in_array($city['id'], $citiesApiIDs)){
                 $cityCreate = [
                     'api_id' => $city['id'],
-                    'name'=>['ru' => $city['name']]
+                    'name'=>['ru' => $city['name'],'uk' => $city['name']]
                 ];
                 $cityEntry = $this->cityService->add($cityCreate);
 

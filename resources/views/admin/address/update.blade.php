@@ -44,7 +44,7 @@
                                     <select name="city_id" id="city" class="form-control" data-placeholder="Выберите город">
                                         <option value="0">Выберите город</option>
                                         @foreach($cities as $city)
-                                            <option value="{{$city->id}}" @if($entry && $city->id == $entry->city_id) selected  @endif>{{$city->name}}</option>
+                                            <option value="{{$city->id}}" @if(isset($entry) && $city->id == $entry->city_id) selected  @endif>{{$city->name}}</option>
 
                                         @endforeach
                                     </select>

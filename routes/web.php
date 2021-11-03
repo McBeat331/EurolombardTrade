@@ -29,6 +29,7 @@ Route::group(['prefix' => parseLocale(),'where' => ['locale' => '[a-z]{2}'],'mid
     Route::get('contact', [App\Http\Controllers\ContactController::class, 'show'])->name('contact.show');
     Route::get('review', [App\Http\Controllers\ReviewController::class, 'index'])->name('review.index');
     Route::post('review', [App\Http\Controllers\ReviewController::class, 'store'])->name('review.store');
+    Route::get('get-departments',  [App\Http\Controllers\ContactController::class, 'getDepartments'])->name('departments.getDepartments');
 });
 
 Route::post('order', [App\Http\Controllers\OrderController::class,'add']);
@@ -42,7 +43,7 @@ Route::get('order', [App\Http\Controllers\OrderController::class,'show']);
 
 Route::name('admin.')->prefix('admin')->middleware('isAdmin')->group(function(){
     Route::get('/', [App\Http\Controllers\Admin\DashboardController::class,'index'])->name('main');
-
+    Route::get('logout', [LoginController::class,'logout'])->name('logout');
     Route::resource('advantage', App\Http\Controllers\Admin\AdvantageController::class);
     Route::resource('address', App\Http\Controllers\Admin\AddressController::class);
     Route::resource('city', App\Http\Controllers\Admin\CityController::class);

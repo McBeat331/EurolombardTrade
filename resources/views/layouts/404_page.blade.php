@@ -52,9 +52,6 @@
         <div id="app" class="page">
             @yield('content')
         </div>
-        @if(Route::currentRouteName() != '404')
-            @include('layouts.footers.footer-front')
-        @endif
     </div>
 </div>
 

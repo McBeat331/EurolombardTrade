@@ -71,6 +71,32 @@ header.mainHeader {
         color: #000;
         font-weight: 700;
       }
+      &.telegramLink
+      {
+        a
+        {
+          background: #0088CC;
+          border-radius: 3px;
+          padding: 6px;
+          font-family: $mainFont;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 14px;
+          line-height: 18px;
+          text-align: center;
+          color: #FFFFFF;
+          display: inline-flex;
+          align-items: center;
+          .telegramImg
+          {
+            margin-right: 5px;
+            img
+            {
+              max-width: 19px;
+            }
+          }
+        }
+      }
     }
     .nav-item_submenu {
       list-style: none;

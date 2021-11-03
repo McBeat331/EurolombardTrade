@@ -1,8 +1,9 @@
 import lang from './lang';
-
+import departmentsLocationInMap from './maps';
 
 export {
     lang,
+    departmentsLocationInMap,
 }
 
 
@@ -18,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     site = (function () {
 
         const win = window,
+
             dom = document,
             body = document.body,
             $thisPage = $(".mainWrapper"),
@@ -903,6 +905,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             },
 
             domReady() {
+                departmentsLocationInMap();
                 fn.toggleScrollTopButton();
                 fn.handlerScrollTopPage();
                 fn.visibleViewportContent();

@@ -13,10 +13,6 @@
           <div class="formRow">
               <input name="phone" type="tel" placeholder="{{ trans('main.your_phone') }}" data-validate="required" data-error-text="{{ __('main.field_required') }}" required>
           </div>
-          <div class="formRow input-none">
-              <input name="text" type="text" class="form-item" placeholder="{{ __('main.your_text') }}"
-                   data-error-text="{{ __('main.field_required') }}">
-          </div>
               <button class="button">{{ trans('main.send') }}</button>
       </form>
       <div class="description-form">

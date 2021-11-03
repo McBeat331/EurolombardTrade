@@ -93,6 +93,7 @@ return [
     'cources' =>'Курси',
     'ourServices'=>'Наші послуги',
     'ourAdvantages'=>'Наші переваги',
+    'ourTelegram' => 'Наш телеграм канал',
     'contacts'=>'Контакти',
     'call_drop_title' => 'Зворотнiй зв’язок',
     'about_us' => 'Про нас',

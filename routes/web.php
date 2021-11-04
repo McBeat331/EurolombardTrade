@@ -29,7 +29,7 @@ Route::group(['prefix' => parseLocale(),'where' => ['locale' => '[a-z]{2}'],'mid
     Route::get('contact', [App\Http\Controllers\ContactController::class, 'show'])->name('contact.show');
     Route::get('review', [App\Http\Controllers\ReviewController::class, 'index'])->name('review.index');
     Route::post('review', [App\Http\Controllers\ReviewController::class, 'store'])->name('review.store');
-    Route::get('get-departments',  [App\Http\Controllers\ContactController::class, 'getDepartments'])->name('departments.getDepartments');
+//    Route::get('get-departments',  [App\Http\Controllers\ContactController::class, 'getDepartments'])->name('departments.getDepartments');
 });
 
 Route::post('order', [App\Http\Controllers\OrderController::class,'add']);
@@ -61,5 +61,6 @@ Route::name('admin.')->prefix('admin')->middleware('isAdmin')->group(function(){
 
 Route::name('ajax.')->prefix('ajax')->group(function() {
     Route::post('getRatesByCity', [\App\Http\Controllers\AddressController::class, 'getRatesByCity'])->name('getRatesByCity');
+    Route::post('getCityCurrent', [\App\Http\Controllers\AddressController::class, 'getCityCurrent'])->name('getCityCurrent');
     Route::post('getCities', [\App\Http\Controllers\AddressController::class, 'getCities'])->name('getCities');
 });

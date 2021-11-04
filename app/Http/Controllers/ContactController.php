@@ -32,28 +32,21 @@ class ContactController extends Controller
     public function show()
     {
         $settings = $this->settingService->getAll();
-
         $currentCity = $this->rateJob->selectedCity();
-        $cities = $this->cityService->getPaginate();
 
-//        $phone = $this->settingService->getField('phone'); // or null
-        /*dd(
-            $settings,
-            $currentCity
-        );*/
-        return view('contacts.contact', compact('settings', 'currentCity', 'cities'));
+        return view('contacts.contact', compact('settings','currentCity'));
     }
 
-    public function getDepartments(Request $request)
-    {
-        if($request->get('city_id'))
-        {
-            $entries = $this->addressService->getAll();
-            return response()->json($entries, '200');
-        }
-        else{
-            $entries = $this->addressService->getAll();
-            return response()->json($entries, '200');
-        }
-    }
+//    public function getDepartments(Request $request)
+//    {
+//        if($request->get('city_id'))
+//        {
+//            $entries = $this->addressService->getAll();
+//            return response()->json($entries, '200');
+//        }
+//        else{
+//            $entries = $this->addressService->getAll();
+//            return response()->json($entries, '200');
+//        }
+//    }
 }

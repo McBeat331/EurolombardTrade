@@ -43,6 +43,7 @@ class ContactController extends Controller
         );*/
         return view('contacts.contact', compact('settings', 'currentCity', 'cities'));
     }
+
     public function getDepartments(Request $request)
     {
         if($request->get('city_id'))

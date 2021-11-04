@@ -24,23 +24,22 @@ class OrderClientRequest extends FormRequest
     public function rules()
     {
         return [
-            //'user_id' => 'required|integer',
             'rate_id' => 'required',
-            'address_id' => 'required|integer',
+            'isOpt' => 'required|integer',
 
-            'currency_from' => 'required|string',
-            'currency_to' => 'required|string',
+            'currency_sale' => 'required|string',
+            'currency_buy' => 'required|string',
 
-            'rate_from' => 'required',
-            'rate_to' => 'required',
+            'rate_sale' => 'required',
+            'rate_buy' => 'required',
 
-            'price_from' => 'required',
-            'price_to' => 'required',
+            'price_sale' => 'required',
+            'price_buy' => 'required',
 
             'status' => 'required|integer',
             'fio' => 'required',
             'email' => 'required|email',
-            'phone' => 'nullable'
+            'phone' => 'required'
         ];
     }
 }

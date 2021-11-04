@@ -37,7 +37,7 @@
                             <i class="ti-layout-grid2 text-pink border-pink"></i>
                         </div>
                         <div class="stat-content d-inline-block">
-                            <div class="stat-text">Комментариев</div>
+                            <div class="stat-text">Отзывов</div>
                             <div class="stat-digit">{{ $reviewsCount }}</div>
                         </div>
                     </div>

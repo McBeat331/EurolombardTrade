@@ -28,11 +28,20 @@ class AddressController extends Controller
 
     public function getCities(Request $request)
     {
-        $cities = $this->rateJob->allCities();
+        $entries = $this->rateJob->allCities();
 
         return response()->json([
             'success' => true,
-            'data' => $cities->toArray()
+            'data' => $entries->toArray()
+        ], 200);
+    }
+
+    public function getCityCurrent(Request $request){
+        $entry = $this->rateJob->selectedCity();
+
+        return response()->json([
+            'success' => true,
+            'data' => $entry->toArray()
         ], 200);
     }
 }

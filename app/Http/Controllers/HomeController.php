@@ -14,7 +14,6 @@ class HomeController extends Controller
     private $serviceService;
     private $advantageService;
     private $reviewService;
-    private $rateJob;
 
     public function __construct(
         AdvantageService $advantageService,
@@ -26,7 +25,6 @@ class HomeController extends Controller
         $this->advantageService = $advantageService;
         $this->serviceService = $serviceService;
         $this->reviewService = $reviewService;
-        $this->rateJob = $rateJob;
     }
 
     public function main()

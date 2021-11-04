@@ -21,7 +21,7 @@ class OrderService
         $this->orderModel = $orderModel;
     }
 
-    public function getFind($id, $relations = ['address.city','user'])
+    public function getFind($id, $relations = ['city'])
     {
         return $this->orderModel
             ->where('id', $id)
@@ -30,7 +30,7 @@ class OrderService
     }
 
 
-    public function getAll($relations = ['address.city','user'])
+    public function getAll($relations = ['city'])
     {
         return $this->orderModel
             ->with($relations)
@@ -38,14 +38,14 @@ class OrderService
             ->get();
     }
 
-    public function getPaginate($relations = ['address.city','user'])
+    public function getPaginate($relations = ['city'])
     {
         return $this->orderModel
             ->with($relations)
             ->orderBy('created_at','DESC')
             ->paginate(Order::PAGINATE);
     }
-    public function getLimit($limit = 20,$relations = ['address.city','user'])
+    public function getLimit($limit = 20,$relations = ['city'])
     {
         return $this->orderModel
             ->with($relations)

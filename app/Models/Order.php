@@ -17,27 +17,27 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = [
-        //'user_id',
-        'address_id',
-        'currency_from',
-        'rate_from',
-        'price_from',
-        'currency_to',
-        'rate_to',
-        'price_to',
+        'city_id',
+        'isOpt',
+        'currency_sale',
+        'currency_buy',
+        'rate_sale',
+        'rate_buy',
+        'price_sale',
+        'price_buy',
         'status',
         'fio',
         'email',
-        'phone'
+        'phone',
     ];
 
-    public function address()
+    public function city()
     {
-        return $this->belongsTo(Address::class,'address_id','id');
+        return $this->belongsTo(City::class,'city_id','id');
     }
 
-    public function user()
-    {
-        return $this->belongsTo(User::class,'user_id','id');
-    }
+//    public function user()
+//    {
+//        return $this->belongsTo(User::class,'user_id','id');
+//    }
 }

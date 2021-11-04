@@ -26,9 +26,10 @@ class OrderController extends Controller
 
     public function add(OrderClientRequest $request)
     {
+        $data = $this->addCityToData($request->all());
         $order = $this->orderService->add($request->all());
 
-        $this->rateJob->saveRateAfterOrder($request->get('rate_id'));
+        $this->rateJob->saveRateAfterOrder($data['rate_id']);
 
         $request->session()->put('order-last-id', $order->id);
         $request->session()->flash('alert-success', '');
@@ -56,5 +57,13 @@ class OrderController extends Controller
         session()->flash('alert-success', '');
 
         return redirect()->back();
+    }
+
+    private function addCityToData($data){
+        $cityCurrent = $this->rateJob->selectedCity();
+
+        $data['city_id'] = $cityCurrent->id;
+
+        return $data;
     }
 }

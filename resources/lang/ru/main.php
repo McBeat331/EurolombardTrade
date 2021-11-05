@@ -92,7 +92,7 @@ return [
     'developed_in' => 'Разработано в',
     'our_social' => 'Наши социальные сети',
     'our_contacts' => 'Наши контакты',
-    'all_rights_reserved' => 'Все права защищены © 2021 Евроломбард',
+    'all_rights_reserved' => 'Все права защищены © '.date("Y").' Є/Л Обмін',
 
     /*    меню     */
     'Rosrahuvati_loan' => 'Рассчитать кредит',

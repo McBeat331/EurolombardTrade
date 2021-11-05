@@ -1,0 +1,127 @@
+.selectCity
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+  .backgroundWrapper
+  {
+    background: #282828;
+    opacity: 0.5;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+  }
+  .section-input
+  {
+    margin: 0 auto;
+    display: inline-block;
+    position: relative;
+    z-index: 100;
+    .locationIco
+    {
+      position: absolute;
+      left: -28px;
+      top: 50%;
+      transform: translateY(-50%);
+      path{
+        fill: #2F2483;
+      }
+      &.active {
+        path{
+          fill: #FFC244;
+        }
+      }
+    }
+    .customSelect
+    {
+      border: 1px solid #C4C4C4;
+      box-sizing: border-box;
+      border-radius: 3px;
+      width: 220px;
+      height: 30px;
+      position: relative;
+      .chosen-single
+      {
+        font-size: 14px;
+        line-height: 28px;
+        color: #282828;
+        padding-left: 10px;
+        &.active {
+          color: #FFFFFF;
+        }
+      }
+      .dropdownSelect {
+        padding: 0;
+        max-height: 300px;
+        overflow: auto;
+        list-style: none;
+        position: absolute;
+        top: 20px;
+        z-index: 1010;
+        width: 100%;
+        border-radius: 3px;
+        border-top: 0;
+        background: #fff;
+        box-shadow: $cardShodow;
+        .option {
+          font-family: $secondaryFont;
+          padding: 5px 15px;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          a{
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 30px;
+            color: #151B3B;
+          }
+          strong
+          {
+            font-style: normal;
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 28px;
+            color: #151B3B;
+            margin:0 15px
+          }
+          &:hover, &:hover a {
+            background-color: $fifthColor;
+            font-weight: 500;
+          }
+        }
+        &::-webkit-scrollbar {
+          width: 3px;
+        }
+        &::-webkit-scrollbar-track {
+          background: #fff;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: #FFC244;
+          border-radius: 5px;
+        }
+
+      }
+      .icon-arrow-down-gray {
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        transform: translate(0, -8px);
+        &::before {
+          font-size: 12px;
+        }
+        &.active {
+          transform: rotate(-180deg) translate(1px, 8px);
+        }
+      }
+      .customSelect {
+        position: relative;
+      }
+    }
+  }
+
+}

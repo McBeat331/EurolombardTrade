@@ -48,8 +48,8 @@
     ***********************************-->
     <div class="nav-header">
         <a href="{{ route('admin.main') }}" class="brand-logo">
-            <img class="logo-compact" src="{{ asset('adminAssets/images/Logo_new.svg') }}" alt="">
-            <img class="brand-title" src="{{ asset('adminAssets/images/Logo_new.svg') }}" alt="">
+            <img class="logo-compact" src="{{ asset('adminAssets/images/logoEuroLombard.svg') }}" alt="">
+            <img class="brand-title" src="{{ asset('adminAssets/images/logoEuroLombard.svg') }}" alt="">
         </a>
 
         <div class="nav-control">

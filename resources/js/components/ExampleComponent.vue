@@ -47,8 +47,8 @@
             </div>
             <div class="rateItem" v-for="rate in options" :key="rate.id">
                 <div class="rateName">{{rate.currency_from}}/{{rate.currency_to}}</div>
-                <div class="rateBuy">{{rate.buy}}</div>
-                <div class="rateSale">{{rate.sale}}</div>
+                <div class="rateBuy">{{rate.buy.toFixed(3)}}</div>
+                <div class="rateSale">{{rate.sale.toFixed(3)}}</div>
                 <div class="rateModal"><button @click="showModals(rate.currency_from,rate.currency_to,0)" >Обміняти</button></div>
             </div>
         </div>
@@ -89,9 +89,6 @@
                 axios({
                     method: 'post',
                     url: '/ajax/getRatesByCity',
-                    data: {
-                        address_id: 1,
-                    },
                     headers: {
                         "Content-type": "application/x-www-form-urlencoded"
                     }

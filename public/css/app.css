@@ -2888,7 +2888,7 @@
   display: flex;
   justify-content: center;
   background-color: #000000da;
-  z-index: 10;
+  z-index: 101;
 }
 
 .modal {
@@ -2975,6 +2975,123 @@
   margin-top: 12px;
   margin-bottom: 12px;
   width: 30%;
+}
+
+.selectCity {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+}
+.selectCity .backgroundWrapper {
+  background: #282828;
+  opacity: 0.5;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+}
+.selectCity .section-input {
+  margin: 0 auto;
+  display: inline-block;
+  position: relative;
+  z-index: 100;
+}
+.selectCity .section-input .locationIco {
+  position: absolute;
+  left: -28px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.selectCity .section-input .locationIco path {
+  fill: #2F2483;
+}
+.selectCity .section-input .locationIco.active path {
+  fill: #FFC244;
+}
+.selectCity .section-input .customSelect {
+  border: 1px solid #C4C4C4;
+  box-sizing: border-box;
+  border-radius: 3px;
+  width: 220px;
+  height: 30px;
+  position: relative;
+}
+.selectCity .section-input .customSelect .chosen-single {
+  font-size: 14px;
+  line-height: 28px;
+  color: #282828;
+  padding-left: 10px;
+}
+.selectCity .section-input .customSelect .chosen-single.active {
+  color: #FFFFFF;
+}
+.selectCity .section-input .customSelect .dropdownSelect {
+  padding: 0;
+  max-height: 300px;
+  overflow: auto;
+  list-style: none;
+  position: absolute;
+  top: 20px;
+  z-index: 1010;
+  width: 100%;
+  border-radius: 3px;
+  border-top: 0;
+  background: #fff;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
+}
+.selectCity .section-input .customSelect .dropdownSelect .option {
+  font-family: "Roboto", sans-serif;
+  padding: 5px 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.selectCity .section-input .customSelect .dropdownSelect .option a {
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 30px;
+  color: #151B3B;
+}
+.selectCity .section-input .customSelect .dropdownSelect .option strong {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: #151B3B;
+  margin: 0 15px;
+}
+.selectCity .section-input .customSelect .dropdownSelect .option:hover, .selectCity .section-input .customSelect .dropdownSelect .option:hover a {
+  background-color: #EDEFF0;
+  font-weight: 500;
+}
+.selectCity .section-input .customSelect .dropdownSelect::-webkit-scrollbar {
+  width: 3px;
+}
+.selectCity .section-input .customSelect .dropdownSelect::-webkit-scrollbar-track {
+  background: #fff;
+}
+.selectCity .section-input .customSelect .dropdownSelect::-webkit-scrollbar-thumb {
+  background: #FFC244;
+  border-radius: 5px;
+}
+.selectCity .section-input .customSelect .icon-arrow-down-gray {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translate(0, -8px);
+}
+.selectCity .section-input .customSelect .icon-arrow-down-gray::before {
+  font-size: 12px;
+}
+.selectCity .section-input .customSelect .icon-arrow-down-gray.active {
+  transform: rotate(-180deg) translate(1px, 8px);
+}
+.selectCity .section-input .customSelect .customSelect {
+  position: relative;
 }
 
 body {

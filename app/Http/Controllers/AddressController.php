@@ -32,7 +32,7 @@ class AddressController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => $entries->toArray()
+            'data' => $entries
         ], 200);
     }
 
@@ -41,7 +41,7 @@ class AddressController extends Controller
 
         return response()->json([
             'success' => true,
-            'data' => $entry->toArray()
+            'data' => $entry
         ], 200);
     }
 }

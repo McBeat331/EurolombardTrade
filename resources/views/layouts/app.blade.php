@@ -45,16 +45,14 @@
 </head>
 <body>
 
-<div class="mainWrapper">
+<div id="app" class="mainWrapper">
     <div class="contentWrapper">
         @include('layouts.headers.header-front')
 
-        <div id="app" class="page">
+        <div class="page">
             @yield('content')
         </div>
-        @if(Route::currentRouteName() != '404')
-            @include('layouts.footers.footer-front')
-        @endif
+        @include('layouts.footers.footer-front')
     </div>
 </div>
 

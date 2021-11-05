@@ -32,7 +32,7 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required|string|min:3',
             'lastname' => 'nullable|string',
-            'phone' => 'nullable|integer',
+            'phone' => 'nullable',
             'email' => 'required|email|unique:users,email'.$update,
             'password' => $password
         ];

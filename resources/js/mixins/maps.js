@@ -210,12 +210,12 @@ const departmentsLocationInMap = () => {
       {
           lang = '/'+globalFunctions.getLanguage();
       }
-      axios.get(window.location.origin +lang+'/get-departments').then(response => {
+      axios.post(window.location.origin +lang+'/ajax/getCityCurrent').then(response => {
           if ($('#departmentsMap').length)
       {
           var mapDiv = document.getElementById('departmentsMap');
           mapDiv.dataset.lat = Number(response.data[0].lat);
-          mapDiv.dataset.lng = Number(response.data[0].lng);
+          mapDiv.dataset.lng = Number(response.data[0].len);
       }
       initMap(response.data);
       setDepartmentsList(response.data);
@@ -307,7 +307,7 @@ const departmentsLocationInMap = () => {
               lang = '/'+globalFunctions.getLanguage();
           }
           let mapDiv;
-          axios.get(window.location.origin +lang+'/departments/get-departments?city=' + city_id).then(response => {
+          axios.post(window.location.origin +lang+'/ajax/getCityCurrent').then(response => {
               if ($('#departmentsMap').length)
                   {
                       var mapDiv = document.getElementById('departmentsMap');

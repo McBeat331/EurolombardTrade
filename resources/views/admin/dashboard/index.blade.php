@@ -37,7 +37,7 @@
                             <i class="ti-layout-grid2 text-pink border-pink"></i>
                         </div>
                         <div class="stat-content d-inline-block">
-                            <div class="stat-text">Комментариев</div>
+                            <div class="stat-text">Отзывов</div>
                             <div class="stat-digit">{{ $reviewsCount }}</div>
                         </div>
                     </div>
@@ -81,8 +81,7 @@
                                 @foreach ($orders as $order)
                                     <tr>
                                         <td>
-                                            <a href="{{ route('admin.order.edit',$order->id) }}" class="mr-4" data-toggle="tooltip"
-                                               data-placement="top" title="Edit">{{ $order->fio}}</a>
+                                            {{ $order->fio}}
                                         </td>
                                         <td>
                                             {{ $order->created_at }}
@@ -100,10 +99,10 @@
                                             {{ $order->currency_to }}
                                         </td>
                                         <td>
-                                            @if($order->status && $order->status==0)
-                                                <span class="badge badge-warning">Не обработано</span>
+                                            @if(!$order->status)
+                                                <span class="badge badge-warning" data-id="{{$order->id}}" data-url="{{ route('admin.changeStatusOrder') }}">Не обработано</span>
                                             @else
-                                                <span class="badge badge-success">Обработано</span>
+                                                <span class="badge badge-success" data-id="{{$order->id}}" data-url="{{ route('admin.changeStatusOrder') }}">Обработано</span>
                                             @endif
                                         </td>
                                     </tr>
@@ -132,6 +131,93 @@
 
 
     <script src="{{ asset('adminAssets/js/dashboard/dashboard-1.js') }}"></script>
+    <script>
+
+        $('.badge').on('click', function () {
+            var elem  = $(this);
+            var id  = $(this).data("id");
+            var _url = $(this).data("url");
+            console.log(_url);
+            $.ajax({
+                url: _url,
+                data: {'id':id},
+                type: "POST",
+                success: function(response) {
+                    if(response) {
+                        console.log(response['status']);
+                        if(response['status'] == 0)
+                        {
+                            $(elem).removeClass('badge-success').addClass('badge-warning').text('Не обработано');
+                            toastr.success("Статус изменен!", {
+                                timeOut: 5000,
+                                closeButton: !0,
+                                debug: !1,
+                                newestOnTop: !0,
+                                progressBar: !0,
+                                positionClass: "toast-top-right",
+                                preventDuplicates: !0,
+                                onclick: null,
+                                showDuration: "300",
+                                hideDuration: "1000",
+                                extendedTimeOut: "1000",
+                                showEasing: "swing",
+                                hideEasing: "linear",
+                                showMethod: "fadeIn",
+                                hideMethod: "fadeOut",
+                                tapToDismiss: !1
+                            })
+                        }
+                        else
+                        {
+                            $(elem).removeClass('badge-warning').addClass('badge-success').text('Обработано');
+                            toastr.success("Статус изменен!", {
+                                timeOut: 5000,
+                                closeButton: !0,
+                                debug: !1,
+                                newestOnTop: !0,
+                                progressBar: !0,
+                                positionClass: "toast-top-right",
+                                preventDuplicates: !0,
+                                onclick: null,
+                                showDuration: "300",
+                                hideDuration: "1000",
+                                extendedTimeOut: "1000",
+                                showEasing: "swing",
+                                hideEasing: "linear",
+                                showMethod: "fadeIn",
+                                hideMethod: "fadeOut",
+                                tapToDismiss: !1
+                            })
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+    @if(session()->has('alert-success'))
+        <script>
+            toastr.success("{{ session('alert-success') }}", {
+                timeOut: 5000,
+                closeButton: !0,
+                debug: !1,
+                newestOnTop: !0,
+                progressBar: !0,
+                positionClass: "toast-top-right",
+                preventDuplicates: !0,
+                onclick: null,
+                showDuration: "300",
+                hideDuration: "1000",
+                extendedTimeOut: "1000",
+                showEasing: "swing",
+                hideEasing: "linear",
+                showMethod: "fadeIn",
+                hideMethod: "fadeOut",
+                tapToDismiss: !1
+            })
+
+        </script>
+    @endif
     <script>
         var arrayFromPHP = {!! json_encode($ordersCountLastTenDays) !!};
         var lastArray = [];

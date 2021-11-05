@@ -29,9 +29,9 @@ class UserService
      * @param array $relations
      * @return mixed
      */
-    public function getFind($id, $relations = ['reviews','orders'])
+    public function getFind($id)
     {
-        return $this->userModel->where('id', $id)->with($relations)->firstOrFail();
+        return $this->userModel->where('id', $id)->firstOrFail();
     }
 
     /**
@@ -56,9 +56,9 @@ class UserService
      * @param array $relations
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getPaginate($relations = ['reviews','orders'])
+    public function getPaginate()
     {
-        return $this->userModel->with($relations)->paginate(User::PAGINATE);
+        return $this->userModel->paginate(User::PAGINATE);
     }
 
     /**

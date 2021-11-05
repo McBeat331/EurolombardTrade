@@ -10,6 +10,16 @@
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
                     <h4>Пользователи</h4>
+                    <div class="row page-titles mx-0">
+                        <a href="{{ route('admin.user.create') }}">
+                            <button type="button" class="btn btn-primary">
+                                <span class="btn-icon-left text-primary">
+                                    <i class="fa fa-plus color-primary"></i>
+                                </span>
+                                <span style="font-weight: bold">Добавить пользователя</span>
+                            </button>
+                        </a>
+                    </div>
 
                 </div>
             </div>

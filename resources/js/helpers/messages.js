@@ -27,6 +27,7 @@ const messages = {
         rateBuy:'Купівля',
         rateSale:'Продаж',
         rateModal:'Заявка',
+        cityLetter: 'м.'
     },
 
     'ru': {
@@ -41,8 +42,21 @@ const messages = {
         giveMoney:"Оттдаю",
         getMoney:"Получаю",
         errorNotCurrency:"Оберіть обе валюти",
-        true: 'Да',
-        false: 'Нет',
+        true: 'Роздріб',
+        false: 'Опт',
+        ourServices: 'Наші послуги',
+        name:'ПIБ',
+        phone:'Телефон',
+        email:'E-mail',
+        name_placeholder:'Введiть ваше iм’я',
+        phone_placeholder:'Введiть ваш номер',
+        email_placeholder:'Введiть ваш e-mail',
+        submitForm: 'Оформити заявку',
+        rateName:'Валюта',
+        rateBuy:'Купівля',
+        rateSale:'Продаж',
+        rateModal:'Заявка',
+        cityLetter: 'г.'
     }
 };
 

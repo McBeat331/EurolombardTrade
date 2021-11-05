@@ -2215,9 +2215,6 @@ __webpack_require__.r(__webpack_exports__);
       axios({
         method: 'post',
         url: '/ajax/getRatesByCity',
-        data: {
-          address_id: 1
-        },
         headers: {
           "Content-type": "application/x-www-form-urlencoded"
         }
@@ -2271,6 +2268,127 @@ __webpack_require__.r(__webpack_exports__);
     _app__WEBPACK_IMPORTED_MODULE_0__.bus.$on('count_from', function (data) {
       _this2.count_from = data;
     });
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ListcityComponent.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ListcityComponent.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
+/* harmony import */ var _mixins__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mixins */ "./resources/js/mixins/index.js");
+/* harmony import */ var _helpers_messages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/messages */ "./resources/js/helpers/messages.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+// typical import
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  mixins: [_mixins__WEBPACK_IMPORTED_MODULE_1__.lang],
+  data: function data() {
+    return {
+      dropdownyCity: false,
+      isEmptyCity: false,
+      selectedCity: [],
+      city_array: [],
+      selectedCityName: ''
+    };
+  },
+  methods: {
+    loadCity: function loadData() {
+      var _this = this;
+
+      axios({
+        method: 'post',
+        url: '/ajax/getCities',
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded"
+        }
+      }).then(function (res) {
+        //res.json().then(json => (vm.options = json.data.data));
+        _this.city_array = res.data.data;
+        _this.selectedCity = _this.city_array.filter(function (j) {
+          return j.current === true;
+        })[0] ? _this.city_array.filter(function (j) {
+          return j.current === true;
+        })[0] : [];
+        _this.selectedCityName = _this.messages[_this.lang].cityLetter + ' ' + _this.selectedCity.name[_this.lang];
+      })["catch"](function (error) {
+        return console.log(error);
+      });
+    },
+    handlerSelect: function handlerSelect(prop) {
+      this[prop] = !this[prop];
+    },
+    getOptionInSelect: function getOptionInSelect(_ref, propEmpty, drop) {
+      var currentTarget = _ref.currentTarget;
+
+      if (propEmpty == 'isEmptyCity') {
+        var city_id = currentTarget.getAttribute("value");
+        console.log(city_id);
+        this.isEmptyCity = true;
+        this.selectedCity = this.city_array.filter(function (j) {
+          return j.id == city_id;
+        })[0] ? this.city_array.filter(function (j) {
+          return j.id == city_id;
+        })[0] : [];
+        this.selectedCityName = this.messages[this.lang].cityLetter + ' ' + this.selectedCity.name[this.lang];
+      }
+
+      if (this[drop] != true) {
+        this[drop] = true;
+      }
+    }
+  },
+  beforeMount: function beforeMount() {},
+  computed: {
+    messages: function messages() {
+      return _helpers_messages__WEBPACK_IMPORTED_MODULE_2__.messages;
+    }
+  },
+  watch: {},
+  mounted: function mounted() {
+    this.setLang();
+    this.loadCity();
   }
 });
 
@@ -3058,6 +3176,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "bus": () => (/* binding */ bus)
 /* harmony export */ });
+/* harmony import */ var _components_ListcityComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/ListcityComponent.vue */ "./resources/js/components/ListcityComponent.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -3085,6 +3204,10 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
+
+/* credit calculator */
+
+Vue.component('listcity', _components_ListcityComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -3180,7 +3303,8 @@ var messages = {
     rateName: 'Валюта',
     rateBuy: 'Купівля',
     rateSale: 'Продаж',
-    rateModal: 'Заявка'
+    rateModal: 'Заявка',
+    cityLetter: 'м.'
   },
   'ru': {
     USD: "Доллар",
@@ -3194,8 +3318,21 @@ var messages = {
     giveMoney: "Оттдаю",
     getMoney: "Получаю",
     errorNotCurrency: "Оберіть обе валюти",
-    "true": 'Да',
-    "false": 'Нет'
+    "true": 'Роздріб',
+    "false": 'Опт',
+    ourServices: 'Наші послуги',
+    name: 'ПIБ',
+    phone: 'Телефон',
+    email: 'E-mail',
+    name_placeholder: 'Введiть ваше iм’я',
+    phone_placeholder: 'Введiть ваш номер',
+    email_placeholder: 'Введiть ваш e-mail',
+    submitForm: 'Оформити заявку',
+    rateName: 'Валюта',
+    rateBuy: 'Купівля',
+    rateSale: 'Продаж',
+    rateModal: 'Заявка',
+    cityLetter: 'г.'
   }
 };
 
@@ -6085,11 +6222,11 @@ var departmentsLocationInMap = function departmentsLocationInMap() {
       lang = '/' + globalFunctions.getLanguage();
     }
 
-    axios.get(window.location.origin + lang + '/get-departments').then(function (response) {
+    axios.post(window.location.origin + lang + '/ajax/getCityCurrent').then(function (response) {
       if ($('#departmentsMap').length) {
         var mapDiv = document.getElementById('departmentsMap');
         mapDiv.dataset.lat = Number(response.data[0].lat);
-        mapDiv.dataset.lng = Number(response.data[0].lng);
+        mapDiv.dataset.lng = Number(response.data[0].len);
       }
 
       initMap(response.data);
@@ -6139,7 +6276,7 @@ var departmentsLocationInMap = function departmentsLocationInMap() {
       }
 
       var mapDiv;
-      axios.get(window.location.origin + lang + '/departments/get-departments?city=' + city_id).then(function (response) {
+      axios.post(window.location.origin + lang + '/ajax/getCityCurrent').then(function (response) {
         if ($('#departmentsMap').length) {
           var mapDiv = document.getElementById('departmentsMap');
           mapDiv.dataset.lat = Number(response.data[0].lat);
@@ -56927,6 +57064,45 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/ListcityComponent.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/ListcityComponent.vue ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ListcityComponent_vue_vue_type_template_id_702c7f19___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ListcityComponent.vue?vue&type=template&id=702c7f19& */ "./resources/js/components/ListcityComponent.vue?vue&type=template&id=702c7f19&");
+/* harmony import */ var _ListcityComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ListcityComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ListcityComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ListcityComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ListcityComponent_vue_vue_type_template_id_702c7f19___WEBPACK_IMPORTED_MODULE_0__.render,
+  _ListcityComponent_vue_vue_type_template_id_702c7f19___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/ListcityComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/ModalComponent.vue":
 /*!****************************************************!*\
   !*** ./resources/js/components/ModalComponent.vue ***!
@@ -57076,6 +57252,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/ListcityComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/ListcityComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListcityComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ListcityComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ListcityComponent.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ListcityComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/ModalComponent.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/ModalComponent.vue?vue&type=script&lang=js& ***!
@@ -57154,6 +57346,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/ListcityComponent.vue?vue&type=template&id=702c7f19&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/ListcityComponent.vue?vue&type=template&id=702c7f19& ***!
+  \**************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListcityComponent_vue_vue_type_template_id_702c7f19___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListcityComponent_vue_vue_type_template_id_702c7f19___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ListcityComponent_vue_vue_type_template_id_702c7f19___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ListcityComponent.vue?vue&type=template&id=702c7f19& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ListcityComponent.vue?vue&type=template&id=702c7f19&");
 
 
 /***/ }),
@@ -57378,9 +57587,13 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "rateBuy" }, [_vm._v(_vm._s(rate.buy))]),
+            _c("div", { staticClass: "rateBuy" }, [
+              _vm._v(_vm._s(rate.buy.toFixed(3)))
+            ]),
             _vm._v(" "),
-            _c("div", { staticClass: "rateSale" }, [_vm._v(_vm._s(rate.sale))]),
+            _c("div", { staticClass: "rateSale" }, [
+              _vm._v(_vm._s(rate.sale.toFixed(3)))
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "rateModal" }, [
               _c(
@@ -57416,6 +57629,164 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ListcityComponent.vue?vue&type=template&id=702c7f19&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ListcityComponent.vue?vue&type=template&id=702c7f19& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "mcontainer selectCity" }, [
+    _c("div", {
+      directives: [
+        {
+          name: "show",
+          rawName: "v-show",
+          value: _vm.dropdownyCity,
+          expression: "dropdownyCity"
+        }
+      ],
+      staticClass: "backgroundWrapper",
+      on: {
+        click: function($event) {
+          _vm.dropdownyCity = false
+        }
+      }
+    }),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "section-input",
+        on: {
+          click: function($event) {
+            return _vm.handlerSelect("dropdownyCity")
+          }
+        }
+      },
+      [
+        _c(
+          "svg",
+          {
+            class: [{ active: _vm.dropdownyCity }, "locationIco"],
+            attrs: {
+              width: "18",
+              height: "23",
+              viewBox: "0 0 18 23",
+              fill: "none",
+              xmlns: "http://www.w3.org/2000/svg"
+            }
+          },
+          [
+            _c("path", {
+              attrs: {
+                "fill-rule": "evenodd",
+                "clip-rule": "evenodd",
+                d:
+                  "M9 2C5.4686 2 2 4.63241 2 9C2 11.605 3.77047 14.3616 5.74741 16.5856C6.71242 17.6713 7.68054 18.5792 8.4085 19.2162C8.63119 19.411 8.83072 19.5799 9 19.7202C9.16928 19.5799 9.36881 19.411 9.5915 19.2162C10.3195 18.5792 11.2876 17.6713 12.2526 16.5856C14.2295 14.3616 16 11.605 16 9C16 4.63241 12.5314 2 9 2ZM9 21C8.4 21.8 8.39978 21.7998 8.39953 21.7997L8.39888 21.7992L8.39703 21.7978L8.39117 21.7933L8.37091 21.778C8.35368 21.7648 8.32907 21.746 8.29758 21.7216C8.23461 21.6728 8.14406 21.6017 8.02986 21.51C7.80155 21.3265 7.47822 21.0597 7.0915 20.7213C6.31946 20.0458 5.28758 19.0787 4.25259 17.9144C2.22953 15.6384 0 12.395 0 9C0 3.36759 4.5314 0 9 0C13.4686 0 18 3.36759 18 9C18 12.395 15.7705 15.6384 13.7474 17.9144C12.7124 19.0787 11.6805 20.0458 10.9085 20.7213C10.5218 21.0597 10.1984 21.3265 9.97014 21.51C9.85594 21.6017 9.76539 21.6728 9.70242 21.7216C9.67093 21.746 9.64632 21.7648 9.62909 21.778L9.60883 21.7933L9.60297 21.7978L9.60112 21.7992L9.60047 21.7997C9.60022 21.7998 9.6 21.8 9 21ZM9 21L9.6 21.8L9 22.25L8.4 21.8L9 21ZM6.17157 6.17157C6.92172 5.42143 7.93913 5 9 5C10.0609 5 11.0783 5.42143 11.8284 6.17157C12.5786 6.92172 13 7.93913 13 9C13 10.0609 12.5786 11.0783 11.8284 11.8284C11.0783 12.5786 10.0609 13 9 13C7.93913 13 6.92172 12.5786 6.17157 11.8284C5.42143 11.0783 5 10.0609 5 9C5 7.93913 5.42143 6.92172 6.17157 6.17157ZM9 7C8.46957 7 7.96086 7.21071 7.58579 7.58579C7.21071 7.96086 7 8.46957 7 9C7 9.53043 7.21071 10.0391 7.58579 10.4142C7.96086 10.7893 8.46957 11 9 11C9.53043 11 10.0391 10.7893 10.4142 10.4142C10.7893 10.0391 11 9.53043 11 9C11 8.46957 10.7893 7.96086 10.4142 7.58579C10.0391 7.21071 9.53043 7 9 7Z",
+                fill: "#FFC244"
+              }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "customSelect" }, [
+          _c("a", { class: [{ active: _vm.dropdownyCity }, "chosen-single"] }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.selectedCity.id,
+                  expression: "selectedCity.id"
+                }
+              ],
+              attrs: { hidden: "", type: "text" },
+              domProps: { value: _vm.selectedCity.id },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.selectedCity, "id", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "selectCityName" }, [
+              _vm._v(_vm._s(_vm.selectedCityName))
+            ])
+          ]),
+          _vm._v(" "),
+          _c("span", {
+            class: [{ active: _vm.dropdownyCity }, "icon-arrow-down-gray"]
+          }),
+          _vm._v(" "),
+          _c(
+            "ul",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.dropdownyCity,
+                  expression: "dropdownyCity"
+                }
+              ],
+              staticClass: "dropdownSelect"
+            },
+            _vm._l(_vm.city_array, function(city) {
+              return _c(
+                "li",
+                {
+                  staticClass: "option",
+                  attrs: { "data-city": city.id, value: city.id },
+                  on: {
+                    click: function($event) {
+                      return _vm.getOptionInSelect(
+                        $event,
+                        "isEmptyCity",
+                        "dropdownyCity"
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("a", { attrs: { href: "http://" + city.domain } }, [
+                    _c("span", { staticClass: "cityOption" }, [
+                      _vm._v(
+                        _vm._s(_vm.messages[_vm.lang].cityLetter) +
+                          " " +
+                          _vm._s(city.name[_vm.lang])
+                      )
+                    ])
+                  ])
+                ]
+              )
+            }),
+            0
+          )
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

@@ -18,8 +18,7 @@ class HomeController extends Controller
     public function __construct(
         AdvantageService $advantageService,
         ServiceService $serviceService,
-        ReviewService $reviewService,
-        RateJob $rateJob
+        ReviewService $reviewService
     )
     {
         $this->advantageService = $advantageService;

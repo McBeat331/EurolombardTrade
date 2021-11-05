@@ -5,22 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Review extends Model
+class Feedback extends Model
 {
     use HasFactory;
+
 
     public const PAGINATE = 15;
 
     public const STATUS_NOT_VERIFIED = 0;
     public const STATUS_TO_VERIFIED = 1;
 
-    protected $table = 'reviews';
+    protected $table = 'feedback';
 
-    protected $fillable = ['city_id','user_id','name','description','rating','status'];
+    protected $fillable = ['city_id','service_id', 'name','phone','status'];
 
-    public function user()
+    public function service()
     {
-        return $this->belongsTo(User::class,'user_id','id');
+        return $this->belongsTo(Service::class,'service_id','id');
     }
 
 

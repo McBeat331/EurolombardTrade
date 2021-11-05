@@ -29,6 +29,14 @@ class SettingService
         return $this->settingModel->where('field', $field)->first();
     }
 
+    public function getFieldValue($field)
+    {
+        if($entry = $this->settingModel->where('field', $field)->first()){
+            return $entry->value;
+        }
+        return null;
+    }
+
     /**
      * @return mixed
      */

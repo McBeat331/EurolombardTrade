@@ -4,16 +4,26 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\ReviewRequest;
+use App\Job\RateJob;
+use App\Mail\ReviewMail;
 use App\Services\Review\ReviewService;
+use App\Services\Setting\SettingService;
+use Exception;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class ReviewController extends Controller
 {
 
-    public $reviewService;
+    private $reviewService;
+    private $settingService;
+    private $rateJob;
 
-    public function __construct(ReviewService $reviewService)
+    public function __construct(ReviewService $reviewService, SettingService $settingService, RateJob $rateJob)
     {
         $this->reviewService = $reviewService;
+        $this->settingService = $settingService;;
+        $this->rateJob = $rateJob;
     }
 
     public function index()
@@ -24,8 +34,15 @@ class ReviewController extends Controller
 
     public function store(ReviewRequest $request)
     {
-        $this->reviewService->add($request->all());
+        $data = $this->rateJob->addCityToData($request->all());
+        $entry = $this->reviewService->add($data);
 
-//        return redirect()->route();
+        try {
+            Mail::to($this->settingService->getFieldValue('reviewRequestEmail'))->send(new ReviewMail($entry));
+        } catch (Exception $e) {
+            Log::info($e);
+        }
+
+        return $entry;
     }
 }

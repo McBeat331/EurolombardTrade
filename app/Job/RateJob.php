@@ -50,7 +50,7 @@ class RateJob
 
         $rate = $this->rateService->getFind($rate_id);
 
-        if(Cookie::has($nameCache) === null){
+        if(Cookie::has($nameCache) === false){
             Cookie::make($nameCache,$rate,60);
         }
     }
@@ -71,5 +71,14 @@ class RateJob
             }
         });
 
+    }
+
+
+    public function addCityToData($data){
+        $cityCurrent = $this->selectedCity();
+
+        $data['city_id'] = $cityCurrent->id;
+
+        return $data;
     }
 }

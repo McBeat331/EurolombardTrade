@@ -2,31 +2,32 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Services\Communication\CallbackServices;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\CallbackRequest;
 use App\Job\RateJob;
-use App\Services\Address\AddressService;
-use App\Services\City\CityService;
+use App\Mail\CallbackMail;
 use App\Services\Setting\SettingService;
+use Exception;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
 
     private $settingService;
-    private $cityService;
     private $rateJob;
-    private $addressService;
+    private $callbackService;
+
     public function __construct(
         SettingService $settingService,
-        CityService $cityService,
         RateJob $rateJob,
-        AddressService $addressService
+        CallbackServices $callbackService
     )
     {
         $this->settingService = $settingService;
-        $this->cityService = $cityService;
         $this->rateJob = $rateJob;
-        $this->addressService = $addressService;
+        $this->callbackService = $callbackService;
     }
 
     public function show()
@@ -37,16 +38,17 @@ class ContactController extends Controller
         return view('contacts.contact', compact('settings','currentCity'));
     }
 
-//    public function getDepartments(Request $request)
-//    {
-//        if($request->get('city_id'))
-//        {
-//            $entries = $this->addressService->getAll();
-//            return response()->json($entries, '200');
-//        }
-//        else{
-//            $entries = $this->addressService->getAll();
-//            return response()->json($entries, '200');
-//        }
-//    }
+    public function createCallback(Request $request)
+    {
+        $data = $this->rateJob->addCityToData($request->all());
+        $entry = $this->callbackService->add($data);
+
+        try {
+            Mail::to($this->settingService->getFieldValue('callRequestEmail'))->send(new CallbackMail($entry));
+        } catch (Exception $e) {
+            Log::info($e);
+        }
+
+        return $entry;
+    }
 }

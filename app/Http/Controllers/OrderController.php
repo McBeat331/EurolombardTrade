@@ -5,34 +5,46 @@ namespace App\Http\Controllers;
 use App\Http\Requests\OrderClientRequest;
 use App\Job\AccountJob;
 use App\Job\RateJob;
+use App\Mail\OrderMail;
 use App\Services\Order\OrderService;
+use App\Services\Setting\SettingService;
+use Exception;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
     private $orderService;
     private $rateJob;
-    private $accountJob;
+    private $settingService;
 
     /**
      * OrderController constructor.
      * @param OrderService $orderService
      */
-    public function __construct(OrderService $orderService,RateJob $rateJob,AccountJob $accountJob)
+    public function __construct(OrderService $orderService,RateJob $rateJob,SettingService $settingService)
     {
         $this->orderService = $orderService;
         $this->rateJob = $rateJob;
-        $this->accountJob = $accountJob;
+        $this->settingService = $settingService;
     }
 
     public function add(OrderClientRequest $request)
     {
-        $data = $this->addCityToData($request->all());
+        $data = $this->rateJob->addCityToData($request->all());
         $order = $this->orderService->add($request->all());
 
         $this->rateJob->saveRateAfterOrder($data['rate_id']);
 
         $request->session()->put('order-last-id', $order->id);
         $request->session()->flash('alert-success', '');
+
+
+        try {
+            Mail::to($this->settingService->getFieldValue('rateRequesEmail'))->send(new OrderMail($order));
+        } catch (Exception $e) {
+            Log::info($e);
+        }
 
     }
 
@@ -57,13 +69,5 @@ class OrderController extends Controller
         session()->flash('alert-success', '');
 
         return redirect()->back();
-    }
-
-    private function addCityToData($data){
-        $cityCurrent = $this->rateJob->selectedCity();
-
-        $data['city_id'] = $cityCurrent->id;
-
-        return $data;
     }
 }

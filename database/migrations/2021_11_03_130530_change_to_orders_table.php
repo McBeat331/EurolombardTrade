@@ -16,7 +16,6 @@ class ChangeToOrdersTable extends Migration
         Schema::table('orders', function (Blueprint $table) {
 
             $table->unsignedBigInteger('city_id');
-            $table->foreign('city_id')->references('id')->on('cities');
 
             $table->boolean('isOpt')->default(0);
 
@@ -36,6 +35,9 @@ class ChangeToOrdersTable extends Migration
             $table->float('rate_buy');
             $table->float('price_sale');
             $table->float('price_buy');
+
+
+            $table->foreign('city_id')->references('id')->on('cities');
         });
     }
 

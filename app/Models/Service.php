@@ -18,7 +18,7 @@ class Service extends Model
 
     protected $table = 'services';
 
-    protected $fillable = ['title', 'description','meta_title', 'meta_description','slug','image'];
+    protected $fillable = ['title', 'description','meta_title', 'meta_description','slug','image','email'];
 
     public $translatable = ['title', 'description','meta_title', 'meta_description','slug'];
 

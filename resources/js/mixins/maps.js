@@ -1,3 +1,5 @@
+
+
 const departmentsLocationInMap = () => {
     var globalVariables = {
         messages: [],
@@ -80,7 +82,6 @@ const departmentsLocationInMap = () => {
         let currentMark = null;
 
         this.panZoom = function() {
-            console.log('qqqq');
             this.map.panTo({lat: -25.363882, lng: 131.044922});
         }
         // start setCluster
@@ -93,20 +94,36 @@ const departmentsLocationInMap = () => {
                 });
                 // console.log(marker);
                 // Start info Windows
-                let infoWindow = new google.maps.InfoWindow({
+                /*let infoWindow = new google.maps.InfoWindow({
                     content: `
-          ыыыы
+          <div class="lombard-map__city">${item.city_location}</div>
+          <div class="lombard-map__street">${item['address_' + globalFunctions.getLanguage()]}</div>
+          <div class="lombard-map__image-wrapper">
+            <img class="lombard-map__image" src="${item.image_path}">
+          </div>
+          <div class="lombard-map__description-time">${globalVariables.messages.work_time}</div>
+          <div class="lombard-map__work-time">
+            ${item.hasOwnProperty('time_start') && item.time_start !== null && item.full_day === null ? item.time_start : ''} 
+            ${item.hasOwnProperty('time_end') && item.time_end !== null && item.full_day === null ? '- ' + item.time_end : ''} 
+            ${item.hasOwnProperty('full_day') && item.full_day !== null ? globalVariables.messages.around_the_clock : ''}
+          </div>
+          <div class="lombard-map__description-phone">${globalVariables.messages.phone}</div>
+          <div class="lombard-map__phone">
+            <a href="tel:${item.phone}">${item.phone}</a>
+          </div>
+
+          
           `,
                     width: 350
                 });
-                infoWindows.push(infoWindow);
-                let hoverInfoWindow = new google.maps.InfoWindow({
-                    content: `<div>ээээ</div>`
-                });
+                infoWindows.push(infoWindow);*/
+                /*let hoverInfoWindow = new google.maps.InfoWindow({
+                    content: `<div>${item.number}</div>`
+                });*/
                 // End info Windows
 
                 // Start Event listeners
-                google.maps.event.addListener(marker, 'click', function() {
+                /*google.maps.event.addListener(marker, 'click', function() {
                     // console.log("click");
                     for (let i=0; i < infoWindows.length; i++) {
                         infoWindows[i].close();
@@ -123,7 +140,7 @@ const departmentsLocationInMap = () => {
                     // start show close btn
                     $('.lombard-map__image-wrapper').closest('.gm-style-iw').next().show();
                     // end show close btn
-                });
+                });*/
 
                 /*         google.maps.event.addListener(marker, 'mouseover', function() {
                           if (currentMark) return;
@@ -134,55 +151,97 @@ const departmentsLocationInMap = () => {
                         hoverInfoWindow.close();
                       }); */
 
-                google.maps.event.addListener(infoWindow, 'closeclick', function() {
+                /*google.maps.event.addListener(infoWindow, 'closeclick', function() {
                     currentMark = null;
-                });
+                });*/
                 // End Event listeners
 
                 return marker;
             });
+            // End markers array
 
+            let markerCluster = new MarkerClusterer(this.map, markers, {
+                // imagePath: 'img/cluster-image',
+                styles: [{
+                    url: '/img/cluster-image.png',
+                    width: 50,
+                    height: 50,
+                    textColor: '#2F2483',
+                    textSize: 12
+                }],
+            });
         }
         // end setCluster
-}
+    }
 
-  function initMap(locations) {
-      (function() {
-          if ( ! $('#departmentsMap').length ) return;
-          let departmentsMap = new CreateMapDepartments('departmentsMap', locations);
-          departmentsMap.setCluster();
-      }());
-  };
+    function CreateMapDepartment(mapID) {
+        CreateMap.apply(this, arguments);
+
+        this.setMarker = function() {
+            let marker =  new google.maps.Marker({
+                position: this.center,
+                map: this.map,
+                icon: '/img/marker.png'
+            });
+        }
+    }
+
+    let departmentsMap;
+
+    function initMap(locations) {
+        // console.log('initMap()');
+        // departments
+
+        (function() {
+            if ( ! $('#departmentsMap').length ) return;
+            departmentsMap = new CreateMapDepartments('departmentsMap', locations);
+            departmentsMap.initMap();
+            departmentsMap.setCluster();
+        }());
+        // end departments
+
+        // department
+        (function() {
+            if ( ! $('#departmentMap').length ) return;
+            let departmentMap = new CreateMapDepartment('departmentMap');
+            departmentMap.initMap();
+            departmentMap.setMarker();
+        }());
+        // end department
+    };
+
+    function locationZoom(location) {
+        departmentsMap.panZoom(location);
+    }
+    var cityName = '';
+    // XMLHttpRequest for map's json template
+    function loadLocations() {
+        var lang = '';
+        if(globalFunctions.getLanguage()== 'ru')
+        {
+            lang = '/'+globalFunctions.getLanguage();
+        }
+        axios.post(window.location.origin +lang+'/ajax/getCityCurrent').then(response => {
+            if ($('#departmentsMap').length)
+        {
+            var mapDiv = document.getElementById('departmentsMap');
+            cityName = response.data.data.name[globalFunctions.getLanguage()];
+            mapDiv.dataset.lat = Number(response.data.data.addresses[0].lat);
+            mapDiv.dataset.lng = Number(response.data.data.addresses[0].lng);
+        }
+        initMap(response.data.data.addresses);
+
+    })
+    .catch(error => {
+            console.log(error);
+    });
+
+    };
+    // End XMLHttpRequest for map's json template
 
 
-  var cityName = '';
-  // XMLHttpRequest for map's json template
-  function loadLocations() {
-    var lang = '';
-      if(globalFunctions.getLanguage()== 'ru')
-      {
-          lang = '/'+globalFunctions.getLanguage();
-      }
-      axios.post(window.location.origin +lang+'/ajax/getCityCurrent').then(response => {
-          if ($('#departmentsMap').length)
-      {
-          var mapDiv = document.getElementById('departmentsMap');
-          console.log(response.data.data.addresses[0]);
-          cityName = response.data.data.name[globalFunctions.getLanguage()];
-          mapDiv.dataset.lat = Number(response.data.data.addresses[0].lat);
-          mapDiv.dataset.lng = Number(response.data.data.addresses[0].len);
-      }
-      initMap(response.data.data.addresses);
 
-      })
-      .catch(error => {
-              console.log(error);
-      });
-
-  };
-  // End XMLHttpRequest for map's json template
-
-  loadLocations();
+    loadLocations();
 
 
 }

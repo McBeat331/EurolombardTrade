@@ -2330,7 +2330,8 @@ __webpack_require__.r(__webpack_exports__);
       isEmptyCity: false,
       selectedCity: [],
       city_array: [],
-      selectedCityName: ''
+      selectedCityName: '',
+      currentUrl: ''
     };
   },
   methods: {
@@ -2389,6 +2390,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.setLang();
     this.loadCity();
+    this.currentUrl = window.location.pathname;
   }
 });
 
@@ -6162,7 +6164,6 @@ var departmentsLocationInMap = function departmentsLocationInMap() {
     var currentMark = null;
 
     this.panZoom = function () {
-      console.log('qqqq');
       this.map.panTo({
         lat: -25.363882,
         lng: 131.044922
@@ -6182,34 +6183,53 @@ var departmentsLocationInMap = function departmentsLocationInMap() {
         }); // console.log(marker);
         // Start info Windows
 
-        var infoWindow = new google.maps.InfoWindow({
-          content: "\n          \u044B\u044B\u044B\u044B\n          ",
-          width: 350
+        /*let infoWindow = new google.maps.InfoWindow({
+            content: `
+        <div class="lombard-map__city">${item.city_location}</div>
+        <div class="lombard-map__street">${item['address_' + globalFunctions.getLanguage()]}</div>
+        <div class="lombard-map__image-wrapper">
+        <img class="lombard-map__image" src="${item.image_path}">
+        </div>
+        <div class="lombard-map__description-time">${globalVariables.messages.work_time}</div>
+        <div class="lombard-map__work-time">
+        ${item.hasOwnProperty('time_start') && item.time_start !== null && item.full_day === null ? item.time_start : ''} 
+        ${item.hasOwnProperty('time_end') && item.time_end !== null && item.full_day === null ? '- ' + item.time_end : ''} 
+        ${item.hasOwnProperty('full_day') && item.full_day !== null ? globalVariables.messages.around_the_clock : ''}
+        </div>
+        <div class="lombard-map__description-phone">${globalVariables.messages.phone}</div>
+        <div class="lombard-map__phone">
+        <a href="tel:${item.phone}">${item.phone}</a>
+        </div>
+                `,
+            width: 350
         });
-        infoWindows.push(infoWindow);
-        var hoverInfoWindow = new google.maps.InfoWindow({
-          content: "<div>\u044D\u044D\u044D\u044D</div>"
-        }); // End info Windows
+        infoWindows.push(infoWindow);*/
+
+        /*let hoverInfoWindow = new google.maps.InfoWindow({
+            content: `<div>${item.number}</div>`
+        });*/
+        // End info Windows
         // Start Event listeners
 
-        google.maps.event.addListener(marker, 'click', function () {
-          // console.log("click");
-          for (var _i = 0; _i < infoWindows.length; _i++) {
-            infoWindows[_i].close();
-          }
+        /*google.maps.event.addListener(marker, 'click', function() {
+            // console.log("click");
+            for (let i=0; i < infoWindows.length; i++) {
+                infoWindows[i].close();
+            }
+            hoverInfoWindow.close();
+            infoWindow.open(this.map, marker);
+            // start style image if noload
+            // let $lombardMapImage = $('.lombard-map__image');
+            // if( $lombardMapImage.outerWidth() < 50) {
+            //   $lombardMapImage.hide();
+            // }
+            // end style image if noload
+            currentMark = infoWindow;
+            // start show close btn
+            $('.lombard-map__image-wrapper').closest('.gm-style-iw').next().show();
+            // end show close btn
+        });*/
 
-          hoverInfoWindow.close();
-          infoWindow.open(this.map, marker); // start style image if noload
-          // let $lombardMapImage = $('.lombard-map__image');
-          // if( $lombardMapImage.outerWidth() < 50) {
-          //   $lombardMapImage.hide();
-          // }
-          // end style image if noload
-
-          currentMark = infoWindow; // start show close btn
-
-          $('.lombard-map__image-wrapper').closest('.gm-style-iw').next().show(); // end show close btn
-        });
         /*         google.maps.event.addListener(marker, 'mouseover', function() {
                   if (currentMark) return;
                   hoverInfoWindow.open(this.map, marker);
@@ -6219,25 +6239,69 @@ var departmentsLocationInMap = function departmentsLocationInMap() {
                 hoverInfoWindow.close();
               }); */
 
-        google.maps.event.addListener(infoWindow, 'closeclick', function () {
-          currentMark = null;
-        }); // End Event listeners
+        /*google.maps.event.addListener(infoWindow, 'closeclick', function() {
+            currentMark = null;
+        });*/
+        // End Event listeners
 
         return marker;
+      }); // End markers array
+
+      var markerCluster = new MarkerClusterer(this.map, markers, {
+        // imagePath: 'img/cluster-image',
+        styles: [{
+          url: '/img/cluster-image.png',
+          width: 50,
+          height: 50,
+          textColor: '#2F2483',
+          textSize: 12
+        }]
       });
     }; // end setCluster
 
   }
 
+  function CreateMapDepartment(mapID) {
+    CreateMap.apply(this, arguments);
+
+    this.setMarker = function () {
+      var marker = new google.maps.Marker({
+        position: this.center,
+        map: this.map,
+        icon: '/img/marker.png'
+      });
+    };
+  }
+
+  var departmentsMap;
+
   function initMap(locations) {
+    // console.log('initMap()');
+    // departments
     (function () {
       if (!$('#departmentsMap').length) return;
-      var departmentsMap = new CreateMapDepartments('departmentsMap', locations);
+      departmentsMap = new CreateMapDepartments('departmentsMap', locations);
+      departmentsMap.initMap();
       departmentsMap.setCluster();
-    })();
+    })(); // end departments
+    // department
+
+
+    (function () {
+      if (!$('#departmentMap').length) return;
+      var departmentMap = new CreateMapDepartment('departmentMap');
+      departmentMap.initMap();
+      departmentMap.setMarker();
+    })(); // end department
+
   }
 
   ;
+
+  function locationZoom(location) {
+    departmentsMap.panZoom(location);
+  }
+
   var cityName = ''; // XMLHttpRequest for map's json template
 
   function loadLocations() {
@@ -6250,10 +6314,9 @@ var departmentsLocationInMap = function departmentsLocationInMap() {
     axios.post(window.location.origin + lang + '/ajax/getCityCurrent').then(function (response) {
       if ($('#departmentsMap').length) {
         var mapDiv = document.getElementById('departmentsMap');
-        console.log(response.data.data.addresses[0]);
         cityName = response.data.data.name[globalFunctions.getLanguage()];
         mapDiv.dataset.lat = Number(response.data.data.addresses[0].lat);
-        mapDiv.dataset.lng = Number(response.data.data.addresses[0].len);
+        mapDiv.dataset.lng = Number(response.data.data.addresses[0].lng);
       }
 
       initMap(response.data.data.addresses);
@@ -57739,15 +57802,21 @@ var render = function() {
                   }
                 },
                 [
-                  _c("a", { attrs: { href: "http://" + city.domain } }, [
-                    _c("span", { staticClass: "cityOption" }, [
-                      _vm._v(
-                        _vm._s(_vm.messages[_vm.lang].cityLetter) +
-                          " " +
-                          _vm._s(city.name[_vm.lang])
-                      )
-                    ])
-                  ])
+                  _c(
+                    "a",
+                    {
+                      attrs: { href: "http://" + city.domain + _vm.currentUrl }
+                    },
+                    [
+                      _c("span", { staticClass: "cityOption" }, [
+                        _vm._v(
+                          _vm._s(_vm.messages[_vm.lang].cityLetter) +
+                            " " +
+                            _vm._s(city.name[_vm.lang])
+                        )
+                      ])
+                    ]
+                  )
                 ]
               )
             }),

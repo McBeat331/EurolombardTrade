@@ -144,7 +144,7 @@
                                 >
                             </div>
                         </div>
-                            <input type="hidden" id="lng" name="lng" value="{{ isset($entry) ? $entry->lng : old('lng') }}"/>
+                            <input type="hidden" id="len" name="len" value="{{ isset($entry) ? $entry->len : old('len') }}"/>
                             <input type="hidden" id="lat" name="lat" value="{{ isset($entry) ? $entry->lat : old('lat') }}"/>
 
                             <br>

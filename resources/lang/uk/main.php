@@ -84,7 +84,7 @@ return [
     'developed_in' => 'Розроблено в',
     'our_social' => 'Нашi cоцiальнi мережi',
     'our_contacts' => 'Нашi контакти',
-    'all_rights_reserved' => 'Всi права захищенi © 2021 Євроломбард',
+    'all_rights_reserved' => 'Всi права захищенi © '.date("Y").' Є/Л Обмін',
     'vacancies_of_the_company' => 'Перечень вакансій Компанії України',
 
 

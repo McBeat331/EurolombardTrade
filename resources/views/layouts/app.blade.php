@@ -72,8 +72,8 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAor2gAXYMTj3AqHp0fBM0EjTKXrlEDavw"
-        type="text/javascript"></script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCg8cnSkO9AXRrLpbSFb-79xrZ4sPVqw0g&libraries=places&language=ru-RU&region=UA"></script>
 
 
 </body>

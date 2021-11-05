@@ -44,6 +44,13 @@ if(!function_exists('citySelected')) {
         return false;
     }
 }
-
+if(!function_exists('addressSelectedCity')) {
+    function addressSelectedCity()
+    {
+        $cityService = app()->make(CityService::class);
+        $city = $cityService->getDomainFind(request()->getHost());
+        return $city;
+    }
+}
 
 

@@ -358,3 +358,109 @@
     }
   }
 }
+
+
+.services-section {
+  position: relative;
+  .advantages-item-wrapper {
+    align-items: center;
+    justify-content: space-between;
+  }
+  .control-slide, .interface-widget {
+    position: relative;
+  }
+  .itself-slider {
+    width: 100%;
+    margin: auto;
+  }
+  .wrap-slide-item {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column-reverse;
+    .icon-bg-line {
+      display: none;
+    }
+  }
+
+  .elem-card {
+    margin: 0;
+    height: 345px;
+    transition: 0.2s ease opacity;
+    width: 285px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 30px rgb(0 0 0 / 10%);
+    .elem-title
+    {
+      margin: 16px 20px;
+      font-family: $secondaryFont;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 26px;
+      color: #282828;
+    }
+    .link-news
+    {
+      margin: 56px 16px 0;
+      border: 2px solid #FFC244;
+      box-sizing: border-box;
+      border-radius: 5px;
+      font-family: $mainFont;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 21px;
+      text-align: center;
+      color: #2F2483;
+      display:flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #fff;
+      transition: all 0.3s;
+      width: 180px;
+      height: 40px;
+      &:hover {
+        background: #FFC244;
+      }
+    }
+  }
+
+  .interface-widget {
+    margin-top: 10px;
+    .arrow-list {
+      margin: 0;
+    }
+  }
+
+  .ref-all-card {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    a {
+      background-color: $primaryColor;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 165px;
+      border-radius: 3px;
+      height: 40px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+  }
+  @media (max-width: $containerWidthSmailler) {
+    .elem-card
+    {
+      margin: 0;
+      height: 405px;
+      transition: 0.2s ease opacity;
+      width: 100%;
+      background: #FFFFFF;
+      box-shadow: 0px 0px 30px rgb(0 0 0 / 10%);
+      margin-bottom: 25px;
+    }
+  }
+}

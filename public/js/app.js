@@ -4888,6 +4888,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         callbackDropPopap = document.querySelector(".callback-drop-box"),
         callDropTitle = document.querySelector(".call-drop-title"),
         $btnModalReview = $(".btn-modal_review"),
+        $btnModalService = $(".link-news"),
         $qestionsItems = $(".questions-item"),
         $mapSection = $(".office-departments"),
         $calcTab = $(".calc-tab"),
@@ -5498,6 +5499,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
         $(".btn-close-modal").on("click", function () {
           $(".review-modal").hide();
         });
+        $btnModalService.on("click", function (e) {
+          e.preventDefault();
+          $('#service_id').val($(this).attr('data-servicesId'));
+          $(".service-modal").show();
+        });
+        $(".btn-close-modal").on("click", function () {
+          $(".service-modal").hide();
+        });
       },
       handlerHideOverlay: function handlerHideOverlay() {
         $(".overlay_js").on("click", function () {
@@ -5988,6 +5997,53 @@ window.onload = function () {
       }
     }
   });
+  $('a[href*="#"]') // Remove links that don't actually link to anything
+  .not('[href="#"]').not('[href="#0"]').click(function (event) {
+    event.preventDefault();
+
+    if ($('.nav').hasClass('nav-open')) {
+      var line1 = $(".line--1");
+      var line2 = $(".line--2");
+      var line3 = $(".line--3");
+      $(".nav").toggleClass("nav-open");
+      line1.toggleClass("line-cross");
+      line2.toggleClass("line-fade-out");
+      line3.toggleClass("line-cross");
+      $(".header-nav-list").toggleClass("fade-in");
+    }
+
+    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+      // Figure out element to scroll to
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']'); // Does a scroll target exist?
+
+      if (target.length) {
+        // Only prevent default if animation is actually gonna happen
+        event.preventDefault();
+        $('html, body').animate({
+          scrollTop: target.offset().top
+        }, 1000, function () {
+          // Callback after animation
+          // Must change focus!
+          var $target = $(target);
+          $target.focus();
+
+          if ($target.is(":focus")) {
+            // Checking if the target was focused
+            return false;
+          } else {
+            $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+
+            $target.focus(); // Set focus again
+          }
+
+          ;
+        });
+      } else {
+        window.location.href = '/';
+      }
+    }
+  });
 };
 
 /***/ }),
@@ -6127,12 +6183,12 @@ var departmentsLocationInMap = function departmentsLocationInMap() {
         // Start info Windows
 
         var infoWindow = new google.maps.InfoWindow({
-          content: "\n          <div class=\"lombard-map__city\">".concat(item.city_location, "</div>\n          <div class=\"lombard-map__street\">").concat(item['address_' + globalFunctions.getLanguage()], "</div>\n          <div class=\"lombard-map__image-wrapper\">\n            <img class=\"lombard-map__image\" src=\"").concat(item.image_path, "\">\n          </div>\n          <div class=\"lombard-map__description-time\">").concat(globalVariables.messages.work_time, "</div>\n          <div class=\"lombard-map__work-time\">\n            ").concat(item.hasOwnProperty('time_start') && item.time_start !== null && item.full_day === null ? item.time_start : '', " \n            ").concat(item.hasOwnProperty('time_end') && item.time_end !== null && item.full_day === null ? '- ' + item.time_end : '', " \n            ").concat(item.hasOwnProperty('full_day') && item.full_day !== null ? globalVariables.messages.around_the_clock : '', "\n          </div>\n          <div class=\"lombard-map__description-phone\">").concat(globalVariables.messages.phone, "</div>\n          <div class=\"lombard-map__phone\">\n            <a href=\"tel:").concat(item.phone, "\">").concat(item.phone, "</a>\n          </div>\n\n          \n          "),
+          content: "\n          \u044B\u044B\u044B\u044B\n          ",
           width: 350
         });
         infoWindows.push(infoWindow);
         var hoverInfoWindow = new google.maps.InfoWindow({
-          content: "<div>".concat(item.number, "</div>")
+          content: "<div>\u044D\u044D\u044D\u044D</div>"
         }); // End info Windows
         // Start Event listeners
 
@@ -6168,52 +6224,21 @@ var departmentsLocationInMap = function departmentsLocationInMap() {
         }); // End Event listeners
 
         return marker;
-      }); // End markers array
+      });
     }; // end setCluster
 
   }
 
-  function CreateMapDepartment(mapID) {
-    CreateMap.apply(this, arguments);
-
-    this.setMarker = function () {
-      var marker = new google.maps.Marker({
-        position: this.center,
-        map: this.map,
-        icon: '/img/marker.png'
-      });
-    };
-  }
-
-  var departmentsMap;
-
   function initMap(locations) {
-    // console.log('initMap()');
-    // departments
     (function () {
       if (!$('#departmentsMap').length) return;
-      departmentsMap = new CreateMapDepartments('departmentsMap', locations);
-      departmentsMap.initMap();
+      var departmentsMap = new CreateMapDepartments('departmentsMap', locations);
       departmentsMap.setCluster();
-    })(); // end departments
-    // department
-
-
-    (function () {
-      if (!$('#departmentMap').length) return;
-      var departmentMap = new CreateMapDepartment('departmentMap');
-      departmentMap.initMap();
-      departmentMap.setMarker();
-    })(); // end department
-
+    })();
   }
 
   ;
-
-  function locationZoom(location) {
-    departmentsMap.panZoom(location);
-  } // XMLHttpRequest for map's json template
-
+  var cityName = ''; // XMLHttpRequest for map's json template
 
   function loadLocations() {
     var lang = '';
@@ -6225,12 +6250,13 @@ var departmentsLocationInMap = function departmentsLocationInMap() {
     axios.post(window.location.origin + lang + '/ajax/getCityCurrent').then(function (response) {
       if ($('#departmentsMap').length) {
         var mapDiv = document.getElementById('departmentsMap');
-        mapDiv.dataset.lat = Number(response.data[0].lat);
-        mapDiv.dataset.lng = Number(response.data[0].len);
+        console.log(response.data.data.addresses[0]);
+        cityName = response.data.data.name[globalFunctions.getLanguage()];
+        mapDiv.dataset.lat = Number(response.data.data.addresses[0].lat);
+        mapDiv.dataset.lng = Number(response.data.data.addresses[0].len);
       }
 
-      initMap(response.data);
-      setDepartmentsList(response.data);
+      initMap(response.data.data.addresses);
     })["catch"](function (error) {
       console.log(error);
     });
@@ -6238,60 +6264,6 @@ var departmentsLocationInMap = function departmentsLocationInMap() {
 
   ; // End XMLHttpRequest for map's json template
 
-  function setDepartmentsList(data) {
-    var $departmentsListBlock = $('.departments-list-block');
-    var itemsHTML = '';
-    data.map(function (item) {
-      var _makeDepartmentInfoFi = makeDepartmentInfoFieldsFromItem(item),
-          transportedField = _makeDepartmentInfoFi.transportedField,
-          phoneField = _makeDepartmentInfoFi.phoneField,
-          workTimeField = _makeDepartmentInfoFi.workTimeField;
-
-      itemsHTML += "\n                    <div class=\"departments-item\">\n    \n                        <div class=\"departments-item__img\">\n                          <img src=\"".concat(item.image_path, "\">\n                        </div>\n                        \n                        <div class=\"departments-item__location departments-item__wrap\">\n                          <div class=\"departments-item__title\">").concat(item.hasOwnProperty('city_location') ? item.city_location : '', "</div>\n                          <div class=\"departments-item__descr\"> ").concat(item['address_' + globalFunctions.getLanguage()], "</div>\n                        </div>\n    \n                        <div class=\"departments-item__time departments-item__wrap\">\n                          <div class=\"departments-item__title\">").concat(globalVariables.messages.work_time, "</div>\n                          <div class=\"departments-item__descr\">\n                            ").concat(workTimeField, "\n                        </div>\n                        </div>\n                        \n                        <div class=\"departments-item__phone departments-item__wrap\">\n                          <div class=\"departments-item__title\">").concat(globalVariables.messages.phone, "</div>\n                          <div class=\"departments-item__descr\">\n                            <a href=\"tel:").concat(phoneField, "\">").concat(phoneField, "</a>\n                          </div>\n                        </div>\n    \n                    </div>\n                    ");
-    });
-    $departmentsListBlock.html(itemsHTML);
-  }
-
-  ;
-
-  function makeDepartmentInfoFieldsFromItem(item) {
-    var transportedField = item.transported ? "\n            ".concat(globalVariables.messages.transported_to, "\n            ").concat(item.temporary_office.number, " \n            ").concat(item.temporary_office.hasOwnProperty('address_ru') ? item.temporary_office.address_ru : item.temporary_office.address_uk, "\n            ") : '';
-    var phoneField = item.transported ? item.temporary_office.phone : item.phone;
-    var workTimeField = item.transported ? "\n            ".concat(item.temporary_office.hasOwnProperty('time_start') && item.temporary_office.time_start !== null && item.temporary_office.full_day === null ? item.temporary_office.time_start : '', " \n            ").concat(item.temporary_office.hasOwnProperty('time_end') && item.temporary_office.time_end !== null && item.temporary_office.full_day === null ? '- ' + item.temporary_office.time_end : '', " \n            ").concat(item.temporary_office.hasOwnProperty('full_day') && item.temporary_office.full_day !== null ? globalVariables.messages.around_the_clock : '', "\n            ") : "\n            ".concat(item.hasOwnProperty('time_start') && item.time_start !== null && item.full_day === null ? item.time_start : '', " \n            ").concat(item.hasOwnProperty('time_end') && item.time_end !== null && item.full_day === null ? '- ' + item.time_end : '', " \n            ").concat(item.hasOwnProperty('full_day') && item.full_day !== null ? globalVariables.messages.around_the_clock : '', "\n            ");
-    return {
-      transportedField: transportedField,
-      phoneField: phoneField,
-      workTimeField: workTimeField
-    };
-  }
-
-  var $cityItems = $('#city_id');
-  $cityItems.on('change', function (e) {
-    var city_id = this.value;
-    var lang = '';
-
-    if (city_id != 'empty') {
-      if (globalFunctions.getLanguage() == 'ru') {
-        lang = '/' + globalFunctions.getLanguage();
-      }
-
-      var mapDiv;
-      axios.post(window.location.origin + lang + '/ajax/getCityCurrent').then(function (response) {
-        if ($('#departmentsMap').length) {
-          var mapDiv = document.getElementById('departmentsMap');
-          mapDiv.dataset.lat = Number(response.data[0].lat);
-          mapDiv.dataset.lng = Number(response.data[0].lng);
-        }
-
-        initMap(response.data);
-        setDepartmentsList(response.data);
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    } else {
-      loadLocations();
-    }
-  });
   loadLocations();
 };
 

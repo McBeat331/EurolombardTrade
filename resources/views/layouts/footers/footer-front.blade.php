@@ -6,11 +6,21 @@
       </div>
       <div class="contacts visible-viewportchecker visibility--check hidden">
         <div class="title">{{ trans('main.our_contacts') }}</div>
-        our_contacts
+        <p>{{ trans('main.cityLatter') }}{{ addressSelectedCity()->name }}</p>
+        <p>{{ addressSelectedCity()->addresses->first()->name }}</p>
+        <p>{{ addressSelectedCity()->addresses->first()->phones }}</p>
       </div>
       <div class="social-wrapper visible-viewportchecker visibility--check hidden">
         <div class="title">{{ trans('main.our_social') }}</div>
         <ul class="social-mobile-list">
+          <li>
+            <span class="icon-social-fb"></span>
+            <a target="blank" href="" class="social-item-link"></a>
+          </li>
+          <li>
+            <span class="icon-social-inst"></span>
+            <a target="blank" href="" class="social-item-link"></a>
+          </li>
           <li>
             <span class="icon-social-telegram"></span>
             <a  target="blank" href="#" class="social-item-link"></a>

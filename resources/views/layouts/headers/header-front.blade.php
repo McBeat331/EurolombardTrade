@@ -1,5 +1,6 @@
 <listcity></listcity>
 <header class="mainHeader">
+
        <div class="header-content-wrap">
            <div class="header-logo">
                <a href="{{ route('main') }}"> <img src="/images/logoEuroLombard.svg" alt=""></a>
@@ -16,22 +17,22 @@
                   {!! switcher_locale() !!}
 
                   <li class="nav-item">
-                    <a href="#">
+                    <a href="#rateBlock">
                         <span>{{ trans('main.cources') }}</span>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="#">
+                    <a href="#serviceBlock">
                         <span>{{ trans('main.ourServices') }}</span>
                     </a>
                   </li>
-                  <li class="nav-item"><a href="#">{{ trans('main.ourAdvantages') }}</a></li>
+                  <li class="nav-item"><a href="#advantageBlock">{{ trans('main.ourAdvantages') }}</a></li>
                   <li class="nav-item"><a href="{{ route('contact.show') }}">{{ trans('main.contacts') }}</a></li>
                   <li class="nav-item telegramLink"><a href="#"><div class="telegramImg"><img src="../images/telegramIcoWhite.svg"/></div><span>{{ trans('main.ourTelegram') }}</span></a></li>
                   <li class="callback-section-header">
                        <div class="callback-phone">
                            <div class="callback-item-phone">
-                               <a href="tel:0730183284">073 018 32 84</a>
+                               <a href="tel:{{ addressSelectedCity()->addresses->first()->phones }}">{{ addressSelectedCity()->addresses->first()->phones }}</a>
                                <div class="callback-drop-box"> <span class="call-drop-title">{{ trans('main.call_drop_title') }}</span> 
                                     <div class="callback-dropdown-phone">
                                         @include('includes.callback-questions-form-front')

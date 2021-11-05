@@ -16,9 +16,7 @@
 @import 'app/component/modal';
 @import 'app/component/selectCity';
 
-// - common -
-@import 'app/common/common';
-@import 'app/common/common-blocks';
+
 // @import 'app/common/common-content';
 @import 'app/common/typography';
 // - partials -
@@ -31,6 +29,9 @@
 @import 'frames/blocks/slide';
 @import 'frames/blocks/button';
 @import 'frames/blocks/modal';
+// - common -
+@import 'app/common/common';
+@import 'app/common/common-blocks';
 // - grids -
 // @import 'frames/grids/form-grid';
 @import 'frames/grids/page-grid';

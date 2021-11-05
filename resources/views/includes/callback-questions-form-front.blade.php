@@ -3,7 +3,7 @@
   <div class="callback-content-forms">
       <div class="title">{{ trans('main.have_questions') }}</div>
       <div class="call-form-description">
-          {{ trans('main.call_us') }} <span class="strong-t">2222</span>
+          {{ trans('main.call_us') }} <span class="strong-t">{{ addressSelectedCity()->addresses->first()->phones }}</span>
           {{ trans('main.callbacks_request_message') }}
       </div>
       <form action="#" data-successText="{{ trans('main.thanks_for_callback') }}">

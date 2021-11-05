@@ -1,30 +1,23 @@
-<div class="wrap-slide-item">
-  <div class="title visible-viewportchecker visibility--check">{{ trans('main.ourServices') }}</div>
-  <div class="itself-slider">
-      <div class="init-small-slide">
-          @if(isset($services))
-          @forelse($services as $service)
-          <div class="el-card visible-viewportchecker visibility--check">
-            <div class="content-card">
-                <div class="el-img">
-                  <img src="{{ asset('storage/services/'.$service->image) }}" alt="{{ $service->title }}">
-                </div>
-                <div class="el-title">{{ $service->title }}</div>
-                {{-- <div class="el-title">{{ $service->title }} </div> --}} <!-- только в разделе новостей и акций есть этот заголовок -->
-                {{-- <div class="el-description">
-                    {!! str_limit(strip_tags($service->description), 80, ' ...') !!}
-                </div> --}}
-                <a href="#" class="link-news">
-                    <div class="btn-link">
-                      <span>{{ trans('main.details') }}</span>
-                      <span class="icon-arrow-l-secondColor"></span>
+<div class="advantages-content-wrap">
+    <div class="title visible-viewportchecker visibility--check hidden">{{ trans('main.ourServices') }}</div>
+    <div class="advantages-item-wrapper">
+        @if(isset($services))
+            @forelse($services as $service)
+                <div class="elem-card visible-viewportchecker visibility--check">
+                    <div class="content-card">
+                        <div class="elem-img">
+                            <img src="{{ asset('storage/services/'.$service->image) }}" alt="{{ $service->title }}">
+                        </div>
+                        <div class="elem-title">{{ $service->title }}</div>
+                        <a href="#" class="link-news" data-servicesId="{{ $service->id }}">
+                            <span>{{ trans('main.zayava') }}</span>
+                        </a>
                     </div>
-                </a>
-            </div>
-          </div>
-          @empty
-          @endforelse
-          @endif
-      </div>
-  </div>
+                </div>
+            @empty
+            @endforelse
+        @endif
+
+
+    </div>
 </div>

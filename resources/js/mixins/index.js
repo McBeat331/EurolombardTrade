@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             callbackDropPopap = document.querySelector(".callback-drop-box"),
             callDropTitle = document.querySelector(".call-drop-title"),
             $btnModalReview = $(".btn-modal_review"),
+            $btnModalService = $(".link-news"),
             $qestionsItems = $(".questions-item"),
             $mapSection = $(".office-departments"),
             $calcTab = $(".calc-tab"),
@@ -738,6 +739,14 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 $(".btn-close-modal").on("click", function() {
                     $(".review-modal").hide()
                 });
+                $btnModalService.on("click", function(e) {
+                    e.preventDefault();
+                    $('#service_id').val($(this).attr('data-servicesId'));
+                    $(".service-modal").show();
+                });
+                $(".btn-close-modal").on("click", function() {
+                    $(".service-modal").hide()
+                });
             },
 
             handlerHideOverlay() {
@@ -1273,5 +1282,54 @@ window.onload = function () {
             }
         }
     });
-
+    $('a[href*="#"]')
+    // Remove links that don't actually link to anything
+        .not('[href="#"]')
+        .not('[href="#0"]')
+        .click(function(event) {
+            event.preventDefault();
+            if($('.nav').hasClass('nav-open'))
+            {
+                let line1 = $(".line--1");
+                let line2 = $(".line--2");
+                let line3 = $(".line--3");
+                $(".nav").toggleClass("nav-open");
+                line1.toggleClass("line-cross");
+                line2.toggleClass("line-fade-out");
+                line3.toggleClass("line-cross");
+                $(".header-nav-list").toggleClass("fade-in");
+            }
+            if (
+                location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+                &&
+                location.hostname == this.hostname
+            ) {
+                // Figure out element to scroll to
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                // Does a scroll target exist?
+                if (target.length) {
+                    // Only prevent default if animation is actually gonna happen
+                    event.preventDefault();
+                    $('html, body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000, function() {
+                        // Callback after animation
+                        // Must change focus!
+                        var $target = $(target);
+                        $target.focus();
+                        if ($target.is(":focus")) { // Checking if the target was focused
+                            return false;
+                        } else {
+                            $target.attr('tabindex','-1'); // Adding tabindex for elements not focusable
+                            $target.focus(); // Set focus again
+                        };
+                    });
+                }
+                else
+                {
+                    window.location.href = '/';
+                }
+            }
+        });
 };

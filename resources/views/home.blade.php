@@ -4,18 +4,18 @@
 
     <div class="mainTitle mcontainer">{!! trans('main.MainTitle') !!}</div>
 
-    <div class="main-wrap-calc mcontainer">
+    <div class="main-wrap-calc mcontainer" id="rateBlock">
         <example-component></example-component>
     </div>
 
 
-    <section class="new-action-section small-slide-section">
+    <section class="services-section" id="serviceBlock">
         <div class="mcontainer">
             @include('includes.main-smail-slide-front')
         </div>
     </section>
 
-     <section class="advantages-section">
+     <section class="advantages-section" id="advantageBlock">
     <div class="mcontainer">
         @include('includes.advantages-company-front')
             </div>

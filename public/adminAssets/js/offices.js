@@ -134,9 +134,10 @@ $(document).ready(function () {
         $('#lat').val(lat);
     }
 
-    // function setLocation(location) {
-    //     $('input[name="address_uk"]').val(location[0].address_components[1].long_name + ', ' + location[0].address_components[0].long_name);
-    // }
+     function setLocation(location) {
+         $('input[name="name[uk]"]').val(location[0].address_components[1].long_name + ', ' + location[0].address_components[0].long_name);
+         $('input[name="name[ru]"]').val(location[0].address_components[1].long_name + ', ' + location[0].address_components[0].long_name);
+     }
 
     //Timepicker Init
 

@@ -109,42 +109,41 @@
   .departments-list-block {
     display: flex;
     flex-direction: column;
-    margin-bottom: -10px;
-    margin-top: -10px;
+    margin-top: 25px;
   }
   .departments-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     box-shadow: $smallShodow;
-    padding: 15px;
+    padding: 25px 35px;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
   }
   .departments-item__img {
     width: 100%;
   }
-  // .item__city,  .item__time-description, .item__phone-description {
-  //   font-family: $secondaryFont;
-  //   font-size: 16px;
-  //   font-weight: 500;
-  // }
+   .item__city,  .item__time-description, .item__phone-description {
+     font-family: $secondaryFont;
+     font-size: 16px;
+     font-weight: 500;
+   }
   .departments-item__title {
     font-family: $secondaryFont;
     font-size: 16px;
     font-weight: 500;
   }
-  // .item__street, .item__time,  .item__phone{
-  //   font-size: 20px;
-  //   font-weight: 700;
-  //   color: $primaryColor;
-  //   margin-top: 5px;
-  //   a {
-  //     font-size: 20px;
-  //     font-weight: 700;
-  //     color: $primaryColor;
-  //   }
-  // }
+   .item__street, .item__time,  .item__phone{
+     font-size: 20px;
+     font-weight: 700;
+     color: $primaryColor;
+     margin-top: 5px;
+     a {
+       font-size: 20px;
+       font-weight: 700;
+       color: $primaryColor;
+     }
+   }
   .departments-item__descr{
     font-size: 20px;
     font-weight: 700;

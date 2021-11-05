@@ -17,7 +17,7 @@ class Address extends Model
 
     protected $table = 'addresses';
 
-    protected $fillable = ['city_id','name','time_work','phones','round_the_clock','published','lat','len','slug'];
+    protected $fillable = ['city_id','name','time_work','phones','round_the_clock','published','lat','lng','slug'];
 
     public $translatable = ['name', 'slug'];
 

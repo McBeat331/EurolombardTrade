@@ -4,13 +4,13 @@
     justify-content: space-around;
     text-align: center;
     position: relative;
-    // background-image: url(/img/thankYou.png);
+    background-image: url(/images/thankYou.svg);
     background-position: center;
     background-size:contain;
     background-repeat: no-repeat;
     padding-top: 100px;
     p {
-        font-family: PT Sans Caption;
+        font-family: $mainFont;
         font-style: normal;
         font-weight: bold;
         font-size: 20px;
@@ -27,9 +27,9 @@
         border-radius: 3px;
     }
     @media (min-width: $containerWidthLaptop) {
-        padding-top: 200px;
-    //    height: 100vh;
-        height: 70vh;
+        padding-top: 30px;
+        //    height: 100vh;
+        height: 50vh;
         background-position: bottom;
         justify-content: space-between;
     }

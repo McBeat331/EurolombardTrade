@@ -29,7 +29,7 @@ class ServiceRequest extends FormRequest
             'description.*' => 'required',
             'meta_title.*' => 'nullable',
             'meta_description.*' => 'nullable',
-            'image' => 'required|mimes:jpeg,png,svg|max:1024',
+            'image' => 'mimes:jpeg,png,svg|max:1024',
         ];
     }
     public function messages()

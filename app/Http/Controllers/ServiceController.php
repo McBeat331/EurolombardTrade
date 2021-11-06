@@ -53,7 +53,7 @@ class ServiceController extends Controller
         $entry = $this->feedbackServices->add($data);
 
         try {
-            Mail::to($this->settingService->getFieldValue('callRequestEmail'))->send(new FeedbackMail($entry));
+            Mail::to($this->settingService->getFieldValue($entry->service->email))->send(new FeedbackMail($entry));
         } catch (Exception $e) {
             Log::info($e);
         }

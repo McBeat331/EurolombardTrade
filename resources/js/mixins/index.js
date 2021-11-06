@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 });
             },
             ajaxFormCallback() {
-                $('.callback-content-forms form .button').on('click', function(e) {
+                $('.common-questions .callback-content-forms form .button, .callback-dropdown-phone .callback-content-forms form .button').on('click', function(e) {
                     e.preventDefault();
 
                     if (ValidationModule.isValid(this.form)){
@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                         }
 
 
-                        $.get( '/callbacks/create', $(this.form).serialize(), function(data) {
+                        $.post( '/callbackMail', $(this.form).serialize(), function(data) {
                                 window.location.href = window.location.origin + langPrefix + '/thankYou';
 
                                 // $(form).next('.description-form').prepend('<div class="successForm">'+$(form).data('successtext')+'</div>');
@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     if (ValidationModule.isValid(this.form)){
                         console.log($(this.form).serialize());
                         var form = this.form;
-                        $.get( '/feedbacks/create', $(this.form).serialize(), function(data) {
+                        $.post( '/reviewMail', $(this.form).serialize(), function(data) {
                                 //window.location.href = window.location.origin + '/thankYou';
                                 $(form).next('.description-form').prepend('<div class="successForm">'+$(form).data('successtext')+'</div>');
                                 $('.description-form .successForm').slideDown('slow');
@@ -191,7 +191,32 @@ document.addEventListener("DOMContentLoaded", function (event) {
                                         $(this).remove();
                                     });
                                     $(".review-modal").hide()
-                                },6000);
+                                },3000);
+                                $(form)[0].reset();
+                            },
+                            'json'
+                        );
+                    }
+
+                });
+            },
+            ajaxFormFeedback() {
+                $('.service-modal .modal-content-forms form .button').on('click', function(e) {
+                    e.preventDefault();
+
+                    if (ValidationModule.isValid(this.form)){
+                        console.log($(this.form).serialize());
+                        var form = this.form;
+                        $.post( '/feedbackMail', $(this.form).serialize(), function(data) {
+                                //window.location.href = window.location.origin + '/thankYou';
+                                $(form).next('.description-form').prepend('<div class="successForm">'+$(form).data('successtext')+'</div>');
+                                $('.description-form .successForm').slideDown('slow');
+                                setTimeout(function () {
+                                    $('.description-form .successForm').slideUp('slow', function() {
+                                        $(this).remove();
+                                    });
+                                    $(".service-modal").hide()
+                                },3000);
                                 $(form)[0].reset();
                             },
                             'json'
@@ -959,6 +984,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
                 if ($('.callback-content-forms').length)
                     fn.ajaxFormCallback();
+
+                if ($('.service-modal .callback-content-forms').length)
+                    fn.ajaxFormFeedback();
 
                 if ($('.modal-el').length)
                     fn.ajaxFormReview();

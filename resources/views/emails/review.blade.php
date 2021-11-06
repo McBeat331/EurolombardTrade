@@ -1,6 +1,6 @@
 
 <b>Новый отзыв</b><br />
-Город: {{$review->city->name}}<br />
+Город: {{$review->city}}<br />
 ФИО: {{$review->name}}<br />
 Отзыв: {{$review->description}}<br />
 @if($review->rating)

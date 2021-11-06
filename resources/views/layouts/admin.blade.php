@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{!! 'Еврообмен . Быстрый обмен валют' !!}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('adminAssets/js/app.js') }}" defer></script>
@@ -117,7 +117,7 @@
 
                 <li class="nav-label">Настройки</li>
                 <li class="first"><a href="{{ route('admin.setting.index') }}"><i class="icon icon-settings"></i><span class="nav-text">Настройки</span></a></li>
-                <li class="first"><a href="{{ route('admin.pages.index') }}"><i class="icon icon-analytics"></i><span class="nav-text">SEO статических страниц</span></a></li>
+            <!--<li class="first"><a href="{{ route('admin.pages.index') }}"><i class="icon icon-analytics"></i><span class="nav-text">SEO статических страниц</span></a></li>-->
             </ul>
         </div>
 

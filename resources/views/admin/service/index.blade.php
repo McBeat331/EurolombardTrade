@@ -9,7 +9,7 @@
         <div class="row page-titles mx-0">
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
-                    <h4>Здесь хранятся записи Услуг</h4>
+                    <h4>Услуги</h4>
                     <div class="row page-titles mx-0">
                         <a href="{{ route('admin.service.create') }}">
                             <button type="button" class="btn btn-primary">
@@ -47,7 +47,8 @@
                                     <th>№</th>
                                     <th>Название</th>
                                     <th>Превью</th>
-                                    <th>Slug</th>
+                                    <th>Ссылка</th>
+                                    <th>Email для отправки</th>
                                     <th>Действие</th>
                                 </tr>
                                 </thead>
@@ -58,7 +59,8 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td><a href="{{ route('admin.service.edit',$service->id) }}">{{ $service->title }}</a></td>
                                         <td><img class="mr-3 img-fluid tableImg" src="{{ asset('storage/services/'.$service->image) }}" alt="Quixkit"></td>
-                                        <td>{{ $service->slug }}</td>
+                                        <td>{{ $service->link }}</td>
+                                        <td>{{ $service->email }}</td>
                                         <td>
                                             <a href="{{ route('admin.service.edit',$service->id) }}" class="mr-4 btn btn-info" data-toggle="tooltip"
                                                data-placement="top" title="Edit"><i
@@ -79,7 +81,8 @@
                                     <th>№</th>
                                     <th>Название</th>
                                     <th>Превью</th>
-                                    <th>Slug</th>
+                                    <th>Ссылка</th>
+                                    <th>Email для отправки</th>
                                     <th>Действие</th>
                                 </tr>
                                 </tfoot>

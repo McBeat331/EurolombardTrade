@@ -837,7 +837,7 @@ select:-webkit-autofill:focus {
   line-height: 26px;
   color: #282828;
 }
-.services-section .elem-card .link-news {
+.services-section .elem-card .link-news, .services-section .elem-card .blank-link-news {
   margin: 56px 16px 0;
   border: 2px solid #FFC244;
   box-sizing: border-box;
@@ -857,7 +857,7 @@ select:-webkit-autofill:focus {
   width: 180px;
   height: 40px;
 }
-.services-section .elem-card .link-news:hover {
+.services-section .elem-card .link-news:hover, .services-section .elem-card .blank-link-news:hover {
   background: #FFC244;
 }
 .services-section .interface-widget {

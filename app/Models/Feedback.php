@@ -10,7 +10,7 @@ class Feedback extends Model
     use HasFactory;
 
 
-    public const PAGINATE = 15;
+    public const PAGINATE = 20;
 
     public const STATUS_NOT_VERIFIED = 0;
     public const STATUS_TO_VERIFIED = 1;

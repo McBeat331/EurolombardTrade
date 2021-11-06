@@ -30,7 +30,12 @@ class ReviewService
     {
         return $this->reviewModel->where('id', $id)->with($relations)->firstOrFail();
     }
-
+    public function getUnreadCount()
+    {
+        return $this->reviewModel
+            ->where('status', 0)
+            ->count();
+    }
     /**
      * @param array $relations
      * @return mixed

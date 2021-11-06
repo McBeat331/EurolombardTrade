@@ -108,9 +108,13 @@
                 </li>
                 <li><a href="{{ route('admin.city.index') }}"><i class="icon icon-world-2"></i><span class="nav-text">Города</span></a></li>
                 <li><a href="{{ route('admin.address.index') }}"><i class="icon icon-flag-diagonal-33"></i><span class="nav-text">Отделения</span></a></li>
-                <li><a href="{{ route('admin.order.index') }}"><i class="icon icon-payment"></i><span class="nav-text">Заявки</span></a></li>
-                <li><a href="{{ route('admin.review.index') }}"><i class="icon icon-folder-15"></i><span class="nav-text">Отзывы</span></a></li>
                 <li><a href="{{ route('admin.user.index') }}"><i class="icon icon-users-mm"></i><span class="nav-text">Пользователи</span></a></li>
+                <li class="nav-label">Уведомления</li>
+                <li><a href="{{ route('admin.order.index') }}"><i class="icon icon-payment"></i><span class="nav-text">Заявки на обмен</span>@if(getUnreadOrder())<span class="badge badge-warning">{{ getUnreadOrder() }}</span>@endif</a></li>
+                <li><a href="{{ route('admin.feedback.index') }}"><i class="fa fa-file"></i><span class="nav-text">Заявки на услугу</span>@if(getUnreadFeedback())<span class="badge badge-warning">{{ getUnreadFeedback() }}</span>@endif</a></li>
+                <li><a href="{{ route('admin.callback.index') }}"><i class="fa fa-phone"></i><span class="nav-text">Заявки на звонок</span>@if(getUnreadCallback())<span class="badge badge-warning">{{ getUnreadCallback() }}</span>@endif</a></li>
+                <li><a href="{{ route('admin.review.index') }}"><i class="icon icon-folder-15"></i><span class="nav-text">Отзывы</span>@if(getUnreadReview())<span class="badge badge-warning">{{ getUnreadReview() }}</span>@endif</a></li>
+
                 <li class="nav-label">Настройки</li>
                 <li class="first"><a href="{{ route('admin.setting.index') }}"><i class="icon icon-settings"></i><span class="nav-text">Настройки</span></a></li>
                 <li class="first"><a href="{{ route('admin.pages.index') }}"><i class="icon icon-analytics"></i><span class="nav-text">SEO статических страниц</span></a></li>

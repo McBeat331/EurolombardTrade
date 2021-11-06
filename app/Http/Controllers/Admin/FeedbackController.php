@@ -31,7 +31,7 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        $entries = $this->feedbackServices->getAll();
+        $entries = $this->feedbackServices->getPaginate();
         return view('admin.feedback.index', compact('entries'));
     }
 

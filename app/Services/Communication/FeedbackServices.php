@@ -28,7 +28,12 @@ class FeedbackServices
     {
         return $this->feedbackModel->where('id', $id)->with($relations)->firstOrFail();
     }
-
+    public function getUnreadCount()
+    {
+        return $this->feedbackModel
+            ->where('status', 0)
+            ->count();
+    }
     /**
      * @param array $relations
      * @return mixed
@@ -42,9 +47,9 @@ class FeedbackServices
      * @param array $relations
      * @return mixed
      */
-    public function getPaginate($relations = [])
+    public function getPaginate($relations = ['service', 'city'])
     {
-        return $this->feedbackModel->with($relations)->paginate(Page::PAGINATE);
+        return $this->feedbackModel->with($relations)->paginate(Feedback::PAGINATE);
     }
 
     /**

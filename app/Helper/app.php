@@ -52,5 +52,27 @@ if(!function_exists('addressSelectedCity')) {
         return $city;
     }
 }
-
-
+if(!function_exists('getUnreadOrder')){
+    function getUnreadOrder(){
+        $orderService = app()->make( \App\Services\Order\OrderService::class);
+        return $orderService->getUnreadCount();
+    }
+}
+if(!function_exists('getUnreadFeedback')){
+    function getUnreadFeedback(){
+        $feedbackService = app()->make( \App\Services\Communication\FeedbackServices::class);
+        return $feedbackService->getUnreadCount();
+    }
+}
+if(!function_exists('getUnreadCallback')){
+    function getUnreadCallback(){
+        $callbackService = app()->make( \App\Services\Communication\CallbackServices::class);
+        return $callbackService->getUnreadCount();
+    }
+}
+if(!function_exists('getUnreadReview')){
+    function getUnreadReview(){
+        $reviewService = app()->make( \App\Services\Review\ReviewService::class);
+        return $reviewService->getUnreadCount();
+    }
+}

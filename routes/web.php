@@ -64,8 +64,8 @@ Route::name('admin.')->prefix('admin')->middleware('isAdmin')->group(function(){
 
     Route::post('changeStatusOrder', [App\Http\Controllers\Admin\OrderController::class,'changeStatus'])->name('changeStatusOrder');
     Route::post('changeStatusReview', [App\Http\Controllers\Admin\ReviewController::class,'changeStatus'])->name('changeStatusReview');
-    Route::post('changeStatusFeedback', [App\Http\Controllers\Admin\OrderController::class,'changeStatus'])->name('changeStatusFeedback');
-    Route::post('changeStatusCallback', [App\Http\Controllers\Admin\OrderController::class,'changeStatus'])->name('changeStatusCallback');
+    Route::post('changeStatusFeedback', [App\Http\Controllers\Admin\FeedbackController::class,'changeStatus'])->name('changeStatusFeedback');
+    Route::post('changeStatusCallback', [App\Http\Controllers\Admin\CallbackController::class,'changeStatus'])->name('changeStatusCallback');
 });
 
 

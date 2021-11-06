@@ -30857,6 +30857,10 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
 .left-icon-big .alert-left-icon-big i {
   font-size: 42px;
 }
+#menu .badge {
+  margin-left: 10px;
+}
+
 .badge {
   line-height: 1.5;
   padding: 5px 10px;

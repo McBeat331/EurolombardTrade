@@ -28,7 +28,12 @@ class CallbackServices
     {
         return $this->callbackModel->where('id', $id)->with($relations)->firstOrFail();
     }
-
+    public function getUnreadCount()
+    {
+        return $this->callbackModel
+            ->where('status', 0)
+            ->count();
+    }
     /**
      * @param array $relations
      * @return mixed
@@ -44,7 +49,7 @@ class CallbackServices
      */
     public function getPaginate($relations = [])
     {
-        return $this->callbackModel->with($relations)->paginate(Page::PAGINATE);
+        return $this->callbackModel->with($relations)->paginate(Callback::PAGINATE);
     }
 
     /**

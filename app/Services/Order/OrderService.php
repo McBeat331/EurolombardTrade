@@ -28,7 +28,12 @@ class OrderService
             ->with($relations)
             ->firstOrFail();
     }
-
+    public function getUnreadCount()
+    {
+        return $this->orderModel
+            ->where('status', 0)
+            ->count();
+    }
 
     public function getAll($relations = ['city'])
     {

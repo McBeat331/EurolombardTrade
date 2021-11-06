@@ -31,7 +31,7 @@ class CallbackController extends Controller
      */
     public function index()
     {
-        $entries = $this->callbackServices->getAll();
+        $entries = $this->callbackServices->getPaginate();
         return view('admin.callback.index', compact('entries'));
     }
 

@@ -9,12 +9,12 @@
         <div class="row page-titles mx-0">
             <div class="col-sm-6 p-md-0">
                 <div class="welcome-text">
-                    <h4>Отзывы</h4>
+                    <h4>Заявки на звонок</h4>
                 </div>
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Отзывы</a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Заявки на звонок</a></li>
                 </ol>
             </div>
         </div>
@@ -25,7 +25,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Отзывы</h4>
+                        <h4 class="card-title">Заявки на звонок</h4>
                     </div>
                     <div class="card-body">
                         <div class="col-lg-12">
@@ -36,50 +36,43 @@
                                         <thead>
                                         <tr>
                                             <th class="col-2">Дата</th>
-                                            <th class="col-2">Пользователь</th>
-                                            <th class="col-1">Город</th>
-                                            <th class="col-3">Отзыв</th>
+                                            <th class="col-2">Имя</th>
+                                            <th class="col-2">Номер телефона</th>
+                                            <th class="col-2">Город</th>
                                             <!--<th class="col-1">Рейтинг</th>-->
                                             <th class="col-2">Статус</th>
                                             <th scope="col col-2">Действия</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($entries as $review)
+                                        @foreach($entries as $callback)
                                             <tr>
                                                 <td>
-                                                    {{ $review->created_at}}
+                                                    {{ $callback->created_at}}
                                                 </td>
                                                 <td>
-                                                    @if($review->user_id && $review->user_id!='')
-                                                        {{$review->user->name}} {{$review->user->lastname}}
-                                                    @else
-                                                        {{$review->name}}
-                                                    @endif
+                                                    {{$callback->name}}
                                                 </td>
                                                 <td>
-                                                    @if($review->city)
-                                                        {{$review->city }}
+                                                    {{$callback->phone }}
+                                                </td>
+                                                <td>
+                                                    @if($callback->city->name )
+                                                        {{ $callback->city->name }}
                                                     @else
                                                         Нет
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    {{$review->description}}
-                                                </td>
-                                                <!--<td>
-                                                    {{$review->rating}}
-                                                </td>-->
-                                                <td>
-                                                    @if($review->status == 0)
-                                                        <span class="badge badge-warning" data-id="{{$review->id}}" data-url="{{ route('admin.changeStatusReview') }}" style="cursor:pointer">Не обработано</span>
+                                                    @if($callback->status == 0)
+                                                        <span class="badge badge-warning" data-id="{{$callback->id}}" data-url="{{ route('admin.changeStatusCallback') }}" style="cursor:pointer">Не обработано</span>
                                                     @else
-                                                        <span class="badge badge-success" data-id="{{$review->id}}" data-url="{{ route('admin.changeStatusReview') }}" style="cursor:pointer">Обработано</span>
+                                                        <span class="badge badge-success" data-id="{{$callback->id}}" data-url="{{ route('admin.changeStatusCallback') }}" style="cursor:pointer">Обработано</span>
                                                     @endif
 
                                                 </td>
                                                 <td><span>
-                                                    <form action="{{ route('admin.review.destroy',$review->id) }}" method="POST" style="display:inline-block">
+                                                    <form action="{{ route('admin.callback.destroy',$callback->id) }}" method="POST" style="display:inline-block">
 
                                                 @csrf
                                                 @method('DELETE')

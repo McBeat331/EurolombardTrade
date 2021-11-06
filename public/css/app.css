@@ -1910,15 +1910,48 @@
   background: #FFC244;
 }
 
-.wrap-btn-forms {
+.modal .subTitle {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 28px;
+  color: #282828;
+  padding: 29px 0px;
+}
+.modal .title {
+  padding-top: 0;
+}
+.modal .calculatorWrapForm .section-input {
+  height: 80px;
+}
+.modal .calculatorWrapForm .section-input .chosen-single {
+  height: 60px;
+}
+.modal .wrap-btn-forms {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 @media (min-width: 1170px) {
-  .wrap-btn-forms {
+  .modal .wrap-btn-forms {
     flex-direction: row;
+    align-items: center;
+    margin-top: 40px;
   }
+}
+.modal .wrap-btn-forms button {
+  margin-top: 0;
+}
+.modal .wrap-btn-forms .tipForm {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px;
+  /* identical to box height, or 157% */
+  color: #878787;
+  margin-left: 20px;
 }
 
 @media (min-width: 1840px) {
@@ -3056,7 +3089,7 @@
   right: 0;
   display: flex;
   justify-content: center;
-  background-color: #000000da;
+  background: rgba(40, 40, 40, 0.5);
   z-index: 101;
 }
 
@@ -3112,7 +3145,7 @@
   background: #F1F4FF;
   border-radius: 3px;
   padding: 31px;
-  margin-bottom: 39px;
+  margin-bottom: 30px;
 }
 .modalObmen .currencyBlock .currency-box {
   flex: 3;

@@ -1073,14 +1073,61 @@ input[type=file] {
 
   }
 }
-.wrap-btn-forms {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  @media (min-width: $containerWidthLaptop) {
-   flex-direction: row;
+.modal
+{
+  .subTitle
+  {
+    font-family: $secondaryFont;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 28px;
+    color: #282828;
+    padding: 29px 0px;
+  }
+  .title
+  {
+    padding-top:0;
+  }
+  .calculatorWrapForm
+  {
+    .section-input
+    {
+      height:80px;
+      .chosen-single
+      {
+        height:60px;
+      }
+    }
+  }
+  .wrap-btn-forms {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    @media (min-width: $containerWidthLaptop) {
+      flex-direction: row;
+      align-items: center;
+      margin-top: 40px;
+    }
+    button
+    {
+      margin-top: 0;
+    }
+    .tipForm
+    {
+      font-family: $secondaryFont;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 22px;
+      /* identical to box height, or 157% */
+      color: #878787;
+      margin-left: 20px;
+    }
+
   }
 }
+
 
 // ---------- desc XL ---------------
 

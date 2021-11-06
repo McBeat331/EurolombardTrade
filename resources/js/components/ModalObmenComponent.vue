@@ -1,5 +1,7 @@
 <template>
     <div class="wrap-select-option" v-bind:class="{loading : isLoading}">
+        <div class="title"><span>{{ messages[lang].createRequest }}</span></div>
+        <div class="subTitle"><span>Курс <span v-if="BuyOrSales == 'buy'">{{ messages[lang].rateSaleTitle }}</span><span v-else>{{ messages[lang].rateBuyTitle }}</span> - {{ rateFrom }} {{currency_from}}/{{currency_to}}</span></div>
         <div class="currencyBlock">
             <div class="currency-box">
 
@@ -21,7 +23,6 @@
                                             :value="count_from"
                                             class="inputFrom"
                                     />
-                                    <span  v-show="pairCurrencyItem.length != 0" class="buttomSubText">1 {{currency_from}} = {{ rateFrom }} {{currency_to}}</span>
                                 </div>
                                 <div class="currentCurrency">
                                     <span class="placeholder"><span class="currencyImg"><img :src="'/images/currency/'+ currency_from +'.png'" /></span><strong>{{ currency_from }}</strong></span>
@@ -73,9 +74,8 @@
                             <template else >
                                 <span v-show="pairCurrencyItem.length == 0" class="notFoundSmile"><img src="/images/png-clipart-iphone-emoji-sadness.png"/></span>
                                 <div class="countBlock" @click.stop v-show="pairCurrencyItem.length != 0">
-                                    <span v-show="pairCurrencyItem.length != 0" class="topSubText">{{ messages[lang].giveMoney }}</span>
+                                    <span v-show="pairCurrencyItem.length != 0" class="topSubText">{{ messages[lang].getMoney }}</span>
                                     <span class="currency_to">{{ count_to }}</span>
-                                    <span v-show="pairCurrencyItem.length != 0" class="buttomSubText">1 {{currency_to}} = {{ rateTo }} {{currency_from}}</span>
                                 </div>
                                 <div class="currentCurrency">
                                     <span class="placeholder"><span class="currencyImg"><img :src="'/images/currency/'+ currency_to +'.png'" /></span><strong>{{ currency_to }}</strong></span>
@@ -140,6 +140,7 @@
                     {{messages[lang].submitForm}}
                     <div v-show="isVisibleSpiner" class="spinner spinner--search"></div>
                 </button>
+                <span class="tipForm">{{ messages[lang].giveAccess }}</span>
             </div>
         </div>
         <span class="errorFoundCurrency" v-bind="pairCurrencyItem" v-show="pairCurrencyItem.length == 0">{{ messages[lang].no_found}}</span>

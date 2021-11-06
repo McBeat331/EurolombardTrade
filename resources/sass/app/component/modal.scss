@@ -6,7 +6,7 @@
   right: 0;
   display: flex;
   justify-content: center;
-  background-color: #000000da;
+  background: rgb(40,40,40, 0.5);
   z-index:101;
 }
 
@@ -68,7 +68,7 @@
     background: #F1F4FF;
     border-radius: 3px;
     padding: 31px;
-    margin-bottom: 39px;
+    margin-bottom: 30px;
     .currency-box
     {
       flex: 3;

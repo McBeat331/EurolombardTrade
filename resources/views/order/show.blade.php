@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="mcontainer">
-        <div class="title visible-viewportchecker visibility--check hidden">Заявка стоврена</div>
+        <div class="title visible-viewportchecker visibility--check hidden">Заявка створена</div>
     </div>
 
     <section class="success-order">

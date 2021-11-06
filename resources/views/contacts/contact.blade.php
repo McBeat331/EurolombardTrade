@@ -20,7 +20,7 @@
                         <div class="departments-item__time">
                             <div class="item__time-description">{{ trans('main.time-description') }}</div>
                             <div class="item__time">
-                                @if($address->round_the_clock)
+                                @if($address->round_the_clock == 1)
                                     {{ trans('main.time-work') }}
                                     @else
                                     {{ $address->time_work }}

@@ -75,7 +75,7 @@
                         <template else >
                             <span v-show="pairCurrencyItem.length == 0" class="notFoundSmile"><img src="/images/png-clipart-iphone-emoji-sadness.png"/></span>
                             <div class="countBlock" @click.stop v-show="pairCurrencyItem.length != 0">
-                                <span v-show="pairCurrencyItem.length != 0" class="topSubText">{{ messages[lang].giveMoney }}</span>
+                                <span v-show="pairCurrencyItem.length != 0" class="topSubText">{{ messages[lang].getMoney }}</span>
                                 <span class="currency_to">{{ count_to }}</span>
                                 <span v-show="pairCurrencyItem.length != 0" class="buttomSubText">1 {{currency_to}} = {{ rateTo }} {{currency_from}}</span>
                             </div>

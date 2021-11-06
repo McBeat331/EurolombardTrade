@@ -1,5 +1,7 @@
 <template>
     <div class="wrap-select-option" v-bind:class="{loading : isLoading}">
+        <div class="title"><span>{{ messages[lang].createRequest }}</span></div>
+        <div class="subTitle"><span>Курс <span v-if="BuyOrSales == 'buy'">{{ messages[lang].rateSaleTitle }}</span><span v-else>{{ messages[lang].rateBuyTitle }}</span> - {{ rateFrom }} {{currency_from}}/{{currency_to}}</span></div>
         <div class="currencyBlock">
             <div class="currency-box">
 
@@ -21,7 +23,6 @@
                                             :value="count_from"
                                             class="inputFrom"
                                     />
-                                    <span  v-show="pairCurrencyItem.length != 0" class="buttomSubText">1 {{currency_from}} = {{ rateFrom }} {{currency_to}}</span>
                                 </div>
                                 <div class="currentCurrency">
                                     <span class="placeholder"><span class="currencyImg"><img :src="'/images/currency/'+ currency_from +'.png'" /></span><strong>{{ currency_from }}</strong></span>
@@ -73,9 +74,8 @@
                             <template else >
                                 <span v-show="pairCurrencyItem.length == 0" class="notFoundSmile"><img src="/images/png-clipart-iphone-emoji-sadness.png"/></span>
                                 <div class="countBlock" @click.stop v-show="pairCurrencyItem.length != 0">
-                                    <span v-show="pairCurrencyItem.length != 0" class="topSubText">{{ messages[lang].giveMoney }}</span>
+                                    <span v-show="pairCurrencyItem.length != 0" class="topSubText">{{ messages[lang].getMoney }}</span>
                                     <span class="currency_to">{{ count_to }}</span>
-                                    <span v-show="pairCurrencyItem.length != 0" class="buttomSubText">1 {{currency_to}} = {{ rateTo }} {{currency_from}}</span>
                                 </div>
                                 <div class="currentCurrency">
                                     <span class="placeholder"><span class="currencyImg"><img :src="'/images/currency/'+ currency_to +'.png'" /></span><strong>{{ currency_to }}</strong></span>
@@ -140,6 +140,7 @@
                     {{messages[lang].submitForm}}
                     <div v-show="isVisibleSpiner" class="spinner spinner--search"></div>
                 </button>
+                <span class="tipForm">{{ messages[lang].giveAccess }}</span>
             </div>
         </div>
         <span class="errorFoundCurrency" v-bind="pairCurrencyItem" v-show="pairCurrencyItem.length == 0">{{ messages[lang].no_found}}</span>
@@ -270,8 +271,30 @@
             },
             handleSubmit() {
                 this.isVisibleSpiner = true;
-                this.reincarnationBtn();
-                let value = 0;
+
+                const data = {
+                    currency_buy: this.currency_to,
+                    currency_sale: this.currency_from,
+                    email: this.email,
+                    fio: this.name,
+                    isOpt: this.isOpt == true ? 1 : 0,
+                    phone: this.phone,
+                    price_buy: this.count_from,
+                    price_sale: this.count_to,
+                    rate_buy: this.isOpt == true ? this.pairCurrencyItem.buy_opt : this.pairCurrencyItem.buy,
+                    rate_id: this.pairCurrencyItem.id,
+                    rate_sale: this.isOpt == true ? this.pairCurrencyItem.sale_opt : this.pairCurrencyItem.sale,
+                    status: 0
+                };
+                axios.post("/order", data)
+                    .then(response => {
+                        this.reincarnationBtn();
+                        window.location.href = '/order';
+                    })
+                    .catch(error => {
+                        console.error("There was an error!", error);
+                        this.reincarnationBtn();
+                    });
             },
             reincarnationBtn: function() {
                 this.isVisibleSpiner = false;
@@ -292,7 +315,15 @@
 
             messages: () => messages,
             isDisabled() {
-                return validateForm(this.required, {name:this.name,phone:this.phone,email:this.email});
+                if(this.count_from > 0)
+                {
+                    return validateForm(this.required, {name:this.name,phone:this.phone,email:this.email});
+                }
+                else
+                {
+                    return true;
+                }
+
             },
             count_to: function () {
                 var count_from = this.count_from;

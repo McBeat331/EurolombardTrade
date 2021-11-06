@@ -2622,6 +2622,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 // typical import
 
 
@@ -2732,9 +2733,32 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     handleSubmit: function handleSubmit() {
+      var _this = this;
+
       this.isVisibleSpiner = true;
-      this.reincarnationBtn();
-      var value = 0;
+      var data = {
+        currency_buy: this.currency_to,
+        currency_sale: this.currency_from,
+        email: this.email,
+        fio: this.name,
+        isOpt: this.isOpt == true ? 1 : 0,
+        phone: this.phone,
+        price_buy: this.count_from,
+        price_sale: this.count_to,
+        rate_buy: this.isOpt == true ? this.pairCurrencyItem.buy_opt : this.pairCurrencyItem.buy,
+        rate_id: this.pairCurrencyItem.id,
+        rate_sale: this.isOpt == true ? this.pairCurrencyItem.sale_opt : this.pairCurrencyItem.sale,
+        status: 0
+      };
+      axios.post("/order", data).then(function (response) {
+        _this.reincarnationBtn();
+
+        window.location.href = '/order';
+      })["catch"](function (error) {
+        console.error("There was an error!", error);
+
+        _this.reincarnationBtn();
+      });
     },
     reincarnationBtn: function reincarnationBtn() {
       this.isVisibleSpiner = false;
@@ -2751,11 +2775,15 @@ __webpack_require__.r(__webpack_exports__);
       return _helpers_messages__WEBPACK_IMPORTED_MODULE_2__.messages;
     },
     isDisabled: function isDisabled() {
-      return (0,_mixins_validateForm__WEBPACK_IMPORTED_MODULE_6__.validateForm)(this.required, {
-        name: this.name,
-        phone: this.phone,
-        email: this.email
-      });
+      if (this.count_from > 0) {
+        return (0,_mixins_validateForm__WEBPACK_IMPORTED_MODULE_6__.validateForm)(this.required, {
+          name: this.name,
+          phone: this.phone,
+          email: this.email
+        });
+      } else {
+        return true;
+      }
     },
     count_to: function count_to() {
       var count_from = this.count_from;
@@ -2811,32 +2839,32 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
     this.setLang();
     _app__WEBPACK_IMPORTED_MODULE_0__.bus.$on('currency_from', function (data) {
-      _this.currency_from = data;
+      _this2.currency_from = data;
     });
     _app__WEBPACK_IMPORTED_MODULE_0__.bus.$on('currency_to', function (data) {
-      _this.currency_to = data;
+      _this2.currency_to = data;
     });
     _app__WEBPACK_IMPORTED_MODULE_0__.bus.$on('optionArray', function (data) {
-      _this.options = data, _this.pairCurrencyItem = data[0];
+      _this2.options = data, _this2.pairCurrencyItem = data[0];
     });
     _app__WEBPACK_IMPORTED_MODULE_0__.bus.$on('count_from', function (data) {
-      _this.count_from = data;
+      _this2.count_from = data;
     });
     _app__WEBPACK_IMPORTED_MODULE_0__.bus.$on('isOpt', function (data) {
-      _this.isOpt = data;
+      _this2.isOpt = data;
     });
     setTimeout(function () {
-      _this.getThisRate(_this.currency_from, _this.currency_to);
+      _this2.getThisRate(_this2.currency_from, _this2.currency_to);
 
-      _this.isLoading = false;
+      _this2.isLoading = false;
     }, 2000);
     window.addEventListener('mouseup', function () {
-      if (_this.dropdownyFrom === true) {
-        _this.dropdownyFrom = false;
+      if (_this2.dropdownyFrom === true) {
+        _this2.dropdownyFrom = false;
       }
     });
   }
@@ -3305,36 +3333,45 @@ var messages = {
     rateName: 'Валюта',
     rateBuy: 'Купівля',
     rateSale: 'Продаж',
+    rateBuyTitle: 'купівлі',
+    rateSaleTitle: 'продажу',
     rateModal: 'Заявка',
-    cityLetter: 'м.'
+    cityLetter: 'м.',
+    createRequest: 'Створення заявки',
+    giveAccess: 'Заповнюючи форму, Ви даєте згоду на обробку персональних даних.'
   },
   'ru': {
-    USD: "Доллар",
+    no_found: "К сожалению эта пара не поддерживается",
+    USD: "Американский доллар",
     EUR: "Евро",
-    RUR: "Рубль",
-    PLN: "Злотий",
-    GBP: "Фунт",
-    CHF: "Франк",
-    CZK: "Крона",
-    UAH: "Гривна",
+    RUR: "Российський рубль",
+    PLN: "Польский злотый",
+    GBP: "Английский фунт",
+    CHF: "Швейцарский франк",
+    CZK: "Чешская крона",
+    UAH: "Украинская гривна",
     giveMoney: "Оттдаю",
     getMoney: "Получаю",
     errorNotCurrency: "Оберіть обе валюти",
-    "true": 'Роздріб',
+    "true": 'Розница',
     "false": 'Опт',
-    ourServices: 'Наші послуги',
-    name: 'ПIБ',
+    ourServices: 'Наши услуги',
+    name: 'ФИО',
     phone: 'Телефон',
     email: 'E-mail',
-    name_placeholder: 'Введiть ваше iм’я',
-    phone_placeholder: 'Введiть ваш номер',
-    email_placeholder: 'Введiть ваш e-mail',
-    submitForm: 'Оформити заявку',
+    name_placeholder: 'Введите ваше имя',
+    phone_placeholder: 'Введите ваш номер',
+    email_placeholder: 'Введите ваш e-mail',
+    submitForm: 'Оформить заявку',
     rateName: 'Валюта',
-    rateBuy: 'Купівля',
-    rateSale: 'Продаж',
+    rateBuy: 'Покупка',
+    rateSale: 'Продажа',
+    rateBuyTitle: 'покупки',
+    rateSaleTitle: 'продажи',
     rateModal: 'Заявка',
-    cityLetter: 'г.'
+    cityLetter: 'г.',
+    createRequest: 'Создание заявки',
+    giveAccess: 'Заполняя форму, Вы даете согласие на обработку персональных данных.'
   }
 };
 
@@ -57942,6 +57979,27 @@ var render = function() {
     "div",
     { staticClass: "wrap-select-option", class: { loading: _vm.isLoading } },
     [
+      _c("div", { staticClass: "title" }, [
+        _c("span", [_vm._v(_vm._s(_vm.messages[_vm.lang].createRequest))])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "subTitle" }, [
+        _c("span", [
+          _vm._v("Курс "),
+          _vm.BuyOrSales == "buy"
+            ? _c("span", [_vm._v(_vm._s(_vm.messages[_vm.lang].rateSaleTitle))])
+            : _c("span", [_vm._v(_vm._s(_vm.messages[_vm.lang].rateBuyTitle))]),
+          _vm._v(
+            " - " +
+              _vm._s(_vm.rateFrom) +
+              " " +
+              _vm._s(_vm.currency_from) +
+              "/" +
+              _vm._s(_vm.currency_to)
+          )
+        ])
+      ]),
+      _vm._v(" "),
       _c("div", { staticClass: "currencyBlock" }, [
         _c("div", { staticClass: "currency-box" }, [
           _c(
@@ -58030,32 +58088,7 @@ var render = function() {
                               },
                               expression: "count_from"
                             }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.pairCurrencyItem.length != 0,
-                                  expression: "pairCurrencyItem.length != 0"
-                                }
-                              ],
-                              staticClass: "buttomSubText"
-                            },
-                            [
-                              _vm._v(
-                                "1 " +
-                                  _vm._s(_vm.currency_from) +
-                                  " = " +
-                                  _vm._s(_vm.rateFrom) +
-                                  " " +
-                                  _vm._s(_vm.currency_to)
-                              )
-                            ]
-                          )
+                          })
                         ],
                         1
                       ),
@@ -58325,37 +58358,12 @@ var render = function() {
                               ],
                               staticClass: "topSubText"
                             },
-                            [_vm._v(_vm._s(_vm.messages[_vm.lang].giveMoney))]
+                            [_vm._v(_vm._s(_vm.messages[_vm.lang].getMoney))]
                           ),
                           _vm._v(" "),
                           _c("span", { staticClass: "currency_to" }, [
                             _vm._v(_vm._s(_vm.count_to))
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "span",
-                            {
-                              directives: [
-                                {
-                                  name: "show",
-                                  rawName: "v-show",
-                                  value: _vm.pairCurrencyItem.length != 0,
-                                  expression: "pairCurrencyItem.length != 0"
-                                }
-                              ],
-                              staticClass: "buttomSubText"
-                            },
-                            [
-                              _vm._v(
-                                "1 " +
-                                  _vm._s(_vm.currency_to) +
-                                  " = " +
-                                  _vm._s(_vm.rateTo) +
-                                  " " +
-                                  _vm._s(_vm.currency_from)
-                              )
-                            ]
-                          )
+                          ])
                         ]
                       ),
                       _vm._v(" "),
@@ -58579,7 +58587,11 @@ var render = function() {
                 staticClass: "spinner spinner--search"
               })
             ]
-          )
+          ),
+          _vm._v(" "),
+          _c("span", { staticClass: "tipForm" }, [
+            _vm._v(_vm._s(_vm.messages[_vm.lang].giveAccess))
+          ])
         ])
       ]),
       _vm._v(" "),
@@ -59023,7 +59035,7 @@ var render = function() {
                           ],
                           staticClass: "topSubText"
                         },
-                        [_vm._v(_vm._s(_vm.messages[_vm.lang].giveMoney))]
+                        [_vm._v(_vm._s(_vm.messages[_vm.lang].getMoney))]
                       ),
                       _vm._v(" "),
                       _c("span", { staticClass: "currency_to" }, [

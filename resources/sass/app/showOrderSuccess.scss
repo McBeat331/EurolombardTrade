@@ -1,0 +1,87 @@
+.success-order
+{
+  margin-top: 20px;
+  .flexBlock
+  {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+    .flexInfoItem
+    {
+      margin-right: 30px;
+      width: 200px;
+      & > span
+      {
+        display: block;
+      }
+      .infoLabel
+      {
+        font-family: $secondaryFont;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 19px;
+        color: #878787;
+        margin-bottom: 10px;
+      }
+      .infoValue
+      {
+        font-family: $secondaryFont;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 23px;
+        color: #282828;
+      }
+      .infoRate
+      {
+        font-family: $secondaryFont;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 23px;
+        color: #878787;
+      }
+      .infoCurrency
+      {
+        font-family: $secondaryFont;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 23px;
+        color: #282828;
+      }
+      .infoTip
+      {
+        font-family: $secondaryFont;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 22px;
+        color: #FF0000;
+        margin-top: 10px;
+      }
+    }
+  }
+  .linkBlock
+  {
+    a
+    {
+      background: #FFC244;
+      border-radius: 3px;
+      border: none;
+      width: 285px;
+      height: 50px;
+      font-family: "PT Sans Caption", sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 50px;
+      text-align: center;
+      color: #2F2483;
+      display: inline-block;
+    }
+  }
+}

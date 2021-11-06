@@ -22,12 +22,12 @@ Route::group(['prefix' => parseLocale(),'where' => ['locale' => '[a-z]{2}'],'mid
     Auth::routes(['register' => false]);
 
     Route::get('/', [App\Http\Controllers\HomeController::class, 'main'])->name('main');
-    Route::get('advantage', [App\Http\Controllers\AdvantageController::class, 'index'])->name('advantage.index');
+    /*Route::get('advantage', [App\Http\Controllers\AdvantageController::class, 'index'])->name('advantage.index');
     Route::get('advantage/{slug}', [App\Http\Controllers\AdvantageController::class, 'show'])->name('advantage.show');
     Route::get('service', [App\Http\Controllers\ServiceController::class, 'index'])->name('service.index');
-    Route::get('service/{slug}', [App\Http\Controllers\ServiceController::class, 'show'])->name('service.show');
+    Route::get('service/{slug}', [App\Http\Controllers\ServiceController::class, 'show'])->name('service.show');*/
     Route::get('contact', [App\Http\Controllers\ContactController::class, 'show'])->name('contact.show');
-    Route::get('review', [App\Http\Controllers\ReviewController::class, 'index'])->name('review.index');
+   /* Route::get('review', [App\Http\Controllers\ReviewController::class, 'index'])->name('review.index');*/
     Route::get('order', [App\Http\Controllers\OrderController::class,'show']);
 //    Route::get('get-departments',  [App\Http\Controllers\ContactController::class, 'getDepartments'])->name('departments.getDepartments');
 });

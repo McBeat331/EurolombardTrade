@@ -144,9 +144,9 @@
                                     <small class="red">не заполнять если не уверены</small>
                                 </div>
                                 <div class="form-group">
-                                    <h5>Дата</h5>
-                                    <span><small>выберите дату</small></span>
-                                    <input name="date" type="text" placeholder="2017-06-04" id="date-format" class="datepicker form-control" value="2021-10-11"/>
+                                    <label for="email">Емейл для отправки</label>
+                                    <input name="email" id="email" type="text" class="form-control" value="@isset($entry) {{ $entry->email }} @endisset"/>
+                                    <small class="red">укажите почту для отправки заявок по этой услуге</small>
                                 </div>
                                 <div class="form-group">
                                     <h5>Титульное изображение *</h5>

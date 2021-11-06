@@ -359,7 +359,71 @@
   }
 }
 
+.telegram-section
+{
+  margin-top: 45px;
+  .telegramBlock
+  {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #0088CC;
+    background-image: url(/images/telegramBg.png);
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 29px 54px;
+    .telegram-main-title
+    {
+      font-family: $mainFont;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 40px;
+      line-height: 52px;
 
+      color: #FFFFFF;
+    }
+    .telegram-sub-title
+    {
+      font-family: $secondaryFont;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 23px;
+      margin-top: 15px;
+      color: #FFFFFF;
+    }
+    .telegram-link-block
+    {
+      a
+      {
+        width: 330px;
+        height: 65px;
+        background: #FFC244;
+        border-radius: 3px;
+        font-family: $mainFont;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 26px;
+        text-align: center;
+        color: #2F2483;
+        padding: 20px 0px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        img
+        {
+          max-height: 100%;
+          margin-right: 10px;
+          width: auto;
+        }
+      }
+    }
+  }
+}
 .services-section {
   position: relative;
   .advantages-item-wrapper {

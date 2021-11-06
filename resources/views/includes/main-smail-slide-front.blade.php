@@ -9,9 +9,15 @@
                             <img src="{{ asset('storage/services/'.$service->image) }}" alt="{{ $service->title }}">
                         </div>
                         <div class="elem-title">{{ $service->title }}</div>
-                        <a href="#" class="link-news" data-servicesId="{{ $service->id }}">
-                            <span>{{ trans('main.zayava') }}</span>
-                        </a>
+                        @if($service->link)
+                            <a href="{{$service->link}}" class="blank-link-news" target="_blank">
+                                <span>{{ trans('main.details') }}</span>
+                            </a>
+                        @elseif($service->email)
+                            <a href="#" class="link-news" data-servicesId="{{ $service->id }}">
+                                <span>{{ trans('main.zayava') }}</span>
+                            </a>
+                        @endif
                     </div>
                 </div>
             @empty

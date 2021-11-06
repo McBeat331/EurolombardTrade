@@ -64,32 +64,15 @@
                                             <label>Заголовок услуги <small>(украинский вариант)</small></label>
                                             <input type="text" name="title[uk]" class="form-control"
                                                    @isset($entry)
-                                                   value="{{ old('title_uk') ? old('title_uk') : $entry->translations['title']['uk'] }}"
+                                                   value="{{ old('title[uk]') ? old('title[uk]') : $entry->translations['title']['uk'] }}"
                                                    @else
-                                                   value="{{ old('title_uk') }}"
+                                                   value="{{ old('title[uk]') }}"
                                                     @endisset
                                             >
                                             @if($errors->has('title.uk'))
                                                 <div class="error text-danger small">{{ $errors->first('title.uk') }}</div>
                                             @endif
                                         </div>
-
-                                        <div class="form-group">
-                                            <label>Описание услуги</label>
-                                            <textarea name="description[uk]" class="form-control summernote" id="description_uk" rows="5">
-                                                @isset($entry) {{ old('description_uk') ? old('description_uk') : $entry->translations['description']['uk'] }} @else {{ old('description_uk') }} @endisset
-                                            </textarea>
-                                            @if($errors->has('description.uk'))
-                                                <div class="error text-danger small">{{ $errors->first('description.uk') }}</div>
-                                            @endif
-
-                                        </div>
-
-                                        @isset($entry)
-                                            @include('admin.includes.seo_tags_uk', array('page' => $entry ))
-                                        @else
-                                            @include('admin.includes.seo_tags_uk')
-                                        @endisset
 
                                     </div>
                                     <div class="tab-pane fade" id="ru" role="tabpanel" aria-labelledby="ru-tab"><br>
@@ -98,49 +81,23 @@
                                             <label>Заголовок услуги <small>(русский вариант)</small></label>
                                             <input type="text" name="title[ru]" class="form-control"
                                                    @isset($entry)
-                                                   value="{{ old('title_ru') ? old('title_ru') : $entry->translations['title']['ru'] }}" @else value="{{ old('title_ru') }}" @endisset
+                                                   value="{{ old('title[ru]') ? old('title[ru]') : $entry->translations['title']['ru'] }}" @else value="{{ old('title_ru') }}" @endisset
                                             >
                                             @if($errors->has('title.ru'))
                                                 <div class="error text-danger small">{{ $errors->first('title.ru') }}</div>
                                             @endif
                                         </div>
 
-                                        <div class="form-group">
-                                            <label>Описание услуги</label>
-                                            <textarea name="description[ru]" class="form-control summernote" id="description" rows="5">
-                                                @isset($entry) {{ old('description_ru') ? old('description_ru') : $entry->translations['description']['ru'] }} @else {{ old('description_ru') }}@endisset
-                                            </textarea>
-                                            @if($errors->has('description.ru'))
-                                                <div class="error text-danger small">{{ $errors->first('description.ru') }}</div>
-                                            @endif
-
-                                        </div>
-
-                                        @isset($entry)
-                                            @include('admin.includes.seo_tags_ru', array('page' => $entry ))
-                                            @else
-                                                @include('admin.includes.seo_tags_ru')
-                                                @endisset
 
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <br>
+
                                 <div class="form-group">
-                                    <label for="">Состояние</label>
-                                    <select name="published" id="" class="form-control">
-                                        <option value="1" @if(isset($entry) &&  $entry->published ) {{ 'selected' }} @endif >
-                                            Опубликовано
-                                        </option>
-                                        <option value="0" @if(isset($entry) &&  !$entry->published ) {{ 'selected' }} @endif >
-                                            Не опубликовано
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Алиас</label>
-                                    <input type="text" name="slug"  class="form-control" value="@isset($entry) {{ $entry->slug }} @endisset">
+                                    <label for="">Ссылка на ресурс</label>
+                                    <input type="text" name="link"  class="form-control" value="@isset($entry) {{ $entry->link }} @endisset">
                                     <small class="red">не заполнять если не уверены</small>
                                 </div>
                                 <div class="form-group">

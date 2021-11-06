@@ -8,7 +8,7 @@
             <div class="callback-wrap-content">
                 <span class="icon-bg-line"></span>
                 <div class="callback-content-forms">
-                    <div class="title">{{ trans('main.have_questions') }}</div>
+                    <div class="title">{{ trans('main.thanks_for') }}</div>
                     <div class="call-form-description">
                         {{ trans('main.call_us') }} <span class="strong-t">{{ addressSelectedCity()->addresses->first()->phones }}</span>
                         {{ trans('main.callbacks_request_message') }}

@@ -15,10 +15,9 @@ class Service extends Model
     use HasFactory,HasTranslations,HasTranslatableSlug;
 
     public const PAGINATE = 15;
-
     protected $table = 'services';
 
-    protected $fillable = ['title', 'description','meta_title', 'meta_description','slug','image','email'];
+    protected $fillable = ['title', 'description','meta_title', 'meta_description','slug','image','email','link'];
 
     public $translatable = ['title', 'description','meta_title', 'meta_description','slug'];
 

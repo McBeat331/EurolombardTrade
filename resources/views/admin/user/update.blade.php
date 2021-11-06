@@ -65,7 +65,7 @@
                                                     <div class="error text-danger small">{{ $errors->first('name') }}</div>
                                                 @endif
                                             </div>
-                                            <div class="form-group">
+                                            <!--<div class="form-group">
                                                 <label>Фамилия</label>
                                                 <input type="text" name="lastname" class="form-control"
                                                        @isset($entry)
@@ -90,7 +90,7 @@
                                                 @if($errors->has('phone'))
                                                     <div class="error text-danger small">{{ $errors->first('phone') }}</div>
                                                 @endif
-                                            </div>
+                                            </div>-->
                                             <div class="form-group">
                                                 <label>E-mail</label>
                                                 <input type="text" name="email" class="form-control"

@@ -3168,6 +3168,7 @@
   font-size: 14px;
   line-height: 30px;
   color: #151B3B;
+  width: 100%;
 }
 .selectCity .section-input .customSelect .dropdownSelect .option strong {
   font-style: normal;

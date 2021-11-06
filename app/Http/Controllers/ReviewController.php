@@ -17,13 +17,11 @@ class ReviewController extends Controller
 
     private $reviewService;
     private $settingService;
-    private $rateJob;
 
-    public function __construct(ReviewService $reviewService, SettingService $settingService, RateJob $rateJob)
+    public function __construct(ReviewService $reviewService, SettingService $settingService)
     {
         $this->reviewService = $reviewService;
-        $this->settingService = $settingService;;
-        $this->rateJob = $rateJob;
+        $this->settingService = $settingService;
     }
 
     public function index()
@@ -34,8 +32,7 @@ class ReviewController extends Controller
 
     public function store(ReviewRequest $request)
     {
-        $data = $this->rateJob->addCityToData($request->all());
-        $entry = $this->reviewService->add($data);
+        $entry = $this->reviewService->add($request->all());
 
         try {
             Mail::to($this->settingService->getFieldValue('reviewRequestEmail'))->send(new ReviewMail($entry));

@@ -24,6 +24,7 @@ class ReviewRequest extends FormRequest
     public function rules()
     {
         return [
+            'city' => 'required|string|min:3',
             'name' => 'required|string|min:3',
             'description' => 'required|string|min:3',
             'rating' => 'nullable|integer',

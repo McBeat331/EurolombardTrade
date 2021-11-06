@@ -8,6 +8,11 @@
         <example-component></example-component>
     </div>
 
+    <section class="telegram-section">
+        <div class="mcontainer">
+            @include('includes.telegramBanner')
+        </div>
+    </section>
 
     <section class="services-section" id="serviceBlock">
         <div class="mcontainer">

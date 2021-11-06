@@ -726,6 +726,62 @@
   }
 }
 
+.telegram-section {
+  margin-top: 45px;
+}
+.telegram-section .telegramBlock {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0088CC;
+  background-image: url(/images/telegramBg.png);
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding: 29px 54px;
+}
+.telegram-section .telegramBlock .telegram-main-title {
+  font-family: "PT Sans Caption", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 52px;
+  color: #FFFFFF;
+}
+.telegram-section .telegramBlock .telegram-sub-title {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+  margin-top: 15px;
+  color: #FFFFFF;
+}
+.telegram-section .telegramBlock .telegram-link-block a {
+  width: 330px;
+  height: 65px;
+  background: #FFC244;
+  border-radius: 3px;
+  font-family: "PT Sans Caption", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 26px;
+  text-align: center;
+  color: #2F2483;
+  padding: 20px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.telegram-section .telegramBlock .telegram-link-block a img {
+  max-height: 100%;
+  margin-right: 10px;
+  width: auto;
+}
+
 .services-section {
   position: relative;
 }
@@ -4793,8 +4849,6 @@ a {
   .advantages-content-wrap .advantages-item-wrapper {
     flex-direction: row;
     padding-top: 30px;
-    margin-left: -10px;
-    margin-right: -10px;
   }
   .advantages-content-wrap .advantages-item {
     cursor: pointer;

@@ -271,8 +271,30 @@
             },
             handleSubmit() {
                 this.isVisibleSpiner = true;
-                this.reincarnationBtn();
-                let value = 0;
+
+                const data = {
+                    currency_buy: this.currency_to,
+                    currency_sale: this.currency_from,
+                    email: this.email,
+                    fio: this.name,
+                    isOpt: this.isOpt == true ? 1 : 0,
+                    phone: this.phone,
+                    price_buy: this.count_from,
+                    price_sale: this.count_to,
+                    rate_buy: this.isOpt == true ? this.pairCurrencyItem.buy_opt : this.pairCurrencyItem.buy,
+                    rate_id: this.pairCurrencyItem.id,
+                    rate_sale: this.isOpt == true ? this.pairCurrencyItem.sale_opt : this.pairCurrencyItem.sale,
+                    status: 0
+                };
+                axios.post("/order", data)
+                    .then(response => {
+                        this.reincarnationBtn();
+                        window.location.href = '/order';
+                    })
+                    .catch(error => {
+                        console.error("There was an error!", error);
+                        this.reincarnationBtn();
+                    });
             },
             reincarnationBtn: function() {
                 this.isVisibleSpiner = false;
@@ -293,7 +315,15 @@
 
             messages: () => messages,
             isDisabled() {
-                return validateForm(this.required, {name:this.name,phone:this.phone,email:this.email});
+                if(this.count_from > 0)
+                {
+                    return validateForm(this.required, {name:this.name,phone:this.phone,email:this.email});
+                }
+                else
+                {
+                    return true;
+                }
+
             },
             count_to: function () {
                 var count_from = this.count_from;

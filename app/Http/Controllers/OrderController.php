@@ -32,7 +32,7 @@ class OrderController extends Controller
     public function add(OrderClientRequest $request)
     {
         $data = $this->rateJob->addCityToData($request->all());
-        $order = $this->orderService->add($request->all());
+        $order = $this->orderService->add($data);
 
         $this->rateJob->saveRateAfterOrder($data['rate_id']);
 
@@ -53,9 +53,8 @@ class OrderController extends Controller
         if(request()->session()->has('order-last-id')){
             $order_id = request()->session()->get('order-last-id');
             $order = $this->orderService->getFind($order_id);
-
-            dd($order);
-            // return view();
+            $currentCity = $this->rateJob->selectedCity();
+            return view('order.show', compact('order','currentCity'));
 
         }
         abort(404);

@@ -2733,9 +2733,32 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     handleSubmit: function handleSubmit() {
+      var _this = this;
+
       this.isVisibleSpiner = true;
-      this.reincarnationBtn();
-      var value = 0;
+      var data = {
+        currency_buy: this.currency_to,
+        currency_sale: this.currency_from,
+        email: this.email,
+        fio: this.name,
+        isOpt: this.isOpt == true ? 1 : 0,
+        phone: this.phone,
+        price_buy: this.count_from,
+        price_sale: this.count_to,
+        rate_buy: this.isOpt == true ? this.pairCurrencyItem.buy_opt : this.pairCurrencyItem.buy,
+        rate_id: this.pairCurrencyItem.id,
+        rate_sale: this.isOpt == true ? this.pairCurrencyItem.sale_opt : this.pairCurrencyItem.sale,
+        status: 0
+      };
+      axios.post("/order", data).then(function (response) {
+        _this.reincarnationBtn();
+
+        window.location.href = '/order';
+      })["catch"](function (error) {
+        console.error("There was an error!", error);
+
+        _this.reincarnationBtn();
+      });
     },
     reincarnationBtn: function reincarnationBtn() {
       this.isVisibleSpiner = false;
@@ -2752,11 +2775,15 @@ __webpack_require__.r(__webpack_exports__);
       return _helpers_messages__WEBPACK_IMPORTED_MODULE_2__.messages;
     },
     isDisabled: function isDisabled() {
-      return (0,_mixins_validateForm__WEBPACK_IMPORTED_MODULE_6__.validateForm)(this.required, {
-        name: this.name,
-        phone: this.phone,
-        email: this.email
-      });
+      if (this.count_from > 0) {
+        return (0,_mixins_validateForm__WEBPACK_IMPORTED_MODULE_6__.validateForm)(this.required, {
+          name: this.name,
+          phone: this.phone,
+          email: this.email
+        });
+      } else {
+        return true;
+      }
     },
     count_to: function count_to() {
       var count_from = this.count_from;
@@ -2812,32 +2839,32 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    var _this = this;
+    var _this2 = this;
 
     this.setLang();
     _app__WEBPACK_IMPORTED_MODULE_0__.bus.$on('currency_from', function (data) {
-      _this.currency_from = data;
+      _this2.currency_from = data;
     });
     _app__WEBPACK_IMPORTED_MODULE_0__.bus.$on('currency_to', function (data) {
-      _this.currency_to = data;
+      _this2.currency_to = data;
     });
     _app__WEBPACK_IMPORTED_MODULE_0__.bus.$on('optionArray', function (data) {
-      _this.options = data, _this.pairCurrencyItem = data[0];
+      _this2.options = data, _this2.pairCurrencyItem = data[0];
     });
     _app__WEBPACK_IMPORTED_MODULE_0__.bus.$on('count_from', function (data) {
-      _this.count_from = data;
+      _this2.count_from = data;
     });
     _app__WEBPACK_IMPORTED_MODULE_0__.bus.$on('isOpt', function (data) {
-      _this.isOpt = data;
+      _this2.isOpt = data;
     });
     setTimeout(function () {
-      _this.getThisRate(_this.currency_from, _this.currency_to);
+      _this2.getThisRate(_this2.currency_from, _this2.currency_to);
 
-      _this.isLoading = false;
+      _this2.isLoading = false;
     }, 2000);
     window.addEventListener('mouseup', function () {
-      if (_this.dropdownyFrom === true) {
-        _this.dropdownyFrom = false;
+      if (_this2.dropdownyFrom === true) {
+        _this2.dropdownyFrom = false;
       }
     });
   }

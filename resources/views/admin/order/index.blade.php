@@ -35,15 +35,16 @@
                                         <table class="table verticle-middle table-responsive-sm">
                                             <thead>
                                             <tr>
-                                                <th class="col-2">Пользователь</th>
-                                                <th class="col-2">Номер телефона</th>
-                                                <th class="col-2">Дата</th>
-                                                <th class="col-1">Сдаёт</th>
-                                                <th class="col-1">Валюта</th>
-                                                <th class="col-1">Получает</th>
-                                                <th class="col-1">Валюта</th>
-                                                <th class="col-1">Статус</th>
-                                                <th scope="col col-1">Действия</th>
+                                                <th>Пользователь</th>
+                                                <th>Номер телефона</th>
+                                                <th>Дата</th>
+                                                <th>Сдаёт</th>
+                                                <th>Получает</th>
+                                                <th>Курс покупки</th>
+                                                <th>Курс продажи</th>
+                                                <th>Опт</th>
+                                                <th>Статус</th>
+                                                <th>Действия</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -59,16 +60,19 @@
                                                     {{ $order->created_at }}
                                                 </td>
                                                 <td>
-                                                    {{ $order->price_from }}
+                                                    {{ $order->price_buy }} {{ $order->currency_sale }}
                                                 </td>
                                                 <td>
-                                                    {{ $order->currency_from }}
+                                                    {{ $order->price_sale }} {{ $order->currency_buy }}
                                                 </td>
                                                 <td>
-                                                    {{ $order->price_to }}
+                                                    {{ $order->rate_sale }}
                                                 </td>
                                                 <td>
-                                                    {{ $order->currency_to }}
+                                                    {{ $order->rate_buy }}
+                                                </td>
+                                                <td>
+                                                    @if($order->isOpt == 1) да  @else нет @endif
                                                 </td>
                                                 <td>
                                                     @if(!$order->status)
@@ -113,6 +117,9 @@
                 url: _url,
                 data: {'id':id},
                 type: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 success: function(response) {
                     if(response) {
                         console.log(response['status']);

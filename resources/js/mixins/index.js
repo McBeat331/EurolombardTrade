@@ -1356,7 +1356,7 @@ window.onload = function () {
                 }
                 else
                 {
-                    window.location.href = '/';
+                    window.location.href = '/'+this.hash;
                 }
             }
         });

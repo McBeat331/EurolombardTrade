@@ -55,7 +55,7 @@ class ReviewService
             ->with($relations)
             ->where('status',Review::STATUS_TO_VERIFIED)
             ->orderBy('created_at','DESC')
-            ->limit(4)
+            ->limit(10)
             ->get();
     }
 

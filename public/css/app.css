@@ -2996,13 +2996,14 @@ select:-webkit-autofill:focus {
   justify-content: space-around;
   text-align: center;
   position: relative;
+  background-image: url(/images/thankYou.svg);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
   padding-top: 100px;
 }
 .wrapper-thank p {
-  font-family: PT Sans Caption;
+  font-family: "PT Sans Caption", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 20px;
@@ -3020,8 +3021,8 @@ select:-webkit-autofill:focus {
 }
 @media (min-width: 1170px) {
   .wrapper-thank {
-    padding-top: 200px;
-    height: 70vh;
+    padding-top: 30px;
+    height: 50vh;
     background-position: bottom;
     justify-content: space-between;
   }

@@ -5046,7 +5046,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
               langPrefix = '/ru';
             }
 
-            $.get('/callbacks/create', $(this.form).serialize(), function (data) {
+            $.post('/callbackMail', $(this.form).serialize(), function (data) {
               window.location.href = window.location.origin + langPrefix + '/thankYou'; // $(form).next('.description-form').prepend('<div class="successForm">'+$(form).data('successtext')+'</div>');
               // $('.description-form .successForm').slideDown('slow');
               // setTimeout(function () {

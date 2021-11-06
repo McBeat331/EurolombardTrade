@@ -7,6 +7,7 @@
           {{ trans('main.callbacks_request_message') }}
       </div>
       <form action="#" data-successText="{{ trans('main.thanks_for_callback') }}">
+          <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
           <div class="formRow">
               <input name="name" type="text" placeholder="{{ trans('main.your_name') }}" data-validate="required" data-error-text="{{ __('main.field_required') }}" required>
           </div>

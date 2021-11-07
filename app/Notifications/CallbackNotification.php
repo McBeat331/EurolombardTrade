@@ -38,7 +38,7 @@ class CallbackNotification extends Notification
     {
         return TelegramMessage::create()
             ->to(config('services.telegram-bot-api.channels.callback'))
-            ->content("*Обратный звонок*\nГород: {$post->city->name}\nФИО: {$post->name}\nТелефон: {$post->phone}");
+            ->content("*Обратный звонок*\nГород: *{$post->city->name}*\nФИО: *{$post->name}*\nТелефон: *{$post->phone}*");
     }
 
     /**

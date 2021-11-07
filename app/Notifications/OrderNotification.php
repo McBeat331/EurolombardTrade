@@ -39,7 +39,7 @@ class OrderNotification extends Notification
         $opt = $post->isOpt ? 'Да' : 'Нет';
         return TelegramMessage::create()
             ->to(config('services.telegram-bot-api.channels.order'))
-            ->content("*Новый заказ*\nГород: {$post->city->name}\n\nФИО: {$post->fio}\nEmail: {$post->email}\nТелефон: {$post->phone}\n\nОПТ: {$opt}\nПродажа: {$post->rate_sale}\nПокупка: {$post->rate_buy}\nОбмен: {$post->price_sale}{$post->currency_buy} => {$post->price_buy}{$post->currency_sale}");
+            ->content("*Новая заявка на обмен*\nГород: *{$post->city->name}*\n\nФИО: *{$post->fio}*\nEmail: *{$post->email}*\nТелефон: *{$post->phone}*\n\nОПТ: *{$opt}*\nПродажа: *{$post->rate_sale}*\nПокупка: *{$post->rate_buy}*\nОбмен: *{$post->price_buy}{$post->currency_sale}* => *{$post->price_sale}{$post->currency_buy}*");
     }
 
     /**

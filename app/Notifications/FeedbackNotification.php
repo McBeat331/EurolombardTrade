@@ -38,7 +38,7 @@ class FeedbackNotification extends Notification
     {
         return TelegramMessage::create()
             ->to(config('services.telegram-bot-api.channels.feedback'))
-            ->content("*Обратная связь*\nГород: {$post->city->name}\nФИО: {$post->name}\nТелефон: {$post->phone}\nУслуга: {$post->service->title}");
+            ->content("*Обратная связь по услуге {$post->service->title}*\nГород: *{$post->city->name}*\nФИО: *{$post->name}*\nТелефон: *{$post->phone}*\nУслуга: *{$post->service->title}*");
     }
 
     /**

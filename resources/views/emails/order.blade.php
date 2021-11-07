@@ -1,5 +1,5 @@
 
-<b>Новый заказ</b><br />
+<b>Новая заявка на обмен</b><br />
 Город: {{$order->city->name}}<br /><br />
 ФИО: {{$order->fio}}<br />
 Email: {{$order->email}}<br />
@@ -7,5 +7,5 @@ Email: {{$order->email}}<br />
 ОПТ: {{$order->isOpt ? 'Да' : 'Нет'}}<br />
 Продажа: {{$order->rate_sale}}<br />
 Покупка: {{$order->rate_buy}}<br />
-Обмен: {{$order->price_sale}}{{$order->currency_buy}} => {{$order->price_buy}}{{$order->currency_sale}}
+Обмен: {{$order->price_buy}}{{$order->currency_sale}} => {{$order->price_sale}}{{$order->currency_buy}}
 

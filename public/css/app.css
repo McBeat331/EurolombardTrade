@@ -515,6 +515,12 @@ select:-webkit-autofill:focus {
   text-align: center;
   margin: 30px 0;
 }
+@media only screen and (max-width: 576px) {
+  .mainTitle {
+    font-size: 28px;
+    line-height: 40px;
+  }
+}
 .mainTitle .yellowText {
   color: #FFC244;
 }
@@ -744,6 +750,11 @@ select:-webkit-autofill:focus {
 .telegram-section {
   margin-top: 45px;
 }
+@media only screen and (max-width: 576px) {
+  .telegram-section {
+    margin-top: 20px;
+  }
+}
 .telegram-section .telegramBlock {
   width: 100%;
   display: flex;
@@ -756,6 +767,16 @@ select:-webkit-autofill:focus {
   background-size: contain;
   padding: 29px 54px;
 }
+@media only screen and (max-width: 576px) {
+  .telegram-section .telegramBlock {
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 270%;
+    padding: 20px 20px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
 .telegram-section .telegramBlock .telegram-main-title {
   font-family: "PT Sans Caption", sans-serif;
   font-style: normal;
@@ -763,6 +784,12 @@ select:-webkit-autofill:focus {
   font-size: 40px;
   line-height: 52px;
   color: #FFFFFF;
+}
+@media only screen and (max-width: 576px) {
+  .telegram-section .telegramBlock .telegram-main-title {
+    font-size: 20px;
+    line-height: 32px;
+  }
 }
 .telegram-section .telegramBlock .telegram-sub-title {
   font-family: "Roboto", sans-serif;
@@ -772,6 +799,19 @@ select:-webkit-autofill:focus {
   line-height: 23px;
   margin-top: 15px;
   color: #FFFFFF;
+}
+@media only screen and (max-width: 576px) {
+  .telegram-section .telegramBlock .telegram-sub-title {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .telegram-section .telegramBlock .telegram-link-block {
+    width: 100%;
+    margin-top: 15px;
+    margin-bottm: 15px;
+  }
 }
 .telegram-section .telegramBlock .telegram-link-block a {
   width: 330px;
@@ -791,10 +831,24 @@ select:-webkit-autofill:focus {
   justify-content: center;
   text-align: center;
 }
+@media only screen and (max-width: 576px) {
+  .telegram-section .telegramBlock .telegram-link-block a {
+    width: 100%;
+    font-size: 18px;
+    height: 50px;
+    margin-top: 10px;
+  }
+}
 .telegram-section .telegramBlock .telegram-link-block a img {
   max-height: 100%;
   margin-right: 10px;
   width: auto;
+}
+@media only screen and (max-width: 576px) {
+  .telegram-section .telegramBlock .telegram-link-block a img {
+    max-height: 20px;
+    margin-right: 5px;
+  }
 }
 
 .services-section {
@@ -923,6 +977,11 @@ select:-webkit-autofill:focus {
   }
 }
 
+@media only screen and (max-width: 576px) {
+  .showButton {
+    margin-top: 40px;
+  }
+}
 .showButton button {
   background: #FFC244;
   border-radius: 3px;
@@ -938,12 +997,28 @@ select:-webkit-autofill:focus {
   text-align: center;
   color: #2F2483;
 }
+@media only screen and (max-width: 576px) {
+  .showButton button {
+    width: 100%;
+  }
+}
 
 .switch-currency {
   text-align: center;
   margin: -30px 0;
   position: relative;
   z-index: 2;
+}
+@media only screen and (max-width: 576px) {
+  .switch-currency {
+    padding-left: 10px;
+    text-align: left;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .switch-currency svg {
+    max-width: 55px;
+  }
 }
 
 .errorFoundCurrency {
@@ -988,6 +1063,11 @@ select:-webkit-autofill:focus {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+@media only screen and (max-width: 576px) {
+  .calculatorWrapForm .title {
+    flex-direction: column;
+  }
 }
 .calculatorWrapForm .title span:last-child {
   margin-right: 0px;
@@ -1168,6 +1248,15 @@ select:-webkit-autofill:focus {
   margin-top: 12px;
   margin-bottom: 12px;
 }
+@media only screen and (max-width: 576px) {
+  .calculatorWrapForm .section-input {
+    height: 65px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+}
 .calculatorWrapForm .section-input.ui-slider {
   cursor: default;
 }
@@ -1181,6 +1270,11 @@ select:-webkit-autofill:focus {
   justify-content: space-between;
   height: 80px;
   padding-left: 25px;
+}
+@media only screen and (max-width: 576px) {
+  .calculatorWrapForm .section-input .chosen-single {
+    height: 55px;
+  }
 }
 .calculatorWrapForm .section-input .countBlock {
   display: flex;
@@ -1200,6 +1294,13 @@ select:-webkit-autofill:focus {
   line-height: 16px;
   color: #878787;
 }
+@media only screen and (max-width: 576px) {
+  .calculatorWrapForm .section-input .countBlock .buttomSubText {
+    position: absolute;
+    right: 0;
+    top: 65px;
+  }
+}
 .calculatorWrapForm .section-input .countBlock .inputFrom, .calculatorWrapForm .section-input .countBlock .currency_to {
   font-family: "Roboto", sans-serif;
   font-style: normal;
@@ -1207,6 +1308,12 @@ select:-webkit-autofill:focus {
   font-size: 36px;
   line-height: 42px;
   color: #282828;
+}
+@media only screen and (max-width: 576px) {
+  .calculatorWrapForm .section-input .countBlock .inputFrom, .calculatorWrapForm .section-input .countBlock .currency_to {
+    font-size: 20px;
+    line-height: 26px;
+  }
 }
 .calculatorWrapForm .section-input .currentCurrency .placeholder {
   display: flex;
@@ -1222,6 +1329,12 @@ select:-webkit-autofill:focus {
   font-size: 24px;
   line-height: 28px;
   color: #282828;
+}
+@media only screen and (max-width: 576px) {
+  .calculatorWrapForm .section-input .currentCurrency .placeholder strong {
+    font-size: 16px;
+    line-height: 22px;
+  }
 }
 .calculatorWrapForm .section-input input {
   border: none;
@@ -1272,6 +1385,12 @@ select:-webkit-autofill:focus {
   background: #fff;
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
 }
+@media only screen and (max-width: 576px) {
+  .calculatorWrapForm .section-input .dropdownSelect {
+    top: 55px;
+    max-height: 225px;
+  }
+}
 .calculatorWrapForm .section-input .dropdownSelect .option {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
@@ -1281,6 +1400,11 @@ select:-webkit-autofill:focus {
   display: flex;
   align-items: center;
 }
+@media only screen and (max-width: 576px) {
+  .calculatorWrapForm .section-input .dropdownSelect .option {
+    font-size: 14px;
+  }
+}
 .calculatorWrapForm .section-input .dropdownSelect .option strong {
   font-style: normal;
   font-weight: bold;
@@ -1288,6 +1412,12 @@ select:-webkit-autofill:focus {
   line-height: 28px;
   color: #282828;
   margin: 0 15px;
+}
+@media only screen and (max-width: 576px) {
+  .calculatorWrapForm .section-input .dropdownSelect .option strong {
+    font-size: 16px;
+    line-height: 22px;
+  }
 }
 .calculatorWrapForm .section-input .dropdownSelect .option:hover {
   background-color: #EDEFF0;
@@ -1359,6 +1489,11 @@ select:-webkit-autofill:focus {
   line-height: 50px;
   border-radius: 3px;
 }
+@media only screen and (max-width: 576px) {
+  .calculatorWrapForm .btn-check {
+    width: 50%;
+  }
+}
 .calculatorWrapForm .btn-check:hover {
   background-color: #e8e8e8;
 }
@@ -1373,9 +1508,22 @@ select:-webkit-autofill:focus {
   align-items: center;
   border: none;
 }
+@media only screen and (max-width: 576px) {
+  .calculatorWrapForm .wrapper-btn-check {
+    width: 100%;
+    padding: 10px;
+  }
+}
 .calculatorWrapForm .wrapper-btn-check div {
   display: flex;
   flex-direction: row;
+}
+@media only screen and (max-width: 576px) {
+  .calculatorWrapForm .wrapper-btn-check div {
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+  }
 }
 .calculatorWrapForm .result-title {
   font-family: "Roboto", sans-serif;
@@ -1933,6 +2081,12 @@ select:-webkit-autofill:focus {
   line-height: 28px;
   color: #282828;
   padding: 29px 0px;
+}
+@media only screen and (max-width: 576px) {
+  .modal .subTitle {
+    padding: 5px 0px;
+    margin-top: -15px;
+  }
 }
 .modal .title {
   padding-top: 0;
@@ -2976,6 +3130,14 @@ select:-webkit-autofill:focus {
   height: 50px;
   border-radius: 3px;
 }
+@media only screen and (max-width: 576px) {
+  .wrapper-error-contant .to-back a {
+    align-items: baseline;
+    justify-content: center;
+    display: flex;
+    font-size: 19px;
+  }
+}
 @media (min-width: 1170px) {
   .wrapper-error-contant {
     margin: 40px auto 0;
@@ -3035,6 +3197,12 @@ select:-webkit-autofill:focus {
   width: 40px;
   height: 40px;
 }
+@media only screen and (max-width: 576px) {
+  .currency-box .currencyImg img {
+    width: 30px;
+    height: 30px;
+  }
+}
 
 .listRate {
   margin-top: 45px;
@@ -3061,6 +3229,12 @@ select:-webkit-autofill:focus {
   line-height: 23px;
   color: #282828;
 }
+@media only screen and (max-width: 576px) {
+  .listRate > div > div {
+    font-size: 14px;
+    flex: auto;
+  }
+}
 .listRate > div > div.rateName {
   font-family: Roboto;
   font-style: normal;
@@ -3068,6 +3242,16 @@ select:-webkit-autofill:focus {
   font-size: 20px;
   line-height: 23px;
   color: #2F2483;
+}
+@media only screen and (max-width: 576px) {
+  .listRate > div > div.rateName {
+    font-size: 14px;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .listRate > div > div.rateModal {
+    text-align: center;
+  }
 }
 .listRate > div > div.rateModal button {
   border: 2px solid #FFC244;
@@ -3085,6 +3269,13 @@ select:-webkit-autofill:focus {
   background: transparent;
   transition: all 0.3s;
 }
+@media only screen and (max-width: 576px) {
+  .listRate > div > div.rateModal button {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+  }
+}
 .listRate > div > div.rateModal button:hover {
   background: #FFC244;
 }
@@ -3095,6 +3286,11 @@ select:-webkit-autofill:focus {
   font-size: 20px;
   line-height: 23px;
   color: #878787;
+}
+@media only screen and (max-width: 576px) {
+  .listRate > div.rateItemsTitle > div {
+    font-size: 14px;
+  }
 }
 
 .modal-overlay {
@@ -3122,6 +3318,13 @@ select:-webkit-autofill:focus {
   height: 600px;
   padding: 25px 205px 105px 105px;
   margin-top: 10%;
+}
+@media only screen and (max-width: 576px) {
+  .modal {
+    max-height: 600px;
+    height: auto;
+    padding: 15px 15px 20px 15px;
+  }
 }
 .modal .close {
   position: absolute;
@@ -3163,6 +3366,13 @@ select:-webkit-autofill:focus {
   padding: 31px;
   margin-bottom: 30px;
 }
+@media only screen and (max-width: 576px) {
+  .modalObmen .currencyBlock {
+    display: block;
+    padding: 5px;
+    margin-bottom: 5px;
+  }
+}
 .modalObmen .currencyBlock .currency-box {
   flex: 3;
 }
@@ -3174,10 +3384,22 @@ select:-webkit-autofill:focus {
   margin: 0px -5%;
   transform: rotate(90deg);
 }
+@media only screen and (max-width: 576px) {
+  .modalObmen .currencyBlock .switch-currency {
+    flex: auto;
+    margin: -30px 0%;
+    transform: rotate(0deg);
+  }
+}
 .modalObmen .submitForm .inputGroup {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+@media only screen and (max-width: 576px) {
+  .modalObmen .submitForm .inputGroup {
+    flex-direction: column;
+  }
 }
 .modalObmen .submitForm .inputGroup .section-input {
   border: 1px solid #C4C4C4;
@@ -3193,6 +3415,21 @@ select:-webkit-autofill:focus {
   margin-top: 12px;
   margin-bottom: 12px;
   width: 30%;
+}
+@media only screen and (max-width: 576px) {
+  .modalObmen .submitForm .inputGroup .section-input {
+    width: 100%;
+    height: 40px;
+    margin: 6px 10px;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .modalObmen .submitForm .inputGroup .section-input .sup-title {
+    display: none;
+  }
+}
+.modalObmen .submitForm .wrap-btn-forms button.button {
+  height: 40px;
 }
 
 .selectCity {
@@ -3217,11 +3454,22 @@ select:-webkit-autofill:focus {
   position: relative;
   z-index: 100;
 }
+@media only screen and (max-width: 576px) {
+  .selectCity .section-input {
+    width: 100%;
+    padding-left: 30px;
+  }
+}
 .selectCity .section-input .locationIco {
   position: absolute;
   left: -28px;
   top: 50%;
   transform: translateY(-50%);
+}
+@media only screen and (max-width: 576px) {
+  .selectCity .section-input .locationIco {
+    left: 0;
+  }
 }
 .selectCity .section-input .locationIco path {
   fill: #2F2483;
@@ -3236,6 +3484,11 @@ select:-webkit-autofill:focus {
   width: 220px;
   height: 30px;
   position: relative;
+}
+@media only screen and (max-width: 576px) {
+  .selectCity .section-input .customSelect {
+    width: 100%;
+  }
 }
 .selectCity .section-input .customSelect .chosen-single {
   font-size: 14px;
@@ -3327,6 +3580,12 @@ select:-webkit-autofill:focus {
   margin-right: 30px;
   width: 200px;
 }
+@media only screen and (max-width: 576px) {
+  .success-order .flexBlock .flexInfoItem {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
 .success-order .flexBlock .flexInfoItem > span {
   display: block;
 }
@@ -3372,6 +3631,11 @@ select:-webkit-autofill:focus {
   color: #FF0000;
   margin-top: 10px;
 }
+@media only screen and (max-width: 576px) {
+  .success-order .linkBlock {
+    text-align: center;
+  }
+}
 .success-order .linkBlock a {
   background: #FFC244;
   border-radius: 3px;
@@ -3401,6 +3665,11 @@ header.mainHeader {
   max-width: 1920px;
   position: static;
   top: 0;
+}
+@media only screen and (max-width: 576px) {
+  header.mainHeader {
+    z-index: 102;
+  }
 }
 header.mainHeader .header-logo img {
   width: auto;
@@ -3468,6 +3737,11 @@ header.mainHeader .header-nav-list .nav-item a {
   color: #000;
   font-weight: 700;
 }
+@media only screen and (max-width: 576px) {
+  header.mainHeader .header-nav-list .nav-item.telegramLink {
+    padding: 8px 20px 8px 20px;
+  }
+}
 header.mainHeader .header-nav-list .nav-item.telegramLink a {
   background: #0088CC;
   border-radius: 3px;
@@ -3482,11 +3756,25 @@ header.mainHeader .header-nav-list .nav-item.telegramLink a {
   display: inline-flex;
   align-items: center;
 }
+@media only screen and (max-width: 576px) {
+  header.mainHeader .header-nav-list .nav-item.telegramLink a {
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    line-height: 26px;
+  }
+}
 header.mainHeader .header-nav-list .nav-item.telegramLink a .telegramImg {
   margin-right: 5px;
 }
+@media only screen and (max-width: 576px) {
+  header.mainHeader .header-nav-list .nav-item.telegramLink a .telegramImg {
+    display: inline;
+  }
+}
 header.mainHeader .header-nav-list .nav-item.telegramLink a .telegramImg img {
-  max-width: 19px;
+  max-width: 25px;
 }
 header.mainHeader .header-nav-list .nav-item_submenu {
   list-style: none;
@@ -3633,7 +3921,7 @@ header.mainHeader .icon-bg-line, header.mainHeader .title, header.mainHeader .ca
     min-height: auto;
     height: auto;
     width: 100%;
-    max-width: 900px;
+    max-width: 960px;
     background-color: transparent;
   }
   header.mainHeader .header-logo img {
@@ -3644,7 +3932,7 @@ header.mainHeader .icon-bg-line, header.mainHeader .title, header.mainHeader .ca
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    max-width: 900px;
+    max-width: 960px;
     padding-left: 0;
     padding-top: 0;
   }
@@ -4278,6 +4566,7 @@ button.button.resetButton {
   right: 20px;
   width: 28px;
   height: 28px;
+  z-index: 2;
 }
 .modal-el .icon-questions-plus {
   position: absolute;
@@ -4400,6 +4689,11 @@ div.mainWrapper > div.contentWrapper {
 div.mainWrapper > div.contentWrapper > .page {
   flex-grow: 1;
   padding-top: 125px;
+}
+@media only screen and (max-width: 576px) {
+  div.mainWrapper > div.contentWrapper > .page {
+    padding-top: 0px;
+  }
 }
 div.mainWrapper > footer.mainFooter {
   flex: 0 0 auto;

@@ -12,6 +12,10 @@
     {
       margin-right: 30px;
       width: 200px;
+      @include media(max, sm) {
+        width: 100%;
+        margin-bottom: 10px;
+      }
       & > span
       {
         display: block;
@@ -67,6 +71,9 @@
   }
   .linkBlock
   {
+    @include media(max, sm) {
+      text-align: center;
+    }
     a
     {
       background: #FFC244;

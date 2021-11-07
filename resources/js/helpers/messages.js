@@ -31,7 +31,9 @@ const messages = {
         rateModal:'Заявка',
         cityLetter: 'м.',
         createRequest: 'Створення заявки',
-        giveAccess:'Заповнюючи форму, Ви даєте згоду на обробку персональних даних.'
+        giveAccess:'Заповнюючи форму, Ви даєте згоду на обробку персональних даних.',
+        switchRate:'Обміняти',
+        courseCurrencyTitle:'Курси валют'
     },
 
     'ru': {
@@ -65,7 +67,9 @@ const messages = {
         rateModal:'Заявка',
         cityLetter: 'г.',
         createRequest: 'Создание заявки',
-        giveAccess:'Заполняя форму, Вы даете согласие на обработку персональных данных.'
+        giveAccess:'Заполняя форму, Вы даете согласие на обработку персональных данных.',
+        switchRate:'Обменять',
+        courseCurrencyTitle:'Курсы валют'
     }
 };
 

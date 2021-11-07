@@ -6,6 +6,10 @@
     {
       width:40px;
       height:40px;
+      @include media(max, sm) {
+        width:30px;
+        height:30px;
+      }
     }
 
   }
@@ -33,6 +37,10 @@
       font-size: 20px;
       line-height: 23px;
       color: #282828;
+      @include media(max, sm) {
+        font-size: 14px;
+        flex:auto;
+      }
       &.rateName {
         font-family: Roboto;
         font-style: normal;
@@ -40,9 +48,15 @@
         font-size: 20px;
         line-height: 23px;
         color: #2F2483;
+        @include media(max, sm) {
+          font-size: 14px;
+        }
       }
       &.rateModal
       {
+        @include media(max, sm) {
+          text-align: center;
+        }
         button
         {
           border: 2px solid #FFC244;
@@ -59,6 +73,11 @@
           color: #2F2483;
           background: transparent;
           transition: all 0.3s;
+          @include media(max, sm) {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+          }
           &:hover
           {
             background: #FFC244;
@@ -76,6 +95,9 @@
       font-size: 20px;
       line-height: 23px;
       color: #878787;
+      @include media(max, sm) {
+        font-size: 14px;
+      }
     }
   }
 }

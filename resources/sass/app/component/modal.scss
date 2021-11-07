@@ -24,9 +24,9 @@
   padding: 25px 205px 105px 105px;
   margin-top: 10%;
   @include media(max, sm) {
-    max-height: 620px;
-    height: auto;
-    padding: 15px 15px 5px 15px;
+    height: fit-content;
+    max-height: 650px;
+    padding: 15px 15px 15px;
     border-top: 5px solid #2F2483;
     border-left: 0px solid #2F2483;
   }

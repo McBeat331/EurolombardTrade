@@ -99,6 +99,30 @@
       @include media(max, sm) {
         font-size: 14px;
       }
+      &.rateNameTitle
+      {
+        @include media(max, sm) {
+          width: 61px;
+        }
+      }
+      &.rateBuyTitle
+      {
+        @include media(max, sm) {
+          width: 45px;
+        }
+      }
+      &.rateSaleTitle
+      {
+        @include media(max, sm) {
+          width: 45px;
+        }
+      }
+      &.rateModalTitle
+      {
+        @include media(max, sm) {
+          width: 30px;
+        }
+      }
     }
   }
 }

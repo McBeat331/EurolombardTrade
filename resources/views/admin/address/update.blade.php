@@ -120,7 +120,7 @@
                             <label>График работы</label>
                             <div>
                                 <label for="twenty-four">Круглосуточно</label>
-                                <input id="twenty-four" type="checkbox" name="round_the_clock" value="1"
+                                <input id="twenty-four" type="checkbox" name="round_the_clock" value="@if(isset($entry) and $entry->round_the_clock) {{$entry->round_the_clock}} @else 1"
                                        @if(old('round_the_clock'))
                                        checked
                                        @elseif(isset($entry) and $entry->round_the_clock)

@@ -34,6 +34,7 @@ return [
     'not_found1' => 'К сожалению, запрашиваемая вами страница не найдена.',
     'not_found2' => 'Возможно, она была удалена или вы перешли по устаревшей ссылке.',
     'back_to_main' => 'Вернуться на главную',
+    'back_to_main_short' => 'На главную',
     'admin_panel' => 'Админ панель.',
 
     /*    заголовки  главная страница  */
@@ -92,16 +93,16 @@ return [
     'developed_in' => 'Разработано в',
     'our_social' => 'Наши социальные сети',
     'our_contacts' => 'Наши контакты',
-    'all_rights_reserved' => 'Все права защищены © '.date("Y").' Є/Л Обмін',
+    'all_rights_reserved' => 'Все права защищены © '.date("Y").' Е/Л Обмен',
 
     /*    меню     */
     'Rosrahuvati_loan' => 'Рассчитать кредит',
 
     'call_drop_title' => 'Обратная связь',
-    'cources' =>'Курси',
-    'ourServices'=>'Наші послуги',
-    'ourAdvantages'=>'Наші переваги',
-    'contacts'=>'Контакти',
+    'cources' =>'Курсы',
+    'ourServices'=>'Наши услуги',
+    'ourAdvantages'=>'Нашы преимущества',
+    'contacts'=>'Контакты',
     'conducted_assessment' => 'Как проводится оценка',
     'assessment' => 'От общего веса и пробы золота зависит стоимость 
      принимаемого украшения. Чем выше проба, тем дороже 
@@ -417,5 +418,20 @@ return [
 
 
     'comment_text'=>'Текст отзыва',
-    'MainTitle' => '<span class="yellowText">Є/Л Обмін</span> — это выгодный курс среди конкурентов!'
+    'MainTitle' => '<span class="yellowText">Е/Л Обмен</span> — это выгодный курс среди конкурентов!',
+    'mainPage_telegram_title' => 'Ежедневная информация<br>про изменения курсов',
+    'mainPage_telegram_subtitle' => 'Подпишись на наш телеграм канал',
+    'zayava' => 'Разместить заявку',
+
+    'order_title' => 'Заявка создана',
+    'your_order_department' => 'Пункт обмена',
+    'your_order_mail' => 'Ваш email',
+    'your_order_name' => 'Ваше имя',
+    'your_order_phone' => 'Ваш телефон',
+    'your_order_give' => 'Отдаете',
+    'your_order_get' => 'Получаете',
+    'your_order_course' => 'Курс',
+    'order_tip' => 'Действует один час с момента подтверждения заявки',
+
+    'contact_title' => 'Контакты пунктов обмена валют',
 ];

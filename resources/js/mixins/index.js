@@ -9,6 +9,7 @@ export {
 
 
 
+
 let site = null;
 let ValidationModule = null;
 document.addEventListener("DOMContentLoaded", function (event) {
@@ -1356,7 +1357,15 @@ window.onload = function () {
                 }
                 else
                 {
-                    window.location.href = '/'+this.hash;
+                    let html = document.querySelector('html');
+                    let language = html.getAttribute("lang");
+                    let langPrefix = '';
+                    if(language == 'ru') {
+                        langPrefix = '/ru'
+                    }
+                    console.log(window.location.origin + langPrefix);
+                    console.log(window.location.origin + langPrefix +'/'+ this.hash);
+                    window.location.href = window.location.origin + langPrefix +'/'+ this.hash;
                 }
             }
         });

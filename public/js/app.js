@@ -2751,6 +2751,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.isVisibleSpiner = true;
+      var language = this.lang;
       var data = {
         currency_buy: this.currency_to,
         currency_sale: this.currency_from,
@@ -2768,7 +2769,13 @@ __webpack_require__.r(__webpack_exports__);
       axios.post("/order", data).then(function (response) {
         _this.reincarnationBtn();
 
-        window.location.href = '/order';
+        var langPrefix = '';
+
+        if (language == 'ru') {
+          langPrefix = '/ru';
+        }
+
+        window.location.href = langPrefix + '/order';
       })["catch"](function (error) {
         console.error("There was an error!", error);
 
@@ -6121,7 +6128,17 @@ window.onload = function () {
           ;
         });
       } else {
-        window.location.href = '/' + this.hash;
+        var html = document.querySelector('html');
+        var language = html.getAttribute("lang");
+        var langPrefix = '';
+
+        if (language == 'ru') {
+          langPrefix = '/ru';
+        }
+
+        console.log(window.location.origin + langPrefix);
+        console.log(window.location.origin + langPrefix + '/' + this.hash);
+        window.location.href = window.location.origin + langPrefix + '/' + this.hash;
       }
     }
   });

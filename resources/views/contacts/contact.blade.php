@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="mcontainer">
-        <div class="title visible-viewportchecker visibility--check hidden">Контакти пункту обміну валют</div>
+        <div class="title visible-viewportchecker visibility--check hidden">{{ trans('main.contact_title') }}</div>
     </div>
 
     <section class="office-departments">

@@ -159,6 +159,9 @@
                 url: _url,
                 data: {'id':id},
                 type: "POST",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 success: function(response) {
                     if(response) {
                         console.log(response['status']);

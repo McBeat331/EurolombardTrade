@@ -46,7 +46,7 @@ const messages = {
         CHF:"Швейцарский франк",
         CZK:"Чешская крона",
         UAH:"Украинская гривна",
-        giveMoney:"Оттдаю",
+        giveMoney:"Отдаю",
         getMoney:"Получаю",
         errorNotCurrency:"Оберіть обе валюти",
         true: 'Розница',

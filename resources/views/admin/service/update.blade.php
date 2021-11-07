@@ -98,11 +98,17 @@
                                 <div class="form-group">
                                     <label for="">Ссылка на ресурс</label>
                                     <input type="text" name="link"  class="form-control" value="@isset($entry) {{ $entry->link }} @endisset">
+                                    @if($errors->has('link'))
+                                        <div class="error text-danger small">{{ $errors->first('link') }}</div>
+                                    @endif
                                     <small class="red">не заполнять если не уверены</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Емейл для отправки</label>
                                     <input name="email" id="email" type="text" class="form-control" value="@isset($entry) {{ $entry->email }} @endisset"/>
+                                    @if($errors->has('email'))
+                                        <div class="error text-danger small">{{ $errors->first('email') }}</div>
+                                    @endif
                                     <small class="red">укажите почту для отправки заявок по этой услуге</small>
                                 </div>
                                 <div class="form-group">

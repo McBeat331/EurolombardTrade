@@ -679,7 +679,7 @@ select:-webkit-autofill:focus {
 }
 @media (min-width: 1170px) {
   .review-submission {
-    margin-top: 50px;
+    margin-top: 75px;
     margin-bottom: 60px;
   }
   .review-submission .control-slide {

@@ -72,9 +72,9 @@
                                                 </td>-->
                                                 <td>
                                                     @if($review->status == 0)
-                                                        <span class="badge badge-warning" data-id="{{$review->id}}" data-url="{{ route('admin.changeStatusReview') }}" style="cursor:pointer">Не обработано</span>
+                                                        <span class="badge badge-warning" data-id="{{$review->id}}" data-url="{{ route('admin.changeStatusReview') }}" style="cursor:pointer">Не опубликовано</span>
                                                     @else
-                                                        <span class="badge badge-success" data-id="{{$review->id}}" data-url="{{ route('admin.changeStatusReview') }}" style="cursor:pointer">Обработано</span>
+                                                        <span class="badge badge-success" data-id="{{$review->id}}" data-url="{{ route('admin.changeStatusReview') }}" style="cursor:pointer">Опубликовано</span>
                                                     @endif
 
                                                 </td>

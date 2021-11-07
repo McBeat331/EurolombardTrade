@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ReviewRequest;
 use App\Job\RateJob;
 use App\Mail\ReviewMail;
+use App\Notifications\ReviewNotification;
 use App\Services\Review\ReviewService;
 use App\Services\Setting\SettingService;
 use Exception;
@@ -36,6 +37,7 @@ class ReviewController extends Controller
 
         try {
             Mail::to($this->settingService->getFieldValue('reviewRequestEmail'))->send(new ReviewMail($entry));
+            $entry->notify(new ReviewNotification());
         } catch (Exception $e) {
             Log::info($e);
         }

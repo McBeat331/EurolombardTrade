@@ -7,8 +7,10 @@
       <div class="contacts visible-viewportchecker visibility--check hidden">
         <div class="title">{{ trans('main.our_contacts') }}</div>
         <p>{{ trans('main.cityLatter') }}{{ addressSelectedCity()->name }}</p>
-        <p>{{ addressSelectedCity()->addresses->first()->name }}</p>
-        <p>{{ addressSelectedCity()->addresses->first()->phones }}</p>
+          @if($address = addressSelectedCity()->addressFirst)
+            <p>{{ $address->name }}</p>
+            <p>{{ $address->phones }}</p>
+          @endif
       </div>
       <div class="social-wrapper visible-viewportchecker visibility--check hidden">
         <div class="title">{{ trans('main.our_social') }}</div>

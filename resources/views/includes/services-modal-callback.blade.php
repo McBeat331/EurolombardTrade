@@ -10,7 +10,9 @@
                 <div class="callback-content-forms">
                     <div class="title">{{ trans('main.thanks_for') }}</div>
                     <div class="call-form-description">
-                        {{ trans('main.call_us') }} <span class="strong-t">{{ addressSelectedCity()->addresses->first()->phones }}</span>
+                        @if($address = addressSelectedCity()->addressFirst)
+                         {{ trans('main.call_us') }} <span class="strong-t">{{ $address->phones }}</span>
+                        @endif
                         {{ trans('main.callbacks_request_message') }}
                     </div>
                     <form action="#" data-successText="{{ trans('main.thanks_for_callback') }}">

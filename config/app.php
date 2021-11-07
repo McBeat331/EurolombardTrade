@@ -190,6 +190,7 @@ return [
 
         Barryvdh\Debugbar\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        NotificationChannels\Telegram\TelegramServiceProvider::class,
 
     ],
 

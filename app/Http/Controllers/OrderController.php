@@ -6,6 +6,7 @@ use App\Http\Requests\OrderClientRequest;
 use App\Job\AccountJob;
 use App\Job\RateJob;
 use App\Mail\OrderMail;
+use App\Notifications\OrderNotification;
 use App\Services\Order\OrderService;
 use App\Services\Setting\SettingService;
 use Exception;
@@ -42,6 +43,8 @@ class OrderController extends Controller
 
         try {
             Mail::to($this->settingService->getFieldValue('rateRequesEmail'))->send(new OrderMail($order));
+            $order->notify(new OrderNotification());
+
         } catch (Exception $e) {
             Log::info($e);
         }

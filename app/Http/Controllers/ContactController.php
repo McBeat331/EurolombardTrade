@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\CallbackNotification;
 use App\Services\Communication\CallbackServices;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -45,6 +46,7 @@ class ContactController extends Controller
 
         try {
             Mail::to($this->settingService->getFieldValue('callRequestEmail'))->send(new CallbackMail($entry));
+            $entry->notify(new CallbackNotification());
         } catch (Exception $e) {
             Log::info($e);
         }

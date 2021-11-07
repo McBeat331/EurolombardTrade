@@ -9,7 +9,7 @@
                 <div class="menu-btn">
                   <div class="line line--1"></div>
                   <div class="line line--2"></div>
-                  <div class="line line--3"></div>   
+                  <div class="line line--3"></div>
               </div>
 
               <ul class="header-nav-list">
@@ -32,8 +32,11 @@
                   <li class="callback-section-header">
                        <div class="callback-phone">
                            <div class="callback-item-phone">
-                               <a href="tel:{{ addressSelectedCity()->addresses->first()->phones }}">{{ addressSelectedCity()->addresses->first()->phones }}</a>
-                               <div class="callback-drop-box"> <span class="call-drop-title">{{ trans('main.call_drop_title') }}</span> 
+
+                               @if($address = addressSelectedCity()->addressFirst)
+                                   <a href="tel:{{ $address->phones }}">{{ $address->phones }}</a>
+                               @endif
+                               <div class="callback-drop-box"> <span class="call-drop-title">{{ trans('main.call_drop_title') }}</span>
                                     <div class="callback-dropdown-phone">
                                         @include('includes.callback-questions-form-front')
                                         <div class="social-mobile-form">
@@ -60,11 +63,11 @@
                                </div>
                            </div>
                        </div>
-         
+
                   </li>
               </ul>
 
-           </nav> 
+           </nav>
 
        </div>
 </header>

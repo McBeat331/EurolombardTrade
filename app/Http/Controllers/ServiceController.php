@@ -7,6 +7,7 @@ use App\Http\Requests\FeedbackRequest;
 use App\Job\RateJob;
 use App\Mail\FeedbackMail;
 use App\Models\Rate;
+use App\Notifications\FeedbackNotification;
 use App\Services\Advantage\AdvantageService;
 use App\Services\Communication\FeedbackServices;
 use App\Services\Service\ServiceService;
@@ -54,6 +55,7 @@ class ServiceController extends Controller
 
         try {
             Mail::to($this->settingService->getFieldValue($entry->service->email))->send(new FeedbackMail($entry));
+            $entry->notify(new FeedbackNotification());
         } catch (Exception $e) {
             Log::info($e);
         }

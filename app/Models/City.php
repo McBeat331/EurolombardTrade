@@ -24,6 +24,12 @@ class City extends Model
     {
         return $this->hasMany(Address::class, 'city_id','id');
     }
+
+    public function addressFirst()
+    {
+        return $this->hasOne(Address::class, 'city_id','id');
+    }
+
     public function rates()
     {
         return $this->hasMany(Rate::class, 'city_id','id');

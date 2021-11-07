@@ -508,7 +508,7 @@ select:-webkit-autofill:focus {
   font-family: "PT Sans Caption", sans-serif;
   font-style: normal;
   font-weight: bold;
-  font-size: 47px;
+  font-size: 45px;
   line-height: 61px;
   /* identical to box height */
   color: #2F2483;
@@ -3428,8 +3428,10 @@ select:-webkit-autofill:focus {
     display: none;
   }
 }
-.modalObmen .submitForm .wrap-btn-forms button.button {
-  height: 40px;
+@media only screen and (max-width: 576px) {
+  .modalObmen .submitForm .wrap-btn-forms button.button {
+    height: 40px;
+  }
 }
 
 .selectCity {

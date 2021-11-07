@@ -31,6 +31,7 @@ return [
     'not_found1' => 'На жаль, запитувана вами сторінка не знайдена.',
     'not_found2' => 'Можливо, вона була видалена або ви перейшли по застарілому посиланню.',
     'back_to_main' => 'Повернутись на головну',
+    'back_to_main_short' => 'На головну',
     'admin_panel' => 'Адмiн панель.',
 
 
@@ -337,6 +338,7 @@ return [
     //  special abilities
 
     'your_mail' => 'Ваш e-mail',
+
     'diamonds' => 'Діаманти',
     'antiques' => 'Антикваріат',
     'watches' => 'Годинники',
@@ -420,6 +422,20 @@ return [
 
     'comment_text'=>'Текст вiдгуку',
 
-    'MainTitle' => '<span class="yellowText">Є/Л Обмін</span> — це вигідний курс серед конкурентів!'
+    'MainTitle' => '<span class="yellowText">Є/Л Обмін</span> — це вигідний курс серед конкурентів!',
+    'mainPage_telegram_title' => 'Щоденна інформація<br>про зміну курсу',
+    'mainPage_telegram_subtitle' => 'Підпишись на наш телеграм канал',
 
+    'order_title' => 'Заявка створена',
+    'your_order_department' => 'Пункт обміну',
+    'your_order_mail' => 'Ваш email',
+    'your_order_name' => 'Ваше ім’я',
+    'your_order_phone' => 'Ваш телефон',
+    'your_order_give' => 'Віддаєте',
+    'your_order_get' => 'Отримуєте',
+    'your_order_course' => 'Курс',
+    'order_tip' => 'Діє одну годину з момента підтвердження заявки',
+
+
+    'contact_title' => 'Контакти пунктів обміну валют',
 ];

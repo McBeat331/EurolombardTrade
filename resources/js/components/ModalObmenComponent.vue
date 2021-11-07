@@ -271,7 +271,7 @@
             },
             handleSubmit() {
                 this.isVisibleSpiner = true;
-
+                const language = this.lang;
                 const data = {
                     currency_buy: this.currency_to,
                     currency_sale: this.currency_from,
@@ -289,7 +289,12 @@
                 axios.post("/order", data)
                     .then(response => {
                         this.reincarnationBtn();
-                        window.location.href = '/order';
+                        let langPrefix = '';
+
+                        if(language == 'ru') {
+                            langPrefix = '/ru'
+                        }
+                        window.location.href = langPrefix+'/order';
                     })
                     .catch(error => {
                         console.error("There was an error!", error);
@@ -397,6 +402,7 @@
                     this.dropdownyFrom = false;
                 }
             });
+
         },
     }
 </script>

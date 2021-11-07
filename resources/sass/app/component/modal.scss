@@ -141,7 +141,10 @@
     {
       button.button
       {
-        height:40px;
+        @include media(max, sm) {
+          height:40px;
+        }
+
       }
     }
   }

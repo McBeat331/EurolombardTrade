@@ -8,6 +8,7 @@ header.mainHeader {
   @include media(max,sm)
   {
     z-index:102;
+    margin-top: 45px;
   }
   .header-logo {
     img {
@@ -241,7 +242,7 @@ header.mainHeader {
 		background: $fourthColor;
     animation: humburger-bottom-line .35s linear ;
 	}
-  .icon-bg-line, .title, .call-form-description, .icon-arrow-down-gray {
+  .icon-bg-line, .title, .call-form-description {
     display: none;
   }
  @media (min-width: $containerWidthLaptop) {

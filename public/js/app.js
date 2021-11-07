@@ -2332,6 +2332,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 // typical import
 
 
@@ -2346,7 +2348,8 @@ __webpack_require__.r(__webpack_exports__);
       selectedCity: [],
       city_array: [],
       selectedCityName: '',
-      currentUrl: ''
+      currentUrl: '',
+      zIndex: 50
     };
   },
   methods: {
@@ -2374,13 +2377,18 @@ __webpack_require__.r(__webpack_exports__);
     },
     handlerSelect: function handlerSelect(prop) {
       this[prop] = !this[prop];
+
+      if (this[prop] == true) {
+        this.zIndex = 500;
+      } else {
+        this.zIndex = 50;
+      }
     },
     getOptionInSelect: function getOptionInSelect(_ref, propEmpty, drop) {
       var currentTarget = _ref.currentTarget;
 
       if (propEmpty == 'isEmptyCity') {
         var city_id = currentTarget.getAttribute("value");
-        console.log(city_id);
         this.isEmptyCity = true;
         this.selectedCity = this.city_array.filter(function (j) {
           return j.id == city_id;
@@ -2487,6 +2495,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_select_src_scss_vue_select_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-select/src/scss/vue-select.scss */ "./node_modules/vue-select/src/scss/vue-select.scss");
 /* harmony import */ var _CurrencyInput__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./CurrencyInput */ "./resources/js/components/CurrencyInput.vue");
 /* harmony import */ var _mixins_validateForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../mixins/validateForm */ "./resources/js/mixins/validateForm.js");
+//
+//
+//
+//
 //
 //
 //
@@ -2766,21 +2778,26 @@ __webpack_require__.r(__webpack_exports__);
         rate_sale: this.isOpt == true ? this.pairCurrencyItem.sale_opt : this.pairCurrencyItem.sale,
         status: 0
       };
-      axios.post("/order", data).then(function (response) {
-        _this.reincarnationBtn();
 
-        var langPrefix = '';
+      if (_mixins_validateForm__WEBPACK_IMPORTED_MODULE_6__.validateForm.isValid($('.wrap-select-option .submitForm'))) {
+        axios.post("/order", data).then(function (response) {
+          _this.reincarnationBtn();
 
-        if (language == 'ru') {
-          langPrefix = '/ru';
-        }
+          var langPrefix = '';
 
-        window.location.href = langPrefix + '/order';
-      })["catch"](function (error) {
-        console.error("There was an error!", error);
+          if (language == 'ru') {
+            langPrefix = '/ru';
+          }
 
-        _this.reincarnationBtn();
-      });
+          window.location.href = langPrefix + '/order';
+        })["catch"](function (error) {
+          console.error("There was an error!", error);
+
+          _this.reincarnationBtn();
+        });
+      } else {
+        this.reincarnationBtn();
+      }
     },
     reincarnationBtn: function reincarnationBtn() {
       this.isVisibleSpiner = false;
@@ -2797,12 +2814,8 @@ __webpack_require__.r(__webpack_exports__);
       return _helpers_messages__WEBPACK_IMPORTED_MODULE_2__.messages;
     },
     isDisabled: function isDisabled() {
-      if (this.count_from > 0) {
-        return (0,_mixins_validateForm__WEBPACK_IMPORTED_MODULE_6__.validateForm)(this.required, {
-          name: this.name,
-          phone: this.phone,
-          email: this.email
-        });
+      if (this.count_from > 0 && this.pairCurrencyItem.length != 0) {
+        return false;
       } else {
         return true;
       }
@@ -2858,7 +2871,8 @@ __webpack_require__.r(__webpack_exports__);
         this.getThisRate(cur_from, cur_to);
       },
       deep: true
-    }
+    },
+    phone: function phone(val) {}
   },
   mounted: function mounted() {
     var _this2 = this;
@@ -3362,7 +3376,10 @@ var messages = {
     createRequest: 'Створення заявки',
     giveAccess: 'Заповнюючи форму, Ви даєте згоду на обробку персональних даних.',
     switchRate: 'Обміняти',
-    courseCurrencyTitle: 'Курси валют'
+    courseCurrencyTitle: 'Курси валют',
+    error_name: 'Ім\'я не повинно бути порожнім',
+    error_phone: 'Невірний формат номеру',
+    error_email: 'Невірний формат Email'
   },
   'ru': {
     no_found: "К сожалению эта пара не поддерживается",
@@ -3397,7 +3414,10 @@ var messages = {
     createRequest: 'Создание заявки',
     giveAccess: 'Заполняя форму, Вы даете согласие на обработку персональных данных.',
     switchRate: 'Обменять',
-    courseCurrencyTitle: 'Курсы валют'
+    courseCurrencyTitle: 'Курсы валют',
+    error_name: 'Имя не должно быть пустым',
+    error_phone: 'Неверный формат номера',
+    error_email: 'Неверный формат Email'
   }
 };
 
@@ -6441,20 +6461,194 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "validateForm": () => (/* binding */ validateForm)
 /* harmony export */ });
-var validateForm = function validateForm(required, formData) {
-  var errors = [];
-  var parsedobj = JSON.parse(JSON.stringify(formData));
-  required.forEach(function (item) {
-    for (var key in parsedobj) {
-      if (item == key) {
-        if (parsedobj[key] <= 0 || parsedobj[key] == null) {
-          errors.push(1);
-        }
+var validateForm = function () {
+  function validate(inputElement, validationsArray) {
+    var validations = validationsArray;
+    var messages = [];
+
+    function isNumber(input) {
+      return !isNaN(parseFloat(input.value)) && isFinite(input.value);
+    }
+
+    function isNumberSecondary(input) {
+      var value = input.value;
+      var regEx = /[^0-9|.|,]/g;
+      var prepearedValue = value.replace(regEx, "");
+      return prepearedValue;
+    }
+
+    function isPhoneNumber(input) {
+      var regex = /^(\+{0,})(\d{0,})([(]{1}\d{1,3}[)]{0,}){0,}(\s?\d+|\+\d{2,3}\s{1}\d+|\d+){1}[\s|-]?\d+([\s|-]?\d+){1,2}(\s){0,}$/gm;
+      return regex.test(input.value);
+    }
+
+    function isEmail(input) {
+      var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+      return regex.test(input.value);
+    }
+
+    function isNotEmpty(input) {
+      var isNotEmpty = input.value.replace(/\s/g, "").length ? true : false;
+      var isNotWrongVal = input.value == "placeholder" ? false : true;
+      return isNotEmpty && isNotWrongVal;
+    }
+
+    function isRadioChecked(input) {
+      return input.querySelectorAll('input:checked').length ? true : false;
+    }
+
+    function isChecked(input) {
+      return input.checked ? true : false;
+    }
+
+    function isShort(input) {
+      var value = input.value;
+      var splitArr = value.split('');
+      return splitArr.length <= 3 ? false : true;
+    } // ---------------------
+
+
+    for (var i = 0; i < validations.length; i++) {
+      switch (validations[i]) {
+        case 'required':
+          if (!isNotEmpty(inputElement)) {
+            messages.push(inputElement.dataset.errorText);
+          }
+
+          break;
+
+        case 'isNumber':
+          if (!isNumber(inputElement)) {
+            messages.push(inputElement.dataset.errorText);
+          }
+
+          break;
+
+        case 'isNumberSecondary':
+          if (!isNumberSecondary(inputElement)) {
+            messages.push(inputElement.dataset.errorText);
+          }
+
+          break;
+
+        case 'isPhoneNumber':
+          if (!isPhoneNumber(inputElement)) {
+            messages.push(inputElement.dataset.errorText);
+          }
+
+          break;
+
+        case 'isEmail':
+          if (!isEmail(inputElement)) {
+            messages.push(inputElement.dataset.errorText);
+          }
+
+          break;
+
+        case 'requiredRadio':
+          if (!isRadioChecked(inputElement)) {
+            messages.push(inputElement.dataset.errorText);
+          }
+
+          break;
+
+        case 'requiredCheck':
+          if (!isChecked(inputElement)) {
+            messages.push(inputElement.dataset.errorText);
+          }
+
+          break;
+
+        case 'isShort':
+          if (!isShort(inputElement)) {
+            messages.push(inputElement.dataset.errorText);
+          }
+
+          break;
+
+        default:
+          console.error('invalid input data-validate value');
       }
     }
-  });
-  return errors.length > 0;
-};
+
+    console.log(messages.length ? messages : null);
+    return messages.length ? messages : null;
+  }
+
+  function showWarning(inputElement, messages, textColor) {
+    inputElement.classList.add('js_containsError');
+    var warningList = $('<ul class="js_warning-list"></ul>');
+
+    for (var i = 0; i < messages.length; i++) {
+      var listElement = $("<li></li>").text(messages[i]);
+      textColor ? listElement.css('color', textColor) : null;
+      warningList.append(listElement);
+    }
+
+    if (inputElement.nextElementSibling) {
+      inputElement.nextElementSibling.tagName == 'LABEL' ? $(inputElement.nextElementSibling).after(warningList) : $(inputElement).after(warningList);
+    } else {
+      $(inputElement).after(warningList);
+    }
+  }
+
+  function isValid(formElement) {
+    var form = formElement instanceof jQuery ? formElement[0] : formElement;
+    var inputs = form.querySelectorAll('[data-validate]');
+    var checkboxesCheckedLength = form.querySelectorAll('[type=checkbox][data-validate-checkbox]:checked').length;
+    var checkboxes = form.querySelectorAll('[type=checkbox][data-validate-checkbox]:not(:disabled)');
+    var errorsCounter = 0;
+
+    for (var i = 0; i < inputs.length; i++) {
+      var errorMessages = [];
+      var textColor = inputs[i].dataset.textColor;
+      $(inputs[i]).removeClass("js_containsError");
+      $(inputs[i]).siblings('.js_warning-list').remove();
+      var validationsArray = [];
+      var inputData = inputs[i].dataset.validate ? inputs[i].dataset.validate.split(' ') : false; // ---------
+
+      inputs[i].value ? inputs[i].value = inputs[i].value.trim() : null; // ---------
+
+      validationsArray = inputData ? inputData : null; // inputs[i].required ? validationsArray.push('required') : null;
+
+      if (validationsArray.length) {
+        var validationResult = validate(inputs[i], validationsArray);
+        validationResult ? errorMessages = validationResult : null;
+      }
+
+      if (errorMessages.length) {
+        showWarning(inputs[i], errorMessages, textColor);
+        errorsCounter++;
+      }
+    }
+
+    if (checkboxes.length) {
+      var isValidCheckboxes = function isValidCheckboxes() {
+        $(lastCheckbox).siblings('.js_warning-list').remove();
+
+        if (!checkboxesCheckedLength) {
+          var _errorMessages = [];
+
+          _errorMessages.push(lastCheckbox.dataset.errorText);
+
+          showWarning(lastCheckbox, _errorMessages);
+          errorsCounter++;
+        }
+      };
+
+      var lastCheckbox = checkboxes[checkboxes.length - 1];
+      isValidCheckboxes();
+    }
+
+    return errorsCounter > 0 ? false : true;
+    console.log('end for');
+  } // ---------------
+
+
+  return {
+    isValid: isValid
+  };
+}();
 
 
 
@@ -57796,146 +57990,158 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "mcontainer selectCity" }, [
-    _c("div", {
-      directives: [
-        {
-          name: "show",
-          rawName: "v-show",
-          value: _vm.dropdownyCity,
-          expression: "dropdownyCity"
-        }
-      ],
-      staticClass: "backgroundWrapper",
-      on: {
-        click: function($event) {
-          _vm.dropdownyCity = false
-        }
-      }
-    }),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "section-input",
-        on: {
-          click: function($event) {
-            return _vm.handlerSelect("dropdownyCity")
+  return _c(
+    "div",
+    { staticClass: "selectCity", style: "z-index:" + _vm.zIndex },
+    [
+      _c("div", { staticClass: "mcontainer" }, [
+        _c("div", {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.dropdownyCity,
+              expression: "dropdownyCity"
+            }
+          ],
+          staticClass: "backgroundWrapper",
+          on: {
+            click: function($event) {
+              _vm.dropdownyCity = false
+            }
           }
-        }
-      },
-      [
+        }),
+        _vm._v(" "),
         _c(
-          "svg",
+          "div",
           {
-            class: [{ active: _vm.dropdownyCity }, "locationIco"],
-            attrs: {
-              width: "18",
-              height: "23",
-              viewBox: "0 0 18 23",
-              fill: "none",
-              xmlns: "http://www.w3.org/2000/svg"
+            staticClass: "section-input",
+            on: {
+              click: function($event) {
+                return _vm.handlerSelect("dropdownyCity")
+              }
             }
           },
           [
-            _c("path", {
-              attrs: {
-                "fill-rule": "evenodd",
-                "clip-rule": "evenodd",
-                d:
-                  "M9 2C5.4686 2 2 4.63241 2 9C2 11.605 3.77047 14.3616 5.74741 16.5856C6.71242 17.6713 7.68054 18.5792 8.4085 19.2162C8.63119 19.411 8.83072 19.5799 9 19.7202C9.16928 19.5799 9.36881 19.411 9.5915 19.2162C10.3195 18.5792 11.2876 17.6713 12.2526 16.5856C14.2295 14.3616 16 11.605 16 9C16 4.63241 12.5314 2 9 2ZM9 21C8.4 21.8 8.39978 21.7998 8.39953 21.7997L8.39888 21.7992L8.39703 21.7978L8.39117 21.7933L8.37091 21.778C8.35368 21.7648 8.32907 21.746 8.29758 21.7216C8.23461 21.6728 8.14406 21.6017 8.02986 21.51C7.80155 21.3265 7.47822 21.0597 7.0915 20.7213C6.31946 20.0458 5.28758 19.0787 4.25259 17.9144C2.22953 15.6384 0 12.395 0 9C0 3.36759 4.5314 0 9 0C13.4686 0 18 3.36759 18 9C18 12.395 15.7705 15.6384 13.7474 17.9144C12.7124 19.0787 11.6805 20.0458 10.9085 20.7213C10.5218 21.0597 10.1984 21.3265 9.97014 21.51C9.85594 21.6017 9.76539 21.6728 9.70242 21.7216C9.67093 21.746 9.64632 21.7648 9.62909 21.778L9.60883 21.7933L9.60297 21.7978L9.60112 21.7992L9.60047 21.7997C9.60022 21.7998 9.6 21.8 9 21ZM9 21L9.6 21.8L9 22.25L8.4 21.8L9 21ZM6.17157 6.17157C6.92172 5.42143 7.93913 5 9 5C10.0609 5 11.0783 5.42143 11.8284 6.17157C12.5786 6.92172 13 7.93913 13 9C13 10.0609 12.5786 11.0783 11.8284 11.8284C11.0783 12.5786 10.0609 13 9 13C7.93913 13 6.92172 12.5786 6.17157 11.8284C5.42143 11.0783 5 10.0609 5 9C5 7.93913 5.42143 6.92172 6.17157 6.17157ZM9 7C8.46957 7 7.96086 7.21071 7.58579 7.58579C7.21071 7.96086 7 8.46957 7 9C7 9.53043 7.21071 10.0391 7.58579 10.4142C7.96086 10.7893 8.46957 11 9 11C9.53043 11 10.0391 10.7893 10.4142 10.4142C10.7893 10.0391 11 9.53043 11 9C11 8.46957 10.7893 7.96086 10.4142 7.58579C10.0391 7.21071 9.53043 7 9 7Z",
-                fill: "#FFC244"
-              }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c("div", { staticClass: "customSelect" }, [
-          _c("a", { class: [{ active: _vm.dropdownyCity }, "chosen-single"] }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.selectedCity.id,
-                  expression: "selectedCity.id"
+            _c(
+              "svg",
+              {
+                class: [{ active: _vm.dropdownyCity }, "locationIco"],
+                attrs: {
+                  width: "18",
+                  height: "23",
+                  viewBox: "0 0 18 23",
+                  fill: "none",
+                  xmlns: "http://www.w3.org/2000/svg"
                 }
-              ],
-              attrs: { hidden: "", type: "text" },
-              domProps: { value: _vm.selectedCity.id },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    "fill-rule": "evenodd",
+                    "clip-rule": "evenodd",
+                    d:
+                      "M9 2C5.4686 2 2 4.63241 2 9C2 11.605 3.77047 14.3616 5.74741 16.5856C6.71242 17.6713 7.68054 18.5792 8.4085 19.2162C8.63119 19.411 8.83072 19.5799 9 19.7202C9.16928 19.5799 9.36881 19.411 9.5915 19.2162C10.3195 18.5792 11.2876 17.6713 12.2526 16.5856C14.2295 14.3616 16 11.605 16 9C16 4.63241 12.5314 2 9 2ZM9 21C8.4 21.8 8.39978 21.7998 8.39953 21.7997L8.39888 21.7992L8.39703 21.7978L8.39117 21.7933L8.37091 21.778C8.35368 21.7648 8.32907 21.746 8.29758 21.7216C8.23461 21.6728 8.14406 21.6017 8.02986 21.51C7.80155 21.3265 7.47822 21.0597 7.0915 20.7213C6.31946 20.0458 5.28758 19.0787 4.25259 17.9144C2.22953 15.6384 0 12.395 0 9C0 3.36759 4.5314 0 9 0C13.4686 0 18 3.36759 18 9C18 12.395 15.7705 15.6384 13.7474 17.9144C12.7124 19.0787 11.6805 20.0458 10.9085 20.7213C10.5218 21.0597 10.1984 21.3265 9.97014 21.51C9.85594 21.6017 9.76539 21.6728 9.70242 21.7216C9.67093 21.746 9.64632 21.7648 9.62909 21.778L9.60883 21.7933L9.60297 21.7978L9.60112 21.7992L9.60047 21.7997C9.60022 21.7998 9.6 21.8 9 21ZM9 21L9.6 21.8L9 22.25L8.4 21.8L9 21ZM6.17157 6.17157C6.92172 5.42143 7.93913 5 9 5C10.0609 5 11.0783 5.42143 11.8284 6.17157C12.5786 6.92172 13 7.93913 13 9C13 10.0609 12.5786 11.0783 11.8284 11.8284C11.0783 12.5786 10.0609 13 9 13C7.93913 13 6.92172 12.5786 6.17157 11.8284C5.42143 11.0783 5 10.0609 5 9C5 7.93913 5.42143 6.92172 6.17157 6.17157ZM9 7C8.46957 7 7.96086 7.21071 7.58579 7.58579C7.21071 7.96086 7 8.46957 7 9C7 9.53043 7.21071 10.0391 7.58579 10.4142C7.96086 10.7893 8.46957 11 9 11C9.53043 11 10.0391 10.7893 10.4142 10.4142C10.7893 10.0391 11 9.53043 11 9C11 8.46957 10.7893 7.96086 10.4142 7.58579C10.0391 7.21071 9.53043 7 9 7Z",
+                    fill: "#FFC244"
                   }
-                  _vm.$set(_vm.selectedCity, "id", $event.target.value)
-                }
-              }
-            }),
+                })
+              ]
+            ),
             _vm._v(" "),
-            _c("span", { staticClass: "selectCityName" }, [
-              _vm._v(_vm._s(_vm.selectedCityName))
-            ])
-          ]),
-          _vm._v(" "),
-          _c("span", {
-            class: [{ active: _vm.dropdownyCity }, "icon-arrow-down-gray"]
-          }),
-          _vm._v(" "),
-          _c(
-            "ul",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.dropdownyCity,
-                  expression: "dropdownyCity"
-                }
-              ],
-              staticClass: "dropdownSelect"
-            },
-            _vm._l(_vm.city_array, function(city) {
-              return _c(
-                "li",
-                {
-                  staticClass: "option",
-                  attrs: { "data-city": city.id, value: city.id },
-                  on: {
-                    click: function($event) {
-                      return _vm.getOptionInSelect(
-                        $event,
-                        "isEmptyCity",
-                        "dropdownyCity"
-                      )
-                    }
-                  }
-                },
+            _c("div", { staticClass: "customSelect" }, [
+              _c(
+                "a",
+                { class: [{ active: _vm.dropdownyCity }, "chosen-single"] },
                 [
-                  _c(
-                    "a",
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.selectedCity.id,
+                        expression: "selectedCity.id"
+                      }
+                    ],
+                    attrs: { hidden: "", type: "text" },
+                    domProps: { value: _vm.selectedCity.id },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.selectedCity, "id", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "selectCityName" }, [
+                    _vm._v(_vm._s(_vm.selectedCityName))
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c("span", {
+                class: [{ active: _vm.dropdownyCity }, "icon-arrow-down-gray"]
+              }),
+              _vm._v(" "),
+              _c(
+                "ul",
+                {
+                  directives: [
                     {
-                      attrs: { href: "http://" + city.domain + _vm.currentUrl }
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.dropdownyCity,
+                      expression: "dropdownyCity"
+                    }
+                  ],
+                  staticClass: "dropdownSelect"
+                },
+                _vm._l(_vm.city_array, function(city) {
+                  return _c(
+                    "li",
+                    {
+                      staticClass: "option",
+                      attrs: { "data-city": city.id, value: city.id },
+                      on: {
+                        click: function($event) {
+                          return _vm.getOptionInSelect(
+                            $event,
+                            "isEmptyCity",
+                            "dropdownyCity"
+                          )
+                        }
+                      }
                     },
                     [
-                      _c("span", { staticClass: "cityOption" }, [
-                        _vm._v(
-                          _vm._s(_vm.messages[_vm.lang].cityLetter) +
-                            " " +
-                            _vm._s(city.name[_vm.lang])
-                        )
-                      ])
+                      _c(
+                        "a",
+                        {
+                          attrs: {
+                            href: "http://" + city.domain + _vm.currentUrl
+                          }
+                        },
+                        [
+                          _c("span", { staticClass: "cityOption" }, [
+                            _vm._v(
+                              _vm._s(_vm.messages[_vm.lang].cityLetter) +
+                                " " +
+                                _vm._s(city.name[_vm.lang])
+                            )
+                          ])
+                        ]
+                      )
                     ]
                   )
-                ]
+                }),
+                0
               )
-            }),
-            0
-          )
-        ])
-      ]
-    )
-  ])
+            ])
+          ]
+        )
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -58533,7 +58739,9 @@ var render = function() {
                   id: "name",
                   type: "text",
                   autocomplete: "off",
-                  placeholder: _vm.messages[_vm.lang].name_placeholder
+                  placeholder: _vm.messages[_vm.lang].name_placeholder,
+                  "data-validate": "required",
+                  "data-error-text": _vm.messages[_vm.lang].error_name
                 },
                 domProps: { value: _vm.name },
                 on: {
@@ -58574,7 +58782,10 @@ var render = function() {
                   id: "phone",
                   type: "tel",
                   autocomplete: "off",
-                  placeholder: _vm.messages[_vm.lang].phone_placeholder
+                  placeholder: _vm.messages[_vm.lang].phone_placeholder,
+                  "data-validate": "isPhoneNumber",
+                  "data-error-text": _vm.messages[_vm.lang].error_phone,
+                  maxlength: 15
                 },
                 domProps: { value: _vm.phone },
                 on: {
@@ -58615,7 +58826,10 @@ var render = function() {
                   id: "email",
                   type: "email",
                   autocomplete: "off",
-                  placeholder: _vm.messages[_vm.lang].email_placeholder
+                  placeholder: _vm.messages[_vm.lang].email_placeholder,
+                  "data-validate": "isEmail",
+                  "data-error-text": _vm.messages[_vm.lang].error_email,
+                  required: ""
                 },
                 domProps: { value: _vm.email },
                 on: {

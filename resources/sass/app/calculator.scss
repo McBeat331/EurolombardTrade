@@ -57,14 +57,17 @@
   z-index: 2;
   @include media(max,sm)
   {
-    padding-left: 10px;
+    padding-left: 15px;
     text-align: left;
+    margin: -15px;
+    height: 55px;
   }
   svg
   {
     @include media(max,sm)
     {
-      max-width:55px;
+      max-width: 55px;
+      height: 55px;
     }
   }
 }
@@ -326,6 +329,17 @@
       {
         height: 55px;
       }
+      .notFoundSmile
+      {
+        @include media(max,sm)
+        {
+          height: 85%;
+        }
+        img
+        {
+          max-height: 100%;
+        }
+      }
     }
    .countBlock {
      display: flex;
@@ -333,6 +347,8 @@
      align-items: flex-start;
      justify-content: space-around;
      height: 100%;
+     position: relative;
+     z-index: 2;
      input {
        padding:0;
      }
@@ -1172,6 +1188,7 @@ input[type=file] {
     @include media(max, sm) {
       padding: 5px 0px;
       margin-top: -15px;
+      font-size: 15px;
     }
   }
   .title

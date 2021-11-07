@@ -37,7 +37,12 @@ div.mainWrapper {
 		display: flex;
 		flex-direction: column;
 
-		& > .page {flex-grow: 1;padding-top: 125px;}
+		& > .page {
+			flex-grow: 1;padding-top: 125px;
+			@include media("max", "sm") {
+				padding-top: 0px;
+			}
+		}
 	}
 	& > footer.mainFooter {
 		flex: 0 0 auto;

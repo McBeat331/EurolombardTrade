@@ -28,7 +28,7 @@
                   </li>
                   <li class="nav-item"><a href="#advantageBlock">{{ trans('main.ourAdvantages') }}</a></li>
                   <li class="nav-item"><a href="{{ route('contact.show') }}">{{ trans('main.contacts') }}</a></li>
-                  <li class="nav-item telegramLink"><a href="#"><div class="telegramImg"><img src="../images/telegramIcoWhite.svg"/></div><span>{{ trans('main.ourTelegram') }}</span></a></li>
+                  <li class="nav-item telegramLink"><a href="{{ getTelegramLink() }}"><div class="telegramImg"><img src="../images/telegramIcoWhite.svg"/></div><span>{{ trans('main.ourTelegram') }}</span></a></li>
                   <li class="callback-section-header">
                        <div class="callback-phone">
                            <div class="callback-item-phone">
@@ -38,21 +38,21 @@
                                         @include('includes.callback-questions-form-front')
                                         <div class="social-mobile-form">
                                              <ul class="social-mobile-list">
-                                                 <li>
+                                                 <!--<li>
                                                      <span class="icon-social-fb"></span>
                                                      <a target="blank" href="#" class="social-item-link"></a>
                                                  </li>
                                                  <li>
                                                      <span class="icon-social-inst"></span>
                                                      <a target="blank" href="#" class="social-item-link"></a>
-                                                 </li>
+                                                 </li>-->
                                                  <!-- <li>
                                                      <span class="icon-social-yt"></span>
                                                      <a href="#" class="social-item-link"></a>
                                                  </li> -->
                                                  <li>
                                                      <span class="icon-social-telegram"></span>
-                                                     <a  target="blank" href="#" class="social-item-link"></a>
+                                                     <a  target="blank" href="{{ getTelegramLink() }}" class="social-item-link"></a>
                                                  </li>
                                              </ul>
                                         </div>

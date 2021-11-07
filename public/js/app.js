@@ -2205,7 +2205,11 @@ __webpack_require__.r(__webpack_exports__);
       currency_from: 'USD',
       currency_to: 'UAH',
       count_from: 0,
-      isOpt: false
+      isOpt: false,
+      window: {
+        width: 0,
+        height: 0
+      }
     };
   },
   methods: {
@@ -2244,6 +2248,10 @@ __webpack_require__.r(__webpack_exports__);
     switcherValues: function switcherValues() {
       this.isOpt = !this.isOpt;
       _app__WEBPACK_IMPORTED_MODULE_0__.bus.$emit('isOpt', this.isOpt);
+    },
+    handleResize: function handleResize() {
+      this.window.width = window.innerWidth;
+      this.window.height = window.innerHeight;
     }
   },
   beforeMount: function beforeMount() {},
@@ -2253,6 +2261,13 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   watch: {},
+  created: function created() {
+    window.addEventListener('resize', this.handleResize);
+    this.handleResize();
+  },
+  destroyed: function destroyed() {
+    window.removeEventListener('resize', this.handleResize);
+  },
   mounted: function mounted() {
     var _this2 = this;
 
@@ -3338,7 +3353,9 @@ var messages = {
     rateModal: 'Заявка',
     cityLetter: 'м.',
     createRequest: 'Створення заявки',
-    giveAccess: 'Заповнюючи форму, Ви даєте згоду на обробку персональних даних.'
+    giveAccess: 'Заповнюючи форму, Ви даєте згоду на обробку персональних даних.',
+    switchRate: 'Обміняти',
+    courseCurrencyTitle: 'Курси валют'
   },
   'ru': {
     no_found: "К сожалению эта пара не поддерживается",
@@ -3371,7 +3388,9 @@ var messages = {
     rateModal: 'Заявка',
     cityLetter: 'г.',
     createRequest: 'Создание заявки',
-    giveAccess: 'Заполняя форму, Вы даете согласие на обработку персональных данных.'
+    giveAccess: 'Заполняя форму, Вы даете согласие на обработку персональных данных.',
+    switchRate: 'Обменять',
+    courseCurrencyTitle: 'Курсы валют'
   }
 };
 
@@ -57565,7 +57584,9 @@ var render = function() {
           "div",
           { staticClass: "title visible-viewportchecker visibility--check" },
           [
-            _c("span", [_vm._v("Курси валют")]),
+            _c("span", [
+              _vm._v(_vm._s(_vm.messages[_vm.lang].courseCurrencyTitle))
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "wrapper-btn-check" }, [
               _c("div", [
@@ -57640,7 +57661,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Обміняти")]
+                  [_vm._v(_vm._s(_vm.messages[_vm.lang].switchRate))]
                 )
               ])
             ],
@@ -57669,9 +57690,16 @@ var render = function() {
             _vm._v(_vm._s(_vm.messages[_vm.lang].rateSale))
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "rateModalTitle" }, [
-            _vm._v(_vm._s(_vm.messages[_vm.lang].rateModal))
-          ])
+          _c(
+            "div",
+            { staticClass: "rateModalTitle" },
+            [
+              _vm.window.width > 600
+                ? [_vm._v(_vm._s(_vm.messages[_vm.lang].rateModal))]
+                : void 0
+            ],
+            2
+          )
         ]),
         _vm._v(" "),
         _vm._l(_vm.options, function(rate) {
@@ -57704,7 +57732,12 @@ var render = function() {
                     }
                   }
                 },
-                [_vm._v("Обміняти")]
+                [
+                  _vm.window.width > 600
+                    ? [_vm._v(_vm._s(_vm.messages[_vm.lang].switchRate))]
+                    : [_vm._v("+")]
+                ],
+                2
               )
             ])
           ])

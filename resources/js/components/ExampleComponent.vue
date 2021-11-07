@@ -4,7 +4,7 @@
                     <div class="leftSection ">
 
                         <div class="title visible-viewportchecker visibility--check">
-                            <span>Курси валют</span>
+                            <span>{{ messages[lang].courseCurrencyTitle }}</span>
                             <div class="wrapper-btn-check">
                                 <div>
 										<span
@@ -23,7 +23,7 @@
                                 <obmen/>
                                 <modal v-show="showModal" @close-modal="showModal = false" :currency_from="{ currency_from }" :currency_to="{ currency_to }"/>
                                 <div class="showButton">
-                                    <button @click="showModals()" >Обміняти</button>
+                                    <button @click="showModals()" >{{ messages[lang].switchRate }}</button>
                                 </div>
                             </div>
                         </div>
@@ -43,13 +43,13 @@
                 <div class="rateNameTitle">{{ messages[lang].rateName }}</div>
                 <div class="rateBuyTitle">{{ messages[lang].rateBuy }}</div>
                 <div class="rateSaleTitle">{{ messages[lang].rateSale }}</div>
-                <div class="rateModalTitle">{{ messages[lang].rateModal }}</div>
+                <div class="rateModalTitle"><template v-if="window.width > 600">{{ messages[lang].rateModal }}</template><template v-else></template></div>
             </div>
             <div class="rateItem" v-for="rate in options" :key="rate.id">
                 <div class="rateName">{{rate.currency_from}}/{{rate.currency_to}}</div>
                 <div class="rateBuy">{{rate.buy.toFixed(3)}}</div>
                 <div class="rateSale">{{rate.sale.toFixed(3)}}</div>
-                <div class="rateModal"><button @click="showModals(rate.currency_from,rate.currency_to,0)" >Обміняти</button></div>
+                <div class="rateModal"><button @click="showModals(rate.currency_from,rate.currency_to,0)" ><template v-if="window.width > 600">{{ messages[lang].switchRate }}</template><template v-else>+</template></button></div>
             </div>
         </div>
     </div>
@@ -81,7 +81,11 @@
                 currency_from: 'USD',
                 currency_to: 'UAH',
                 count_from: 0,
-                isOpt:false
+                isOpt:false,
+                window: {
+                    width: 0,
+                    height: 0
+                }
             }
         },
         methods: {
@@ -117,6 +121,10 @@
                 this.isOpt = !this.isOpt
                 bus.$emit('isOpt',this.isOpt);
             },
+            handleResize() {
+                this.window.width = window.innerWidth;
+                this.window.height = window.innerHeight;
+            }
         },
 
         beforeMount(){
@@ -130,6 +138,13 @@
         },
         watch: {
 
+        },
+        created() {
+            window.addEventListener('resize', this.handleResize);
+            this.handleResize();
+        },
+        destroyed() {
+            window.removeEventListener('resize', this.handleResize);
         },
         mounted() {
             this.setLang();

@@ -13,17 +13,17 @@
       <div class="social-wrapper visible-viewportchecker visibility--check hidden">
         <div class="title">{{ trans('main.our_social') }}</div>
         <ul class="social-mobile-list">
-          <li>
+          <!--<li>
             <span class="icon-social-fb"></span>
             <a target="blank" href="" class="social-item-link"></a>
           </li>
           <li>
             <span class="icon-social-inst"></span>
             <a target="blank" href="" class="social-item-link"></a>
-          </li>
+          </li>-->
           <li>
             <span class="icon-social-telegram"></span>
-            <a  target="blank" href="#" class="social-item-link"></a>
+            <a  target="blank" href="{{ getTelegramLink() }}" class="social-item-link"></a>
           </li>
         </ul>
       </div>

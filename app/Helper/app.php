@@ -48,7 +48,7 @@ if(!function_exists('getRouteLocaleUrl')) {
 
         $segments = explode('/', $parse_url);
 
-        if (in_array($segments[1], array_keys(config('app.locales')))) {
+        if (count($segments) > 1 && in_array($segments[1], array_keys(config('app.locales')))) {
             unset($segments[1]);
         }
 

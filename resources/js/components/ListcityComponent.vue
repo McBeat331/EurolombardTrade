@@ -21,7 +21,7 @@
                             @click="getOptionInSelect($event, 'isEmptyCity', 'dropdownyCity')"
                             :data-city="city.id"
                             :value="city.id"
-                        ><a :href="'http://'+ city.domain + currentUrl"><span class="cityOption">{{ messages[lang].cityLetter }} {{ city.name[lang] }}</span></a></li>
+                        ><a :href="'http://'+ city.domain"><span class="cityOption">{{ messages[lang].cityLetter }} {{ city.name[lang] }}</span></a></li>
                     </ul>
 
                 </div>

@@ -40,6 +40,31 @@ if(!function_exists('switcher_locale')) {
         return view('_partials.switcher');
     }
 }
+if(!function_exists('getRouteLocaleUrl')) {
+    function getRouteLocaleUrl($lang)
+    {
+        $referer = Request::url();
+        $parse_url = parse_url($referer, PHP_URL_PATH);
+
+        $segments = explode('/', $parse_url);
+
+        if (in_array($segments[1], array_keys(config('app.locales')))) {
+            unset($segments[1]);
+        }
+
+        if ($lang != config('app.fallback_locale')){
+            array_splice($segments, 1, 0, $lang);
+        }
+
+        $url = Request::root().implode("/", $segments);
+
+        if(parse_url($referer, PHP_URL_QUERY)){
+            $url = $url.'?'. parse_url($referer, PHP_URL_QUERY);
+        }
+        return $url;
+    }
+}
+
 if(!function_exists('citySelected')) {
     function citySelected()
     {

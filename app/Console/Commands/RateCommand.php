@@ -48,7 +48,7 @@ class RateCommand extends Command
      */
     public function handle()
     {
-        $response = $this->client->request('GET', env('URL_API_RATES'));
+        $response = $this->client->request('GET', config('services.rate-updates'));
         if($response->getStatusCode() != 200){
             return Command::FAILURE;
         }

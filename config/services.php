@@ -39,5 +39,6 @@ return [
             'order' => env('TELEGRAM_BOT_CHANNEL_ORDER'),
         ],
     ],
+    'rate-updates' => env('URL_API_RATES'),
 
 ];

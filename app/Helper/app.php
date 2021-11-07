@@ -3,7 +3,12 @@
 use App\Services\Address\AddressService;
 use App\Services\City\CityService;
 use Illuminate\Support\Facades\Session;
-
+if(!function_exists('getTelegramLink')){
+    function getTelegramLink(){
+        $settingService = app()->make( \App\Services\Setting\SettingService::class);
+        return 'https://'.$settingService->getFieldValue('telegramLink');
+    }
+}
 
 if(!function_exists('addresses')){
     function addresses(){

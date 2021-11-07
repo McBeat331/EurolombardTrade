@@ -50,7 +50,7 @@
         </div>
     </section>
 
-    <section class="career-callback-form visible-viewportchecker visibility--check hidden">
+    <section class="common-questions visible-viewportchecker visibility--check hidden">
         <div class="mcontainer">
             @include('includes.callback-questions-form-front')
         </div>

@@ -29,6 +29,9 @@ Route::group(['prefix' => parseLocale(),'where' => ['locale' => '[a-z]{2}'],'mid
     Route::get('contact', [App\Http\Controllers\ContactController::class, 'show'])->name('contact.show');
    /* Route::get('review', [App\Http\Controllers\ReviewController::class, 'index'])->name('review.index');*/
     Route::get('order', [App\Http\Controllers\OrderController::class,'show']);
+    Route::get('/thankYou', function () {
+        return view('thankYou.thankTou');
+    })->name('thankYou');
 //    Route::get('get-departments',  [App\Http\Controllers\ContactController::class, 'getDepartments'])->name('departments.getDepartments');
 });
 
@@ -37,9 +40,7 @@ Route::post('feedbackMail', [App\Http\Controllers\ServiceController::class, 'cre
 Route::post('callbackMail', [App\Http\Controllers\ContactController::class, 'createCallback'])->name('callback.store');
 
 Route::post('order', [App\Http\Controllers\OrderController::class,'add']);
-Route::get('/thankYou', function () {
-    return view('thankYou.thankTou');
-})->name('thankYou');
+
 //Route::middleware('auth')->group(function(){
 ////    Route::get('profile',[App\Http\Controllers\UserController::class,'profile'])->name('profile.show');
 ////    Route::post('order/{id}', [App\Http\Controllers\OrderController::class,'delete']);

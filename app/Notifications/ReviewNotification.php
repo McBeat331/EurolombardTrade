@@ -45,7 +45,7 @@ class ReviewNotification extends Notification
         }
         return TelegramMessage::create()
             ->to(config('services.telegram-bot-api.channels.review'))
-            ->content("*Новый отзыв*\nГород: {$post->city}\nФИО: {{$post->name}}\nОтзыв: {{$post->description}}\n{$rating}");
+            ->content("*Новый отзыв*\nГород: *{$post->city}*\nФИО: *{$post->name}*\nОтзыв: *{$post->description}*\n{$rating}");
     }
 
     /**

@@ -348,8 +348,6 @@
      align-items: flex-start;
      justify-content: space-around;
      height: 100%;
-     position: relative;
-     z-index: 2;
      input {
        padding:0;
      }
@@ -507,6 +505,7 @@
     }
     .customSelect {
       position: relative;
+      z-index: 2;
     }
  }
  select {

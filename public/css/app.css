@@ -1296,8 +1296,6 @@ select:-webkit-autofill:focus {
   align-items: flex-start;
   justify-content: space-around;
   height: 100%;
-  position: relative;
-  z-index: 2;
 }
 .calculatorWrapForm .section-input .countBlock input {
   padding: 0;
@@ -1462,6 +1460,7 @@ select:-webkit-autofill:focus {
 }
 .calculatorWrapForm .section-input .customSelect {
   position: relative;
+  z-index: 2;
 }
 .calculatorWrapForm select {
   cursor: pointer;

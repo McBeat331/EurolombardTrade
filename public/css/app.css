@@ -3870,8 +3870,8 @@ header.mainHeader .header-nav-list .nav-item.telegramLink a {
   color: #FFFFFF;
   display: inline-flex;
   align-items: center;
-  margin-right: 20px;
-  margin-left: 20px;
+  margin-right: 18px;
+  margin-left: 18px;
   margin-top: 15px;
   margin-bottom: 15px;
 }
@@ -3882,6 +3882,10 @@ header.mainHeader .header-nav-list .nav-item.telegramLink a {
     text-align: center;
     font-size: 20px;
     line-height: 26px;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-top: 15px;
+    margin-bottom: 0px;
   }
 }
 header.mainHeader .header-nav-list .nav-item.telegramLink a .telegramImg {
@@ -4080,7 +4084,7 @@ header.mainHeader .icon-bg-line, header.mainHeader .title, header.mainHeader .ca
     justify-content: space-between;
     font-weight: 400;
     font-size: 16px;
-    padding: 23px 23px;
+    padding: 23px 18px;
     transition: all 0.3s;
   }
   header.mainHeader .header-nav-list .nav-item a:hover {

@@ -96,8 +96,8 @@ header.mainHeader {
           color: #FFFFFF;
           display: inline-flex;
           align-items: center;
-          margin-right: 20px;
-          margin-left: 20px;
+          margin-right: 18px;
+          margin-left: 18px;
           margin-top: 15px;
           margin-bottom: 15px;
           @include media("max", "sm") {
@@ -106,6 +106,10 @@ header.mainHeader {
             text-align: center;
             font-size: 20px;
             line-height: 26px;
+            margin-right: 0px;
+            margin-left: 0px;
+            margin-top: 15px;
+            margin-bottom: 0px;
           }
           .telegramImg
           {
@@ -307,7 +311,7 @@ header.mainHeader {
         justify-content: space-between;
         font-weight: 400;
         font-size: 16px;
-        padding: 23px 23px;
+        padding: 23px 18px;
         transition: all 0.3s;
         &:hover {
           color: $primaryColor;

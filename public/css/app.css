@@ -5816,6 +5816,11 @@ p.important-info {
   overflow: hidden;
   z-index: -1;
 }
+@media only screen and (max-width: 576px) {
+  .callback-wrap-content .icon-bg-line {
+    display: none;
+  }
+}
 .callback-wrap-content .icon-bg-line::before {
   color: #fff;
   font-size: 313px;

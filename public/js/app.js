@@ -2902,6 +2902,10 @@ __webpack_require__.r(__webpack_exports__);
       if (_this2.dropdownyFrom === true) {
         _this2.dropdownyFrom = false;
       }
+
+      if (_this2.dropdownyTo === true) {
+        _this2.dropdownyTo = false;
+      }
     });
   }
 });
@@ -3224,6 +3228,10 @@ __webpack_require__.r(__webpack_exports__);
     window.addEventListener('mouseup', function () {
       if (_this.dropdownyFrom === true) {
         _this.dropdownyFrom = false;
+      }
+
+      if (_this.dropdownyTo === true) {
+        _this.dropdownyTo = false;
       }
     });
   }

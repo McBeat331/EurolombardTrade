@@ -48,6 +48,9 @@
 
                                         @endforeach
                                     </select>
+                                    @if($errors->has('city_id'))
+                                        <div class="error text-danger small">{{ $errors->first('city_id') }}</div>
+                                    @endif
                                 </div>
                             </div>
 
@@ -65,8 +68,11 @@
                                                value="{{ old('name[ru]') }}"
                                                 @endisset
                                         >
-                                    </div>
 
+                                    </div>
+                                    @if($errors->has('name.ru'))
+                                        <div class="error text-danger small">{{ $errors->first('name.ru') }}</div>
+                                    @endif
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Адрес (UA) *</label>
@@ -81,8 +87,11 @@
                                                value="{{ old('name[uk]') }}"
                                                 @endisset
                                         >
-                                    </div>
 
+                                    </div>
+                                    @if($errors->has('name.uk'))
+                                        <div class="error text-danger small">{{ $errors->first('name.uk') }}</div>
+                                    @endif
                                 </div>
                             </div>
                             <div id="map" style="height:400px; width:100%"></div>
@@ -113,6 +122,9 @@
                                    value="{{ old('phones') }}"
                                    @endisset
                             >
+                            @if($errors->has('phones'))
+                                <div class="error text-danger small">{{ $errors->first('phones') }}</div>
+                            @endif
                         </div>
 
 
@@ -120,10 +132,10 @@
                             <label>График работы</label>
                             <div>
                                 <label for="twenty-four">Круглосуточно</label>
-                                <input id="twenty-four" type="checkbox" name="round_the_clock" value="@if(isset($entry) and $entry->round_the_clock) {{$entry->round_the_clock}} @else 1"
+                                <input id="twenty-four" type="checkbox" name="round_the_clock"
                                        @if(old('round_the_clock'))
                                        checked
-                                       @elseif(isset($entry) and $entry->round_the_clock)
+                                       @elseif(isset($entry) and $entry->round_the_clock == 1)
                                        checked
                                         @endif
                                 >

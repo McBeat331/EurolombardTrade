@@ -648,6 +648,7 @@ select:-webkit-autofill:focus {
 
 .review-submission {
   margin-bottom: 10px;
+  margin-top: 25px;
 }
 .review-submission .review-wrap-section {
   position: relative;
@@ -4052,7 +4053,7 @@ header.mainHeader .icon-bg-line, header.mainHeader .title, header.mainHeader .ca
     justify-content: space-between;
     font-weight: 400;
     font-size: 16px;
-    padding: 23px 30px;
+    padding: 23px 23px;
   }
   pa header.mainHeader .header-nav-list .nav-item a:hover {
     color: #2F2483;

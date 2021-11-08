@@ -17,6 +17,24 @@
 .listRate {
   margin-top: 45px;
   background: #fff;
+  position: relative;
+  &:after,&:before
+  {
+    content: '';
+    position: absolute;
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    top: 0;
+  }
+  &:after
+  {
+    left: 100%;
+  }
+  &:before
+  {
+    right: 100%;
+  }
   > div {
     display: flex;
     width: 100%;

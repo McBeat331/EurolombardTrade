@@ -80,6 +80,7 @@ header.mainHeader {
       {
         @include media("max", "sm") {
           padding: 8px 20px 8px 20px;
+          margin:0;
         }
         a
         {
@@ -95,6 +96,10 @@ header.mainHeader {
           color: #FFFFFF;
           display: inline-flex;
           align-items: center;
+          margin-right: 20px;
+          margin-left: 20px;
+          margin-top: 15px;
+          margin-bottom: 15px;
           @include media("max", "sm") {
             justify-content: center;
             width: 100%;
@@ -112,6 +117,11 @@ header.mainHeader {
             {
               max-width: 25px;
             }
+          }
+          &:hover {
+            color: #fff;
+            font-weight: bold;
+            background: #0098dd;
           }
         }
       }
@@ -298,9 +308,10 @@ header.mainHeader {
         font-weight: 400;
         font-size: 16px;
         padding: 23px 23px;
-        pa
+        transition: all 0.3s;
         &:hover {
           color: $primaryColor;
+          font-weight: bold;
         }
       }
     }

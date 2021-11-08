@@ -456,6 +456,11 @@ select:-webkit-autofill:focus {
         align-items: center;
         justify-content: center;
         text-align: center;
+        transition: all 0.3s;
+        &:hover
+        {
+          font-weight: bold;
+        }
         @include media(max, sm) {
           width: 100%;
           font-size: 18px;
@@ -512,7 +517,7 @@ select:-webkit-autofill:focus {
       font-family: $secondaryFont;
       font-style: normal;
       font-weight: 500;
-      font-size: 16px;
+      font-size: 15px;
       line-height: 26px;
       color: #282828;
     }

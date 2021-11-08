@@ -831,6 +831,10 @@ select:-webkit-autofill:focus {
   align-items: center;
   justify-content: center;
   text-align: center;
+  transition: all 0.3s;
+}
+.telegram-section .telegramBlock .telegram-link-block a:hover {
+  font-weight: bold;
 }
 @media only screen and (max-width: 576px) {
   .telegram-section .telegramBlock .telegram-link-block a {
@@ -888,7 +892,7 @@ select:-webkit-autofill:focus {
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 26px;
   color: #282828;
 }
@@ -3227,6 +3231,21 @@ select:-webkit-autofill:focus {
 .listRate {
   margin-top: 45px;
   background: #fff;
+  position: relative;
+}
+.listRate:after, .listRate:before {
+  content: "";
+  position: absolute;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+.listRate:after {
+  left: 100%;
+}
+.listRate:before {
+  right: 100%;
 }
 .listRate > div {
   display: flex;
@@ -3835,6 +3854,7 @@ header.mainHeader .header-nav-list .nav-item a {
 @media only screen and (max-width: 576px) {
   header.mainHeader .header-nav-list .nav-item.telegramLink {
     padding: 8px 20px 8px 20px;
+    margin: 0;
   }
 }
 header.mainHeader .header-nav-list .nav-item.telegramLink a {
@@ -3850,6 +3870,10 @@ header.mainHeader .header-nav-list .nav-item.telegramLink a {
   color: #FFFFFF;
   display: inline-flex;
   align-items: center;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 @media only screen and (max-width: 576px) {
   header.mainHeader .header-nav-list .nav-item.telegramLink a {
@@ -3870,6 +3894,11 @@ header.mainHeader .header-nav-list .nav-item.telegramLink a .telegramImg {
 }
 header.mainHeader .header-nav-list .nav-item.telegramLink a .telegramImg img {
   max-width: 25px;
+}
+header.mainHeader .header-nav-list .nav-item.telegramLink a:hover {
+  color: #fff;
+  font-weight: bold;
+  background: #0098dd;
 }
 header.mainHeader .header-nav-list .nav-item_submenu {
   list-style: none;
@@ -4052,9 +4081,11 @@ header.mainHeader .icon-bg-line, header.mainHeader .title, header.mainHeader .ca
     font-weight: 400;
     font-size: 16px;
     padding: 23px 23px;
+    transition: all 0.3s;
   }
-  pa header.mainHeader .header-nav-list .nav-item a:hover {
+  header.mainHeader .header-nav-list .nav-item a:hover {
     color: #2F2483;
+    font-weight: bold;
   }
   header.mainHeader .header-nav-list li:nth-child(6) {
     border-right: 1px solid #F4F4F4;
@@ -5343,7 +5374,7 @@ a {
 }
 .advantages-content-wrap .advantages-item .item-title {
   padding-top: 25px;
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 700;
 }
 .advantages-content-wrap .advantages-item .item-text {

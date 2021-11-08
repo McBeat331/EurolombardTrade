@@ -124,7 +124,6 @@ header.mainHeader {
           }
           &:hover {
             color: #fff;
-            font-weight: bold;
             background: #0098dd;
           }
         }
@@ -312,10 +311,8 @@ header.mainHeader {
         font-weight: 400;
         font-size: 16px;
         padding: 23px 18px;
-        transition: all 0.3s;
         &:hover {
           color: $primaryColor;
-          font-weight: bold;
         }
       }
     }

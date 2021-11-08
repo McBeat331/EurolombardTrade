@@ -33,7 +33,10 @@ const messages = {
         createRequest: 'Створення заявки',
         giveAccess:'Заповнюючи форму, Ви даєте згоду на обробку персональних даних.',
         switchRate:'Обміняти',
-        courseCurrencyTitle:'Курси валют'
+        courseCurrencyTitle:'Курси валют',
+        error_name: 'Ім\'я не повинно бути порожнім',
+        error_phone: 'Невірний формат номеру',
+        error_email: 'Невірний формат Email',
     },
 
     'ru': {
@@ -46,7 +49,7 @@ const messages = {
         CHF:"Швейцарский франк",
         CZK:"Чешская крона",
         UAH:"Украинская гривна",
-        giveMoney:"Оттдаю",
+        giveMoney:"Отдаю",
         getMoney:"Получаю",
         errorNotCurrency:"Оберіть обе валюти",
         true: 'Розница',
@@ -69,7 +72,10 @@ const messages = {
         createRequest: 'Создание заявки',
         giveAccess:'Заполняя форму, Вы даете согласие на обработку персональных данных.',
         switchRate:'Обменять',
-        courseCurrencyTitle:'Курсы валют'
+        courseCurrencyTitle:'Курсы валют',
+        error_name: 'Имя не должно быть пустым',
+        error_phone: 'Неверный формат номера',
+        error_email: 'Неверный формат Email',
     }
 };
 

@@ -6,7 +6,6 @@
         </div>
         <div class="modal-content-forms">
             <div class="callback-wrap-content">
-                <span class="icon-bg-line"></span>
                 <div class="callback-content-forms">
                     <div class="title">{{ trans('main.thanks_for') }}</div>
                     <div class="call-form-description">

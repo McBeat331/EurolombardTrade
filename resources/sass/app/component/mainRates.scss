@@ -16,6 +16,25 @@
 }
 .listRate {
   margin-top: 45px;
+  background: #fff;
+  position: relative;
+  &:after,&:before
+  {
+    content: '';
+    position: absolute;
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    top: 0;
+  }
+  &:after
+  {
+    left: 100%;
+  }
+  &:before
+  {
+    right: 100%;
+  }
   > div {
     display: flex;
     width: 100%;
@@ -39,7 +58,7 @@
       color: #282828;
       @include media(max, sm) {
         font-size: 14px;
-        flex:auto;
+        flex:inherit;
       }
       &.rateName {
         font-family: Roboto;
@@ -56,6 +75,7 @@
       {
         @include media(max, sm) {
           text-align: center;
+          width:30px;
         }
         button
         {
@@ -97,6 +117,30 @@
       color: #878787;
       @include media(max, sm) {
         font-size: 14px;
+      }
+      &.rateNameTitle
+      {
+        @include media(max, sm) {
+          width: 61px;
+        }
+      }
+      &.rateBuyTitle
+      {
+        @include media(max, sm) {
+          width: 45px;
+        }
+      }
+      &.rateSaleTitle
+      {
+        @include media(max, sm) {
+          width: 45px;
+        }
+      }
+      &.rateModalTitle
+      {
+        @include media(max, sm) {
+          width: 30px;
+        }
       }
     }
   }

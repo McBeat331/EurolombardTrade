@@ -60,6 +60,13 @@ class AddressService
      */
     public function add($data)
     {
+        if (!isset($data['round_the_clock'])) {
+            $data['round_the_clock'] = 0;
+        }
+        else
+        {
+            $data['round_the_clock'] = 1;
+        }
         return $this->addressModel->create($data);
     }
 
@@ -71,6 +78,13 @@ class AddressService
     public function edit($id,$data)
     {
         $query = $this->addressModel->where('id', $id)->first();
+        if (!isset($data['round_the_clock'])) {
+            $data['round_the_clock'] = 0;
+        }
+        else
+        {
+            $data['round_the_clock'] = 1;
+        }
         return $query->update($data);
     }
 

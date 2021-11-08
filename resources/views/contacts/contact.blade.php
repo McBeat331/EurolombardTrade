@@ -2,9 +2,11 @@
 @include('includes.meta_tags')
 @section('content')
 
-    <div class="mcontainer">
-        <div class="title visible-viewportchecker visibility--check hidden">{{ trans('main.contact_title') }}</div>
-    </div>
+    <section class="TopMainTitle">
+        <div class="mcontainer">
+            <div class="title visible-viewportchecker visibility--check hidden">{{ trans('main.contact_title') }}</div>
+        </div>
+    </section>
 
     <section class="office-departments">
         <div class="mcontainer">
@@ -50,7 +52,7 @@
         </div>
     </section>
 
-    <section class="career-callback-form visible-viewportchecker visibility--check hidden">
+    <section class="common-questions visible-viewportchecker visibility--check hidden">
         <div class="mcontainer">
             @include('includes.callback-questions-form-front')
         </div>

@@ -107,7 +107,7 @@
     }
     .item-title{
       padding-top: 25px;
-      font-size: 20px;
+      font-size: 17px;
       font-weight: 700;
     }
     .item-text {
@@ -535,7 +535,7 @@ p.important-info {
   .callback-wrap-content {
     // box-shadow: $smallShodow;
     .icon-bg-line {
-      display: none;
+      //display: none;
     }
   }
   @media (min-width: $containerWidthLaptop) {
@@ -580,6 +580,9 @@ p.important-info {
     top: 0;
     overflow: hidden;
     z-index: -1;
+    @include media(max, sm) {
+      display: none;
+    }
     &::before {
       color: #fff;
       font-size: 313px;

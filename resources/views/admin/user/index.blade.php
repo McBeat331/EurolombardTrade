@@ -45,8 +45,8 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Имя</th>
-                                    <th scope="col">Фамилия</th>
-                                    <th scope="col">Телефон</th>
+                                    <!--<th scope="col">Фамилия</th>
+                                    <th scope="col">Телефон</th>-->
                                     <th scope="col">Email</th>
                                     <th scope="col">Действия</th>
                                 </tr>
@@ -56,8 +56,8 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $user->name }}</td>
-                                        <td>{{ $user->lastname }}</td>
-                                        <td>{{ $user->phone }}</td>
+                                    <!--<td>{{ $user->lastname }}</td>
+                                        <td>{{ $user->phone }}</td>-->
                                         <td>{{ $user->email }}</td>
                                         <td><span><a href="{{ route('admin.user.edit',$user->id) }}" class="mr-4 btn btn-info" data-toggle="tooltip"
                                                      data-placement="top" title="Edit"><i

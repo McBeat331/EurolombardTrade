@@ -7,12 +7,12 @@
   display: flex;
   justify-content: center;
   background: rgb(40,40,40, 0.5);
-  z-index:101;
+  z-index:500;
 }
 
 .modal {
   max-width: 1200px;
-  width: 100%;
+  width: calc(100% - 40px);
   background-color: #fff;
   box-shadow: 0px 0px 30px rgb(0 0 0 / 10%);
   margin-left: auto;
@@ -24,9 +24,11 @@
   padding: 25px 205px 105px 105px;
   margin-top: 10%;
   @include media(max, sm) {
-    max-height: 600px;
-    height: auto;
-    padding: 15px 15px 20px 15px;
+    height: fit-content;
+    max-height: 650px;
+    padding: 15px 15px 15px;
+    border-top: 5px solid #2F2483;
+    border-left: 0px solid #2F2483;
   }
   .close {
     position:absolute;
@@ -64,7 +66,31 @@
     margin-top: 50px;
   }
 }
+.service-modal
+{
+  .icon-bg-line
+  {
+    @include media(max, sm) {
+      display: none;
+    }
+  }
+  .callback-wrap-content{
+    background:none;
+  }
+}
 .modalObmen {
+  .wrap-select-option
+  {
+    .title
+    {
+      @include media(max, sm) {
+        width: 70%;
+        text-align: left;
+        line-height: 32px;
+      }
+    }
+  }
+
   .currencyBlock
   {
     display: flex;
@@ -94,7 +120,7 @@
       transform: rotate(90deg);
       @include media(max, sm) {
         flex:auto;
-        margin: -30px 0%;
+        margin: -15px 0%;
         transform: rotate(0deg);
       }
     }
@@ -126,8 +152,16 @@
         width: 30%;
         @include media(max, sm) {
           width: 100%;
-          height: 40px;
+          height: 50px;
           margin: 6px 10px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+        }
+        input
+        {
+          @include media(max, sm) {
+            height: 37px;
+          }
         }
         .sup-title
         {
@@ -135,14 +169,30 @@
             display:none;
           }
         }
+        ul.js_warning-list
+        {
+          @include media(max, sm) {
+            position: absolute;
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            bottom: 70%;
+            padding-left: 5px
+          }
+
+        }
       }
     }
     .wrap-btn-forms
     {
+      @include media(max, sm) {
+        margin-top: 8px;
+      }
       button.button
       {
         @include media(max, sm) {
-          height:40px;
+          height:50px;
+          margin-bottom: 5px;
         }
 
       }

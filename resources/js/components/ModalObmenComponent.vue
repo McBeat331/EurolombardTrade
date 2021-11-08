@@ -108,6 +108,7 @@
                            type="text"
                            autocomplete="off"
                            :placeholder="messages[lang].name_placeholder"
+                           data-validate="required" :data-error-text="messages[lang].error_name"
                     >
                 </div>
                 <div class="section-input" @click="focusOnInput">
@@ -118,6 +119,8 @@
                            type="tel"
                            autocomplete="off"
                            :placeholder="messages[lang].phone_placeholder"
+                           data-validate="isPhoneNumber" :data-error-text="messages[lang].error_phone"
+                           :maxlength="15"
                     >
                 </div>
                 <div class="section-input" @click="focusOnInput">
@@ -128,6 +131,7 @@
                            type="email"
                            autocomplete="off"
                            :placeholder="messages[lang].email_placeholder"
+                           data-validate="isEmail" :data-error-text="messages[lang].error_email" required
                     >
                 </div>
             </div>
@@ -286,20 +290,27 @@
                     rate_sale: this.isOpt == true ? this.pairCurrencyItem.sale_opt : this.pairCurrencyItem.sale,
                     status: 0
                 };
-                axios.post("/order", data)
-                    .then(response => {
-                        this.reincarnationBtn();
-                        let langPrefix = '';
+                if(validateForm.isValid($('.wrap-select-option .submitForm')))
+                {
+                    axios.post("/order", data)
+                        .then(response => {
+                            this.reincarnationBtn();
+                            let langPrefix = '';
 
-                        if(language == 'ru') {
-                            langPrefix = '/ru'
-                        }
-                        window.location.href = langPrefix+'/order';
-                    })
-                    .catch(error => {
-                        console.error("There was an error!", error);
-                        this.reincarnationBtn();
-                    });
+                            if(language == 'ru') {
+                                langPrefix = '/ru'
+                            }
+                            window.location.href = langPrefix+'/order';
+                        })
+                        .catch(error => {
+                            console.error("There was an error!", error);
+                            this.reincarnationBtn();
+                        });
+                }
+                else {
+                    this.reincarnationBtn();
+                }
+
             },
             reincarnationBtn: function() {
                 this.isVisibleSpiner = false;
@@ -320,9 +331,9 @@
 
             messages: () => messages,
             isDisabled() {
-                if(this.count_from > 0)
+                if(this.count_from > 0 && this.pairCurrencyItem.length != 0)
                 {
-                    return validateForm(this.required, {name:this.name,phone:this.phone,email:this.email});
+                    return false;
                 }
                 else
                 {
@@ -384,7 +395,10 @@
                     this.getThisRate(cur_from, cur_to);
                 },
                 deep: true
-            }
+            },
+            phone:function (val) {
+
+            },
         },
         mounted() {
             this.setLang();
@@ -400,6 +414,9 @@
             window.addEventListener('mouseup', () => {
                 if (this.dropdownyFrom === true) {
                     this.dropdownyFrom = false;
+                }
+                if (this.dropdownyTo === true) {
+                    this.dropdownyTo = false;
                 }
             });
 

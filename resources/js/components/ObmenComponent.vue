@@ -299,6 +299,9 @@
                 if (this.dropdownyFrom === true) {
                     this.dropdownyFrom = false;
                 }
+                if (this.dropdownyTo === true) {
+                    this.dropdownyTo = false;
+                }
             });
         },
     }

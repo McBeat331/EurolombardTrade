@@ -1,7 +1,8 @@
-<listcity></listcity>
+
 <header class="mainHeader">
 
        <div class="header-content-wrap">
+           <listcity></listcity>
            <div class="header-logo">
                <a href="{{ route('main') }}"> <img src="/images/logoEuroLombard.svg" alt=""></a>
            </div>

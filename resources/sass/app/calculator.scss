@@ -57,14 +57,17 @@
   z-index: 2;
   @include media(max,sm)
   {
-    padding-left: 10px;
+    padding-left: 15px;
     text-align: left;
+    margin: -15px;
+    height: 55px;
   }
   svg
   {
     @include media(max,sm)
     {
-      max-width:55px;
+      max-width: 55px;
+      height: 55px;
     }
   }
 }
@@ -279,6 +282,7 @@
   .wrapper-btn-check{
     border: 1px solid $bordered;
     border-radius: 3px;
+    overflow: hidden;
     height: 50px;
     display: flex;
     flex-direction: column;
@@ -325,6 +329,17 @@
       @include media(max,sm)
       {
         height: 55px;
+      }
+      .notFoundSmile
+      {
+        @include media(max,sm)
+        {
+          height: 85%;
+        }
+        img
+        {
+          max-height: 100%;
+        }
       }
     }
    .countBlock {
@@ -433,7 +448,7 @@
       @include media(max,sm)
       {
         top: 55px;
-        max-height: 225px;
+        max-height: 255px;
       }
       .option {
         font-family: $secondaryFont;
@@ -530,7 +545,7 @@
    font-size: 16px;
    text-align: center;
    line-height: 50px;
-   border-radius: 3px;
+   border-radius: 0px;
    @include media(max,sm)
    {
      width: 50%;
@@ -1172,6 +1187,7 @@ input[type=file] {
     @include media(max, sm) {
       padding: 5px 0px;
       margin-top: -15px;
+      font-size: 15px;
     }
   }
   .title

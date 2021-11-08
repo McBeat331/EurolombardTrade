@@ -25,8 +25,8 @@ class ServiceRequest extends FormRequest
     {
         return [
             'title.*' => 'required',
-            'email' => 'email',
-            'link' => 'url',
+            'email' => 'nullable|email',
+            'link' => 'nullable|url',
             'description.*' => 'nullable',
             'meta_title.*' => 'nullable',
             'meta_description.*' => 'nullable',

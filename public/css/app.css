@@ -648,6 +648,7 @@ select:-webkit-autofill:focus {
 
 .review-submission {
   margin-bottom: 10px;
+  margin-top: 25px;
 }
 .review-submission .review-wrap-section {
   position: relative;
@@ -679,7 +680,7 @@ select:-webkit-autofill:focus {
 }
 @media (min-width: 1170px) {
   .review-submission {
-    margin-top: 50px;
+    margin-top: 75px;
     margin-bottom: 60px;
   }
   .review-submission .control-slide {
@@ -752,7 +753,7 @@ select:-webkit-autofill:focus {
 }
 @media only screen and (max-width: 576px) {
   .telegram-section {
-    margin-top: 20px;
+    margin-bottom: 25px;
   }
 }
 .telegram-section .telegramBlock {
@@ -830,6 +831,10 @@ select:-webkit-autofill:focus {
   align-items: center;
   justify-content: center;
   text-align: center;
+  transition: all 0.3s;
+}
+.telegram-section .telegramBlock .telegram-link-block a:hover {
+  font-weight: bold;
 }
 @media only screen and (max-width: 576px) {
   .telegram-section .telegramBlock .telegram-link-block a {
@@ -887,7 +892,7 @@ select:-webkit-autofill:focus {
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 26px;
   color: #282828;
 }
@@ -945,7 +950,8 @@ select:-webkit-autofill:focus {
     width: 100%;
     background: #FFFFFF;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-    margin-bottom: 25px;
+    margin-bottom: 10px;
+    margin-top: 20px;
   }
 }
 
@@ -1011,13 +1017,16 @@ select:-webkit-autofill:focus {
 }
 @media only screen and (max-width: 576px) {
   .switch-currency {
-    padding-left: 10px;
+    padding-left: 15px;
     text-align: left;
+    margin: -15px;
+    height: 55px;
   }
 }
 @media only screen and (max-width: 576px) {
   .switch-currency svg {
     max-width: 55px;
+    height: 55px;
   }
 }
 
@@ -1225,6 +1234,7 @@ select:-webkit-autofill:focus {
 .calculatorWrapForm .wrapper-btn-check {
   border: 1px solid #C4C4C4;
   border-radius: 3px;
+  overflow: hidden;
   height: 50px;
   display: flex;
   flex-direction: column;
@@ -1275,6 +1285,14 @@ select:-webkit-autofill:focus {
   .calculatorWrapForm .section-input .chosen-single {
     height: 55px;
   }
+}
+@media only screen and (max-width: 576px) {
+  .calculatorWrapForm .section-input .chosen-single .notFoundSmile {
+    height: 85%;
+  }
+}
+.calculatorWrapForm .section-input .chosen-single .notFoundSmile img {
+  max-height: 100%;
 }
 .calculatorWrapForm .section-input .countBlock {
   display: flex;
@@ -1388,7 +1406,7 @@ select:-webkit-autofill:focus {
 @media only screen and (max-width: 576px) {
   .calculatorWrapForm .section-input .dropdownSelect {
     top: 55px;
-    max-height: 225px;
+    max-height: 255px;
   }
 }
 .calculatorWrapForm .section-input .dropdownSelect .option {
@@ -1487,7 +1505,7 @@ select:-webkit-autofill:focus {
   font-size: 16px;
   text-align: center;
   line-height: 50px;
-  border-radius: 3px;
+  border-radius: 0px;
 }
 @media only screen and (max-width: 576px) {
   .calculatorWrapForm .btn-check {
@@ -2086,6 +2104,7 @@ select:-webkit-autofill:focus {
   .modal .subTitle {
     padding: 5px 0px;
     margin-top: -15px;
+    font-size: 15px;
   }
 }
 .modal .title {
@@ -2410,6 +2429,10 @@ select:-webkit-autofill:focus {
   }
 }
 
+.TopMainTitle {
+  margin-top: 30px;
+}
+
 .office-departments .wrap-tabs {
   padding-top: 20px;
 }
@@ -2527,6 +2550,7 @@ select:-webkit-autofill:focus {
   padding: 25px 35px;
   margin-top: 10px;
   margin-bottom: 25px;
+  background-color: #fff;
 }
 .office-departments .departments-item__img {
   width: 100%;
@@ -3206,6 +3230,22 @@ select:-webkit-autofill:focus {
 
 .listRate {
   margin-top: 45px;
+  background: #fff;
+  position: relative;
+}
+.listRate:after, .listRate:before {
+  content: "";
+  position: absolute;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+.listRate:after {
+  left: 100%;
+}
+.listRate:before {
+  right: 100%;
 }
 .listRate > div {
   display: flex;
@@ -3232,7 +3272,7 @@ select:-webkit-autofill:focus {
 @media only screen and (max-width: 576px) {
   .listRate > div > div {
     font-size: 14px;
-    flex: auto;
+    flex: inherit;
   }
 }
 .listRate > div > div.rateName {
@@ -3251,6 +3291,7 @@ select:-webkit-autofill:focus {
 @media only screen and (max-width: 576px) {
   .listRate > div > div.rateModal {
     text-align: center;
+    width: 30px;
   }
 }
 .listRate > div > div.rateModal button {
@@ -3292,6 +3333,26 @@ select:-webkit-autofill:focus {
     font-size: 14px;
   }
 }
+@media only screen and (max-width: 576px) {
+  .listRate > div.rateItemsTitle > div.rateNameTitle {
+    width: 61px;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .listRate > div.rateItemsTitle > div.rateBuyTitle {
+    width: 45px;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .listRate > div.rateItemsTitle > div.rateSaleTitle {
+    width: 45px;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .listRate > div.rateItemsTitle > div.rateModalTitle {
+    width: 30px;
+  }
+}
 
 .modal-overlay {
   position: fixed;
@@ -3302,12 +3363,12 @@ select:-webkit-autofill:focus {
   display: flex;
   justify-content: center;
   background: rgba(40, 40, 40, 0.5);
-  z-index: 101;
+  z-index: 500;
 }
 
 .modal {
   max-width: 1200px;
-  width: 100%;
+  width: calc(100% - 40px);
   background-color: #fff;
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
   margin-left: auto;
@@ -3321,9 +3382,13 @@ select:-webkit-autofill:focus {
 }
 @media only screen and (max-width: 576px) {
   .modal {
-    max-height: 600px;
-    height: auto;
-    padding: 15px 15px 20px 15px;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    max-height: 650px;
+    padding: 15px 15px 15px;
+    border-top: 5px solid #2F2483;
+    border-left: 0px solid #2F2483;
   }
 }
 .modal .close {
@@ -3357,6 +3422,22 @@ select:-webkit-autofill:focus {
   margin-top: 50px;
 }
 
+@media only screen and (max-width: 576px) {
+  .service-modal .icon-bg-line {
+    display: none;
+  }
+}
+.service-modal .callback-wrap-content {
+  background: none;
+}
+
+@media only screen and (max-width: 576px) {
+  .modalObmen .wrap-select-option .title {
+    width: 70%;
+    text-align: left;
+    line-height: 32px;
+  }
+}
 .modalObmen .currencyBlock {
   display: flex;
   align-items: center;
@@ -3387,7 +3468,7 @@ select:-webkit-autofill:focus {
 @media only screen and (max-width: 576px) {
   .modalObmen .currencyBlock .switch-currency {
     flex: auto;
-    margin: -30px 0%;
+    margin: -15px 0%;
     transform: rotate(0deg);
   }
 }
@@ -3419,8 +3500,15 @@ select:-webkit-autofill:focus {
 @media only screen and (max-width: 576px) {
   .modalObmen .submitForm .inputGroup .section-input {
     width: 100%;
-    height: 40px;
+    height: 50px;
     margin: 6px 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .modalObmen .submitForm .inputGroup .section-input input {
+    height: 37px;
   }
 }
 @media only screen and (max-width: 576px) {
@@ -3429,12 +3517,35 @@ select:-webkit-autofill:focus {
   }
 }
 @media only screen and (max-width: 576px) {
+  .modalObmen .submitForm .inputGroup .section-input ul.js_warning-list {
+    position: absolute;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    bottom: 70%;
+    padding-left: 5px;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .modalObmen .submitForm .wrap-btn-forms {
+    margin-top: 8px;
+  }
+}
+@media only screen and (max-width: 576px) {
   .modalObmen .submitForm .wrap-btn-forms button.button {
-    height: 40px;
+    height: 50px;
+    margin-bottom: 5px;
   }
 }
 
 .selectCity {
+  height: 45px;
+  position: absolute;
+  bottom: 100%;
+  width: 100%;
+  margin-left: -20px;
+}
+.selectCity .mcontainer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3671,6 +3782,7 @@ header.mainHeader {
 @media only screen and (max-width: 576px) {
   header.mainHeader {
     z-index: 102;
+    margin-top: 45px;
   }
 }
 header.mainHeader .header-logo img {
@@ -3742,6 +3854,7 @@ header.mainHeader .header-nav-list .nav-item a {
 @media only screen and (max-width: 576px) {
   header.mainHeader .header-nav-list .nav-item.telegramLink {
     padding: 8px 20px 8px 20px;
+    margin: 0;
   }
 }
 header.mainHeader .header-nav-list .nav-item.telegramLink a {
@@ -3757,6 +3870,10 @@ header.mainHeader .header-nav-list .nav-item.telegramLink a {
   color: #FFFFFF;
   display: inline-flex;
   align-items: center;
+  margin-right: 18px;
+  margin-left: 18px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 @media only screen and (max-width: 576px) {
   header.mainHeader .header-nav-list .nav-item.telegramLink a {
@@ -3765,6 +3882,10 @@ header.mainHeader .header-nav-list .nav-item.telegramLink a {
     text-align: center;
     font-size: 20px;
     line-height: 26px;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-top: 15px;
+    margin-bottom: 0px;
   }
 }
 header.mainHeader .header-nav-list .nav-item.telegramLink a .telegramImg {
@@ -3777,6 +3898,10 @@ header.mainHeader .header-nav-list .nav-item.telegramLink a .telegramImg {
 }
 header.mainHeader .header-nav-list .nav-item.telegramLink a .telegramImg img {
   max-width: 25px;
+}
+header.mainHeader .header-nav-list .nav-item.telegramLink a:hover {
+  color: #fff;
+  background: #0098dd;
 }
 header.mainHeader .header-nav-list .nav-item_submenu {
   list-style: none;
@@ -3901,7 +4026,7 @@ header.mainHeader .menu-btn .line.line--3.line-cross {
   -webkit-animation: humburger-bottom-line 0.35s linear;
           animation: humburger-bottom-line 0.35s linear;
 }
-header.mainHeader .icon-bg-line, header.mainHeader .title, header.mainHeader .call-form-description, header.mainHeader .icon-arrow-down-gray {
+header.mainHeader .icon-bg-line, header.mainHeader .title, header.mainHeader .call-form-description {
   display: none;
 }
 @media (min-width: 1170px) {
@@ -3932,7 +4057,7 @@ header.mainHeader .icon-bg-line, header.mainHeader .title, header.mainHeader .ca
   header.mainHeader .header-nav-list {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     max-width: 960px;
     padding-left: 0;
@@ -3948,7 +4073,7 @@ header.mainHeader .icon-bg-line, header.mainHeader .title, header.mainHeader .ca
   header.mainHeader .header-nav-list .nav-item {
     position: relative;
     cursor: pointer;
-    padding: 23px 21px;
+    padding: 0px;
     border-left: 1px solid #F4F4F4;
   }
   header.mainHeader .header-nav-list .nav-item a {
@@ -3958,6 +4083,7 @@ header.mainHeader .icon-bg-line, header.mainHeader .title, header.mainHeader .ca
     justify-content: space-between;
     font-weight: 400;
     font-size: 16px;
+    padding: 23px 18px;
   }
   header.mainHeader .header-nav-list .nav-item a:hover {
     color: #2F2483;
@@ -4194,7 +4320,7 @@ footer.mainFooter .social-wrapper .social-mobile-list li {
 }
 @media (min-width: 1170px) {
   footer.mainFooter {
-    margin-top: 20px;
+    margin-top: 80px;
   }
   footer.mainFooter .bottom-footers {
     flex-direction: row;
@@ -4505,9 +4631,6 @@ button.button.resetButton {
   background-color: #F1F4FF;
   width: 100%;
   max-width: 1200px;
-}
-.modal-el .title {
-  font-size: 22px;
 }
 .modal-el .modal-content-forms {
   padding: 20px;
@@ -5252,7 +5375,7 @@ a {
 }
 .advantages-content-wrap .advantages-item .item-title {
   padding-top: 25px;
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 700;
 }
 .advantages-content-wrap .advantages-item .item-text {
@@ -5647,9 +5770,6 @@ p.important-info {
 .common-questions-wrap-list .icon-wrap-block span:before {
   font-size: 24px;
 }
-.common-questions-wrap-list .callback-wrap-content .icon-bg-line {
-  display: none;
-}
 @media (min-width: 1170px) {
   .common-questions-wrap-list {
     margin-top: 50px;
@@ -5692,6 +5812,11 @@ p.important-info {
   top: 0;
   overflow: hidden;
   z-index: -1;
+}
+@media only screen and (max-width: 576px) {
+  .callback-wrap-content .icon-bg-line {
+    display: none;
+  }
 }
 .callback-wrap-content .icon-bg-line::before {
   color: #fff;

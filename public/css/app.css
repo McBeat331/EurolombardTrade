@@ -1460,7 +1460,6 @@ select:-webkit-autofill:focus {
 }
 .calculatorWrapForm .section-input .customSelect {
   position: relative;
-  z-index: 2;
 }
 .calculatorWrapForm select {
   cursor: pointer;

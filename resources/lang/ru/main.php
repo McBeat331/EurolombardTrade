@@ -101,7 +101,7 @@ return [
     'call_drop_title' => 'Обратная связь',
     'cources' =>'Курсы',
     'ourServices'=>'Наши услуги',
-    'ourAdvantages'=>'Нашы преимущества',
+    'ourAdvantages'=>'Наши преимущества',
     'contacts'=>'Контакты',
     'conducted_assessment' => 'Как проводится оценка',
     'assessment' => 'От общего веса и пробы золота зависит стоимость 

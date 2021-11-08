@@ -66,6 +66,18 @@
     margin-top: 50px;
   }
 }
+.service-modal
+{
+  .icon-bg-line
+  {
+    @include media(max, sm) {
+      display: none;
+    }
+  }
+  .callback-wrap-content{
+    background:none;
+  }
+}
 .modalObmen {
   .wrap-select-option
   {

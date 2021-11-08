@@ -752,7 +752,7 @@ select:-webkit-autofill:focus {
 }
 @media only screen and (max-width: 576px) {
   .telegram-section {
-    margin-top: 20px;
+    margin-bottom: 25px;
   }
 }
 .telegram-section .telegramBlock {
@@ -945,7 +945,8 @@ select:-webkit-autofill:focus {
     width: 100%;
     background: #FFFFFF;
     box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.1);
-    margin-bottom: 25px;
+    margin-bottom: 10px;
+    margin-top: 20px;
   }
 }
 
@@ -1228,6 +1229,7 @@ select:-webkit-autofill:focus {
 .calculatorWrapForm .wrapper-btn-check {
   border: 1px solid #C4C4C4;
   border-radius: 3px;
+  overflow: hidden;
   height: 50px;
   display: flex;
   flex-direction: column;
@@ -1401,7 +1403,7 @@ select:-webkit-autofill:focus {
 @media only screen and (max-width: 576px) {
   .calculatorWrapForm .section-input .dropdownSelect {
     top: 55px;
-    max-height: 225px;
+    max-height: 255px;
   }
 }
 .calculatorWrapForm .section-input .dropdownSelect .option {
@@ -1500,7 +1502,7 @@ select:-webkit-autofill:focus {
   font-size: 16px;
   text-align: center;
   line-height: 50px;
-  border-radius: 3px;
+  border-radius: 0px;
 }
 @media only screen and (max-width: 576px) {
   .calculatorWrapForm .btn-check {
@@ -2424,6 +2426,10 @@ select:-webkit-autofill:focus {
   }
 }
 
+.TopMainTitle {
+  margin-top: 30px;
+}
+
 .office-departments .wrap-tabs {
   padding-top: 20px;
 }
@@ -2541,6 +2547,7 @@ select:-webkit-autofill:focus {
   padding: 25px 35px;
   margin-top: 10px;
   margin-bottom: 25px;
+  background-color: #fff;
 }
 .office-departments .departments-item__img {
   width: 100%;
@@ -3220,6 +3227,7 @@ select:-webkit-autofill:focus {
 
 .listRate {
   margin-top: 45px;
+  background: #fff;
 }
 .listRate > div {
   display: flex;
@@ -3394,6 +3402,15 @@ select:-webkit-autofill:focus {
   font-size: 14px;
   border-radius: 16px;
   margin-top: 50px;
+}
+
+@media only screen and (max-width: 576px) {
+  .service-modal .icon-bg-line {
+    display: none;
+  }
+}
+.service-modal .callback-wrap-content {
+  background: none;
 }
 
 @media only screen and (max-width: 576px) {
@@ -4009,7 +4026,7 @@ header.mainHeader .icon-bg-line, header.mainHeader .title, header.mainHeader .ca
   header.mainHeader .header-nav-list {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     max-width: 960px;
     padding-left: 0;
@@ -4025,7 +4042,7 @@ header.mainHeader .icon-bg-line, header.mainHeader .title, header.mainHeader .ca
   header.mainHeader .header-nav-list .nav-item {
     position: relative;
     cursor: pointer;
-    padding: 23px 21px;
+    padding: 0px;
     border-left: 1px solid #F4F4F4;
   }
   header.mainHeader .header-nav-list .nav-item a {
@@ -4035,8 +4052,9 @@ header.mainHeader .icon-bg-line, header.mainHeader .title, header.mainHeader .ca
     justify-content: space-between;
     font-weight: 400;
     font-size: 16px;
+    padding: 23px 30px;
   }
-  header.mainHeader .header-nav-list .nav-item a:hover {
+  pa header.mainHeader .header-nav-list .nav-item a:hover {
     color: #2F2483;
   }
   header.mainHeader .header-nav-list li:nth-child(6) {
@@ -4271,7 +4289,7 @@ footer.mainFooter .social-wrapper .social-mobile-list li {
 }
 @media (min-width: 1170px) {
   footer.mainFooter {
-    margin-top: 20px;
+    margin-top: 80px;
   }
   footer.mainFooter .bottom-footers {
     flex-direction: row;
@@ -4582,9 +4600,6 @@ button.button.resetButton {
   background-color: #F1F4FF;
   width: 100%;
   max-width: 1200px;
-}
-.modal-el .title {
-  font-size: 22px;
 }
 .modal-el .modal-content-forms {
   padding: 20px;

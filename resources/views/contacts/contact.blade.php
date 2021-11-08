@@ -2,9 +2,11 @@
 @include('includes.meta_tags')
 @section('content')
 
-    <div class="mcontainer">
-        <div class="title visible-viewportchecker visibility--check hidden">{{ trans('main.contact_title') }}</div>
-    </div>
+    <section class="TopMainTitle">
+        <div class="mcontainer">
+            <div class="title visible-viewportchecker visibility--check hidden">{{ trans('main.contact_title') }}</div>
+        </div>
+    </section>
 
     <section class="office-departments">
         <div class="mcontainer">
